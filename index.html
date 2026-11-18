@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><script>window.SG_WEB=true;window.SG_BUILD="20261118-1b0b1a63";</script><meta name="theme-color" content="#0a0a0c"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-180.png">
+<meta charset="utf-8"><script>window.SG_WEB=true;window.SG_BUILD="20261118-8452242c";</script><meta name="theme-color" content="#0a0a0c"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-180.png">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Study Galaxy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap">
@@ -2996,7 +2996,7 @@ function fxWebSettingsHTML(){
       '<div><b>Claude model</b><span class="muted">Sonnet is a good balance. Haiku is the cheapest if you use it a lot.</span><select data-fxs="model" class="fx-in">'+
         MODELS.map(m=>'<option value="'+m[0]+'"'+((S.set.model||'claude-sonnet-5-5')===m[0]?' selected':'')+'>'+m[1]+'</option>').join('')+'</select></div>';
   }
-  h+='<div><b>Backup and transfer</b><span class="muted">'+(WEB?'Your progress lives in this browser. ':'')+'Download a backup, or copy the code below to move your progress to another version or browser.</span>'+
+  h+='<div><b>Backup and transfer</b><span class="muted">'+(WEB?'Your progress lives in this browser. ':'')+(WEB?'Download a backup, or copy':'Copy')+' the backup code below to move your progress to another version or browser.</span>'+
     '<div class="row">'+(WEB?'<button class="btn ghost sm" data-fx="bkdl">Download backup</button>':'')+'<button class="btn ghost sm" data-fx="bkshow">Show backup code</button>'+
     '<label class="btn ghost sm" style="cursor:pointer">Restore from file<input type="file" id="fx-bkf" accept=".json,application/json" hidden></label></div>'+
     '<div id="fx-bkbox"></div>'+

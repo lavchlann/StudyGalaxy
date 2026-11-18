@@ -68,7 +68,7 @@ function fxWebSettingsHTML(){
       '<div><b>Claude model</b><span class="muted">Sonnet is a good balance. Haiku is the cheapest if you use it a lot.</span><select data-fxs="model" class="fx-in">'+
         MODELS.map(m=>'<option value="'+m[0]+'"'+((S.set.model||'claude-sonnet-5-5')===m[0]?' selected':'')+'>'+m[1]+'</option>').join('')+'</select></div>';
   }
-  h+='<div><b>Backup and transfer</b><span class="muted">'+(WEB?'Your progress lives in this browser. ':'')+'Download a backup, or copy the code below to move your progress to another version or browser.</span>'+
+  h+='<div><b>Backup and transfer</b><span class="muted">'+(WEB?'Your progress lives in this browser. ':'')+(WEB?'Download a backup, or copy':'Copy')+' the backup code below to move your progress to another version or browser.</span>'+
     '<div class="row">'+(WEB?'<button class="btn ghost sm" data-fx="bkdl">Download backup</button>':'')+'<button class="btn ghost sm" data-fx="bkshow">Show backup code</button>'+
     '<label class="btn ghost sm" style="cursor:pointer">Restore from file<input type="file" id="fx-bkf" accept=".json,application/json" hidden></label></div>'+
     '<div id="fx-bkbox"></div>'+
