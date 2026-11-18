@@ -1,0 +1,150 @@
+=== mm3-c02 | interactive: trigfun
+@summary Trigonometric functions are periodic, so they model tides, temperature and anything that repeats. This chapter works in radians, uses the unit circle for exact values, sketches transformed sine and cosine graphs, differentiates them, and models real cycles.
+@video B | Euler's formula with introductory group theory (3Blue1Brown) | https://www.youtube.com/watch?v=mvmuCPvRoWQ
+@video B | Derivative formulas through geometry (3Blue1Brown, ch. 3) | search:3Blue1Brown Derivative formulas through geometry Essence of calculus chapter 3
+@video J | Unit circle and exact values | search:unit circle exact values
+@video J | Trig graphs and transformations | search:trigonometric graphs transformations
+@video J | Differentiating sin and cos | search:differentiation sin cos
+
+## 2.2 | The unit circle and radians
+@p One **radian** is the angle at the centre of a circle subtended by an arc equal in length to the radius. A full turn is $2\pi$ radians, so $\pi$ rad $=180^\circ$. To convert: degrees $\times\frac{\pi}{180}$ gives radians, and radians $\times\frac{180}{\pi}$ gives degrees.
+@p On the **unit circle** (radius 1), the point at angle $\theta$ is $(\cos\theta,\sin\theta)$. So $\cos$ is the $x$-coordinate, $\sin$ is the $y$-coordinate, and $\tan\theta=\frac{\sin\theta}{\cos\theta}$ is the gradient of the radius.
+@key Exact values: $\sin\frac\pi6=\tfrac12$, $\cos\frac\pi6=\tfrac{\sqrt3}2$; $\sin\frac\pi4=\cos\frac\pi4=\tfrac{\sqrt2}2$; $\sin\frac\pi3=\tfrac{\sqrt3}2$, $\cos\frac\pi3=\tfrac12$. Always: $\sin^2\theta+\cos^2\theta=1$.
+@p Use the quadrant to find the sign. In quadrant 1 all are positive; 2 only $\sin$; 3 only $\tan$; 4 only $\cos$. Reduce an angle to its **reference angle** in the first quadrant, then apply the sign.
+@ex An exact value outside the first quadrant
+Q: Find the exact value of $\sin\frac{5\pi}{6}$ and $\cos\frac{7\pi}{6}$.
+S: $\frac{5\pi}{6}$ is in quadrant 2 with reference angle $\frac\pi6$; $\sin$ is positive there, so $\sin\frac{5\pi}6=\frac12$.
+S: $\frac{7\pi}{6}$ is in quadrant 3 with reference angle $\frac\pi6$; $\cos$ is negative there, so $\cos\frac{7\pi}6=-\frac{\sqrt3}2$.
+A: $\tfrac12$ and $-\tfrac{\sqrt3}{2}$
+@ex Using the Pythagorean identity
+Q: If $\sin\theta=\tfrac35$ and $\theta$ is in quadrant 2, find $\cos\theta$ and $\tan\theta$.
+S: $\cos^2\theta=1-\tfrac9{25}=\tfrac{16}{25}$, so $\cos\theta=\pm\tfrac45$.
+S: Quadrant 2 has negative $\cos$, so $\cos\theta=-\tfrac45$.
+S: $\tan\theta=\frac{3/5}{-4/5}=-\tfrac34$.
+A: $\cos\theta=-\frac45$, $\tan\theta=-\frac34$
+@warn Calculator in the wrong mode is the most common lost mark. If the question uses $\pi$, your CAS or calculator must be in **radians**.
+@tb rec=1,2,3,4,5,6,7,9,11 ext=13,14,16,17,19 | Exercise 2.2 covers radian conversion, exact values and the unit circle, arc length and sector area.
+
+## 2.3 | Trigonometric functions and their graphs
+@p For $y=a\sin\big(b(x-c)\big)+d$ (and likewise cosine): **amplitude** $|a|$; **period** $\frac{2\pi}{b}$; **horizontal shift** $c$; **vertical shift** $d$, with the **midline** $y=d$. The maximum is $d+|a|$ and the minimum is $d-|a|$.
+@p The graph of $y=\tan x$ has period $\pi$ and vertical asymptotes at $x=\frac\pi2+n\pi$. It has no amplitude.
+@ex Reading a graph
+Q: State the amplitude, period, and range of $y=3\sin(2x)+1$.
+S: Amplitude $=3$. Period $=\frac{2\pi}{2}=\pi$.
+S: Midline $y=1$, so the range is $1-3\le y\le 1+3$.
+A: Amplitude 3, period $\pi$, range $[-2,4]$.
+@p **Solving trig equations** on a given domain: find the reference angle from the inverse trig function, then use symmetry for every solution in the domain. For $\sin$ the two solutions are $\theta$ and $\pi-\theta$; for $\cos$ they are $\theta$ and $2\pi-\theta$; for $\tan$ add $\pi$. If the argument is $2x$, the domain for $2x$ is twice as long, so list more solutions before dividing.
+@ex Solving on a domain
+Q: Solve $2\sin(2x)=\sqrt3$ for $0\le x\le\pi$.
+S: $\sin(2x)=\frac{\sqrt3}2$, and $0\le 2x\le 2\pi$.
+S: $2x=\frac\pi3$ or $\frac{2\pi}3$.
+S: $x=\frac\pi6$ or $\frac\pi3$.
+A: $x=\frac\pi6,\ \frac\pi3$
+@warn Change the domain **first**. For $\sin(2x)$ on $0\le x\le\pi$ you need $0\le 2x\le 2\pi$. Forgetting that doubling the argument doubles the interval loses half the solutions.
+@int trigfun | Change amplitude, period and shifts and see the equation and key features update.
+@tb rec=1,3,6,8,10,12 ext=13,15,16,17,19 | Exercise 2.3 covers graphs of $\sin$, $\cos$, $\tan$ with transformations and solving equations on a domain.
+
+## 2.4 | Differentiating trigonometric functions
+@key $$\frac{d}{dx}\sin x=\cos x,\qquad\frac{d}{dx}\cos x=-\sin x,\qquad\frac{d}{dx}\tan x=\sec^2x=\frac1{\cos^2x}$$
+@p With the chain rule: $\frac{d}{dx}\sin(f(x))=f'(x)\cos(f(x))$ and $\frac{d}{dx}\cos(f(x))=-f'(x)\sin(f(x))$. These only hold when $x$ is in **radians**.
+@ex Chain rule with trig
+Q: Differentiate $y=\sin(3x)+\cos(x^2)$.
+S: $\frac{d}{dx}\sin(3x)=3\cos(3x)$.
+S: $\frac{d}{dx}\cos(x^2)=-2x\sin(x^2)$.
+A: $y'=3\cos(3x)-2x\sin(x^2)$
+@ex Stationary points of a trig graph
+Q: Find where $y=\sin x+\cos x$ has stationary points on $0\le x\le 2\pi$.
+S: $y'=\cos x-\sin x=0\Rightarrow\tan x=1$.
+S: $x=\frac\pi4$ or $\frac{5\pi}{4}$.
+A: $x=\frac\pi4$ and $x=\frac{5\pi}4$
+@warn $\frac{d}{dx}\sin(x^2)\neq\cos(x^2)$. You must multiply by the derivative of the inside. Also, $\frac{d}{dx}\cos x$ is **negative** sine.
+@tb rec=1,2,4,5,6,9,11,12 ext=14,15,17,19 | Exercise 2.4 differentiates $\sin$, $\cos$, $\tan$ with the chain rule, then finds tangents, normals and stationary points.
+
+## 2.5 | Modelling with trigonometric functions
+@p A periodic situation like tides, daylight hours or a Ferris wheel is modelled by $y=a\sin\big(b(t-c)\big)+d$ or a cosine. Steps: find the midline from $\frac{\max+\min}2$; the amplitude from $\frac{\max-\min}2$; the period from the time between peaks; then use $b=\frac{2\pi}{\text{period}}$.
+@ex Building a model
+Q: Water depth varies between 2 m and 6 m with a period of 12 hours, and is at its maximum at $t=0$. Find a model.
+S: Midline $=\frac{2+6}2=4$; amplitude $=2$; $b=\frac{2\pi}{12}=\frac\pi6$.
+S: Max at $t=0$ suggests cosine with no shift.
+A: $D=2\cos\left(\frac{\pi t}6\right)+4$
+@ex Using the model
+Q: When is the depth first equal to 5 m?
+S: $2\cos\left(\frac{\pi t}{6}\right)+4=5\Rightarrow\cos\left(\frac{\pi t}6\right)=\frac12$.
+S: $\frac{\pi t}{6}=\frac\pi3\Rightarrow t=2$.
+A: $t=2$ hours
+@p Rate of change is the derivative. $\frac{dD}{dt}=-\frac\pi3\sin\left(\frac{\pi t}6\right)$, which is zero at the highest and lowest tide and most negative halfway down.
+@tb rec=1,2,4,6,8,9,12 ext=13,15,17,20 | Exercise 2.5 is context modelling: tides, temperature, Ferris wheels and rates of change.
+
+@quiz Radians | Convert $150^\circ$ to radians. Give an exact answer.
+A: 5pi/6
+ALT: (5pi)/6||5π/6||5/6pi
+AD: $\dfrac{5\pi}{6}$
+SOL: $150\times\frac{\pi}{180}=\frac{5\pi}6$.
+H: Multiply by $\frac{\pi}{180}$.||Simplify $\frac{150}{180}$.||$\frac{150}{180}=\frac56$.
+@quiz Exact value | Find the exact value of $\cos\frac{2\pi}{3}$.
+A: -1/2
+ALT: -0.5||-(1/2)
+AD: $-\tfrac12$
+SOL: Reference angle $\frac\pi3$, quadrant 2 so cosine is negative: $-\frac12$.
+H: Find the reference angle.||Which quadrant is $\frac{2\pi}3$ in?||Cosine is negative in quadrant 2.
+@quiz Amplitude and period | State the period of $y=4\cos(3x)-2$ as an exact value.
+A: 2pi/3
+ALT: (2pi)/3||2π/3
+AD: $\dfrac{2\pi}{3}$
+SOL: Period $=\frac{2\pi}{b}=\frac{2\pi}3$.
+H: Period formula.||$b=3$.||Divide $2\pi$ by 3.
+@quiz Range | State the maximum value of $y=4\cos(3x)-2$.
+A: 2
+ALT: y=2||max=2
+AD: $2$
+SOL: Max $=d+|a|=-2+4=2$.
+H: Midline is $y=-2$.||Amplitude is 4.||Add them.
+@quiz Derivative | Differentiate $y=\sin(5x)$.
+A: 5cos(5x)
+ALT: 5cos5x
+AD: $5\cos(5x)$
+SOL: Chain rule: inside derivative 5, times $\cos(5x)$.
+H: Identify the inside.||Derivative of sin is cos.||Multiply by 5.
+@quiz Derivative | Differentiate $y=\cos(x^2)$.
+A: -2xsin(x^2)
+ALT: -2x sin(x^2)||-2xsin(x²)
+AD: $-2x\sin(x^2)$
+SOL: $\frac{d}{dx}\cos u=-u'\sin u$ with $u=x^2$, $u'=2x$.
+H: Cosine differentiates to negative sine.||Inside is $x^2$.||Multiply by $2x$.
+@quiz Solve | Solve $2\cos x=1$ for $0\le x\le 2\pi$. List the solutions separated by commas, in order.
+A: pi/3,5pi/3
+ALT: pi/3 and 5pi/3||π/3,5π/3||x=pi/3,5pi/3
+AD: $x=\frac\pi3,\ \frac{5\pi}{3}$
+SOL: $\cos x=\frac12$ gives reference angle $\frac\pi3$; cosine positive in quadrants 1 and 4: $\frac\pi3$ and $2\pi-\frac\pi3=\frac{5\pi}3$.
+H: Isolate $\cos x$.||Reference angle is $\frac\pi3$.||The second solution is $2\pi-\frac\pi3$.
+@quiz Identity | If $\cos\theta=\frac{5}{13}$ and $\theta$ is in quadrant 4, find $\sin\theta$.
+A: -12/13
+ALT: -(12/13)
+AD: $-\tfrac{12}{13}$
+SOL: $\sin^2\theta=1-\frac{25}{169}=\frac{144}{169}$; quadrant 4 has negative sine, so $-\frac{12}{13}$.
+H: Use $\sin^2+\cos^2=1$.||$\sin^2\theta=\frac{144}{169}$.||Check the sign for quadrant 4.
+@quiz Model | A model is $T=8\sin\left(\frac{\pi t}{12}\right)+20$. Find the maximum temperature.
+A: 28
+ALT: 28 degrees||T=28
+AD: $28$
+SOL: Max $=20+8=28$.
+H: Midline is 20.||Amplitude is 8.||Add them.
+@quiz Stationary | Find the first positive $x$ with $\frac{d}{dx}\sin x=0$. Give an exact value.
+A: pi/2
+ALT: π/2||x=pi/2
+AD: $\dfrac\pi2$
+SOL: $\cos x=0$ first at $x=\frac\pi2$.
+H: Differentiate.||Set $\cos x=0$.||Smallest positive solution.
+
+@comet Extension: Maximum of a sum | Show that the greatest value of $y=\sin x+\cos x$ is $\sqrt{2}$, by evaluating it at the stationary point $x=\frac\pi4$. Enter the value at $x=\frac\pi4$ as an exact number.
+A: sqrt2
+ALT: sqrt(2)||√2||2^(1/2)
+AD: $\sqrt2$
+SOL: $\sin\frac\pi4+\cos\frac\pi4=\frac{\sqrt2}2+\frac{\sqrt2}2=\sqrt2$.
+H: Substitute $x=\frac\pi4$.||Both exact values equal $\frac{\sqrt2}{2}$.||Add.
+@comet Extension: Where is the tide rising fastest? | For $D=2\cos\left(\frac{\pi t}6\right)+4$ on $0\le t\le12$, find the greatest rate of change of $D$ (a positive number, in m/h). Give it exactly.
+A: pi/3
+ALT: π/3||(pi)/3
+AD: $\dfrac\pi3$
+SOL: $D'=-\frac\pi3\sin\left(\frac{\pi t}6\right)$, whose greatest magnitude is $\frac\pi3$.
+H: Differentiate $D$.||The largest $|\sin|$ is 1.||Read off the coefficient.

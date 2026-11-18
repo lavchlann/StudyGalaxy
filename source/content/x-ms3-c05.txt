@@ -1,0 +1,87 @@
+=== ms3-c05 | append
+## 5.2
+@ex Inverse
+Q: Inverse of $\begin{pmatrix}2&1\\5&3\end{pmatrix}$.
+S: $\det=6-5=1$.
+S: $\frac1{1}\begin{pmatrix}3&-1\\-5&2\end{pmatrix}$.
+A: $\begin{pmatrix}3&-1\\-5&2\end{pmatrix}$
+@int matrix | Drag the four entries: the green and blue arrows show where the two basis vectors land; the determinant is the area scale factor.
+## 5.3
+@ex Gaussian elimination
+Q: $x+y=3$, $2x-y=0$.
+S: Add the equations: $3x=3\Rightarrow x=1$, then $y=2$.
+A: $x=1,\ y=2$
+## 5.4
+@ex Parameter
+Q: For which $k$ does $x+y=1$, $2x+2y=k$ have no solution?
+S: Parallel lines unless $k=2$.
+A: $k\ne2$
+## 5.5
+@ex Leslie matrix
+Q: $L=\begin{pmatrix}0&2\\0.5&0\end{pmatrix}$, population $(10,\ 6)$ next generation.
+S: $(0\cdot10+2\cdot6,\ 0.5\cdot10+0)=(12,\ 5)$.
+A: $(12,\ 5)$
+## 5.6
+@ex Steady state
+Q: Transition matrix $\begin{pmatrix}0.9&0.2\\0.1&0.8\end{pmatrix}$. Find the steady state.
+S: $0.1a=0.2b\Rightarrow a=2b$; with $a+b=1$, $b=\frac13$.
+A: $\left(\frac23,\ \frac13\right)$
+## X | Exam toolkit
+@p **Check inverses.** Multiply $AA^{-1}$ and confirm you get $I$. A singular matrix has $\det=0$ and no inverse. Remember $(AB)^{-1}=B^{-1}A^{-1}$ and $(AB)^T=B^TA^T$.
+@p **Markov chains.** Columns sum to 1. State vector next step $=T\mathbf s$. Steady state solves $T\mathbf s=\mathbf s$ with components summing to 1.
+@quiz Determinant | $\begin{vmatrix}3&1\\4&2\end{vmatrix}$.
+A: 2
+AD: $2$
+SOL: $6-4$.
+H: $ad-bc$.||$3\cdot2-1\cdot4$.||Compute.
+@quiz Inverse | Determinant of $\begin{pmatrix}1&2\\3&4\end{pmatrix}$.
+A: -2
+AD: $-2$
+SOL: $4-6$.
+H: $ad-bc$.||$4-6$.||$-2$.
+@quiz Product | $\begin{pmatrix}1&0\\0&2\end{pmatrix}\begin{pmatrix}3\\4\end{pmatrix}$: second component.
+A: 8
+AD: $8$
+SOL: $2\cdot4$.
+H: Row 2.||$0\cdot3+2\cdot4$.||8.
+@quiz Singular | For which $k$ is $\begin{pmatrix}1&2\\3&k\end{pmatrix}$ singular?
+A: 6
+AD: $k=6$
+SOL: $k-6=0$.
+H: det.||$k-6$.||Set zero.
+@quiz Solve | $2x=6$ in matrix form: $x=?$
+A: 3
+AD: $3$
+SOL: Divide.
+H: Divide.||$6/2$.||3.
+@quiz Markov | Each column of a transition matrix sums to?
+A: 1
+AD: $1$
+SOL: Probabilities.
+H: Probabilities.||Total.||1.
+@quiz Steady | $\begin{pmatrix}0.5&0.5\\0.5&0.5\end{pmatrix}$ steady state first component.
+A: 0.5
+ALT: 1/2
+AD: $0.5$
+SOL: Symmetric.
+H: Equal.||Sum 1.||0.5.
+@quiz Leslie | $L=\begin{pmatrix}1&1\\1&0\end{pmatrix}$ applied to $(2,1)$: first component.
+A: 3
+AD: $3$
+SOL: $2+1$.
+H: Row 1.||$1\cdot2+1\cdot1$.||3.
+@quiz Trace | Trace of $\begin{pmatrix}2&5\\7&3\end{pmatrix}$.
+A: 5
+AD: $5$
+SOL: $2+3$.
+H: Diagonal.||Add.||5.
+@quiz Reflect | Image of $(2,3)$ under $\begin{pmatrix}1&0\\0&-1\end{pmatrix}$: second component.
+A: -3
+AD: $-3$
+SOL: Reflect in the $x$-axis.
+H: Multiply.||Row 2.||$-3$.
+@comet Extension: Eigen idea | For $\begin{pmatrix}2&0\\0&3\end{pmatrix}$, what is the larger scale factor along an axis?
+A: 3
+AD: $3$
+SOL: Diagonal entries.
+H: Axes.||Diagonal.||Larger is 3.

@@ -1,0 +1,125 @@
+=== mm3-c02 | append
+## 2.2
+@p **Arc length and sector area.** For a circle of radius $r$ and angle $\theta$ in radians: arc length $s=r\theta$ and sector area $A=\frac12r^2\theta$. These are only this simple in radians, which is the whole reason radians exist.
+@ex Sector
+Q: A sector has radius $6$ cm and angle $\frac{2\pi}3$. Find the arc length and area.
+S: $s=6\cdot\frac{2\pi}3=4\pi$.
+S: $A=\frac12\cdot36\cdot\frac{2\pi}3=12\pi$.
+A: $4\pi$ cm and $12\pi\ \text{cm}^2$
+@key **Symmetry identities:** $\sin(\pi-\theta)=\sin\theta$, $\cos(\pi-\theta)=-\cos\theta$, $\sin(-\theta)=-\sin\theta$, $\cos(-\theta)=\cos\theta$, $\sin\!\left(\tfrac\pi2-\theta\right)=\cos\theta$.
+@ex Using symmetry
+Q: Given $\sin\theta=0.3$, write $\sin(\pi+\theta)$ and $\cos\left(\frac\pi2-\theta\right)$.
+S: $\sin(\pi+\theta)=-\sin\theta=-0.3$.
+S: $\cos\left(\frac\pi2-\theta\right)=\sin\theta=0.3$.
+A: $-0.3$ and $0.3$
+## 2.3
+@ex Reading an equation from a graph
+Q: A sine curve has maximum $5$ at $x=\frac\pi6$, minimum $-1$, and period $\pi$. Find a cosine model.
+S: Midline $d=\frac{5+(-1)}2=2$; amplitude $a=3$; $b=\frac{2\pi}\pi=2$.
+S: A maximum at $x=\frac\pi6$ means the cosine is shifted right by $\frac\pi6$.
+A: $y=3\cos\left(2\left(x-\frac\pi6\right)\right)+2$
+@ex Tan equation
+Q: Solve $\tan x=-1$ for $0\le x\le2\pi$.
+S: Reference angle $\frac\pi4$; tangent is negative in quadrants 2 and 4.
+A: $x=\frac{3\pi}4,\ \frac{7\pi}4$
+@p **Equations with a quadratic.** For $2\sin^2x-\sin x=0$, factorise: $\sin x(2\sin x-1)=0$, so $\sin x=0$ or $\sin x=\frac12$. Never divide by $\sin x$, because you lose solutions.
+@ex Trig quadratic
+Q: Solve $2\sin^2x-\sin x=0$ for $0\le x\le2\pi$.
+S: $\sin x=0\Rightarrow x=0,\pi,2\pi$.
+S: $\sin x=\frac12\Rightarrow x=\frac\pi6,\frac{5\pi}6$.
+A: $x=0,\ \frac\pi6,\ \frac{5\pi}6,\ \pi,\ 2\pi$
+## 2.4
+@ex Tangent to a sine curve
+Q: Find the equation of the tangent to $y=\sin x$ at $x=\frac\pi3$.
+S: $y'=\cos x$, gradient $\frac12$; point $\left(\frac\pi3,\frac{\sqrt3}2\right)$.
+S: $y-\frac{\sqrt3}2=\frac12\left(x-\frac\pi3\right)$.
+A: $y=\frac12x+\frac{\sqrt3}2-\frac\pi6$
+@ex Product with trig
+Q: Differentiate $y=x\sin x$.
+S: Product rule: $1\cdot\sin x+x\cos x$.
+A: $\sin x+x\cos x$
+@ex Differentiating tan
+Q: Differentiate $y=\tan(3x)$.
+S: $\frac d{dx}\tan u=u'\sec^2u$ with $u=3x$.
+A: $3\sec^2(3x)$
+## 2.5
+@ex Ferris wheel
+Q: A wheel of radius $10$ m has its lowest point $2$ m above ground and turns once every $40$ s. Starting at the lowest point, model the height $h(t)$.
+S: Midline $12$, amplitude $10$, $b=\frac{2\pi}{40}=\frac\pi{20}$.
+S: Starting at the minimum suggests $-\cos$.
+A: $h(t)=12-10\cos\left(\frac{\pi t}{20}\right)$
+@ex Temperature model
+Q: $T=18+6\sin\left(\frac{\pi}{12}(t-9)\right)$. Find the maximum, when it occurs in the first 24 hours, and the rate of change at $t=9$.
+S: Max is $24$ when $\frac\pi{12}(t-9)=\frac\pi2\Rightarrow t=15$.
+S: $T'=\frac\pi2\cos\left(\frac\pi{12}(t-9)\right)$; at $t=9$ it is $\frac\pi2\approx1.57$.
+A: $24^\circ$C at $t=15$; rising at about $1.57^\circ$C per hour.
+## X | Exam toolkit
+@p **Radians first.** Check mode before any trig calculation. Unit-circle exact values must be exact; do not leave $0.866$ when $\frac{\sqrt3}2$ is asked.
+@p **Solving trig equations, a routine.** (1) Isolate the trig function. (2) Find the reference angle. (3) Use quadrants for all solutions. (4) For $\sin(bx)$, extend the domain to $b$ times its length before solving. (5) Divide by $b$ at the end.
+@p **Modelling routine.** Max and min give midline and amplitude; the time between peaks gives the period; a known point (for example a max at $t=0$) selects sine or cosine and the shift. Check by substituting a point.
+@ex Mixed problem
+Q: Find the maximum value of $f(x)=3\sin x+4\cos x$ by differentiating, on $0\le x\le\frac\pi2$.
+S: $f'=3\cos x-4\sin x=0\Rightarrow\tan x=\frac34$, $x\approx0.6435$.
+S: $\sin x=\frac35$, $\cos x=\frac45$, so $f=\frac95+\frac{16}5=5$.
+A: Maximum value $5$ at $x\approx0.644$.
+@warn Frequent errors: using degrees, forgetting the negative in $\frac d{dx}\cos$, missing solutions when the argument is $2x$, and writing $\sin^2x$ as $\sin x^2$.
+@quiz Sector | Find the arc length of a sector with radius $5$ and angle $\frac{3\pi}{5}$.
+A: 3pi
+ALT: 3π
+AD: $3\pi$
+SOL: $s=r\theta=5\cdot\frac{3\pi}5=3\pi$.
+H: $s=r\theta$.||Substitute.||Cancel the 5.
+@quiz Symmetry | If $\cos\theta=\frac13$, find $\cos(\pi-\theta)$.
+A: -1/3
+AD: $-\tfrac13$
+SOL: $\cos(\pi-\theta)=-\cos\theta$.
+H: Symmetry identity.||Negative.||Substitute.
+@quiz Model | A curve has max $7$ and min $1$. Find its midline value $d$.
+A: 4
+AD: $4$
+SOL: $\frac{7+1}2=4$.
+H: Average of max and min.||$8\div2$.||Compute.
+@quiz Tan | Solve $\tan x=\sqrt3$ for $0\le x\le\pi$.
+A: pi/3
+ALT: π/3
+AD: $x=\frac\pi3$
+SOL: Reference angle $\frac\pi3$; the next solution $\frac{4\pi}3$ is outside the domain.
+H: $\tan\frac\pi3=\sqrt3$.||Period is $\pi$.||Check the domain.
+@quiz Trig quadratic | Solve $2\cos^2x=\cos x$ for $0\le x\le\frac\pi2$.
+A: pi/3,pi/2
+ALT: pi/3 and pi/2||π/3,π/2||x=pi/3,pi/2
+AD: $x=\frac\pi3,\ \frac\pi2$
+SOL: $\cos x(2\cos x-1)=0$: $\cos x=0\Rightarrow x=\frac\pi2$; $\cos x=\frac12\Rightarrow x=\frac\pi3$.
+H: Factorise.||Two cases.||Check the domain.
+@quiz Derivative | Differentiate $y=x\cos x$.
+A: cosx-xsinx
+ALT: cos(x)-xsin(x)||cos x - x sin x
+AD: $\cos x-x\sin x$
+SOL: Product rule: $\cos x+x(-\sin x)$.
+H: Product rule.||$u=x$, $v=\cos x$.||Combine.
+@quiz Derivative | Differentiate $y=\tan(2x)$.
+A: 2sec^2(2x)
+ALT: 2/cos^2(2x)
+AD: $2\sec^2(2x)$
+SOL: Chain rule with $\frac d{dx}\tan u=u'\sec^2u$.
+H: Inside is $2x$.||Derivative of $\tan$.||Multiply by 2.
+@quiz Ferris wheel | $h=12-10\cos\left(\frac{\pi t}{20}\right)$. Find $h$ when $t=20$.
+A: 22
+AD: $22$
+SOL: $\cos\pi=-1$, so $12+10=22$.
+H: $\frac{\pi\cdot20}{20}=\pi$.||$\cos\pi=-1$.||Compute.
+@quiz Gradient | Find the gradient of $y=\sin(2x)$ at $x=0$.
+A: 2
+AD: $2$
+SOL: $y'=2\cos2x$; at $0$ it is $2$.
+H: Chain rule.||$2\cos2x$.||$\cos0=1$.
+@quiz Max value | Maximum of $y=5\cos x+12$?
+A: 17
+AD: $17$
+SOL: $12+5=17$.
+H: Amplitude 5.||Midline 12.||Add.
+@comet Extension: Maximum of a combined wave | For $f(x)=3\sin x+4\cos x$, the maximum value over all $x$ is?
+A: 5
+AD: $5$
+SOL: Write as $R\sin(x+\alpha)$ with $R=\sqrt{3^2+4^2}=5$.
+H: Find the stationary point.||$\tan x=\frac34$.||Use the 3-4-5 triangle.

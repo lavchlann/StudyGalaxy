@@ -1,0 +1,109 @@
+=== ph3-c05 | interactive: none
+@summary Electric charges exert forces on each other through electric fields. This chapter covers Coulomb's law, electric field strength, field lines, uniform fields between parallel plates, and the motion and energy of charges in a field.
+@video F | Coulomb's law and electric fields | search:Coulomb law electric field physics
+@video K | Electric field and potential | search:electric field electric potential physics
+@video V | Veritasium: Electric fields | search:Veritasium electricity energy flows
+
+## 5.1 | Charge and Coulomb's law
+@p There are two kinds of charge. **Like charges repel and unlike charges attract.** Charge is measured in coulombs; the elementary charge is $1.6\times10^{-19}\ \text{C}$ (the data book lists the electron's charge as $e=-1.6\times10^{-19}\ \text{C}$). **Coulomb's law** gives the force between two point charges, with $k=9\times10^9\ \text{N m}^2\text{C}^{-2}$ (the value in the QCAA data book).
+@key $$F=\frac{kq_1q_2}{r^2}$$
+@ex Two charges
+Q: Charges $+3.0\ \mu\text{C}$ and $-2.0\ \mu\text{C}$ are $0.20\ \text{m}$ apart. Find the force between them.
+S: $F=\frac{(9\times10^9)(3.0\times10^{-6})(2.0\times10^{-6})}{0.20^2}=1.35\ \text{N}$.
+S: Opposite charges, so it is attractive.
+A: $1.35\ \text{N}$ attractive.
+@warn Use the **magnitudes** of the charges to find the size of the force, then decide the direction from the signs. Convert $\mu\text{C}$ to C ($\times10^{-6}$) before substituting.
+
+## 5.2 | Electric field strength
+@p The **electric field strength** at a point is the force per unit **positive** charge: $E=\dfrac{F}{q}$ (units $\text{N C}^{-1}=\text{V m}^{-1}$). For a point charge $Q$: $E=\dfrac{kQ}{r^2}$. The field points **away from positive** charges and **toward negative** charges. Field lines show direction; closer lines mean a stronger field.
+@ex Point charge
+Q: Find the field strength $0.50\ \text{m}$ from a $+4.0\ \mu\text{C}$ point charge.
+S: $E=\frac{(9\times10^9)(4.0\times10^{-6})}{0.50^2}=1.44\times10^5\ \text{N C}^{-1}$.
+A: $1.44\times10^5\ \text{N C}^{-1}$ directed away from the charge.
+@p **Superposition.** The total field is the **vector sum** of the fields from each charge. Between two equal like charges the fields cancel at the midpoint.
+@warn A **negative** charge in a field feels a force **opposite** to the field direction.
+
+## 5.3 | Uniform fields and charged particles
+@p Between two parallel plates with potential difference $V$ and separation $d$, the field is **uniform**: $E=\dfrac Vd$. A charge $q$ feels force $F=qE$ and acceleration $a=\dfrac{qE}{m}$. Starting from rest, work done by the field becomes kinetic energy: $qV=\tfrac12mv^2$.
+@key $$E=\frac Vd,\qquad F=qE,\qquad qV=\tfrac12mv^2$$
+@ex Electron in a field
+Q: An electron is in a uniform field of $2.5\times10^4\ \text{V m}^{-1}$. Find its force and acceleration.
+S: $F=qE=(1.60\times10^{-19})(2.5\times10^4)=4.0\times10^{-15}\ \text{N}$.
+S: $a=\frac Fm=\frac{4.0\times10^{-15}}{9.11\times10^{-31}}=4.4\times10^{15}\ \text{m s}^{-2}$.
+A: $4.0\times10^{-15}\ \text{N}$ and $4.4\times10^{15}\ \text{m s}^{-2}$.
+@ex Speed from potential
+Q: An electron accelerates from rest through $500\ \text{V}$. Find its final speed.
+S: $v=\sqrt{\frac{2qV}{m}}=\sqrt{\frac{2(1.60\times10^{-19})(500)}{9.11\times10^{-31}}}=1.33\times10^7\ \text{m s}^{-1}$.
+A: $1.33\times10^7\ \text{m s}^{-1}$
+@p **Electron-volt.** An electron accelerated through $1\ \text{V}$ gains $1\ \text{eV}=1.60\times10^{-19}\ \text{J}$. A proton accelerated through $1000\ \text{V}$ gains $1000\ \text{eV}$.
+
+## X | Exam toolkit
+@p **Gravity versus electric force.** For an electron the electric force is enormously larger than its weight, so ignore gravity unless a particle is stationary (such as an oil drop held in balance). When stationary, $qE=mg$.
+@p **Direction answers.** Describe field directions with words such as "toward the negative plate" and always state the sign of the charge when explaining which way a force acts.
+@quiz Field strength | A force of $6.0\times10^{-3}\ \text{N}$ acts on $2.0\ \mu\text{C}$. Find $E$ ($\text{N C}^{-1}$).
+A: 3000
+ALT: 3.0e3||3.0x10^3
+AD: $3.0\times10^3\ \text{N C}^{-1}$
+SOL: $E=F/q=\frac{6.0\times10^{-3}}{2.0\times10^{-6}}$.
+H: $E=F/q$.||Convert $\mu$C to C.||Divide.
+@quiz Plates | $240\ \text{V}$ is applied across plates $0.030\ \text{m}$ apart. Find $E$ ($\text{V m}^{-1}$).
+A: 8000
+AD: $8.0\times10^3\ \text{V m}^{-1}$
+SOL: $E=V/d=240/0.030$.
+H: $E=V/d$.||$d=0.030$.||Divide.
+@quiz Distance | If the distance between two point charges doubles, by what factor does the electric force change (decimal)?
+A: 0.25
+ALT: 1/4
+AD: $\frac14$
+SOL: Inverse square.
+H: $F\propto1/r^2$.||$(1/2)^2$.||Compute.
+@quiz Force | A $5.0\ \mu\text{C}$ charge is in a field of $4000\ \text{N C}^{-1}$. Find the force (N).
+A: 0.020
+ALT: 0.02
+AD: $0.020\ \text{N}$
+SOL: $F=qE=5.0\times10^{-6}\times4000$.
+H: $F=qE$.||Convert $\mu$C to C.||Multiply.
+@quiz Negative charge | Does a negative charge accelerate in the same direction as the electric field? Answer yes or no.
+A: no
+ALT: No
+AD: No
+SOL: A negative charge is pushed opposite to the field.
+H: Field direction is defined by positive charges.||Negative is opposite.||Opposite direction.
+@quiz Work | A $2.0\ \mu\text{C}$ charge moves through $150\ \text{V}$. Find the work done in millijoules.
+A: 0.30
+ALT: 0.3
+AD: $0.30\ \text{mJ}$
+SOL: $W=qV=2.0\times10^{-6}(150)=3.0\times10^{-4}\ \text{J}$.
+H: $W=qV$.||Convert $\mu$C to C.||$3.0\times10^{-4}\ \text{J}$.
+@quiz Energy | A proton is accelerated through $1000\ \text{V}$. Find its kinetic energy gain in eV.
+A: 1000
+AD: $1000\ \text{eV}$
+SOL: One electron-volt per volt for a single elementary charge.
+H: Definition of eV.||$q=e$.||$qV$ in eV.
+@quiz Midpoint | Two identical positive charges are $1.0\ \text{m}$ apart. What is the net field strength at the midpoint?
+A: 0
+AD: $0$
+SOL: The fields are equal and opposite.
+H: Fields point away from each charge.||Equal magnitude.||They cancel.
+@quiz Acceleration | An electron in a $1.0\times10^4\ \text{N C}^{-1}$ field accelerates at what rate, in units of $10^{15}\ \text{m s}^{-2}$ (2 decimal places)?
+A: 1.76
+AD: $1.76\times10^{15}\ \text{m s}^{-2}$
+SOL: $a=\frac{eE}{m}=\frac{1.60\times10^{-19}\times10^4}{9.11\times10^{-31}}=1.76\times10^{15}$.
+H: $a=qE/m$.||Use the electron mass $9.11\times10^{-31}$.||Compute.
+@quiz Field scaling | The field strength at distance $r$ from a point charge is $E$. What is it at $2r$ (as a multiple of $E$)?
+A: 0.25
+ALT: 1/4
+AD: $\frac E4$
+SOL: $E\propto1/r^2$.
+H: Inverse square.||$(1/2)^2$.||Compute.
+@comet Extension: Zero-field point | Charges $+q$ and $+4q$ are $3.0\ \text{m}$ apart. How far from $+q$ (along the line between them) is the field zero (metres)?
+A: 1.0
+ALT: 1
+AD: $1.0\ \text{m}$
+SOL: $\frac{kq}{x^2}=\frac{4kq}{(3-x)^2}\Rightarrow3-x=2x\Rightarrow x=1.0$.
+H: Fields cancel: set magnitudes equal.||$\frac1{x^2}=\frac4{(3-x)^2}$.||Take square roots.
+@comet Extension: Oil drop | An oil drop of mass $1.6\times10^{-15}\ \text{kg}$ is held stationary between plates $1.0\ \text{cm}$ apart at $490\ \text{V}$. How many elementary charges does it carry?
+A: 2
+AD: $2$
+SOL: $qE=mg\Rightarrow q=\frac{mgd}{V}=3.2\times10^{-19}\ \text{C}=2e$.
+H: Balance: $qE=mg$.||$E=V/d$.||Divide $q$ by $e$.

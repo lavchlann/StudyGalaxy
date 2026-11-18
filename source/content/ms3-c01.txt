@@ -1,0 +1,135 @@
+=== ms3-c01 | interactive: complex
+@summary Complex numbers extend the reals so that every polynomial has roots. This chapter reviews Cartesian form, introduces polar form $r\,\text{cis}\,\theta$, multiplies and divides by adding and subtracting angles, uses De Moivre's theorem for powers and roots, and factorises polynomials over the complex numbers.
+@video B | Euler's formula with introductory group theory (3Blue1Brown) | https://www.youtube.com/watch?v=mvmuCPvRoWQ
+@video J | Complex numbers: polar form | search:complex numbers polar form
+@video J | De Moivre's theorem and roots | search:De Moivre's theorem roots of complex numbers
+@video J | Factorising polynomials with complex roots | search:complex polynomial factorisation conjugate root theorem
+
+## 1.2 | Review of complex numbers
+@p The imaginary unit satisfies $i^2=-1$. A complex number is $z=a+bi$ with real part $\operatorname{Re}(z)=a$ and imaginary part $\operatorname{Im}(z)=b$. Plot it on the **Argand plane** at $(a,b)$.
+@p The **conjugate** is $\bar z=a-bi$. Then $z\bar z=a^2+b^2$ is real and positive, and this is how you divide: multiply top and bottom by the conjugate of the denominator.
+@key $|z|=\sqrt{a^2+b^2}$ (modulus); $\bar{z_1z_2}=\bar z_1\bar z_2$; $|z_1z_2|=|z_1||z_2|$; the roots of a real polynomial come in **conjugate pairs**.
+@ex Dividing
+Q: Write $\dfrac{3+i}{1-2i}$ in the form $a+bi$.
+S: Multiply by $\frac{1+2i}{1+2i}$: numerator $(3+i)(1+2i)=3+6i+i+2i^2=1+7i$.
+S: Denominator: $(1-2i)(1+2i)=1+4=5$.
+A: $\frac15+\frac75i$
+@ex Solving a quadratic
+Q: Solve $z^2-4z+13=0$.
+S: $z=\frac{4\pm\sqrt{16-52}}2=\frac{4\pm6i}{2}$.
+A: $z=2\pm3i$
+@warn $\sqrt{-36}=6i$, not $\pm6i$. The $\pm$ comes from the quadratic formula, not from the root.
+@tb rec=1,2,5,6,7,8,10,11,12 ext=13,15,16,18,19,20 | Exercise 1.2 revises arithmetic, conjugates, modulus and quadratic equations with complex roots.
+
+## 1.3 | Polar form and arithmetic
+@p Write $z=r(\cos\theta+i\sin\theta)=r\operatorname{cis}\theta$, where $r=|z|$ and $\theta=\operatorname{Arg}z\in(-\pi,\pi]$ is the **principal argument**. Find $\theta$ from the quadrant, using $\tan^{-1}\left|\frac ba\right|$ as the reference angle.
+@key **Multiplication:** $r_1\operatorname{cis}\theta_1\cdot r_2\operatorname{cis}\theta_2=r_1r_2\operatorname{cis}(\theta_1+\theta_2)$. **Division:** $\dfrac{r_1}{r_2}\operatorname{cis}(\theta_1-\theta_2)$. Multiplying by $\operatorname{cis}\phi$ **rotates** by $\phi$.
+@ex To polar form
+Q: Write $z=-1+i$ in polar form.
+S: $r=\sqrt2$. In quadrant 2, reference angle $\frac\pi4$, so $\theta=\pi-\frac\pi4=\frac{3\pi}4$.
+A: $\sqrt2\operatorname{cis}\frac{3\pi}4$
+@ex Multiplying in polar form
+Q: $z_1=2\operatorname{cis}\frac\pi3$, $z_2=3\operatorname{cis}\frac\pi2$. Find $z_1z_2$ in Cartesian form.
+S: $6\operatorname{cis}\frac{5\pi}6=6\left(-\frac{\sqrt3}2+\frac12i\right)$.
+A: $-3\sqrt3+3i$
+@warn Check the quadrant. Using $\tan^{-1}\frac ba$ blindly gives the wrong angle for $-1+i$ (it returns $-\frac\pi4$).
+@int complex | Drag $z_1$ and $z_2$ on the Argand plane and watch $z_1z_2$ rotate and scale.
+@tb rec=1,2,3,6,8,11,14 ext=16,17,18,20 | Exercise 1.3 converts between forms and multiplies and divides in polar form.
+
+## 1.4 | De Moivre's theorem and roots
+@key $$\big[r\operatorname{cis}\theta\big]^n=r^n\operatorname{cis}(n\theta)$$
+@p To find the **$n$th roots** of $w=R\operatorname{cis}\alpha$: write $w=R\operatorname{cis}(\alpha+2k\pi)$, take $z=R^{1/n}\operatorname{cis}\frac{\alpha+2k\pi}n$ for $k=0,1,\dots,n-1$. The roots lie on a circle of radius $R^{1/n}$, evenly spaced by $\frac{2\pi}n$, forming a regular $n$-gon. For $z^n=1$ these are the **roots of unity**.
+@ex Power
+Q: Evaluate $(1+i)^8$.
+S: $1+i=\sqrt2\operatorname{cis}\frac\pi4$. So $(1+i)^8=(\sqrt2)^8\operatorname{cis}2\pi=16$.
+A: $16$
+@ex Roots
+Q: Solve $z^3=8$.
+S: $8=8\operatorname{cis}(2k\pi)$, so $z=2\operatorname{cis}\frac{2k\pi}3$ for $k=0,1,2$.
+S: $z=2,\ 2\operatorname{cis}\frac{2\pi}3=-1+\sqrt3i,\ 2\operatorname{cis}\frac{4\pi}3=-1-\sqrt3i$.
+A: $z=2,\ -1\pm\sqrt3i$
+@warn Give exactly $n$ roots. Dropping $2k\pi$ gives only one of them.
+@tb rec=1,6,7,8,10,11,14,15 ext=16,18,20 | Exercise 1.4 uses De Moivre for powers, then finds roots and plots them.
+
+## 1.5 | Factorising polynomials
+@p **Factor theorem:** $z=a$ is a root of $P(z)$ if and only if $(z-a)$ is a factor. **Conjugate root theorem:** if $P$ has real coefficients and $a+bi$ is a root, so is $a-bi$, giving the real quadratic factor $z^2-2az+(a^2+b^2)$. A degree-$n$ polynomial has exactly $n$ complex roots (counted with multiplicity).
+@ex Using the conjugate pair
+Q: $P(z)=z^3-5z^2+17z-13$ has root $z=2+3i$. Factorise fully.
+S: $2-3i$ is also a root. The quadratic factor is $z^2-4z+13$.
+S: Divide: $P(z)=(z^2-4z+13)(z-1)$.
+A: $(z-1)(z-2-3i)(z-2+3i)$
+@tb rec=1,3,4,6,8,10,12 ext=13,14,15,16,17,18,19 | Exercise 1.5 divides polynomials, uses factor and conjugate root theorems and solves polynomial equations.
+
+@quiz Divide | Write $\dfrac{1}{2-i}$ as $a+bi$. Enter as $2/5+1/5i$ style: fractions then i.
+A: 2/5+1/5i
+ALT: 2/5+(1/5)i||0.4+0.2i
+AD: $\tfrac25+\tfrac15i$
+SOL: $\frac{2+i}{5}$.
+H: Multiply by the conjugate.||Denominator becomes 5.||Numerator is $2+i$.
+@quiz Modulus | Find $|3-4i|$.
+A: 5
+ALT: 5.
+AD: $5$
+SOL: $\sqrt{9+16}=5$.
+H: Pythagoras.||$9+16$.||Square root.
+@quiz Quadratic | Solve $z^2+9=0$ (answer as $\pm$ something).
+A: ±3i
+ALT: +-3i||3i,-3i||z=±3i
+AD: $z=\pm3i$
+SOL: $z^2=-9$.
+H: $z^2=-9$.||$\sqrt{-9}=3i$.||Two roots.
+@quiz Argument | Find the principal argument of $-1-i$ (exact, in radians).
+A: -3pi/4
+ALT: -3π/4||(-3pi)/4
+AD: $-\dfrac{3\pi}4$
+SOL: Quadrant 3, reference angle $\frac\pi4$: $-\pi+\frac\pi4=-\frac{3\pi}4$.
+H: Which quadrant?||Reference angle $\frac\pi4$.||Principal arg is in $(-\pi,\pi]$.
+@quiz Polar | Find the modulus of $\sqrt3+i$.
+A: 2
+ALT: 2.
+AD: $2$
+SOL: $\sqrt{3+1}=2$.
+H: $\sqrt{a^2+b^2}$.||$3+1$.||Root.
+@quiz Product | $z_1=2\operatorname{cis}\frac\pi6$, $z_2=5\operatorname{cis}\frac\pi3$. Give $|z_1z_2|$.
+A: 10
+ALT: 10.
+AD: $10$
+SOL: $|z_1||z_2|=10$.
+H: Multiply moduli.||$2\times5$.||The angle adds.
+@quiz De Moivre | Evaluate $(\sqrt3+i)^6$.
+A: -64
+ALT: -64.
+AD: $-64$
+SOL: $2^6\operatorname{cis}\pi=64(-1)=-64$.
+H: Polar form: $2\operatorname{cis}\frac\pi6$.||Raise to 6: angle $\pi$.||$\operatorname{cis}\pi=-1$.
+@quiz Roots count | How many distinct complex solutions does $z^5=1$ have?
+A: 5
+ALT: five
+AD: $5$
+SOL: There are $n$ distinct $n$th roots.
+H: Degree 5 polynomial.||Fundamental theorem.||Five.
+@quiz Conjugate pair | A real cubic has roots $1$ and $3+2i$. What is the third root? (as $a+bi$)
+A: 3-2i
+ALT: 3-2i.
+AD: $3-2i$
+SOL: Complex roots of real polynomials come in conjugate pairs.
+H: Conjugate root theorem.||Conjugate of $3+2i$.||Flip the sign.
+@quiz Argument | Find $\operatorname{Arg}(i)$.
+A: pi/2
+ALT: π/2
+AD: $\frac\pi2$
+SOL: $i$ lies on the positive imaginary axis.
+H: Plot it.||Straight up.||Quarter turn.
+
+@comet Extension: Sum of roots of unity | The three cube roots of 1 add to a real number. Find it.
+A: 0
+ALT: 0.
+AD: $0$
+SOL: $z^3-1=0$ has no $z^2$ term, so the sum of roots is $0$.
+H: Write $z^3-1=0$.||Sum of roots is minus the $z^2$ coefficient.||No $z^2$ term.
+@comet Extension: Powers of i | Evaluate $\left(\dfrac{1+i}{1-i}\right)^{2026}$.
+A: -1
+ALT: -1.
+AD: $-1$
+SOL: $\frac{1+i}{1-i}=i$. $i^{2026}=i^{2}=-1$ (since $2026\equiv2\bmod4$).
+H: Simplify the fraction first.||It equals $i$.||Powers of $i$ cycle every 4.

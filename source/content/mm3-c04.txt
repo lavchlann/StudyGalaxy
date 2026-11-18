@@ -1,0 +1,129 @@
+=== mm3-c04 | interactive: concavity
+@summary The first derivative tells you where a graph rises and falls; the second derivative tells you how it bends. This chapter uses both to classify stationary points, find points of inflection, sketch curves, and solve optimisation problems.
+@video B | Higher order derivatives (3Blue1Brown, ch. 10) | search:3Blue1Brown Higher order derivatives Essence of calculus chapter 10
+@video J | Second derivative and concavity | search:second derivative concavity
+@video J | Curve sketching | search:curve sketching calculus
+@video J | Optimisation problems | search:optimisation calculus
+
+## 4.2 | The second derivative
+@p The **second derivative** is the derivative of the derivative: $f''(x)=\frac{d^2y}{dx^2}$. It is the **rate of change of the gradient**. If $f''(x)>0$ the gradient is increasing (the curve bends upward, **concave up**); if $f''(x)<0$ the gradient is decreasing (**concave down**).
+@p In kinematics, if $x$ is position then $x'$ is velocity and $x''$ is acceleration.
+@ex Second derivative
+Q: Find $f''(x)$ for $f(x)=x^3e^{-x}$.
+S: $f'(x)=3x^2e^{-x}-x^3e^{-x}=e^{-x}(3x^2-x^3)$.
+S: $f''(x)=-e^{-x}(3x^2-x^3)+e^{-x}(6x-3x^2)=e^{-x}(x^3-6x^2+6x)$.
+A: $f''(x)=e^{-x}(x^3-6x^2+6x)$
+@tb rec=1,2,4,8,11,12 ext=13,14,16,17,19 | Exercise 4.2 computes second derivatives for every function type and interprets them in context.
+
+## 4.3 | Concavity and points of inflection
+@key **Stationary point test.** At $f'(a)=0$: if $f''(a)>0$ it is a **local minimum**; if $f''(a)<0$ a **local maximum**; if $f''(a)=0$ the test fails, so check the sign of $f'$ either side.
+@key A **point of inflection** is where concavity changes: $f''(x)=0$ **and** $f''$ changes sign. A **stationary** point of inflection also has $f'(x)=0$.
+@ex Classifying stationary points
+Q: Classify the stationary points of $f(x)=x^3-3x^2$.
+S: $f'(x)=3x^2-6x=3x(x-2)$, so $x=0$ or $x=2$.
+S: $f''(x)=6x-6$. At $x=0$: $-6<0$, max, point $(0,0)$. At $x=2$: $6>0$, min, point $(2,-4)$.
+A: Max at $(0,0)$, min at $(2,-4)$.
+@ex Point of inflection
+Q: Find the point of inflection of $f(x)=x^3-3x^2$.
+S: $f''(x)=6x-6=0\Rightarrow x=1$.
+S: $f''$ is negative for $x<1$ and positive for $x>1$, so concavity changes. $f(1)=-2$.
+A: $(1,-2)$
+@warn $f''(a)=0$ does not guarantee an inflection point. Compare $y=x^4$: $f''(0)=0$ but $x=0$ is a minimum and concavity never changes. Always check the sign change.
+@int concavity | Drag the point along a cubic and watch the gradient, the sign of $f''$ and the concavity shading.
+@tb rec=1,4,6,8,10,12 ext=14,16,18,20 | Exercise 4.3 classifies stationary points with the second derivative and finds inflection points.
+
+## 4.4 | Curve sketching
+@p Checklist for sketching $y=f(x)$: (1) intercepts ($y$-int at $x=0$; $x$-int at $y=0$); (2) stationary points from $f'=0$ and their nature; (3) inflection points from $f''=0$; (4) asymptotes and end behaviour; (5) join smoothly, respecting concavity.
+@ex Sketching
+Q: Sketch $f(x)=xe^{-x}$ for $x\ge0$ by finding its key features.
+S: Intercept: $(0,0)$. $f'(x)=e^{-x}(1-x)=0\Rightarrow x=1$, $f(1)=e^{-1}$.
+S: $f''(x)=e^{-x}(x-2)$. At $x=1$: $-e^{-1}<0$, so a local max at $(1,e^{-1})$.
+S: $f''=0$ at $x=2$ with a sign change: inflection at $\left(2,2e^{-2}\right)$.
+S: As $x\to\infty$, $f\to0$, so the $x$-axis is a horizontal asymptote.
+A: Rises to a max $(1,e^{-1})$, inflects at $(2,2e^{-2})$, then decays to $0$.
+@tb rec=1,2,5,8,12 ext=14,16,17,20 | Exercise 4.4 sketches polynomials, exponentials, logs and trig curves with all key features labelled.
+
+## 4.5 | Optimisation
+@p Optimisation problems ask for the greatest or least value of something. **Method:** (1) draw and define variables; (2) write the quantity to optimise in terms of **one** variable using the constraint; (3) state the domain; (4) differentiate and set to zero; (5) confirm max or min with $f''$ or a sign test, and check the **endpoints** of the domain; (6) answer in context with units.
+@ex Open box
+Q: A square-based open box has volume $32\ \text{cm}^3$. Find the dimensions that minimise surface area.
+S: Base side $x$, height $h$: $x^2h=32\Rightarrow h=\frac{32}{x^2}$. Area $A=x^2+4xh=x^2+\frac{128}{x}$, $x>0$.
+S: $A'=2x-\frac{128}{x^2}=0\Rightarrow x^3=64\Rightarrow x=4$.
+S: $A''=2+\frac{256}{x^3}>0$, so a minimum. $h=\frac{32}{16}=2$.
+A: Base $4\text{ cm}\times4\text{ cm}$, height $2$ cm; area $48\text{ cm}^2$.
+@warn Finding $x$ is rarely the final answer. Re-read the question: it may want the minimum area, the dimension, or a time.
+@tb rec=1,2,3,5,7,10,12 ext=13,14,16,17,18,19,20 | Exercise 4.5 covers area, volume, cost and distance optimisation problems.
+
+@quiz Second derivative | Find $f''(x)$ for $f(x)=x^4-2x^2$.
+A: 12x^2-4
+ALT: 12x²-4
+AD: $12x^2-4$
+SOL: $f'=4x^3-4x$, $f''=12x^2-4$.
+H: Differentiate once.||$4x^3-4x$.||Differentiate again.
+@quiz Nature | For $f(x)=x^3-12x$ the stationary point at $x=2$ is a (type "min" or "max").
+A: min
+ALT: minimum||local min||local minimum
+AD: minimum
+SOL: $f'=3x^2-12=0\Rightarrow x=\pm2$. $f''=6x$; at $x=2$: $12>0$, so min.
+H: Find $f''$.||Substitute $x=2$.||Positive means min.
+@quiz Inflection | Find the $x$-coordinate of the point of inflection of $f(x)=x^3-6x^2+1$.
+A: 2
+ALT: x=2
+AD: $x=2$
+SOL: $f''=6x-12=0\Rightarrow x=2$, with a sign change.
+H: Find $f''$.||Set to 0.||Solve.
+@quiz Second derivative | Find $f''(x)$ for $f(x)=e^{3x}$.
+A: 9e^(3x)
+ALT: 9e^3x
+AD: $9e^{3x}$
+SOL: $f'=3e^{3x}$, $f''=9e^{3x}$.
+H: First derivative: chain rule.||$3e^{3x}$.||Differentiate again.
+@quiz Concavity | For $f(x)=\ln x$, is the graph concave up or concave down? (answer "up" or "down")
+A: down
+ALT: concave down
+AD: concave down
+SOL: $f''(x)=-\frac1{x^2}<0$ for all $x>0$.
+H: Find $f'$.||Then $f''$.||Check its sign.
+@quiz Optimisation | Two numbers add to 20. Find the greatest possible product.
+A: 100
+ALT: 100.
+AD: $100$
+SOL: $P=x(20-x)$, $P'=20-2x=0\Rightarrow x=10$, $P=100$ (max since $P''=-2<0$).
+H: Let the numbers be $x$ and $20-x$.||Write $P$.||Differentiate and set 0.
+@quiz Optimisation | A rectangle has perimeter 40 m. Find its maximum area in $\text{m}^2$.
+A: 100
+ALT: 100 m^2
+AD: $100\ \text{m}^2$
+SOL: Sides $x$ and $20-x$, area $x(20-x)$, maximised at $x=10$: $100$.
+H: Half the perimeter is 20.||Area $=x(20-x)$.||Maximise.
+@quiz Stationary | Find the minimum value of $f(x)=x^2-4x+9$.
+A: 5
+ALT: f=5||min=5
+AD: $5$
+SOL: $f'=2x-4=0\Rightarrow x=2$, $f(2)=4-8+9=5$.
+H: Differentiate.||$x=2$.||Substitute back.
+@quiz Sketch feature | $f(x)=xe^{-x}$ has a local maximum at $x=1$. What is its $y$-value? Give an exact answer.
+A: 1/e
+ALT: e^(-1)
+AD: $e^{-1}$
+SOL: $f(1)=1\cdot e^{-1}=e^{-1}$.
+H: Substitute $x=1$.||$e^{-1}$.||Same as $\frac1e$.
+@quiz Second derivative test | $f''(x)=-5$ at a stationary point. Is it a max or min?
+A: max
+ALT: maximum||local max||local maximum
+AD: maximum
+SOL: Negative second derivative means concave down: a maximum.
+H: Sign of $f''$.||Negative.||Concave down.
+
+@comet Extension: Cheapest cylinder | A closed cylinder has volume $54\pi\ \text{cm}^3$. With radius $r$, its surface area is $A=2\pi r^2+\dfrac{108\pi}{r}$. Find the radius $r$ that minimises $A$.
+A: 3
+ALT: r=3
+AD: $r=3$
+SOL: $A'=4\pi r-\frac{108\pi}{r^2}=0\Rightarrow r^3=27\Rightarrow r=3$.
+H: Differentiate $A$.||Set to zero.||$r^3=27$.
+@comet Extension: Inflection of a normal curve shape | For $f(x)=e^{-x^2}$, find the positive $x$ where $f''(x)=0$. Give an exact answer.
+A: 1/sqrt2
+ALT: sqrt2/2||1/√2||√2/2||sqrt(2)/2
+AD: $\dfrac{1}{\sqrt2}$
+SOL: $f'=-2xe^{-x^2}$, $f''=(4x^2-2)e^{-x^2}=0\Rightarrow x^2=\frac12$.
+H: Differentiate twice (product rule on the second).||Factor $e^{-x^2}$.||Solve $4x^2-2=0$.

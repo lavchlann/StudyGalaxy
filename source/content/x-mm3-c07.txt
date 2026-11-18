@@ -1,0 +1,89 @@
+=== mm3-c07 | append
+## 7.2
+@p **Bernoulli conditions:** one trial, exactly two outcomes (success or failure), fixed success probability $p$. Then $E(X)=p$ and $\text{Var}(X)=p(1-p)$.
+@ex Bernoulli
+Q: A free throw succeeds with $p=0.7$. State $E(X)$ and $\text{Var}(X)$.
+S: $E=0.7$; $\text{Var}=0.7\times0.3=0.21$.
+A: $0.7$ and $0.21$
+## 7.3
+@ex Binomial probabilities
+Q: $X\sim\text{Bin}(5,0.4)$. Find $P(X=2)$ and $P(X\ge1)$.
+S: $P(X=2)=\binom52(0.4)^2(0.6)^3=10(0.16)(0.216)=0.3456$.
+S: $P(X\ge1)=1-0.6^5=1-0.07776=0.92224$.
+A: $0.3456$ and $0.9222$
+@warn Always justify a binomial model: fixed number of independent trials, two outcomes, constant $p$. Sampling without replacement from a small group breaks independence.
+## 7.4
+@ex Mean and standard deviation
+Q: $X\sim\text{Bin}(20,0.25)$. Find mean, variance and sd.
+S: $np=5$; $np(1-p)=3.75$; $\sqrt{3.75}\approx1.936$.
+A: $5$, $3.75$, $1.94$
+## 7.5
+@ex Modelling
+Q: 8% of parts are faulty. In a batch of 12, find the probability that at most one is faulty.
+S: $P(0)=0.92^{12}=0.3677$; $P(1)=12(0.08)(0.92)^{11}=0.3837$.
+S: Sum $=0.7514$.
+A: about $0.751$
+@ex Smallest n
+Q: Find the least $n$ so that $P(\text{at least one success})>0.9$ with $p=0.2$.
+S: $1-0.8^n>0.9\Rightarrow0.8^n<0.1\Rightarrow n>\frac{\ln0.1}{\ln0.8}\approx10.3$.
+A: $n=11$
+## X | Exam toolkit
+@p **CAS commands.** Use `binomPdf(n,p,k)` for $P(X=k)$ and `binomCdf(n,p,k)` for $P(X\le k)$. Write the setup in words and symbols, such as $P(X\le3)$, so marks do not depend on a bare calculator answer.
+@p **Phrases to convert.** "At least 2" is $1-P(X\le1)$. "More than 2" is $1-P(X\le2)$. "Fewer than 4" is $P(X\le3)$. "Between 2 and 5 inclusive" is $P(X\le5)-P(X\le1)$.
+@quiz Bernoulli | Variance of a Bernoulli trial with $p=0.4$.
+A: 0.24
+AD: $0.24$
+SOL: $0.4\times0.6$.
+H: $p(1-p)$.||$0.4\cdot0.6$.||Compute.
+@quiz Binomial | $X\sim\text{Bin}(4,0.5)$. $P(X=2)$.
+A: 3/8
+ALT: 0.375
+AD: $\frac38$
+SOL: $6\cdot\frac1{16}$.
+H: $\binom42=6$.||$(0.5)^4$.||Multiply.
+@quiz Complement | $X\sim\text{Bin}(3,0.5)$. $P(X\ge1)$.
+A: 7/8
+ALT: 0.875
+AD: $\frac78$
+SOL: $1-0.5^3$.
+H: Use the complement.||$P(0)=\frac18$.||Subtract.
+@quiz Mean | $X\sim\text{Bin}(50,0.2)$. Mean?
+A: 10
+AD: $10$
+SOL: $np$.
+H: $np$.||$50(0.2)$.||Compute.
+@quiz Variance | $X\sim\text{Bin}(50,0.2)$. Variance?
+A: 8
+AD: $8$
+SOL: $50(0.2)(0.8)$.
+H: $np(1-p)$.||$10\times0.8$.||Compute.
+@quiz Phrase | $P(X\ge2)$ for $\text{Bin}(n,p)$ equals $1-P(X\le\ ?)$. Enter the number.
+A: 1
+AD: $1$
+SOL: Complement of $X\ge2$ is $X\le1$.
+H: Complement.||Integers.||$X\le1$.
+@quiz Exact | $X\sim\text{Bin}(2,0.3)$. $P(X=1)$.
+A: 0.42
+AD: $0.42$
+SOL: $2(0.3)(0.7)$.
+H: $\binom21=2$.||$0.3\cdot0.7$.||Multiply.
+@quiz Least n | Least $n$ with $0.5^n<0.1$?
+A: 4
+AD: $4$
+SOL: $0.5^3=0.125$, $0.5^4=0.0625$.
+H: Try values.||$0.5^3$.||$0.5^4$.
+@quiz Model | A multiple-choice test has 10 questions with 4 options each. Guessing, what is the mean score?
+A: 2.5
+AD: $2.5$
+SOL: $np=10\times\frac14$.
+H: $p=\frac14$.||$np$.||Compute.
+@quiz Sd | $\text{Bin}(100,0.5)$ standard deviation?
+A: 5
+AD: $5$
+SOL: $\sqrt{25}$.
+H: Variance is $25$.||Square root.||Done.
+@comet Extension: Most likely value | For $X\sim\text{Bin}(10,0.5)$, which value of $X$ is most likely?
+A: 5
+AD: $5$
+SOL: The distribution is symmetric about the mean $5$.
+H: Symmetry.||Mean $np=5$.||Mode.

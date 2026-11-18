@@ -1,0 +1,111 @@
+=== ms3-c02 | interactive: none
+@summary Proof turns "looks true" into "is true". This chapter covers proof by mathematical induction for sums and divisibility, and uses De Moivre's theorem to prove trigonometric identities.
+@video B | Euler's formula with introductory group theory (3Blue1Brown) | https://www.youtube.com/watch?v=mvmuCPvRoWQ
+@video J | Mathematical induction | search:mathematical induction proof
+@video J | Induction divisibility | search:induction divisibility proof
+@video J | Trig identities using De Moivre | search:De Moivre trig identities multiple angle
+
+## 2.2 | Mathematical induction
+@p Induction proves a statement $P(n)$ for all integers $n\ge n_0$ in four steps: **(1) Basis:** show $P(n_0)$ is true. **(2) Assume** $P(k)$ is true for some integer $k\ge n_0$. **(3) Inductive step:** use the assumption to show $P(k+1)$ is true. **(4) Conclude:** "Since $P(n_0)$ is true and $P(k)\Rightarrow P(k+1)$, by induction $P(n)$ is true for all integers $n\ge n_0$."
+@ex Sum of integers
+Q: Prove $1+2+\dots+n=\frac{n(n+1)}2$ for all $n\ge1$.
+S: Basis: $n=1$: LHS $=1$, RHS $=\frac{1\cdot2}2=1$ ✓.
+S: Assume $1+\dots+k=\frac{k(k+1)}2$.
+S: Then $1+\dots+k+(k+1)=\frac{k(k+1)}2+(k+1)=\frac{(k+1)(k+2)}2$, which is $P(k+1)$.
+S: Conclude as in step 4.
+A: Proved by induction.
+@warn You must use the assumption in the inductive step. If your working never uses $P(k)$, it is not an induction proof.
+@tb rec=1,3,5,6,8,13,14,15 ext=16,19,22,24,27 | Exercise 2.2 proves sum formulas, inequalities and recurrence results by induction.
+
+## 2.3 | Induction and divisibility
+@p To prove "$d$ divides $f(n)$", assume $f(k)=d\,m$ for an integer $m$, and show that $f(k+1)$ is a multiple of $d$ by rewriting $f(k+1)$ in terms of $f(k)$.
+@ex Divisibility
+Q: Prove $7^n-1$ is divisible by 6 for $n\ge1$.
+S: Basis: $7-1=6$ ✓.
+S: Assume $7^k-1=6m$, so $7^k=6m+1$.
+S: $7^{k+1}-1=7(6m+1)-1=42m+6=6(7m+1)$ ✓.
+A: Proved.
+@tb rec=1,3,5,6,7,8 ext=9,11,14,18,19,20 | Exercise 2.3 proves divisibility statements by induction.
+
+## 2.4 | Trigonometric proofs with De Moivre
+@p De Moivre says $(\cos\theta+i\sin\theta)^n=\cos n\theta+i\sin n\theta$. Expand the left with the binomial theorem and equate **real** and **imaginary** parts to get multiple-angle identities.
+@ex Triple angle
+Q: Show $\cos3\theta=4\cos^3\theta-3\cos\theta$.
+S: $(c+is)^3=c^3+3ic^2s-3cs^2-is^3$, with $c=\cos\theta$, $s=\sin\theta$.
+S: Real part: $c^3-3cs^2=c^3-3c(1-c^2)=4c^3-3c$.
+A: $\cos3\theta=4\cos^3\theta-3\cos\theta$
+@tb rec=1,2,4,5,6,8,9 ext=10,12,13,15 | Exercise 2.4 expands powers of $\cos\theta+i\sin\theta$ to prove identities.
+
+@quiz Basis | In an induction proof that $\sum_{i=1}^n(2i-1)=n^2$, what is the left side when $n=1$?
+A: 1
+ALT: 1.
+AD: $1$
+SOL: Only $i=1$: $2(1)-1=1$.
+H: One term.||$i=1$.||$2-1$.
+@quiz Inductive step | Assuming $\sum_{i=1}^k(2i-1)=k^2$, what is $\sum_{i=1}^{k+1}(2i-1)$ in terms of $k$ (simplified, expanded)?
+A: k^2+2k+1
+ALT: (k+1)^2||k²+2k+1
+AD: $k^2+2k+1=(k+1)^2$
+SOL: $k^2+(2k+1)$.
+H: Add the $(k+1)$th term.||That is $2(k+1)-1=2k+1$.||Add to $k^2$.
+@quiz Divisibility | If $5^k-1=4m$, write $5^{k+1}-1$ in terms of $m$.
+A: 20m+4
+ALT: 4(5m+1)
+AD: $20m+4=4(5m+1)$
+SOL: $5(4m+1)-1=20m+4$.
+H: $5^k=4m+1$.||Multiply by 5.||Subtract 1.
+@quiz Trig | The real part of $(\cos\theta+i\sin\theta)^2$ is $\cos2\theta$. Which identity does that give? Write $\cos2\theta$ in terms of $\cos\theta$ only.
+A: 2cos^2(theta)-1
+ALT: 2cos^2θ-1||2cos²θ-1||2cos^2theta-1
+AD: $\cos2\theta=2\cos^2\theta-1$
+SOL: Real part: $c^2-s^2=c^2-(1-c^2)=2c^2-1$.
+H: Expand the square.||Real part $c^2-s^2$.||Replace $s^2$.
+@quiz Sum | Using $\sum_{i=1}^ni=\frac{n(n+1)}2$, find $\sum_{i=1}^{10}i$.
+A: 55
+ALT: 55.
+AD: $55$
+SOL: $\frac{10\cdot11}2=55$.
+H: Substitute $n=10$.||$10\times11=110$.||Halve.
+@quiz Divisibility | What is the smallest $n\ge1$ for which the claim "$3^n+1$ is divisible by 4" is false? Try $n=1,2,3$ and give the smallest failing $n$.
+A: 2
+ALT: n=2
+AD: $n=2$
+SOL: $3+1=4$ ✓, $9+1=10$ ✗.
+H: Test $n=1$.||Test $n=2$.||10 is not a multiple of 4.
+@quiz Conclusion | True or false: checking $P(n)$ for $n=1,2,3,4,5$ proves it by induction.
+A: false
+ALT: False
+AD: false
+SOL: Examples do not prove a general statement; the inductive step is required.
+H: Do examples prove general claims?||You need the step $k\to k+1$.||No.
+@quiz Binomial | Find the coefficient of $i$ (imaginary part) in $(1+i)^2$.
+A: 2
+ALT: 2.
+AD: $2$
+SOL: $(1+i)^2=1+2i-1=2i$.
+H: Expand.||$i^2=-1$.||$2i$.
+@quiz Induction | $7^k-1=6m$ implies $7^{k+1}-1=$ ? (in terms of $m$)
+A: 42m+6
+ALT: 6(7m+1)
+AD: $42m+6$
+SOL: $7(6m+1)-1=42m+6$.
+H: $7^k=6m+1$.||Multiply by 7.||Subtract 1.
+@quiz Trig | Use $\cos3\theta=4\cos^3\theta-3\cos\theta$ to find $\cos\frac{\pi}{2}$ via $\theta=\frac\pi6$? Evaluate $4\cos^3\frac\pi6-3\cos\frac\pi6$.
+A: 0
+ALT: 0.
+AD: $0$
+SOL: $\cos\frac\pi2=0$. Check: $4\cdot\frac{3\sqrt3}8-\frac{3\sqrt3}2=\frac{3\sqrt3}2-\frac{3\sqrt3}2=0$.
+H: $\cos\frac\pi6=\frac{\sqrt3}2$.||Cube it.||Substitute.
+
+@comet Extension: Prove an inequality | For which smallest integer $n\ge1$ is $2^n>n^2$ true for all $n$ from there on? (Check $n=1,\dots,5$.)
+A: 5
+ALT: n=5
+AD: $n=5$
+SOL: $n=1:2>1$ ✓; $n=2:4>4$ ✗; $n=3:8>9$ ✗; $n=4:16>16$ ✗; $n=5:32>25$ ✓ and it holds for all $n\ge5$ by induction.
+H: Test small values.||Watch for equality.||First $n$ after which it always holds.
+@comet Extension: Double angle with De Moivre | Use $(\cos\theta+i\sin\theta)^2$ to find $\sin2\theta$ in terms of $\sin\theta$ and $\cos\theta$.
+A: 2sin(theta)cos(theta)
+ALT: 2sinθcosθ||2sin(x)cos(x)||2sinthetacostheta||2 sin theta cos theta
+AD: $2\sin\theta\cos\theta$
+SOL: Imaginary part of $c^2+2ics-s^2$ is $2cs$.
+H: Expand the square.||Imaginary part.||Compare with $\sin2\theta$.

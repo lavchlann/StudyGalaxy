@@ -1,0 +1,98 @@
+=== ph3-c06 | interactive: lorentz
+@summary Moving charges and currents create and feel magnetic fields. This chapter covers magnetic field lines, fields of wires and solenoids, the force on a current-carrying conductor, the force on a moving charge, circular paths in magnetic fields, and the idea of the motor.
+@video F | Magnetic fields and forces | search:magnetic force on moving charge physics
+@video K | Magnetic force on a current-carrying wire | search:magnetic force current carrying wire
+@video V | Veritasium: How magnets work | search:Veritasium magnets how they work
+
+## 6.1 | Magnetic fields
+@p Magnetic field lines leave the **north** pole and enter the **south** pole outside a magnet, and they never cross. A magnetic field is measured in **tesla (T)**. **Right-hand grip rule for a straight wire:** thumb along the conventional current, fingers curl in the direction of the field. **Solenoid:** curl fingers in the direction of the current in the coils and the thumb points to the **north** end; the field inside is nearly uniform.
+@p The field around a long wire is $B=\dfrac{\mu_0I}{2\pi r}$ with $\mu_0=4\pi\times10^{-7}\ \text{T m A}^{-1}$, so it falls with distance. A solenoid's field increases with current and with the number of turns per metre.
+@warn Conventional current flows from **positive to negative**, opposite to electron flow. Use conventional current for every right-hand rule unless a question tells you otherwise.
+
+## 6.2 | Force on a current-carrying conductor
+@p A wire carrying current $I$ in a perpendicular field $B$ experiences a force $F=BIL\sin\theta$, where $\theta$ is the angle between the current and the field. **Right-hand palm (or slap) rule:** fingers along the field, thumb along the conventional current, and the force comes out of the palm. The force is perpendicular to **both** the field and the current.
+@key $$F=BIL\sin\theta$$
+@ex Wire in a field
+Q: A $0.30\ \text{m}$ wire carries $5.0\ \text{A}$ at right angles to a $0.40\ \text{T}$ field. Find the force.
+S: $F=BIL=0.40(5.0)(0.30)=0.60\ \text{N}$.
+A: $0.60\ \text{N}$
+@p **Parallel wires.** Currents in the **same** direction attract; opposite directions repel. This is how the ampere is defined.
+
+## 6.3 | Force on a moving charge
+@p A charge $q$ moving at speed $v$ at angle $\theta$ to a magnetic field feels $F=qvB\sin\theta$. The force is **perpendicular to the velocity**, so it does **no work** and changes direction, not speed. For a negative charge reverse the direction from the right-hand rule.
+@key $$F=qvB\sin\theta,\qquad r=\frac{mv}{qB},\qquad T=\frac{2\pi m}{qB}$$
+@ex Path of a proton
+Q: A proton moves at $2.0\times10^6\ \text{m s}^{-1}$ perpendicular to a $0.50\ \text{T}$ field. Find the radius of its circular path.
+S: $\frac{mv^2}{r}=qvB\Rightarrow r=\frac{mv}{qB}=\frac{(1.67\times10^{-27})(2.0\times10^6)}{(1.60\times10^{-19})(0.50)}=4.2\times10^{-2}\ \text{m}$.
+A: $4.2\ \text{cm}$
+@int lorentz | Change the speed and the field strength and see the circular path of a proton.
+@p **Velocity selector.** With electric and magnetic fields perpendicular to each other and to the velocity, a charge passes undeflected when $qE=qvB$, so $v=\dfrac EB$.
+@warn The magnetic force does **no work** on a moving charge. It cannot speed a particle up; only an electric field can.
+
+## 6.4 | Motors and applications
+@p In a **DC motor** a current-carrying coil sits in a magnetic field. The forces on opposite sides of the coil are in opposite directions, producing a **torque**. A **split-ring commutator** reverses the current every half turn so the coil keeps turning in the same direction. Increasing the current, the field strength, the number of turns or the coil area increases the torque.
+@p **Mass spectrometer.** Ions are accelerated through a known potential, then enter a magnetic field. They move in circles of radius $r=\frac{mv}{qB}$, so heavier ions travel on larger circles and are separated by mass.
+
+## X | Exam toolkit
+@p **Hand rules.** Name the rule you use and state the three directions (field, current or velocity, force). Draw a 3D sketch using the dot and cross notation for out of and into the page.
+@p **Common errors.** Using electron flow for a right-hand rule; forgetting $\sin\theta$; using $B$ in gauss instead of tesla; thinking the magnetic force changes speed.
+@quiz Wire force | A $0.20\ \text{m}$ wire carries $4.0\ \text{A}$ at $30^\circ$ to a $0.50\ \text{T}$ field. Find the force (N).
+A: 0.20
+ALT: 0.2
+AD: $0.20\ \text{N}$
+SOL: $F=BIL\sin\theta=0.50(4.0)(0.20)(0.50)$.
+H: $F=BIL\sin\theta$.||$\sin30^\circ=0.50$.||Multiply.
+@quiz Moving charge | An electron moves at $5.0\times10^6\ \text{m s}^{-1}$ perpendicular to a $0.20\ \text{T}$ field. Find the force in units of $10^{-13}\ \text{N}$.
+A: 1.6
+AD: $1.6\times10^{-13}\ \text{N}$
+SOL: $F=qvB=1.60\times10^{-19}(5.0\times10^6)(0.20)=1.6\times10^{-13}$.
+H: $F=qvB$.||Use $q=1.60\times10^{-19}$.||Multiply.
+@quiz Parallel | What is the magnetic force on a charge moving parallel to a field (N)?
+A: 0
+AD: $0$
+SOL: $\sin0^\circ=0$.
+H: $F=qvB\sin\theta$.||$\theta=0$.||$\sin0=0$.
+@quiz Radius | A proton moves at $1.0\times10^6\ \text{m s}^{-1}$ perpendicular to a $0.10\ \text{T}$ field. Find the radius in cm (1 decimal place).
+A: 10.5
+ALT: 10.4
+AD: $10.5\ \text{cm}$
+SOL: $r=\frac{mv}{qB}=\frac{1.6726219\times10^{-27}(10^6)}{1.6\times10^{-19}(0.10)}=0.1045\ \text{m}\approx10.5\ \text{cm}$. (Rounding $m_p$ to $1.67\times10^{-27}$ gives $10.4$, which is also accepted.)
+H: $r=mv/(qB)$.||Use $m_p=1.6726219\times10^{-27}$ kg from the data book.||Convert metres to cm.
+@quiz Speed doubling | If the speed of a charge in a magnetic field doubles, by what factor does the radius change?
+A: 2
+AD: $2$
+SOL: $r\propto v$.
+H: $r=mv/qB$.||Radius is proportional to $v$.||Factor 2.
+@quiz Velocity selector | $E=1.0\times10^4\ \text{V m}^{-1}$ and $B=0.050\ \text{T}$. Find the selected speed in units of $10^5\ \text{m s}^{-1}$.
+A: 2.0
+ALT: 2
+AD: $2.0\times10^5\ \text{m s}^{-1}$
+SOL: $v=E/B=\frac{1.0\times10^4}{0.050}$.
+H: Forces balance: $qE=qvB$.||$v=E/B$.||Divide.
+@quiz Solenoid | If the current in a solenoid is doubled, by what factor does its field change?
+A: 2
+AD: $2$
+SOL: $B\propto I$.
+H: Field is proportional to current.||Double current.||Factor 2.
+@quiz Parallel wires | Do two parallel wires carrying current in the same direction attract? Answer yes or no.
+A: yes
+ALT: Yes
+AD: Yes
+SOL: Same-direction currents attract.
+H: Same direction currents.||Fields add between them... they pull together.||Attract.
+@quiz Period | Find the cyclotron period of a proton in a $1.0\ \text{T}$ field in nanoseconds (1 decimal place).
+A: 65.7
+ALT: 65.6
+AD: $65.7\ \text{ns}$
+SOL: $T=\frac{2\pi m}{qB}=\frac{2\pi(1.6726219\times10^{-27})}{1.6\times10^{-19}(1.0)}=6.57\times10^{-8}\ \text{s}$. (Rounding $m_p$ gives $65.6$, also accepted.)
+H: $T=2\pi m/qB$.||Speed cancels.||Convert to ns.
+@quiz Work | How much work does a magnetic field do on a moving charge in one revolution (J)?
+A: 0
+AD: $0$
+SOL: Force is perpendicular to motion.
+H: $W=Fd\cos\theta$.||The angle is $90^\circ$.||Zero.
+@comet Extension: Isotopes | Two ions with the same charge and speed enter the same magnetic field. One has mass $4\ \text{u}$ and the other $2\ \text{u}$. Find the ratio of the larger radius to the smaller.
+A: 2
+AD: $2$
+SOL: $r\propto m$.
+H: $r=mv/qB$.||Same $q$, $v$, $B$.||Ratio of masses.

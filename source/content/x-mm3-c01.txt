@@ -1,0 +1,147 @@
+=== mm3-c01 | append
+## 1.2
+@p **One-sided limits.** Write $\lim_{x\to a^-}f(x)$ for the value approached from the left and $\lim_{x\to a^+}f(x)$ from the right. The two-sided limit exists only when they are equal. A graph with a jump, such as $f(x)=\frac{|x|}{x}$ at $0$ (left limit $-1$, right limit $+1$), has no limit there.
+@ex A limit that does not exist
+Q: Does $\displaystyle\lim_{x\to0}\frac{|x|}{x}$ exist?
+S: For $x>0$, $\frac{|x|}x=1$, so the right-hand limit is $1$.
+S: For $x<0$, $\frac{|x|}x=-1$, so the left-hand limit is $-1$.
+S: The two sides disagree.
+A: The limit does not exist.
+@ex First principles with a cubic
+Q: Use first principles to differentiate $f(x)=x^3$.
+S: $\dfrac{(x+h)^3-x^3}{h}=\dfrac{3x^2h+3xh^2+h^3}{h}=3x^2+3xh+h^2$.
+S: As $h\to0$, the terms with $h$ vanish.
+A: $f'(x)=3x^2$
+@p **Continuity and differentiability.** A function is **continuous** at $x=a$ when $\lim_{x\to a}f(x)=f(a)$ (you can draw it without lifting your pen). It is **differentiable** at $a$ when the first-principles limit exists, which also needs the left and right gradients to match. A sharp corner, such as $y=|x|$ at $0$, is continuous but not differentiable.
+@int tangent | Move the point and shrink the gap $h$: the blue secant gradient closes in on the green tangent gradient. That is the definition of the derivative.
+## 1.3
+@p **Finding an exponential from information.** Substitute known points into $y=ae^{bx}+k$. A horizontal asymptote gives $k$ directly; a $y$-intercept gives $a+k$; a second point gives $b$.
+@ex Exponential through two points
+Q: $y=ae^{bx}$ passes through $(0,3)$ and $(1,3e^2)$. Find $a$ and $b$.
+S: $x=0$: $a=3$.
+S: $x=1$: $3e^{b}=3e^2\Rightarrow b=2$.
+A: $y=3e^{2x}$
+@p **Index laws you need all the time:** $a^m a^n=a^{m+n}$, $\frac{a^m}{a^n}=a^{m-n}$, $(a^m)^n=a^{mn}$, $a^{-n}=\frac1{a^n}$, $a^{1/n}=\sqrt[n]{a}$. For $e$: $e^xe^y=e^{x+y}$ and $\frac1{e^{x}}=e^{-x}$.
+@warn $e^x\cdot e^y=e^{x+y}$, but $e^x+e^y$ cannot be combined. Many "simplify" errors come from treating a sum like a product.
+## 1.4
+@ex Stationary point of an exponential
+Q: Find and classify the stationary point of $y=e^x-2x$.
+S: $y'=e^x-2=0\Rightarrow x=\ln2$. Then $y=2-2\ln2\approx0.614$.
+S: $y''=e^x>0$ everywhere, so it is a minimum.
+A: Minimum at $\left(\ln2,\ 2-2\ln2\right)$.
+@p **Rate of change in context.** If $N=N_0e^{kt}$ then $\frac{dN}{dt}=kN$: the rate is proportional to the amount. This single idea underlies population growth, radioactive decay and compound interest, so a statement like "the rate of change is proportional to the size" should immediately suggest an exponential.
+## 1.5
+@key **Change of base:** $\log_a x=\dfrac{\ln x}{\ln a}$. Use it to evaluate logs on a calculator and to solve $a^x=b$ as $x=\dfrac{\ln b}{\ln a}$.
+@ex Solving $a^x=b$
+Q: Solve $2^x=7$ to 3 decimal places.
+S: Take $\ln$ of both sides: $x\ln2=\ln7$.
+S: $x=\frac{\ln7}{\ln2}\approx2.807$.
+A: $x\approx2.807$
+@p **Domain and range, summary.** $y=e^x$: domain $\mathbb R$, range $(0,\infty)$. $y=\ln x$: domain $(0,\infty)$, range $\mathbb R$. For $y=\ln(ax+b)$ the domain is where $ax+b>0$.
+## 1.6
+@ex Equation with log bases
+Q: Solve $\log_2x+\log_2(x-2)=3$.
+S: Combine: $\log_2\big(x(x-2)\big)=3\Rightarrow x(x-2)=2^3=8$.
+S: $x^2-2x-8=0\Rightarrow(x-4)(x+2)=0$.
+S: $x=-2$ makes $\log_2x$ undefined, so reject.
+A: $x=4$
+@ex Index form
+Q: Solve $\ln(2x-1)=2$.
+S: Rewrite in index form: $2x-1=e^2$.
+S: $x=\frac{e^2+1}2\approx4.19$.
+A: $x=\dfrac{e^2+1}{2}$
+@p **Strategy.** (1) Is the unknown in an index? Isolate the exponential, then take $\ln$. (2) Is it inside a log? Combine to one log, convert to index form. (3) Is there an $e^{2x}$ and $e^x$? Substitute $u=e^x$. (4) Always check the domain.
+## 1.7
+@ex Log of a trig function
+Q: Differentiate $y=\ln(\sin x)$ for $0<x<\pi$.
+S: $\frac{f'}f=\frac{\cos x}{\sin x}$.
+A: $\cot x$
+@ex Tangent to a log curve
+Q: Find the tangent to $y=\ln x$ at $x=e$.
+S: $y'=\frac1x$, so the gradient is $\frac1e$; the point is $(e,1)$.
+S: $y-1=\frac1e(x-e)\Rightarrow y=\frac xe$.
+A: $y=\dfrac{x}{e}$ (it passes through the origin)
+## 1.8
+@ex Cooling model
+Q: A drink cools as $T=20+60e^{-0.1t}$ (°C, $t$ in minutes). Find its starting temperature, the long-term temperature, and when it reaches $40^\circ$C.
+S: $T(0)=80$. As $t\to\infty$, $T\to20$ (room temperature).
+S: $20+60e^{-0.1t}=40\Rightarrow e^{-0.1t}=\frac13\Rightarrow t=10\ln3\approx11.0$ min.
+A: $80^\circ$C, $20^\circ$C, and about $11.0$ minutes.
+@ex Doubling time
+Q: A population doubles every 8 hours. Write it as $P=P_0e^{kt}$ and find $k$.
+S: $2P_0=P_0e^{8k}\Rightarrow8k=\ln2$.
+A: $k=\frac{\ln2}8\approx0.0866$ per hour
+@warn A model is only valid in a sensible domain. Exponential growth cannot continue forever (limited food, space or money). In extended-response questions, comment on this limitation when asked to evaluate a model.
+## X | Exam toolkit
+@p **What the exam rewards.** Marks are awarded for the correct method, accurate answers, and clear communication. Always write the **rule you use** (for example "chain rule"), show the substitution, and give **exact answers** unless told to round. Use your CAS to check, not to replace working in the non-technology paper.
+@p **Command words.** *Determine/find*: show working to a result. *Show that*: you must reach the stated result, so every line must follow; do not work backwards. *Hence*: you must use the previous part. *Evaluate the model*: comment on accuracy and limitations.
+@p **CAS reminders.** Set radians when angles use $\pi$. Use `solve`, `d/dx` (or `diff`) and `ln` for natural logs. When a solve returns many solutions, read the domain in the question.
+@ex Mixed exam-style problem
+Q: A hot metal cools as $T(t)=25+75e^{-kt}$. After 5 minutes it is $55^\circ$C. (a) Find $k$. (b) Find the rate of cooling at $t=5$.
+S: (a) $25+75e^{-5k}=55\Rightarrow e^{-5k}=\frac25\Rightarrow k=\frac15\ln\frac52\approx0.183$.
+S: (b) $T'(t)=-75ke^{-kt}$. At $t=5$, $75e^{-5k}=30$, so $T'(5)=-30k\approx-5.50$.
+A: $k\approx0.183$; cooling at about $5.5^\circ$C per minute.
+@warn Common losses in this chapter: forgetting $+c$ is a later chapter, but here it is forgetting to reject a log solution, mixing $\ln(a+b)$ with $\ln a+\ln b$, and answering in a decimal when exact form was asked.
+@quiz Limit | Evaluate $\displaystyle\lim_{x\to2}\frac{x^2-4}{x-2}$.
+A: 4
+AD: $4$
+SOL: $\frac{(x-2)(x+2)}{x-2}=x+2\to4$.
+H: Substituting gives $0/0$.||Factorise the numerator.||Cancel and substitute.
+@quiz First principles | Using first principles, $f(x)=x^2+3x$ gives $\frac{f(x+h)-f(x)}{h}=2x+h+3$. Find $f'(x)$.
+A: 2x+3
+AD: $2x+3$
+SOL: Let $h\to0$ in $2x+h+3$.
+H: What happens to $h$?||It tends to 0.||Remove $h$.
+@quiz Exponential through points | $y=ae^{bx}$ passes through $(0,5)$ and $(1,5e^{-3})$. Find $b$.
+A: -3
+ALT: b=-3
+AD: $b=-3$
+SOL: $a=5$ and $5e^{b}=5e^{-3}$.
+H: Use $x=0$ first.||$a=5$.||Equate the exponents at $x=1$.
+@quiz Change of base | Solve $3^x=20$ to 2 decimal places.
+A: 2.73
+ALT: 2.727
+AD: $x=\frac{\ln20}{\ln3}\approx2.73$
+SOL: $x=\frac{\ln20}{\ln3}=2.7268$.
+H: Take $\ln$ of both sides.||$x\ln3=\ln20$.||Divide and round.
+@quiz Stationary | Find the $x$-value of the minimum of $y=e^x-3x$. Give an exact answer.
+A: ln3
+ALT: ln(3)||x=ln3
+AD: $x=\ln3$
+SOL: $y'=e^x-3=0\Rightarrow x=\ln3$; $y''=e^x>0$.
+H: Differentiate.||Set to zero.||Solve with $\ln$.
+@quiz Log equation | Solve $\log_3x+\log_3(x-8)=2$.
+A: 9
+ALT: x=9
+AD: $x=9$
+SOL: $x(x-8)=9\Rightarrow x^2-8x-9=0\Rightarrow x=9$ or $-1$; reject $-1$.
+H: Combine the logs.||Convert to index form.||Check the domain.
+@quiz Log derivative | Differentiate $y=\ln(\cos x)$ for $0<x<\frac\pi2$.
+A: -tanx
+ALT: -tan(x)
+AD: $-\tan x$
+SOL: $\frac{-\sin x}{\cos x}=-\tan x$.
+H: Use $\frac{f'}f$.||$f'=-\sin x$.||Simplify.
+@quiz Tangent | The tangent to $y=\ln x$ at $x=1$ has what $y$-intercept?
+A: -1
+AD: $-1$
+SOL: Gradient $1$ at $(1,0)$: $y=x-1$.
+H: Gradient is $\frac1x$ at $x=1$.||Point is $(1,0)$.||Write $y=mx+c$.
+@quiz Cooling | $T=20+60e^{-0.1t}$. Find $T$ when $t=10$ (1 decimal place).
+A: 42.1
+ALT: 42.07
+AD: $\approx42.1$
+SOL: $20+60e^{-1}=20+22.07=42.07$.
+H: Substitute $t=10$.||$e^{-1}\approx0.3679$.||Multiply and add.
+@quiz Doubling | $P=P_0e^{kt}$ triples in 6 years. Find $k$ exactly.
+A: ln3/6
+ALT: (ln3)/6||(1/6)ln3||ln(3)/6
+AD: $k=\dfrac{\ln3}{6}$
+SOL: $3=e^{6k}\Rightarrow k=\frac{\ln3}6$.
+H: $3P_0=P_0e^{6k}$.||Cancel $P_0$.||Take $\ln$.
+@comet Extension: Where does $e^x$ equal its tangent from the origin? | The line $y=mx$ touches $y=e^x$ exactly once. Find $m$ exactly.
+A: e
+ALT: m=e
+AD: $m=e$
+SOL: A tangent at $x=a$ is $y=e^ax+e^a(1-a)$; it passes through the origin when $a=1$, so $m=e$.
+H: Write the tangent at $x=a$.||Force it through $(0,0)$.||Then $m=e^a$.

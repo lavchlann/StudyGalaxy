@@ -1,0 +1,105 @@
+=== ph3-c08 | interactive: transformer
+@summary Transformers change AC voltages and make long-distance power transmission efficient. This chapter covers the ideal transformer equations, energy losses, transmission-line power loss, and why electricity is transmitted at high voltage.
+@video F | Transformers and power transmission | search:transformers step up step down power transmission physics
+@video K | Transformers | search:transformer physics ideal transformer
+@video V | Veritasium: The grid | search:Veritasium AC DC power grid
+
+## 8.1 | The ideal transformer
+@p A transformer has a **primary** and **secondary** coil wound on a soft-iron core. An alternating current in the primary produces a changing flux in the core, which induces an emf in the secondary. **It works only with AC**, because a DC current produces a steady flux and no induction.
+@key $$\frac{V_s}{V_p}=\frac{N_s}{N_p},\qquad V_pI_p=V_sI_s\ (\text{ideal})$$
+@ex Step-down
+Q: A transformer has $500$ primary and $100$ secondary turns with a $240\ \text{V}$ input. Find the output voltage.
+S: $V_s=V_p\frac{N_s}{N_p}=240\times\frac{100}{500}=48\ \text{V}$.
+A: $48\ \text{V}$
+@p $N_s>N_p$ is a **step-up** transformer (raises voltage, lowers current). $N_s<N_p$ is **step-down**. The power is not increased: voltage up means current down.
+@ex Currents
+Q: An ideal transformer delivers $12\ \text{W}$ at $48\ \text{V}$ from a $240\ \text{V}$ primary. Find the secondary and primary currents.
+S: $I_s=\frac PV=\frac{12}{48}=0.25\ \text{A}$.
+S: $I_p=\frac{12}{240}=0.050\ \text{A}$.
+A: $0.25\ \text{A}$ and $0.050\ \text{A}$.
+@int transformer | Change the turns and the load. Check that the ideal power in equals the power out.
+
+## 8.2 | Real transformers and energy losses
+@p Real transformers are not perfectly efficient. **Efficiency** $=\dfrac{P_{\text{out}}}{P_{\text{in}}}\times100\%$. Losses include **resistive heating** in the windings, **eddy currents** in the core (reduced by using a **laminated** core), **hysteresis** (reversing magnetisation of the core, reduced by soft iron) and **flux leakage** (reduced by winding the coils on a shared core).
+@ex Efficiency
+Q: A transformer takes $300\ \text{W}$ and delivers $285\ \text{W}$. Find its efficiency.
+S: $\frac{285}{300}\times100=95\%$.
+A: $95\%$
+
+## 8.3 | Power transmission
+@p The power lost in a cable is $P_{\text{loss}}=I^2R$. For a given transmitted power $P=VI$, a **higher voltage means a lower current**, and the loss falls with the **square** of the current. That is why electricity is **stepped up** at the power station for transmission and **stepped down** near the user.
+@ex Transmission loss
+Q: A power station sends $100\ \text{kW}$ through cables with resistance $5.0\ \Omega$. Compare the power lost at $10\ \text{kV}$ and at $1.0\ \text{kV}$.
+S: At $10\ \text{kV}$: $I=\frac{100\times10^3}{10\times10^3}=10\ \text{A}$; $P_{\text{loss}}=10^2(5.0)=500\ \text{W}$ (0.5%).
+S: At $1.0\ \text{kV}$: $I=100\ \text{A}$; $P_{\text{loss}}=100^2(5.0)=50\ \text{kW}$ (50%).
+A: $500\ \text{W}$ at $10\ \text{kV}$ versus $50\ \text{kW}$ at $1.0\ \text{kV}$.
+@warn The voltage in $P_{\text{loss}}=V^2/R$ is the voltage **across the cable**, not the transmission voltage. Use $I^2R$ for line loss.
+
+## X | Exam toolkit
+@p **Explain, do not just calculate.** A typical question: "Explain why power is transmitted at high voltage." Answer: for a fixed power, higher voltage means lower current ($I=P/V$), and heat loss in the cables is $I^2R$, so far less energy is wasted.
+@p **Reasons a transformer is not 100% efficient** should name the cause and the fix: eddy currents (laminated core), resistive heating (thick copper wire), hysteresis (soft iron core) and leakage (shared core).
+@quiz Output voltage | A transformer has $N_p/N_s=10$ and $V_p=240\ \text{V}$. Find $V_s$ (V).
+A: 24
+ALT: 24.0
+AD: $24\ \text{V}$
+SOL: $V_s=240/10$.
+H: $V_s/V_p=N_s/N_p$.||$N_s/N_p=0.10$.||Multiply.
+@quiz Turns | Find $N_s$ to step $240\ \text{V}$ down to $12\ \text{V}$ with $N_p=1000$.
+A: 50
+AD: $50$
+SOL: $N_s=1000\times\frac{12}{240}$.
+H: $N_s/N_p=V_s/V_p$.||$12/240=0.05$.||Multiply.
+@quiz Current | An ideal transformer has $V_p=240\ \text{V}$, $I_p=0.50\ \text{A}$ and $V_s=12\ \text{V}$. Find $I_s$ (A).
+A: 10
+ALT: 10.0
+AD: $10\ \text{A}$
+SOL: $V_pI_p=V_sI_s\Rightarrow I_s=\frac{120}{12}$.
+H: Ideal means power in equals power out.||$V_pI_p=120\ \text{W}$.||Divide by $V_s$.
+@quiz Line loss | A cable of resistance $2.0\ \Omega$ carries $20\ \text{A}$. Find the power lost (W).
+A: 800
+AD: $800\ \text{W}$
+SOL: $P=I^2R=400(2.0)$.
+H: $P=I^2R$.||$20^2=400$.||Multiply by 2.0.
+@quiz Line current | $50\ \text{kW}$ is sent at $5000\ \text{V}$. Find the current (A).
+A: 10
+AD: $10\ \text{A}$
+SOL: $I=P/V=\frac{50000}{5000}$.
+H: $P=VI$.||$I=P/V$.||Divide.
+@quiz Higher voltage | If the transmission voltage rises by a factor of 10 for the same power, by what factor does the line loss fall?
+A: 100
+AD: $100$
+SOL: Current falls by 10, loss $\propto I^2$.
+H: $I\propto1/V$.||Loss $\propto I^2$.||$10^2$.
+@quiz Efficiency | A transformer takes $300\ \text{W}$ in and gives $285\ \text{W}$ out. Find the efficiency (%).
+A: 95
+AD: $95\%$
+SOL: $285/300\times100$.
+H: Output over input.||$285/300=0.95$.||Convert to %.
+@quiz DC | Can a transformer step up a steady DC voltage? Answer yes or no.
+A: no
+ALT: No
+AD: No
+SOL: DC gives a constant flux, so no emf is induced.
+H: Induction needs a changing flux.||DC flux does not change.||No.
+@quiz Step-up | A transformer has more secondary turns than primary turns. Is it a step-up transformer? Answer yes or no.
+A: yes
+ALT: Yes
+AD: Yes
+SOL: $V_s>V_p$ when $N_s>N_p$.
+H: $V_s/V_p=N_s/N_p$.||$N_s>N_p$ means $V_s>V_p$.||Step-up.
+@quiz Ratio | $V_p=11000\ \text{V}$ and $V_s=240\ \text{V}$. Find $N_p/N_s$ (1 decimal place).
+A: 45.8
+AD: $45.8$
+SOL: $\frac{N_p}{N_s}=\frac{11000}{240}=45.8$.
+H: $N_p/N_s=V_p/V_s$.||$11000/240$.||Compute.
+@comet Extension: Line loss percentage | $2.0\ \text{MW}$ is sent at $20\ \text{kV}$ through lines with resistance $10\ \Omega$. What percentage of the power is lost?
+A: 5
+ALT: 5.0
+AD: $5\%$
+SOL: $I=\frac{2.0\times10^6}{20\times10^3}=100\ \text{A}$; $P_{\text{loss}}=100^2(10)=100\ \text{kW}$, which is $5\%$ of $2.0\ \text{MW}$.
+H: Find the current.||$P_{\text{loss}}=I^2R$.||Divide by the total power.
+@comet Extension: Cutting the loss | To reduce the line loss in the previous question to $1.25\%$, by what factor must the transmission voltage increase?
+A: 2
+AD: $2$
+SOL: Loss $\propto1/V^2$; a quarter of the loss needs $V$ doubled.
+H: $P_{\text{loss}}\propto I^2\propto1/V^2$.||The loss must fall by a factor of 4.||Square root of 4.

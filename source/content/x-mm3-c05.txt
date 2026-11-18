@@ -1,0 +1,103 @@
+=== mm3-c05 | append
+## 5.2
+@ex Splitting terms
+Q: Find $\int\left(3x^2-\frac4{x^3}+\sqrt x\right)dx$.
+S: Rewrite: $3x^2-4x^{-3}+x^{1/2}$.
+S: Integrate each: $x^3+2x^{-2}+\frac23x^{3/2}+c$.
+A: $x^3+\dfrac2{x^2}+\dfrac23x^{3/2}+c$
+@ex Finding $c$
+Q: $f'(x)=6x-2$ and $f(1)=5$. Find $f$.
+S: $f=3x^2-2x+c$; $f(1)=1+c=5\Rightarrow c=4$.
+A: $f(x)=3x^2-2x+4$
+## 5.3
+@ex Linear inside
+Q: $\int\left(e^{3x}+e^{-x}\right)dx$.
+S: $\frac13e^{3x}-e^{-x}+c$.
+A: $\frac13e^{3x}-e^{-x}+c$
+## 5.4
+@ex Reverse chain rule
+Q: $\int\dfrac{2x}{x^2+1}dx$.
+S: Numerator is the derivative of the denominator.
+A: $\ln(x^2+1)+c$
+@ex $\frac{1}{ax+b}$
+Q: $\int\dfrac{5}{2x+3}dx$.
+S: $\frac52\ln|2x+3|+c$ (divide by the inner derivative 2).
+A: $\frac52\ln|2x+3|+c$
+## 5.5
+@ex Trig mix
+Q: $\int(\sin 2x+4\cos x)dx$.
+S: $-\frac12\cos2x+4\sin x+c$.
+A: $-\frac12\cos 2x+4\sin x+c$
+## 5.6
+@ex Area between curves
+Q: Area between $y=x$ and $y=x^2$.
+S: Intersect at $x=0,1$; line is above.
+S: $\int_0^1(x-x^2)dx=\left[\frac{x^2}2-\frac{x^3}3\right]_0^1=\frac16$.
+A: $\frac16$
+@int riemann | Add rectangles and watch the estimate close in on the exact integral. A definite integral is the limit of such sums.
+@warn For area, $\int_a^b f$ gives *signed* area. If the graph crosses the axis, split at the crossing and add the absolute values.
+## 5.7
+@ex Velocity to position
+Q: $v=3t^2-4$, $x(0)=2$. Find $x(t)$ and the displacement over $0\le t\le2$.
+S: $x=t^3-4t+c$, $c=2$.
+S: Displacement $=x(2)-x(0)=(8-8+2)-2=0$.
+A: $x=t^3-4t+2$; displacement $0$.
+## X | Exam toolkit
+@p **Check by differentiating.** Every antiderivative can be verified in seconds. Do it whenever you have spare time. If you differentiate your answer and do not recover the integrand, find the mistake.
+@p **Presentation.** Indefinite integrals need $+c$. Definite integrals show the bracket $[\;]_a^b$ and both substitutions. When a question says "exact", leave $e$ and $\ln$ unevaluated.
+@quiz Power | Find $\int\left(4x^3-6x\right)dx$.
+A: x^4-3x^2+c
+AD: $x^4-3x^2+c$
+SOL: Raise power and divide.
+H: $x^{n+1}/(n+1)$.||Each term.||Add $c$.
+@quiz Exponential | $\int 5e^{5x}dx$.
+A: e^(5x)+c
+AD: $e^{5x}+c$
+SOL: Divide by 5.
+H: Inner derivative 5.||$5\div5=1$.||Add $c$.
+@quiz Log | $\int\frac{3}{x}dx$ for $x>0$.
+A: 3lnx+c
+ALT: 3ln(x)+c
+AD: $3\ln x+c$
+SOL: $\int\frac1x=\ln x$.
+H: Constant multiple.||$\ln x$.||Add $c$.
+@quiz Reverse chain | $\int\frac{e^x}{e^x+1}dx$.
+A: ln(e^x+1)+c
+AD: $\ln(e^x+1)+c$
+SOL: Numerator is the derivative of the denominator.
+H: $f'/f$.||$f=e^x+1$.||Add $c$.
+@quiz Definite | $\int_0^1 3x^2dx$.
+A: 1
+AD: $1$
+SOL: $[x^3]_0^1$.
+H: Antiderivative.||$x^3$.||Substitute.
+@quiz Definite | $\int_0^{\pi}\sin x\,dx$.
+A: 2
+AD: $2$
+SOL: $[-\cos x]_0^\pi=1+1$.
+H: $-\cos x$.||At $\pi$: $1$.||At $0$: $-1$.
+@quiz Area | Area under $y=e^x$ from $0$ to $\ln3$.
+A: 2
+AD: $2$
+SOL: $[e^x]_0^{\ln3}=3-1$.
+H: Antiderivative.||$e^{\ln3}=3$.||Subtract.
+@quiz Initial value | $f'(x)=4x$, $f(0)=3$. Find $f(2)$.
+A: 11
+AD: $11$
+SOL: $f=2x^2+3$, $f(2)=11$.
+H: Integrate.||$c=3$.||Substitute.
+@quiz Between curves | Area between $y=x$ and $y=x^2$ from $0$ to $1$ (exact).
+A: 1/6
+AD: $\frac16$
+SOL: $\int_0^1(x-x^2)dx$.
+H: Which is on top?||Integrate difference.||Evaluate.
+@quiz Velocity | $v=2t$, $x(0)=1$. Find $x(3)$.
+A: 10
+AD: $10$
+SOL: $x=t^2+1$, $x(3)=10$.
+H: Integrate.||$c=1$.||Substitute.
+@comet Extension: Average value | The average value of $f(x)=x^2$ on $[0,3]$ is?
+A: 3
+AD: $3$
+SOL: $\frac1{3}\int_0^3x^2dx=\frac13\cdot9=3$.
+H: $\frac1{b-a}\int f$.||$\int_0^3x^2=9$.||Divide by 3.

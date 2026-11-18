@@ -1,0 +1,108 @@
+=== ph3-c04 | interactive: orbit
+@summary Every mass attracts every other mass. This chapter covers Newton's law of universal gravitation, gravitational field strength and the inverse-square law, orbital speed and period, Kepler's laws, geostationary satellites and apparent weightlessness.
+@video F | Newton's law of universal gravitation | search:Newton law of gravitation physics orbits
+@video K | Orbits and Kepler's laws | search:Kepler laws orbits physics
+@video V | Veritasium: Gravity visualized | search:Veritasium gravity orbits
+
+## 4.1 | Newton's law of gravitation
+@p Any two masses attract each other with equal and opposite forces along the line joining their centres. The force depends on the product of the masses and falls with the **square of the distance** between centres. $G=6.67\times10^{-11}\ \text{N m}^2\text{kg}^{-2}$.
+@key $$F=\frac{Gm_1m_2}{r^2}$$
+@ex Two cars
+Q: Two $1.0\times10^3\ \text{kg}$ cars are $2.0\ \text{m}$ apart. Find the gravitational force between them.
+S: $F=\frac{6.67\times10^{-11}(1000)(1000)}{2.0^2}=1.67\times10^{-5}\ \text{N}$.
+A: $1.67\times10^{-5}\ \text{N}$, far too small to notice.
+@warn $r$ is the distance between **centres of mass**, not surfaces. For an object at height $h$ above a planet of radius $R$, use $r=R+h$.
+
+## 4.2 | Gravitational field strength
+@p The **gravitational field strength** is the force per unit mass: $g=\dfrac{F}{m}=\dfrac{GM}{r^2}$ (in $\text{N kg}^{-1}$, the same as $\text{m s}^{-2}$). It points toward the centre of the mass, and **doubling the distance divides it by 4**. Near Earth's surface $g\approx9.8\ \text{N kg}^{-1}$, which can be confirmed from $G$, $M_E=5.97\times10^{24}\ \text{kg}$ and $R_E=6.37\times10^6\ \text{m}$.
+@ex Field strength
+Q: Find $g$ at the surface of Mars ($M=6.4\times10^{23}\ \text{kg}$, $R=3.4\times10^6\ \text{m}$).
+S: $g=\frac{GM}{R^2}=\frac{6.67\times10^{-11}(6.4\times10^{23})}{(3.4\times10^6)^2}=3.69\ \text{N kg}^{-1}$.
+A: $3.69\ \text{N kg}^{-1}$
+@ex At altitude
+Q: Find $g$ at $400\ \text{km}$ above Earth's surface.
+S: $r=6.37\times10^6+4.0\times10^5=6.77\times10^6\ \text{m}$.
+S: $g=\frac{6.67\times10^{-11}(5.97\times10^{24})}{(6.77\times10^6)^2}=8.69\ \text{N kg}^{-1}$.
+A: $8.69\ \text{N kg}^{-1}$, only slightly less than at the surface.
+@int orbit | Move the orbital radius. See how field strength, speed and period change with radius.
+
+## 4.3 | Orbits and Kepler's laws
+@p For a satellite in a circular orbit, **gravity is the centripetal force**: $\dfrac{GMm}{r^2}=\dfrac{mv^2}{r}$ so $v=\sqrt{\dfrac{GM}{r}}$ (independent of the satellite's mass). With $v=\frac{2\pi r}{T}$ this gives **Kepler's third law**: $\dfrac{T^2}{r^3}=\dfrac{4\pi^2}{GM}$, a constant for all orbits around the same central mass.
+@key $$v=\sqrt{\frac{GM}{r}},\qquad \frac{r^3}{T^2}=\frac{GM}{4\pi^2}$$
+@ex Space station
+Q: Find the orbital speed and period of a satellite $400\ \text{km}$ above Earth.
+S: $r=6.77\times10^6$; $v=\sqrt{\frac{GM}{r}}=\sqrt{\frac{3.98\times10^{14}}{6.77\times10^6}}=7.67\times10^3\ \text{m s}^{-1}$.
+S: $T=\frac{2\pi r}{v}=5.55\times10^3\ \text{s}=92.4\ \text{min}$.
+A: $7.67\ \text{km s}^{-1}$ and $92\ \text{min}$.
+@p **Kepler's laws.** (1) Orbits are ellipses with the central body at one focus. (2) A line from the central body sweeps equal areas in equal times, so orbiting bodies move fastest when closest. (3) $T^2\propto r^3$. Higher orbits are **slower** and take **longer**.
+
+## 4.4 | Geostationary satellites and weightlessness
+@p A **geostationary** satellite has a period of 24 hours, orbits above the equator in the same direction as Earth's rotation, and so stays above one point. Its radius is found from $r^3=\frac{GMT^2}{4\pi^2}\approx4.22\times10^7\ \text{m}$ from Earth's centre, about $3.59\times10^7\ \text{m}$ above the surface.
+@p **Apparent weightlessness.** An astronaut in orbit is in **free fall** around Earth. Gravity still acts (about $90\%$ of surface value at ISS altitude), but there is no contact force from the floor, so no sensation of weight.
+@warn Orbiting astronauts do not float because gravity is absent. They float because they and the spacecraft fall together.
+
+## X | Exam toolkit
+@p **Constants and rounding.** Use $G=6.67\times10^{-11}$, $M_E=5.97\times10^{24}\ \text{kg}$, $R_E=6.37\times10^6\ \text{m}$. Keep full precision until the end. Convert km to m before substituting.
+@p **Proportional reasoning.** Many questions are asked as ratios. If $r$ doubles, $F$ and $g$ become $\frac14$, $v$ becomes $\frac1{\sqrt2}$ and $T$ becomes $2\sqrt2$ times larger. Writing the proportion with symbols is quicker and safer than recalculating.
+@quiz Doubling | If the distance between two masses doubles, by what factor does the gravitational force change (as a decimal)?
+A: 0.25
+ALT: 1/4
+AD: $\frac14$
+SOL: $F\propto1/r^2$.
+H: Inverse square law.||$(1/2)^2$.||Compute.
+@quiz Field at 2R | Find $g$ at a distance $2R_E$ from Earth's centre ($\text{N kg}^{-1}$), using $g=9.8$ at the surface.
+A: 2.45
+AD: $2.45\ \text{N kg}^{-1}$
+SOL: $g\propto1/r^2$, so $9.8/4$.
+H: Distance doubles.||Field falls by a factor of 4.||Divide 9.8 by 4.
+@quiz Mars | Find $g$ at the surface of a planet with $M=6.4\times10^{23}\ \text{kg}$ and $R=3.4\times10^6\ \text{m}$ ($\text{N kg}^{-1}$, 2 decimal places).
+A: 3.69
+AD: $3.69\ \text{N kg}^{-1}$
+SOL: $g=\frac{GM}{R^2}=3.69$.
+H: $g=GM/R^2$.||Square the radius.||Compute.
+@quiz Weight | Find the weight of a $60\ \text{kg}$ person where $g=3.7\ \text{N kg}^{-1}$ (N).
+A: 222
+AD: $222\ \text{N}$
+SOL: $W=mg=60(3.7)$.
+H: $W=mg$.||$60\times3.7$.||Compute.
+@quiz Orbital speed | A satellite orbits at $r=7.0\times10^6\ \text{m}$ from Earth's centre. Find its speed in $\text{km s}^{-1}$ (1 decimal place).
+A: 7.5
+AD: $7.5\ \text{km s}^{-1}$
+SOL: $v=\sqrt{GM/r}=\sqrt{3.98\times10^{14}/7.0\times10^6}=7.54\times10^3$.
+H: Gravity is the centripetal force.||$v=\sqrt{GM/r}$.||Convert to km/s.
+@quiz Period | A satellite orbits at $r=7.0\times10^6\ \text{m}$ with speed $7.54\times10^3\ \text{m s}^{-1}$. Find its period in minutes (1 decimal place).
+A: 97.2
+AD: $97.2\ \text{min}$
+SOL: $T=\frac{2\pi r}{v}=5.83\times10^3\ \text{s}=97.2\ \text{min}$.
+H: $T=2\pi r/v$.||$2\pi\times7.0\times10^6=4.40\times10^7$.||Divide by $v$ and convert.
+@quiz Kepler | If an orbital radius is multiplied by 4, by what factor is the period multiplied?
+A: 8
+AD: $8$
+SOL: $T\propto r^{3/2}$, so $4^{3/2}=8$.
+H: $T^2\propto r^3$.||$T\propto r^{1.5}$.||$4^{1.5}$.
+@quiz Weightless? | An astronaut in a stable orbit has no gravity acting on them. True or false?
+A: false
+ALT: False
+AD: False
+SOL: Gravity acts and provides the centripetal force; they are in free fall.
+H: What keeps the satellite in orbit?||Gravity is the centripetal force.||So it is not zero.
+@quiz Geostationary period | What is the period of a geostationary satellite in hours?
+A: 24
+AD: $24\ \text{h}$
+SOL: It matches Earth's rotation.
+H: Stays above a point.||Matches rotation.||One day.
+@quiz Far field | Find $g$ at a height $3R_E$ above Earth's surface (so $r=4R_E$), in $\text{N kg}^{-1}$ (2 decimal places).
+A: 0.61
+AD: $0.61\ \text{N kg}^{-1}$
+SOL: $9.8/16=0.6125$.
+H: $r=4R_E$.||Field falls with $r^2$.||$9.8/16$.
+@comet Extension: Period ratio | Satellite A has a period 8 times that of satellite B around the same planet. Find $r_A/r_B$.
+A: 4
+AD: $4$
+SOL: $r^3\propto T^2$, so $r\propto T^{2/3}=8^{2/3}=4$.
+H: $T^2\propto r^3$.||$r\propto T^{2/3}$.||$8^{2/3}=4$.
+@comet Extension: Planet scaling | Two planets have the same density but one has twice the radius. Find the ratio of surface $g$ (large to small).
+A: 2
+AD: $2$
+SOL: $M\propto R^3$, so $g=\frac{GM}{R^2}\propto R$.
+H: Same density means $M\propto R^3$.||$g=GM/R^2$.||$g\propto R$.

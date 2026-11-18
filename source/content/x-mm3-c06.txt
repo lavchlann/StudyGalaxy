@@ -1,0 +1,90 @@
+=== mm3-c06 | append
+## 6.2
+@ex Finding an unknown
+Q: $X$ takes values $1,2,3,4$ with $P(X=x)=kx$. Find $k$ and $P(X\ge3)$.
+S: $k(1+2+3+4)=1\Rightarrow k=\frac1{10}$.
+S: $P(X\ge3)=\frac3{10}+\frac4{10}=\frac7{10}$.
+A: $k=0.1$ and $P(X\ge3)=0.7$
+@p **Two rules for any probability distribution:** every probability is between 0 and 1, and the probabilities add to exactly 1. Use the second to solve for unknowns, then check the first.
+## 6.3
+@ex Expected value
+Q: $x=0,1,2$ with $p=0.5,0.3,0.2$. Find $E(X)$.
+S: $0(0.5)+1(0.3)+2(0.2)=0.7$.
+A: $0.7$
+@ex Linear change
+Q: $E(X)=4$. Find $E(3X-2)$.
+S: $E(aX+b)=aE(X)+b=3(4)-2=10$.
+A: $10$
+## 6.4
+@ex Variance two ways
+Q: Using the table above, find $\text{Var}(X)$.
+S: $E(X^2)=0(0.5)+1(0.3)+4(0.2)=1.1$.
+S: $\text{Var}=1.1-0.7^2=0.61$.
+A: $0.61$, so $\sigma\approx0.781$
+@key **Linear change of variance:** $\text{Var}(aX+b)=a^2\text{Var}(X)$. Adding a constant does not change spread; multiplying by $a$ scales the standard deviation by $|a|$.
+## 6.5
+@ex Fair game
+Q: Pay $\$2$ to roll a die; win $\$6$ if you roll a 6, else nothing. Expected profit?
+S: $E(\text{win})=6\cdot\frac16=1$; profit $=1-2=-1$.
+A: $-\$1$ per game, so it is not fair.
+## X | Exam toolkit
+@p **Table method.** Add a row for $xp$ and a row for $x^2p$. Sums give $E(X)$ and $E(X^2)$. This avoids arithmetic slips and shows method marks.
+@p **Interpreting.** $E(X)$ is the long-run average, not a value you expect on one trial. Say "in the long run" in context. A game is fair when expected profit is zero.
+@quiz Unknown | $P(X=x)=\frac{x}{15}$ for $x=1,\dots,5$. Find $P(X\le2)$.
+A: 1/5
+ALT: 0.2||3/15
+AD: $\frac15$
+SOL: $\frac1{15}+\frac2{15}=\frac3{15}$.
+H: Add the first two.||$\frac{1+2}{15}$.||Simplify.
+@quiz Expected | $x=1,2,3$; $p=0.2,0.5,0.3$. Find $E(X)$.
+A: 2.1
+AD: $2.1$
+SOL: $0.2+1.0+0.9$.
+H: Multiply each pair.||Add.||Check.
+@quiz Linear | $E(X)=5$. Find $E(2X+1)$.
+A: 11
+AD: $11$
+SOL: $2(5)+1$.
+H: $E(aX+b)$.||Substitute.||Compute.
+@quiz Variance | $\text{Var}(X)=4$. Find $\text{Var}(3X+1)$.
+A: 36
+AD: $36$
+SOL: $3^2\cdot4$.
+H: Square the multiplier.||Ignore $+1$.||Compute.
+@quiz Standard deviation | $\text{Var}(X)=9$. Find $\text{sd}(X)$.
+A: 3
+AD: $3$
+SOL: $\sqrt9$.
+H: Square root.||$\sqrt9$.||Done.
+@quiz Fair game | A game costs $\$3$ and pays $\$9$ with probability $\frac13$. Expected profit?
+A: 0
+AD: $0$
+SOL: $9\cdot\frac13-3=0$.
+H: $E(\text{win})$.||$3$.||Subtract the cost.
+@quiz Variance | $E(X)=2$, $E(X^2)=7$. Find $\text{Var}(X)$.
+A: 3
+AD: $3$
+SOL: $7-4$.
+H: $E(X^2)-[E(X)]^2$.||Square 2.||Subtract.
+@quiz Unknown | $P(X=x)=k(5-x)$ for $x=1,2,3,4$. Find $k$.
+A: 1/10
+ALT: 0.1
+AD: $\frac1{10}$
+SOL: $k(4+3+2+1)=1$.
+H: Sum the terms.||$10k=1$.||Solve.
+@quiz Median | $x=1,2,3$; $p=0.1,0.4,0.5$. Find $P(X\le2)$.
+A: 0.5
+ALT: 1/2
+AD: $0.5$
+SOL: $0.1+0.4$.
+H: Cumulative.||Add.||Check.
+@quiz Mean | $P(X=0)=0.4$, $P(X=5)=0.6$. Find $E(X)$.
+A: 3
+AD: $3$
+SOL: $5(0.6)$.
+H: Only $x=5$ contributes.||$5\times0.6$.||Compute.
+@comet Extension: Shifted variance | $X$ has mean $3$ and variance $2$. Find $E\left(X^2\right)$.
+A: 11
+AD: $11$
+SOL: $E(X^2)=\text{Var}+[E(X)]^2=2+9$.
+H: Rearrange the variance formula.||$E(X^2)=\text{Var}+\mu^2$.||Substitute.

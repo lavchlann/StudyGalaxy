@@ -1,0 +1,202 @@
+=== mm3-c01 | interactive: expfun
+@summary This chapter builds the two functions that run the rest of Unit 3: $e^x$ and its inverse $\ln x$. You learn what a limit is, why $e$ is special, how to sketch and solve with exponentials and logarithms, how to differentiate them, and how to use them to model growth, decay and cooling.
+@video B | What's so special about Euler's number e? (3Blue1Brown, Essence of calculus ch. 5) | https://www.youtube.com/watch?v=m2MIpDrF7Es
+@video B | The paradox of the derivative (3Blue1Brown, Essence of calculus ch. 2) | search:3Blue1Brown The paradox of the derivative Essence of calculus chapter 2
+@video B | Limits, L'Hopital's rule and epsilon delta (3Blue1Brown, ch. 7) | search:3Blue1Brown Limits, L'Hopital's rule, and epsilon delta definitions
+@video J | Limits and derivatives from first principles | search:limits first principles
+@video J | Exponential functions and their graphs | search:exponential functions graphs
+@video J | Logarithm laws and solving log equations | search:logarithm laws
+@video J | Differentiating exponential and logarithmic functions | search:differentiation exponential logarithmic
+
+## 1.2 | Limits
+@p A **limit** describes the value a function approaches as the input gets close to a point, even if the function never actually reaches it. We write $\lim_{x\to a} f(x)=L$. For most nice functions the limit is just the value, so $\lim_{x\to 2}(x^2+1)=5$. Limits become interesting when direct substitution gives $\tfrac{0}{0}$, because then you must simplify first.
+@p Because $x$ can approach $a$ from the left ($x\to a^-$) or the right ($x\to a^+$), a limit only exists when both sides agree. Limits obey the usual laws: the limit of a sum, product or quotient is the sum, product or quotient of the limits (as long as you do not divide by a limit of zero).
+@ex Limit that needs factorising
+Q: Evaluate $\displaystyle\lim_{x\to 3}\frac{x^2-9}{x-3}$.
+S: Substituting $x=3$ gives $\tfrac{0}{0}$, so factorise the numerator: $\dfrac{(x-3)(x+3)}{x-3}$.
+S: For $x\neq 3$ the factor $x-3$ cancels, leaving $x+3$.
+S: Now substitute: $3+3=6$.
+A: $6$
+@p The idea behind all of calculus is the **derivative as a limit**. The gradient of the tangent at $x$ is the limit of the gradient of a chord as the chord shrinks to a point:
+@key $$f'(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}$$
+@ex Derivative from first principles
+Q: Use first principles to find $f'(x)$ for $f(x)=x^2$.
+S: $\dfrac{f(x+h)-f(x)}{h}=\dfrac{(x+h)^2-x^2}{h}=\dfrac{2xh+h^2}{h}$.
+S: Divide by $h$: $2x+h$.
+S: Let $h\to 0$: $f'(x)=2x$.
+A: $f'(x)=2x$
+@p You can also **estimate** a limit numerically. Evaluate the function at values closer and closer to the point on both sides and watch where the outputs head. This is how the number $e$ is first met: the values of $\left(1+\tfrac1n\right)^n$ climb towards $2.71828\ldots$ as $n$ grows, and we define that limit to be $e$.
+@warn A limit of $\tfrac00$ does not mean the limit does not exist, and it does not mean the answer is $0$. It means you have not simplified enough yet.
+@tb rec=1,2,3,5,8 ext=11,13 | Textbook Exercise 1.2 practises evaluating limits by substitution and factorising, then differentiating from first principles, then estimating limits with technology.
+
+## 1.3 | The exponential function
+@p An exponential function has the variable in the **index**: $y=a^x$ with $a>0$, $a\neq 1$. Every such graph passes through $(0,1)$, has the horizontal asymptote $y=0$, and is always positive. If $a>1$ it grows (the graph rises to the right). If $0<a<1$ it decays (the graph falls to the right).
+@p The special base is **Euler's number** $e\approx 2.71828$. It is the unique base for which the gradient of the curve at every point equals the height of the curve. That is why $y=e^x$ is the star of calculus.
+@key For $y=ae^{b(x-h)}+k$: the **horizontal asymptote** is $y=k$; $a$ stretches vertically (negative $a$ reflects in the $x$-axis); $b$ stretches horizontally (negative $b$ reflects in the $y$-axis); $h$ shifts right and $k$ shifts up.
+@ex Sketching a transformed exponential
+Q: Sketch $y=2e^{-x}+1$. State the asymptote, the $y$-intercept and the range.
+S: The base graph $y=e^x$ is reflected in the $y$-axis (because of $-x$), stretched by 2 vertically, then shifted up by 1.
+S: Horizontal asymptote: $y=1$.
+S: $y$-intercept: $x=0$ gives $y=2e^0+1=3$, so the point is $(0,3)$.
+S: The graph is always above the asymptote, so the range is $y>1$. There is no $x$-intercept.
+A: Asymptote $y=1$, $y$-intercept $(0,3)$, range $(1,\infty)$.
+@p To find an **$x$-intercept**, set $y=0$ and solve. Since $e^{\text{anything}}>0$, you must be able to isolate $e^{\ldots}$ equal to a positive number or the graph has no $x$-intercept.
+@warn $e^{x+2}$ is not $e^x+2$. A shift inside the index moves the graph left or right. A number added outside moves it up or down, and only the second one moves the asymptote.
+@int expfun | Slide $a$ and watch the gradient of $y=a^x$ at $x=0$. When $a=e$ the gradient equals the height.
+@tb rec=1,3,4,7,11,12 ext=13,15,16,18 | Exercise 1.3 covers sketching $y=a^x$ and $y=e^x$ with transformations, then finding intercepts and domain and range.
+
+## 1.4 | Differentiation of exponential functions
+@key $$\frac{d}{dx}\left(e^x\right)=e^x\qquad\text{and}\qquad \frac{d}{dx}\left(e^{f(x)}\right)=f'(x)\,e^{f(x)}$$
+@p The second rule is the chain rule in action: differentiate the **inside** and multiply by the original exponential. So $\frac{d}{dx}e^{3x}=3e^{3x}$, $\frac{d}{dx}e^{x^2}=2xe^{x^2}$ and $\frac{d}{dx}e^{-2x+1}=-2e^{-2x+1}$.
+@ex Differentiating exponentials
+Q: Differentiate $y=5e^{4x}-e^{-x^2}$.
+S: First term: $5\times 4e^{4x}=20e^{4x}$.
+S: Second term: the inside is $-x^2$ with derivative $-2x$, so $\frac{d}{dx}e^{-x^2}=-2xe^{-x^2}$. Because of the minus sign in front, this term contributes $+2xe^{-x^2}$.
+S: $y'=20e^{4x}+2xe^{-x^2}$.
+A: $y'=20e^{4x}+2xe^{-x^2}$
+@ex Equation of a tangent
+Q: Find the equation of the tangent to $y=e^{2x}$ at $x=0$.
+S: $y'=2e^{2x}$, so at $x=0$ the gradient is $2$.
+S: The point is $(0,e^0)=(0,1)$.
+S: Tangent: $y-1=2(x-0)$, so $y=2x+1$.
+A: $y=2x+1$
+@warn Do not write $\frac{d}{dx}e^{3x}=3xe^{3x-1}$. The power rule does not apply to $e^x$, because $x$ is in the index, not the base.
+@tb rec=1,2,5,6,7,10 ext=13,16,17,19,20 | Exercise 1.4 starts with direct derivatives of $e^{f(x)}$, then tangents and stationary points.
+
+## 1.5 | The logarithmic function
+@p A **logarithm** answers the question "what power?". $\log_a(x)=y$ means $a^y=x$. The **natural logarithm** is the log to base $e$: $\ln x=\log_e x$. It is the inverse of $e^x$, so $\ln(e^x)=x$ and $e^{\ln x}=x$.
+@key **Log laws** (any base): $\log(xy)=\log x+\log y$; $\log\!\left(\tfrac xy\right)=\log x-\log y$; $\log(x^n)=n\log x$; $\log_a 1=0$; $\log_a a=1$.
+@p Because $\ln x$ is the inverse of $e^x$, its graph is the reflection of $y=e^x$ in the line $y=x$. So $y=\ln x$ has domain $x>0$, range all reals, a **vertical asymptote** at $x=0$, and passes through $(1,0)$.
+@ex Simplifying with log laws
+Q: Write $2\ln 3+\ln 5-\ln 15$ as a single logarithm and simplify.
+S: $2\ln 3=\ln 9$, so the expression is $\ln 9+\ln 5-\ln 15$.
+S: $\ln 9+\ln 5=\ln 45$, and $\ln 45-\ln 15=\ln\frac{45}{15}=\ln 3$.
+A: $\ln 3$
+@ex Sketching a transformed log graph
+Q: Describe $y=\ln(x-2)+1$.
+S: Shift $y=\ln x$ right by 2 and up by 1.
+S: Vertical asymptote $x=2$, domain $x>2$.
+S: $x$-intercept: $\ln(x-2)=-1\Rightarrow x-2=e^{-1}\Rightarrow x=2+e^{-1}\approx 2.37$.
+A: Asymptote $x=2$, domain $x>2$, $x$-intercept $2+e^{-1}$.
+@warn $\ln(x+y)$ is not $\ln x+\ln y$. The log of a sum has no simple rule, and $\ln(x)\ln(y)$ is not $\ln(xy)$.
+@int logfun | Move the point on $y=e^x$ and watch its mirror image on $y=\ln x$ across the line $y=x$.
+@tb rec=1,2,3,6,10,12 ext=13,15,17,20 | Exercise 1.5 covers index and log laws, then graphs of $y=\ln x$ and its transformations.
+
+## 1.6 | Solving equations
+@p **Equations with $e$.** Isolate the exponential, then take $\ln$ of both sides. For $3e^{2x}=18$: divide to get $e^{2x}=6$, take $\ln$: $2x=\ln 6$, so $x=\tfrac12\ln 6$.
+@p **Quadratics in $e^x$.** If you see $e^{2x}$ and $e^x$ together, substitute $u=e^x$ and solve the quadratic. Remember $u=e^x$ must be positive, so reject any $u\le 0$.
+@ex A quadratic in $e^x$
+Q: Solve $e^{2x}-5e^x+6=0$.
+S: Let $u=e^x$, so $u^2-5u+6=0$, giving $(u-2)(u-3)=0$.
+S: $e^x=2\Rightarrow x=\ln 2$ and $e^x=3\Rightarrow x=\ln 3$.
+A: $x=\ln 2$ or $x=\ln 3$
+@p **Equations with $\ln$.** Combine logs into one, rewrite in index form, then solve. Always **check the domain**: any solution that makes a log argument zero or negative is rejected.
+@ex A log equation with a domain check
+Q: Solve $\ln(x)+\ln(x-2)=\ln 3$.
+S: Combine: $\ln\big(x(x-2)\big)=\ln 3$, so $x^2-2x=3$.
+S: $x^2-2x-3=0\Rightarrow (x-3)(x+1)=0$.
+S: $x=-1$ makes $\ln x$ undefined, so reject it.
+A: $x=3$
+@warn Rejecting solutions is part of the answer. In an exam, write "reject, since $\ln$ is undefined for negative arguments" and you keep the mark.
+@tb rec=1,4,6,8,11,12 ext=14,16,17,19,20 | Exercise 1.6 mixes equations in $e$, quadratics in $e^x$, and log equations with domain checks. Technology is used for equations that cannot be solved by hand.
+
+## 1.7 | Differentiation of logarithmic functions
+@key $$\frac{d}{dx}\big(\ln x\big)=\frac1x\quad(x>0)\qquad\text{and}\qquad \frac{d}{dx}\big(\ln f(x)\big)=\frac{f'(x)}{f(x)}$$
+@p The second rule says: derivative of the inside **over** the inside. So $\frac{d}{dx}\ln(3x+1)=\frac{3}{3x+1}$ and $\frac{d}{dx}\ln(x^2+4)=\frac{2x}{x^2+4}$.
+@p A useful shortcut is to simplify with log laws **before** differentiating. $\ln(x^5)=5\ln x$, so its derivative is $\tfrac5x$, much quicker than using the chain rule.
+@ex Differentiating logs
+Q: Differentiate $y=\ln\!\big((2x+1)^3\big)$ in two ways.
+S: Chain rule: $\frac{f'}{f}=\frac{3(2x+1)^2\cdot 2}{(2x+1)^3}=\frac{6}{2x+1}$.
+S: Log law first: $y=3\ln(2x+1)$, so $y'=3\cdot\frac{2}{2x+1}=\frac{6}{2x+1}$.
+A: $\dfrac{6}{2x+1}$
+@warn $\frac{d}{dx}\ln(3x)=\frac1x$, not $\frac{1}{3x}$. The inside derivative is $3$, so the answer is $\frac{3}{3x}=\frac1x$.
+@tb rec=1,4,6,10,11 ext=14,16,17,19 | Exercise 1.7 practises $\ln f(x)$ derivatives, tangents to log curves, and using log laws first.
+
+## 1.8 | Modelling and solving with exponential and logarithmic functions
+@p **Growth and decay.** A quantity that changes at a rate proportional to its size follows $N=N_0e^{kt}$. If $k>0$ it grows; if $k<0$ it decays. $N_0$ is the starting amount (at $t=0$). The rate of change is $\frac{dN}{dt}=kN$.
+@p **Half-life.** The time for a decaying quantity to halve. Solve $\tfrac12N_0=N_0e^{kt}$ to get $t=\dfrac{\ln 2}{-k}$.
+@p **Decay to a limit.** Many real models approach a constant, such as cooling to room temperature: $T=T_\infty+Ae^{kt}$ with $k<0$. The horizontal asymptote $T=T_\infty$ is the long-term value.
+@ex Exponential decay
+Q: A drug amount is $A=80e^{-0.2t}$ mg after $t$ hours. Find the amount after 3 hours and how fast it is changing then.
+S: $A(3)=80e^{-0.6}\approx 43.9$ mg.
+S: $\frac{dA}{dt}=-0.2A$, so at $t=3$ the rate is $-0.2\times 43.9\approx -8.78$ mg/h.
+A: About $43.9$ mg, decreasing at about $8.78$ mg per hour.
+@ex Time to reach a value
+Q: When does $A=80e^{-0.2t}$ fall to $10$ mg?
+S: $10=80e^{-0.2t}\Rightarrow e^{-0.2t}=\tfrac18$.
+S: $-0.2t=\ln\tfrac18=-\ln 8\Rightarrow t=5\ln 8\approx 10.4$ hours.
+A: $t=5\ln 8\approx 10.4$ hours
+@warn Always state units and interpret the sign. A negative rate of change means the quantity is decreasing, not that the answer is "wrong".
+@tb rec=1,3,5,7,10,12 ext=13,16,17,19 | Exercise 1.8 is word-problem modelling: growth, decay, half-life, rates and tangents to log curves.
+
+@quiz Chain rule with e | Differentiate $y=3e^{5x}$.
+A: 15e^(5x)
+AD: $15e^{5x}$
+SOL: The inside $5x$ has derivative $5$, so $y'=3\cdot 5e^{5x}=15e^{5x}$.
+H: Which part is the "inside" of the exponential?||Differentiate the inside and multiply by the whole exponential.||The constant 3 stays as a multiplier: $3\times 5\times e^{5x}$.
+@quiz Chain rule with e | Differentiate $y=e^{x^2-3x}$.
+A: (2x-3)e^(x^2-3x)
+AD: $(2x-3)e^{x^2-3x}$
+SOL: The inside $x^2-3x$ has derivative $2x-3$, so $y'=(2x-3)e^{x^2-3x}$.
+H: Name the inside function.||Its derivative is $2x-3$.||Multiply it by $e^{x^2-3x}$.
+@quiz Log law | Simplify $\ln 8-\ln 2$ to a single power of $\ln 2$ (write the answer as a multiple of $\ln 2$).
+A: 2ln2
+ALT: 2ln(2)||ln4||ln(4)
+AD: $2\ln 2$
+SOL: $\ln 8-\ln 2=\ln 4=\ln 2^2=2\ln 2$.
+H: Use $\ln a-\ln b=\ln\frac ab$.||That gives $\ln 4$.||Write $4$ as $2^2$.
+@quiz Solve in e | Solve $2e^{3x}=14$. Give an exact answer.
+A: (1/3)ln7
+ALT: ln(7)/3||ln7/3||(ln7)/3||1/3ln7||(1/3)ln(7)
+AD: $x=\tfrac13\ln 7$
+SOL: $e^{3x}=7\Rightarrow 3x=\ln 7\Rightarrow x=\tfrac13\ln 7$.
+H: Divide both sides by 2 first.||Take $\ln$ of both sides.||Divide by 3.
+@quiz Quadratic in e^x | Solve $e^{2x}-4e^x-5=0$.
+A: ln5
+ALT: x=ln5||ln(5)||x=ln(5)
+AD: $x=\ln 5$
+SOL: Let $u=e^x$: $u^2-4u-5=0$, $(u-5)(u+1)=0$. $u=-1$ is impossible, so $e^x=5$ and $x=\ln 5$.
+H: Substitute $u=e^x$.||Factorise the quadratic in $u$.||Which root is impossible and why?
+@quiz Log equation | Solve $\ln(x+1)+\ln(x-1)=\ln 8$.
+A: 3
+ALT: x=3
+AD: $x=3$
+SOL: $\ln\big((x+1)(x-1)\big)=\ln 8\Rightarrow x^2-1=8\Rightarrow x=\pm3$. Reject $x=-3$ because $\ln(x-1)$ is undefined there. So $x=3$.
+H: Combine the left side into one log.||Equate the arguments.||Check each solution in the original domain.
+@quiz Differentiate ln | Differentiate $y=\ln(x^2+1)$.
+A: 2x/(x^2+1)
+ALT: (2x)/(x^2+1)
+AD: $\dfrac{2x}{x^2+1}$
+SOL: Derivative of the inside is $2x$, over the inside $x^2+1$.
+H: Use $\frac{f'}{f}$.||$f=x^2+1$.||$f'=2x$.
+@quiz Tangent | Find the gradient of the tangent to $y=e^{2x}+x$ at $x=0$.
+A: 3
+ALT: m=3
+AD: $3$
+SOL: $y'=2e^{2x}+1$; at $x=0$, $y'=2+1=3$.
+H: Differentiate first.||Differentiate $e^{2x}$ by the chain rule.||Substitute $x=0$.
+@quiz Growth model | A population is $P=500e^{0.04t}$. Find $P$ when $t=10$ (nearest whole number).
+A: 746
+ALT: 745.9||746 people
+AD: $\approx 746$
+SOL: $P(10)=500e^{0.4}\approx 500\times1.49182=745.9\approx 746$.
+H: Substitute $t=10$.||You need $e^{0.4}$.||Multiply by 500 and round.
+@quiz Half-life | A substance decays by $A=A_0e^{-0.1t}$. Find its half-life to 2 decimal places.
+A: 6.93
+ALT: 6.931||10ln2
+AD: $10\ln 2\approx 6.93$
+SOL: $\tfrac12=e^{-0.1t}\Rightarrow -0.1t=-\ln 2\Rightarrow t=10\ln 2\approx 6.93$.
+H: Set $A=\tfrac12A_0$.||Take $\ln$ of both sides.||Divide by $-0.1$.
+
+@comet Extension: a tangent that passes through the origin | Find the value of $a$ so that the tangent to $y=e^{x}$ at $x=a$ passes through the origin.
+A: 1
+ALT: a=1
+AD: $a=1$
+SOL: The tangent at $x=a$ is $y-e^a=e^a(x-a)$. It passes through $(0,0)$ when $-e^a=-ae^a$, so $a=1$.
+H: Write the tangent at $x=a$.||Substitute $(0,0)$ into it.||Cancel $e^a$, which is never zero.
+@comet Extension: solving a hidden quadratic | Solve $\ln(x)^2=\ln(x^3)-2$ for $x$ given $\ln(x)^2$ means $(\ln x)^2$. Give exact answers.
+A: e and e^2
+ALT: e,e^2||x=e,x=e^2||e^2,e
+AD: $x=e$ or $x=e^2$
+SOL: Let $u=\ln x$. Then $u^2=3u-2$, so $u^2-3u+2=0$, giving $u=1$ or $u=2$. So $x=e$ or $x=e^2$.
+H: Let $u=\ln x$.||Use the log law on $\ln(x^3)$.||Solve the quadratic in $u$.

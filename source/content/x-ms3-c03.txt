@@ -1,0 +1,105 @@
+=== ms3-c03 | append
+## 3.2
+@ex Magnitude and unit vector
+Q: $\mathbf a=2\mathbf i-2\mathbf j+\mathbf k$. Find $|\mathbf a|$ and $\hat{\mathbf a}$.
+S: $|\mathbf a|=\sqrt{4+4+1}=3$.
+A: $3$ and $\frac13(2\mathbf i-2\mathbf j+\mathbf k)$
+## 3.3
+@ex Angle
+Q: Angle between $\mathbf a=(1,2,2)$ and $\mathbf b=(2,0,1)$.
+S: $\mathbf a\cdot\mathbf b=2+0+2=4$; $|\mathbf a|=3$; $|\mathbf b|=\sqrt5$.
+S: $\cos\theta=\frac4{3\sqrt5}$, $\theta\approx0.93$ rad ($53.4^\circ$).
+A: about $53.4^\circ$
+@ex Perpendicular
+Q: Find $t$ so that $(t,2,-1)\perp(3,1,t)$.
+S: Dot product $=3t+2-t=2t+2=0$.
+A: $t=-1$
+## 3.4
+@ex Collinear points
+Q: Show $A(1,2,3)$, $B(3,6,7)$, $C(4,8,9)$ are collinear.
+S: $\vec{AB}=(2,4,4)$, $\vec{AC}=(3,6,6)$.
+S: $\vec{AC}=\frac32\vec{AB}$, so they are parallel and share $A$.
+A: Collinear.
+## 3.5
+@ex Line through two points
+Q: Vector equation of the line through $(1,0,2)$ and $(3,2,1)$.
+S: Direction $(2,2,-1)$.
+A: $\mathbf r=(1,0,2)+\lambda(2,2,-1)$
+@ex Intersection
+Q: Do $\mathbf r=(0,0,0)+s(1,1,1)$ and $\mathbf r=(1,0,0)+t(0,1,1)$ intersect?
+S: $s=1$ (x), $s=t$ (y), $s=t$ (z): $t=1$, consistent.
+A: Yes, at $(1,1,1)$.
+## 3.6
+@ex Cross product
+Q: $(1,2,3)\times(0,1,4)$.
+S: $(2\cdot4-3\cdot1,\ 3\cdot0-1\cdot4,\ 1\cdot1-2\cdot0)$.
+A: $(5,\,-4,\,1)$
+@ex Triangle area
+Q: Area of the triangle with $\vec{AB}=(1,1,0)$, $\vec{AC}=(0,1,1)$.
+S: Cross $=(1,-1,1)$, magnitude $\sqrt3$.
+A: $\frac{\sqrt3}2$
+## 3.7
+@ex Plane
+Q: Plane through $(1,0,0)$ with normal $(2,1,-1)$.
+S: $2x+y-z=2$.
+A: $2x+y-z=2$
+## X | Exam toolkit
+@p **Plan.** Angle or perpendicular: dot product. Area, normal to a plane, or perpendicular to two directions: cross product. Line questions: write $\mathbf r=\mathbf a+\lambda\mathbf d$ and equate components. Always state both **vector** and **parametric** form if asked.
+@p **Notation.** Vectors are bold or underlined in writing. Do not mix up $|\mathbf a|$ (scalar) and $\mathbf a$ (vector). Write final angles in degrees or radians as the question asks.
+@quiz Magnitude | $|(2,3,6)|$.
+A: 7
+AD: $7$
+SOL: $\sqrt{4+9+36}$.
+H: Square each.||Sum 49.||Root.
+@quiz Dot | $(1,2,3)\cdot(4,-5,6)$.
+A: 12
+AD: $12$
+SOL: $4-10+18$.
+H: Multiply parts.||Add.||12.
+@quiz Perpendicular | $(2,k,1)\cdot(1,2,-4)=0$. Find $k$.
+A: 1
+AD: $k=1$
+SOL: $2+2k-4=0$.
+H: Dot.||Set zero.||Solve.
+@quiz Cross | $\mathbf i\times\mathbf j$ equals which of $\mathbf i,\mathbf j,\mathbf k$?
+A: k
+ALT: K||k
+AD: $\mathbf k$
+SOL: Right hand rule.
+H: Right hand.||Perpendicular to both.||Axis.
+@quiz Area | Area of the parallelogram with sides $(3,0,0)$ and $(0,2,0)$.
+A: 6
+AD: $6$
+SOL: $|(0,0,6)|$.
+H: Cross.||$(0,0,6)$.||Magnitude.
+@quiz Line | Direction of the line through $(1,1,1)$ and $(2,3,5)$: enter its third component.
+A: 4
+AD: $4$
+SOL: $(1,2,4)$.
+H: Subtract.||$5-1$.||4.
+@quiz Plane | Normal $(1,2,3)$ through the origin: value of the constant $d$ in $x+2y+3z=d$.
+A: 0
+AD: $0$
+SOL: Origin satisfies it.
+H: Substitute $(0,0,0)$.||$0$.||Done.
+@quiz Unit | $|\hat{\mathbf a}|$ for any non-zero $\mathbf a$.
+A: 1
+AD: $1$
+SOL: Unit vector.
+H: Definition.||Length.||1.
+@quiz Projection | Scalar projection of $(3,4,0)$ onto $(1,0,0)$.
+A: 3
+AD: $3$
+SOL: $\frac{\mathbf a\cdot\mathbf b}{|\mathbf b|}$.
+H: Dot.||$3$.||Divide by 1.
+@quiz Angle | $\cos\theta$ for $(1,0,0)$ and $(1,1,0)$. Exact.
+A: sqrt2/2
+ALT: 1/sqrt2||sqrt(2)/2||√2/2
+AD: $\frac{\sqrt2}2$
+SOL: $\frac{1}{\sqrt2}$.
+H: Dot.||Magnitudes.||Divide.
+@comet Extension: Distance point to plane | Distance from the origin to the plane $2x-y+2z=9$.
+A: 3
+AD: $3$
+SOL: $\frac{|9|}{\sqrt{4+1+4}}=3$.
+H: Normal $(2,-1,2)$.||Magnitude 3.||Divide.

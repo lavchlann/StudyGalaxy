@@ -1,0 +1,89 @@
+=== mm3-c04 | append
+## 4.2
+@ex Reading derivatives from a graph
+Q: The graph of $y=f(x)$ has a maximum at $x=2$ and crosses the $x$-axis at $x=5$. Describe $f'$ and $f''$ at $x=2$.
+S: At a maximum the tangent is flat: $f'(2)=0$.
+S: The curve bends down: $f''(2)<0$.
+A: $f'(2)=0$ and $f''(2)<0$.
+## 4.3
+@ex Inflection of a cubic
+Q: Find the point of inflection of $f(x)=x^3-6x^2+9x$.
+S: $f'=3x^2-12x+9$, $f''=6x-12=0\Rightarrow x=2$.
+S: $f''$ changes sign (negative to positive) so it is a genuine inflection; $f(2)=2$.
+A: $(2,\ 2)$
+@warn $f''(a)=0$ is necessary but not sufficient. For $y=x^4$, $f''(0)=0$ but there is no inflection (it is a minimum). Always check the sign change.
+## 4.4
+@ex Full sketch
+Q: Sketch $y=x^3-3x^2$: intercepts, stationary points, inflection.
+S: Intercepts: $x^2(x-3)=0\Rightarrow x=0,3$; $y$-intercept $0$.
+S: $y'=3x^2-6x=0\Rightarrow x=0,2$; $y''=6x-6$: $y''(0)=-6$ max at $(0,0)$; $y''(2)=6$ min at $(2,-4)$.
+S: Inflection at $x=1$, $y=-2$.
+A: Max $(0,0)$, min $(2,-4)$, inflection $(1,-2)$, $x$-intercepts $0$ and $3$.
+## 4.5
+@ex Open box
+Q: A box has square base side $x$ and no lid. Volume $32$. Find $x$ minimising the surface area.
+S: Height $h=\frac{32}{x^2}$; $S=x^2+4xh=x^2+\frac{128}{x}$.
+S: $S'=2x-\frac{128}{x^2}=0\Rightarrow x^3=64\Rightarrow x=4$; $S''>0$ so minimum.
+A: $x=4$, giving $S=48$.
+@p **Optimisation recipe.** (1) Draw and name variables. (2) Write the quantity to optimise. (3) Use the constraint to eliminate to one variable. (4) Differentiate, solve. (5) Prove max/min with $f''$ or a sign table. (6) Check the end points of the domain. (7) Answer the question with units.
+## X | Exam toolkit
+@p **Endpoints.** On a closed interval $[a,b]$ the absolute maximum may be at an end point. List: end points, stationary points, and any non-differentiable points, then compare function values.
+@p **Describing graphs.** Use full sentences with evidence: "$f''(x)>0$ for $x>1$, so the graph is concave up there". Mentioning only the sign of $f'$ for concavity is a classic lost mark.
+@quiz Second derivative | If $f(x)=x^4-2x^2$, find $f''(1)$.
+A: 8
+AD: $8$
+SOL: $f''=12x^2-4$, so $8$.
+H: Differentiate twice.||$f'=4x^3-4x$.||Substitute.
+@quiz Concavity | For $f(x)=x^3$, what is $f''(x)$ at $x=-1$?
+A: -6
+AD: $-6$
+SOL: $f''=6x$.
+H: Differentiate twice.||$6x$.||Substitute.
+@quiz Inflection | Find the $x$-coordinate of the inflection of $y=x^3-9x^2$.
+A: 3
+AD: $x=3$
+SOL: $y''=6x-18=0$.
+H: Second derivative.||Set to zero.||Solve.
+@quiz Max | The maximum of $y=-x^2+6x$ is?
+A: 9
+AD: $9$
+SOL: $x=3$, $y=9$.
+H: Vertex.||$x=3$.||Substitute.
+@quiz Exponential | Classify the stationary point of $y=xe^{-x}$.
+A: max
+ALT: maximum||local max
+AD: maximum at $x=1$
+SOL: $y'=e^{-x}(1-x)$; $y''=e^{-x}(x-2)$, which is $-e^{-1}<0$ at $x=1$.
+H: $x=1$.||Second derivative.||Sign.
+@quiz Box | Open box volume 32, base $x$. Surface area $S=x^2+\frac{128}{x}$. Find the minimum value of $S$.
+A: 48
+AD: $48$
+SOL: $x=4$: $16+32=48$.
+H: Find stationary point.||$x=4$.||Substitute.
+@quiz Inflection | Is there an inflection point for $y=x^4$ at $x=0$? Answer yes or no.
+A: no
+ALT: No
+AD: No
+SOL: $y''=12x^2\ge0$ never changes sign.
+H: Compute $y''$.||Check sign either side.||No change.
+@quiz Rate | $y=e^{3x}$. Find $y''$ at $x=0$.
+A: 9
+AD: $9$
+SOL: $y''=9e^{3x}$.
+H: Differentiate twice.||Factor 3 each time.||Substitute.
+@quiz Domain | Maximum of $f(x)=x^2$ on $[-1,3]$?
+A: 9
+AD: $9$
+SOL: Evaluate at the end points: $1$ and $9$; the stationary point gives $0$.
+H: Check end points.||$f(3)$.||Compare.
+@quiz Sketch | The curve $y=x^3-3x^2$ has a local minimum at $x=$?
+A: 2
+AD: $x=2$
+SOL: $y'=3x(x-2)$ and $y''(2)=6>0$.
+H: Solve $y'=0$.||Test $x=2$.||Sign.
+@comet Extension: Shortest path | The point on $y=\sqrt x$ closest to $(4,0)$ has $x$-coordinate?
+A: 3.5
+ALT: 7/2
+AD: $x=\frac72$
+SOL: Minimise $D^2=(x-4)^2+x$: $2(x-4)+1=0\Rightarrow x=\frac72$.
+H: Minimise distance squared.||$(x-4)^2+x$.||Differentiate.

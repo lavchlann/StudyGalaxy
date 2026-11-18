@@ -1,0 +1,146 @@
+=== ms3-c03 | interactive: vec3d
+@summary Vectors describe quantities with direction in two and three dimensions. This chapter extends 2D vectors to 3D, uses the dot product for angles and projections, proves geometric results, writes lines in vector, parametric and Cartesian form, uses the cross product, and finds planes and distances.
+@video B | Dot products and duality (3Blue1Brown, linear algebra ch. 9) | search:3Blue1Brown Dot products and duality essence of linear algebra chapter 9
+@video B | Cross products (3Blue1Brown, linear algebra ch. 10) | search:3Blue1Brown Cross products essence of linear algebra chapter 10
+@video B | Vectors, what even are they? (3Blue1Brown, linear algebra ch. 1) | search:3Blue1Brown Vectors what even are they essence of linear algebra chapter 1
+@video J | Vectors in 3D | search:vectors three dimensions
+@video J | Dot product and angle between vectors | search:dot product vectors angle
+@video J | Cross product | search:cross product vectors
+@video J | Vector equation of a line and plane | search:vector equation line plane
+
+## 3.2 | Vectors in three dimensions
+@p A 3D vector is $\mathbf v=a\mathbf i+b\mathbf j+c\mathbf k=\begin{pmatrix}a\\b\\c\end{pmatrix}$. Its **magnitude** is $|\mathbf v|=\sqrt{a^2+b^2+c^2}$ and a **unit vector** is $\hat{\mathbf v}=\frac{\mathbf v}{|\mathbf v|}$. The vector from $A$ to $B$ is $\overrightarrow{AB}=\mathbf b-\mathbf a$.
+@ex Vector between points
+Q: $A(1,2,3)$ and $B(4,-2,5)$. Find $\overrightarrow{AB}$, $|\overrightarrow{AB}|$ and a unit vector in its direction.
+S: $\overrightarrow{AB}=\begin{pmatrix}3\\-4\\2\end{pmatrix}$.
+S: $|\overrightarrow{AB}|=\sqrt{9+16+4}=\sqrt{29}$.
+A: $\overrightarrow{AB}=3\mathbf i-4\mathbf j+2\mathbf k$, $|\overrightarrow{AB}|=\sqrt{29}$, $\hat{\mathbf u}=\frac1{\sqrt{29}}(3,-4,2)$.
+@warn $\overrightarrow{AB}=\mathbf b-\mathbf a$ (end minus start). Reversing the order gives $\overrightarrow{BA}$, which points the other way.
+@tb rec=1,2,4,5,7,8,10,11,12 ext=13,15,16,18,20 | Exercise 3.2 uses components, magnitude, unit vectors and linear combinations in 3D.
+
+## 3.3 | Vector algebra and the dot product
+@key $$\mathbf a\cdot\mathbf b=a_1b_1+a_2b_2+a_3b_3=|\mathbf a||\mathbf b|\cos\theta$$
+@p Two vectors are **perpendicular** exactly when $\mathbf a\cdot\mathbf b=0$ and **parallel** when one is a scalar multiple of the other. The **scalar projection** of $\mathbf a$ on $\mathbf b$ is $\frac{\mathbf a\cdot\mathbf b}{|\mathbf b|}$ and the **vector projection** is $\frac{\mathbf a\cdot\mathbf b}{|\mathbf b|^2}\mathbf b$. Also $\mathbf a\cdot\mathbf a=|\mathbf a|^2$.
+@ex Angle between vectors
+Q: Find the angle between $\mathbf a=(1,2,2)$ and $\mathbf b=(2,-1,2)$.
+S: $\mathbf a\cdot\mathbf b=2-2+4=4$; $|\mathbf a|=3$; $|\mathbf b|=3$.
+S: $\cos\theta=\frac49$, so $\theta=\cos^{-1}\frac49\approx63.6^\circ$.
+A: $\approx63.6^\circ$
+@ex Perpendicular
+Q: Find $t$ so that $(t,2,-1)\perp(3,1,t)$.
+S: $3t+2-t=0\Rightarrow2t=-2\Rightarrow t=-1$.
+A: $t=-1$
+@warn The dot product gives a **number**, not a vector. Never write $\mathbf a\cdot\mathbf b=\mathbf c$.
+@int vec3d | Rotate two vectors in 3D and read off $\mathbf a\cdot\mathbf b$, the angle and the projection.
+@tb rec=2,3,5,6,7,8,10,11 ext=13,15,17,20 | Exercise 3.3 uses the dot product for angles, perpendicularity and projections.
+
+## 3.4 | Vector proofs in geometry
+@p Choose position vectors for key points, express the sides as vector differences, and use the dot product (perpendicular) or scalar multiples (parallel). Classic results: the diagonals of a rhombus are perpendicular; the angle in a semicircle is $90^\circ$; the midpoint of $AB$ has position vector $\frac12(\mathbf a+\mathbf b)$.
+@ex Angle in a semicircle
+Q: $AB$ is a diameter of a circle with centre $O$, and $P$ is on the circle. Show $\angle APB=90^\circ$.
+S: Let $\overrightarrow{OA}=\mathbf a$, $\overrightarrow{OB}=-\mathbf a$, $\overrightarrow{OP}=\mathbf p$ with $|\mathbf p|=|\mathbf a|$.
+S: $\overrightarrow{PA}\cdot\overrightarrow{PB}=(\mathbf a-\mathbf p)\cdot(-\mathbf a-\mathbf p)=-|\mathbf a|^2+|\mathbf p|^2=0$.
+A: Perpendicular, so $\angle APB=90^\circ$.
+@tb rec=1,3,5,6,7,8,9,10,11 ext=13,17,20 | Exercise 3.4 proves geometric properties using vector methods.
+
+## 3.5 | Vector, parametric and Cartesian equations
+@p A **line** through point $\mathbf a$ with direction $\mathbf d$ is $\mathbf r=\mathbf a+\lambda\mathbf d$. In 3D, eliminating $\lambda$ gives the Cartesian form $\frac{x-x_0}{d_1}=\frac{y-y_0}{d_2}=\frac{z-z_0}{d_3}$. Two lines in 3D can be **parallel**, **intersecting**, or **skew** (neither). To test: equate components, solve two equations, and check the third.
+@ex Do the lines meet?
+Q: $L_1:\ \mathbf r=(1,0,2)+\lambda(1,1,1)$ and $L_2:\ \mathbf r=(0,1,3)+\mu(2,1,0)$.
+S: $1+\lambda=2\mu$, $\lambda=1+\mu$, $2+\lambda=3$.
+S: Third: $\lambda=1$, then $\mu=0$; first: $2=0$? ✗.
+A: They do not intersect and are not parallel, so they are skew.
+@tb rec=1,4,5,7,9,10,12,15 ext=16,17,18,20,23 | Exercise 3.5 writes lines in all three forms and tests intersection, skewness and parallelism.
+
+## 3.6 | The cross product
+@key $$\mathbf a\times\mathbf b=\begin{pmatrix}a_2b_3-a_3b_2\\a_3b_1-a_1b_3\\a_1b_2-a_2b_1\end{pmatrix},\qquad|\mathbf a\times\mathbf b|=|\mathbf a||\mathbf b|\sin\theta$$
+@p The result is **perpendicular to both** $\mathbf a$ and $\mathbf b$ (right-hand rule), so it is a **normal** to the plane they span. $|\mathbf a\times\mathbf b|$ is the **area of the parallelogram**; half of it is the area of the triangle. Order matters: $\mathbf b\times\mathbf a=-\mathbf a\times\mathbf b$.
+@ex Cross product and area
+Q: $\mathbf a=(1,2,3)$, $\mathbf b=(0,1,4)$. Find $\mathbf a\times\mathbf b$ and the triangle area.
+S: $(2\cdot4-3\cdot1,\ 3\cdot0-1\cdot4,\ 1\cdot1-2\cdot0)=(5,-4,1)$.
+S: $|\mathbf a\times\mathbf b|=\sqrt{25+16+1}=\sqrt{42}$, so the triangle area is $\frac{\sqrt{42}}{2}$.
+A: $(5,-4,1)$; area $\frac{\sqrt{42}}2$
+@tb rec=1,2,5,6,8,9 ext=13,16,17,19 | Exercise 3.6 computes cross products, areas and normals, and the scalar triple product.
+
+## 3.7 | Applications: planes and distances
+@p A plane with normal $\mathbf n=(a,b,c)$ through $\mathbf p_0$ has equation $\mathbf n\cdot\mathbf r=\mathbf n\cdot\mathbf p_0$, which expands to $ax+by+cz=d$. Get a normal from a cross product of two vectors in the plane. A line is parallel to the plane when its direction is perpendicular to $\mathbf n$.
+@ex Equation of a plane
+Q: Find the plane through $A(1,0,0)$, $B(0,2,0)$, $C(0,0,3)$.
+S: $\overrightarrow{AB}=(-1,2,0)$, $\overrightarrow{AC}=(-1,0,3)$. Cross: $(6,3,2)$.
+S: Plane: $6x+3y+2z=6\cdot1=6$.
+A: $6x+3y+2z=6$
+@tb rec=1,2,4,5,6,7,9 ext=12,13,15,17,21 | Exercise 3.7 applies vectors to planes, intersections and shortest distances.
+
+@quiz Magnitude | Find $|(2,-3,6)|$.
+A: 7
+ALT: 7.
+AD: $7$
+SOL: $\sqrt{4+9+36}=7$.
+H: Sum of squares.||$4+9+36=49$.||Square root.
+@quiz Between points | $A(1,1,1)$, $B(3,4,1)$. Find $|\overrightarrow{AB}|$ exactly.
+A: sqrt13
+ALT: sqrt(13)||√13
+AD: $\sqrt{13}$
+SOL: $(2,3,0)$, $\sqrt{4+9}=\sqrt{13}$.
+H: $B-A$.||$(2,3,0)$.||Magnitude.
+@quiz Dot product | Find $(1,2,3)\cdot(4,-1,2)$.
+A: 8
+ALT: 8.
+AD: $8$
+SOL: $4-2+6=8$.
+H: Multiply matching components.||$4,-2,6$.||Add.
+@quiz Perpendicular | Find $k$ so that $(k,3,1)\perp(2,1,-5)$.
+A: 1
+ALT: k=1
+AD: $k=1$
+SOL: $2k+3-5=0\Rightarrow k=1$.
+H: Dot product is 0.||$2k+3-5=0$.||Solve.
+@quiz Angle | Find the angle between $(1,0,0)$ and $(1,1,0)$ in degrees.
+A: 45
+ALT: 45 degrees||45°
+AD: $45^\circ$
+SOL: $\cos\theta=\frac{1}{\sqrt2}$.
+H: Dot product $=1$.||Magnitudes $1$ and $\sqrt2$.||$\cos^{-1}\frac1{\sqrt2}$.
+@quiz Cross | Find $(1,0,0)\times(0,1,0)$ as a vector $(x,y,z)$.
+A: (0,0,1)
+ALT: 0,0,1||k
+AD: $(0,0,1)=\mathbf k$
+SOL: $\mathbf i\times\mathbf j=\mathbf k$.
+H: Use the formula.||Only the last component is non-zero.||$1\cdot1-0\cdot0$.
+@quiz Area | Find the area of the parallelogram spanned by $(3,0,0)$ and $(0,4,0)$.
+A: 12
+ALT: 12.
+AD: $12$
+SOL: $|\mathbf a\times\mathbf b|=|(0,0,12)|=12$.
+H: Cross product.||$(0,0,12)$.||Magnitude.
+@quiz Plane | A plane has normal $(2,1,-1)$ and passes through $(1,1,1)$. Find $d$ in $2x+y-z=d$.
+A: 2
+ALT: d=2
+AD: $d=2$
+SOL: $2+1-1=2$.
+H: Substitute the point.||$2(1)+1-1$.||Compute.
+@quiz Projection | Find the scalar projection of $(3,4,0)$ onto $(1,0,0)$.
+A: 3
+ALT: 3.
+AD: $3$
+SOL: $\frac{3}{1}=3$.
+H: $\frac{\mathbf a\cdot\mathbf b}{|\mathbf b|}$.||$\mathbf a\cdot\mathbf b=3$.||$|\mathbf b|=1$.
+@quiz Lines | Lines $\mathbf r=(0,0,0)+\lambda(1,2,3)$ and $\mathbf r=(1,1,1)+\mu(2,4,6)$ are (parallel, intersecting or skew)?
+A: parallel
+ALT: Parallel
+AD: parallel
+SOL: Directions are multiples. Check: $(1,1,1)$ is not on line 1 (needs $(t,2t,3t)$), so they are parallel and distinct.
+H: Compare directions.||$(2,4,6)=2(1,2,3)$.||Same direction.
+
+@comet Extension: Shortest distance idea | $|\mathbf a\times\mathbf b|$ gives the area of a parallelogram. Find $|(1,1,0)\times(0,1,1)|$ exactly.
+A: sqrt3
+ALT: sqrt(3)||√3
+AD: $\sqrt3$
+SOL: $(1,-1,1)$, magnitude $\sqrt3$.
+H: Compute the cross product.||$(1\cdot1-0,\ 0-1\cdot1,\ 1-0)$.||Magnitude.
+@comet Extension: Triple product | Find the volume of the parallelepiped with edges $(1,0,0)$, $(0,2,0)$, $(0,0,3)$.
+A: 6
+ALT: 6.
+AD: $6$
+SOL: $|\mathbf a\cdot(\mathbf b\times\mathbf c)|=|(1,0,0)\cdot(6,0,0)|=6$.
+H: Triple product.||$\mathbf b\times\mathbf c=(6,0,0)$.||Dot with $\mathbf a$.

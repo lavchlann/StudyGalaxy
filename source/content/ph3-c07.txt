@@ -1,0 +1,113 @@
+=== ph3-c07 | interactive: none
+@summary A changing magnetic flux induces an emf. This chapter covers magnetic flux, Faraday's and Lenz's laws, the emf of a moving conductor, generators, and the meaning of RMS values.
+@video F | Electromagnetic induction, Faraday and Lenz | search:Faraday law Lenz law electromagnetic induction physics
+@video K | Magnetic flux and induction | search:magnetic flux Faraday law induction
+@video V | Veritasium: Induction and the magnet in a tube | search:Veritasium Lenz law magnet falling tube
+
+## 7.1 | Magnetic flux
+@p **Magnetic flux** measures how much field passes through a surface: $\Phi=BA\cos\theta$ in **webers (Wb)**, where $A$ is the area and $\theta$ is the angle between the field and the **normal** (perpendicular) to the surface. Flux is largest when the field is perpendicular to the loop's plane and zero when the field runs parallel to the plane.
+@key $$\Phi=BA\cos\theta$$
+@ex Flux
+Q: A $0.020\ \text{m}^2$ coil is perpendicular to a $0.50\ \text{T}$ field. Find the flux, and the flux after turning $60^\circ$.
+S: $\Phi=BA\cos0^\circ=0.50(0.020)=0.010\ \text{Wb}$.
+S: At $60^\circ$: $\Phi=0.010\cos60^\circ=0.0050\ \text{Wb}$.
+A: $0.010\ \text{Wb}$ and $0.0050\ \text{Wb}$.
+@warn $\theta$ is measured from the **normal**, not from the plane of the coil. If a question gives the angle to the plane, subtract it from $90^\circ$.
+
+## 7.2 | Faraday's and Lenz's laws
+@p **Faraday's law:** the induced emf equals the rate of change of flux linkage: $\varepsilon=-N\dfrac{\Delta\Phi}{\Delta t}$. **Lenz's law** (the minus sign): the induced current's own field **opposes the change** in flux that caused it. This is conservation of energy: if induced fields helped the change, energy would appear from nothing.
+@key $$\varepsilon=-N\frac{\Delta\Phi}{\Delta t}$$
+@ex Changing flux
+Q: A $200$-turn coil has flux falling from $0.010\ \text{Wb}$ to zero in $0.050\ \text{s}$. Find the average emf.
+S: $|\varepsilon|=N\frac{\Delta\Phi}{\Delta t}=200\times\frac{0.010}{0.050}=40\ \text{V}$.
+A: $40\ \text{V}$
+@p **Using Lenz.** A north pole approaching a loop increases flux through it, so the loop develops a current whose field also points toward the approaching magnet (a north face) to repel it. A magnet pulled away is attracted. In both cases the induced current makes the motion **harder**.
+
+## 7.3 | Moving conductors
+@p A conductor of length $L$ moving at speed $v$ perpendicular to a field $B$ has emf $\varepsilon=BLv$. If connected to a circuit of resistance $R$ the current is $I=\frac{\varepsilon}{R}$, and the magnetic force on it is $BIL$, opposing the motion.
+@ex Sliding rod
+Q: A $0.50\ \text{m}$ rod moves at $4.0\ \text{m s}^{-1}$ perpendicular to a $0.30\ \text{T}$ field. Find the emf.
+S: $\varepsilon=BLv=0.30(0.50)(4.0)=0.60\ \text{V}$.
+A: $0.60\ \text{V}$
+@p **Eddy currents.** A conductor moving through a changing field has circulating currents induced in it. Lenz's law means they oppose the motion, which is used for braking and cause heating in transformer cores (reduced by laminating the core).
+
+## 7.4 | Generators and AC
+@p In an **AC generator** a coil rotates in a magnetic field and the flux changes sinusoidally. The emf is **greatest when the coil's plane is parallel to the field** (the flux is zero but changing fastest) and **zero when the plane is perpendicular to the field** (maximum flux, zero rate of change). A split-ring commutator would give DC; slip rings give AC.
+@p **RMS values.** For a sinusoidal supply $V_{\text{rms}}=\dfrac{V_{\text{peak}}}{\sqrt2}$ and $I_{\text{rms}}=\dfrac{I_{\text{peak}}}{\sqrt2}$. The RMS value is the equivalent steady value that would deliver the same power: $P=V_{\text{rms}}I_{\text{rms}}=\dfrac{V_{\text{rms}}^2}{R}$.
+@ex RMS
+Q: The mains supply has $V_{\text{rms}}=240\ \text{V}$. Find the peak voltage.
+S: $V_{\text{peak}}=\sqrt2\times240=339\ \text{V}$.
+A: $339\ \text{V}$
+@warn Household "240 V" is an RMS value, so the voltage actually swings between about $-339\ \text{V}$ and $+339\ \text{V}$.
+
+## X | Exam toolkit
+@p **Explaining induction.** A complete answer has three parts: (1) the flux through the circuit is changing, (2) so an emf is induced (Faraday), (3) and the direction is such as to oppose the change (Lenz). Use the word **flux** and the word **change**.
+@p **Graph questions.** Flux against time is a cosine for a rotating coil; the emf is the gradient of the flux graph (negative), which gives a sine curve.
+@quiz Flux | $B=0.20\ \text{T}$ is perpendicular to an area of $0.050\ \text{m}^2$. Find the flux (Wb).
+A: 0.010
+ALT: 0.01
+AD: $0.010\ \text{Wb}$
+SOL: $\Phi=BA=0.20(0.050)$.
+H: $\Phi=BA\cos\theta$.||$\theta=0^\circ$.||Multiply.
+@quiz Zero flux | What is the flux when the field is parallel to the plane of a loop (Wb)?
+A: 0
+AD: $0$
+SOL: The normal is perpendicular to the field, so $\cos90^\circ=0$.
+H: Angle to the normal.||$\theta=90^\circ$.||$\cos90^\circ=0$.
+@quiz Faraday | A $50$-turn coil has $\Delta\Phi=0.040\ \text{Wb}$ in $0.20\ \text{s}$. Find the average emf (V).
+A: 10
+ALT: 10.0
+AD: $10\ \text{V}$
+SOL: $\varepsilon=N\Delta\Phi/\Delta t=50\times0.20$.
+H: $\varepsilon=N\Delta\Phi/\Delta t$.||$\Delta\Phi/\Delta t=0.20$.||Multiply by 50.
+@quiz Rod | $B=0.50\ \text{T}$, $L=0.40\ \text{m}$, $v=3.0\ \text{m s}^{-1}$. Find the emf (V).
+A: 0.60
+ALT: 0.6
+AD: $0.60\ \text{V}$
+SOL: $\varepsilon=BLv$.
+H: $\varepsilon=BLv$.||Multiply the three.||Compute.
+@quiz RMS | A supply has peak voltage $170\ \text{V}$. Find $V_{\text{rms}}$ (V, nearest whole number).
+A: 120
+ALT: 120.2||120.21
+AD: $120\ \text{V}$
+SOL: $170/\sqrt2=120$.
+H: $V_{\text{rms}}=V_{\text{peak}}/\sqrt2$.||$\sqrt2=1.414$.||Divide.
+@quiz Lenz | A north pole moves toward a coil. Does the induced current produce a field opposing the magnet's approach? Answer yes or no.
+A: yes
+ALT: Yes
+AD: Yes
+SOL: Lenz's law: induced effects oppose the change.
+H: Lenz's law.||Opposes the change.||Yes.
+@quiz Frequency | A generator coil makes $50$ rotations each second. What is the frequency of the AC output (Hz)?
+A: 50
+AD: $50\ \text{Hz}$
+SOL: One cycle per rotation.
+H: One rotation, one cycle.||Same count per second.||50.
+@quiz Maximum emf | At the instant a generator's emf is a maximum, is the flux through the coil zero? Answer yes or no.
+A: yes
+ALT: Yes
+AD: Yes
+SOL: The emf is greatest when the flux is changing fastest, which is when the flux is zero.
+H: The emf is the gradient of the flux graph.||Gradient is steepest at zero flux.||Yes.
+@quiz Power | A $60\ \Omega$ heater runs on $240\ \text{V}_{\text{rms}}$. Find its power (W).
+A: 960
+AD: $960\ \text{W}$
+SOL: $P=V^2/R=\frac{240^2}{60}$.
+H: $P=V^2/R$.||$240^2=57600$.||Divide by 60.
+@quiz Speed | If a generator's coil turns twice as fast, by what factor does the peak emf change?
+A: 2
+AD: $2$
+SOL: Flux changes twice as fast.
+H: Rate of change of flux doubles.||Emf is proportional to that rate.||Factor 2.
+@comet Extension: Rod on rails | A $0.20\ \text{m}$ rod slides at $2.0\ \text{m s}^{-1}$ on rails in a $0.50\ \text{T}$ field. The circuit resistance is $0.10\ \Omega$. Find the current (A).
+A: 2.0
+ALT: 2
+AD: $2.0\ \text{A}$
+SOL: $\varepsilon=BLv=0.20\ \text{V}$; $I=\varepsilon/R=2.0$.
+H: Find the emf first.||$\varepsilon=0.50(0.20)(2.0)$.||$I=\varepsilon/R$.
+@comet Extension: Force on the rod | For the same rod and circuit, find the force needed to keep it moving at constant speed (N).
+A: 0.20
+ALT: 0.2
+AD: $0.20\ \text{N}$
+SOL: $F=BIL=0.50(2.0)(0.20)=0.20$.
+H: Constant speed: applied force balances magnetic force.||$F=BIL$.||Use $I=2.0\ \text{A}$.

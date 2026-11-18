@@ -1,0 +1,117 @@
+=== ph3-c01 | interactive: projectile
+@summary A projectile is any object moving only under gravity. The key idea is that horizontal and vertical motion are independent: horizontally the velocity is constant, vertically the acceleration is $9.8\ \text{m s}^{-2}$ downward. This chapter covers splitting a velocity into components, horizontal launches, angled launches, and launches from a height.
+@video F | Projectile motion, horizontal and angled launches | search:projectile motion physics
+@video K | Two-dimensional projectile motion | search:two dimensional projectile motion
+@video V | Veritasium: Which ball wins the race on a curved track? | search:Veritasium monkey and the hunter projectile
+
+## 1.1 | Components and independence
+@p **Split every vector into two perpendicular parts.** A velocity $v$ at angle $\theta$ above the horizontal has components $v_x=v\cos\theta$ and $v_y=v\sin\theta$. Gravity acts only downward, so it changes $v_y$ and never touches $v_x$. This is the whole chapter in one sentence: the two directions are independent and are linked only by **time**.
+@key $$v_x=v\cos\theta,\qquad v_y=v\sin\theta,\qquad a_x=0,\qquad a_y=-g=-9.8\ \text{m s}^{-2}$$
+@p **Kinematic equations for constant acceleration** (used separately in each direction): $v=u+at$, $s=ut+\tfrac12at^2$, $v^2=u^2+2as$, $s=\tfrac12(u+v)t$. Choose **up as positive** and keep your signs consistent. Time $t$ is the same in both directions, so it is the number you solve for in one direction and substitute into the other.
+@ex Components
+Q: A ball is thrown at $20\ \text{m s}^{-1}$ at $30^\circ$ above the horizontal. Find its velocity components.
+S: $v_x=20\cos30^\circ=17.3\ \text{m s}^{-1}$.
+S: $v_y=20\sin30^\circ=10.0\ \text{m s}^{-1}$ (upward).
+A: $17.3\ \text{m s}^{-1}$ horizontally and $10.0\ \text{m s}^{-1}$ vertically.
+@warn In the absence of air resistance the **horizontal velocity never changes** and the acceleration is $9.8\ \text{m s}^{-2}$ downward **at every point**, including the very top of the flight where the vertical velocity is zero.
+@int projectile | Change the launch speed, angle and height. Watch the range, time and maximum height change, and see that $45^\circ$ gives the longest range from level ground.
+
+## 1.2 | Horizontal launches
+@p When an object leaves a table or cliff **horizontally**, $u_y=0$. The fall time depends only on the height: $h=\tfrac12gt^2$ so $t=\sqrt{2h/g}$. The horizontal distance is then $x=v_xt$. An object dropped and one thrown horizontally from the same height **land at the same time**.
+@ex Horizontal launch
+Q: A ball is kicked horizontally at $12\ \text{m s}^{-1}$ from the edge of a $20\ \text{m}$ cliff. Find the time of flight, horizontal range, and impact speed.
+S: $t=\sqrt{2(20)/9.8}=2.02\ \text{s}$.
+S: Range $=12\times2.02=24.2\ \text{m}$.
+S: $v_y=gt=19.8\ \text{m s}^{-1}$ downward, so $v=\sqrt{12^2+19.8^2}=23.2\ \text{m s}^{-1}$ at $\tan^{-1}(19.8/12)=58.8^\circ$ below the horizontal.
+A: $2.02\ \text{s}$, $24.2\ \text{m}$, and $23.2\ \text{m s}^{-1}$ at $58.8^\circ$ below horizontal.
+@p **Impact speed uses Pythagoras and impact angle uses inverse tan** of the final components. State the angle relative to the horizontal and the direction (below horizontal) so the examiner can award the mark.
+
+## 1.3 | Angled launches on level ground
+@p For a launch at angle $\theta$ from and back to the same height: time of flight $T=\dfrac{2v\sin\theta}{g}$, maximum height $H=\dfrac{v^2\sin^2\theta}{2g}$, range $R=\dfrac{v^2\sin2\theta}{g}$. These are quick checks, but in an exam **derive from the kinematic equations** unless the question is routine. At the top, $v_y=0$.
+@ex Angled launch
+Q: A ball is launched at $25\ \text{m s}^{-1}$ at $40^\circ$ above the horizontal from level ground. Find the time of flight, maximum height and range.
+S: $v_y=25\sin40^\circ=16.07$, $v_x=25\cos40^\circ=19.15$.
+S: $T=\frac{2(16.07)}{9.8}=3.28\ \text{s}$; $H=\frac{16.07^2}{2(9.8)}=13.2\ \text{m}$.
+S: $R=19.15\times3.28=62.8\ \text{m}$.
+A: $3.28\ \text{s}$, $13.2\ \text{m}$, $62.8\ \text{m}$.
+@key **Complementary angles** ($\theta$ and $90^\circ-\theta$) give the **same range** on level ground, because $\sin2\theta=\sin(180^\circ-2\theta)$. The maximum range is at $45^\circ$.
+
+## 1.4 | Launches from a height
+@p If the landing point is **not** at the launch height, use $s_y=u_yt+\tfrac12a_yt^2$ with $s_y$ equal to the net vertical displacement. This gives a quadratic in $t$; choose the physically sensible (positive) root.
+@ex From a height
+Q: A ball is thrown at $15\ \text{m s}^{-1}$ at $30^\circ$ above the horizontal from a $10\ \text{m}$ high balcony. Find the time to reach the ground and the horizontal distance travelled.
+S: $u_y=7.5$, $u_x=12.99$. Taking up as positive, $s_y=-10$: $-10=7.5t-4.9t^2$.
+S: $4.9t^2-7.5t-10=0\Rightarrow t=\dfrac{7.5+\sqrt{56.25+196}}{9.8}=2.39\ \text{s}$.
+S: $x=12.99\times2.39=31.0\ \text{m}$.
+A: $2.39\ \text{s}$ and $31.0\ \text{m}$.
+@warn Discard the negative root of the quadratic: it corresponds to a time before launch.
+
+## X | Exam toolkit
+@p **Method that earns marks.** (1) Draw the path and label components. (2) Choose up as positive. (3) Write the equation with symbols, then substitute with units. (4) Solve for time in the direction where you know most, then use it in the other. (5) Give answers to 2 or 3 significant figures with units.
+@p **Air resistance** is ignored unless stated. If asked how air resistance changes the path, say the range and maximum height decrease and the path becomes asymmetric (steeper descent).
+@p **Common errors.** Using $g=+9.8$ for upward motion; mixing degrees and radians; applying $R=v^2\sin2\theta/g$ when the landing height differs; forgetting that $v_x$ is constant.
+@quiz Component | A ball is thrown at $20\ \text{m s}^{-1}$ at $30^\circ$ above the horizontal. Find its horizontal velocity component in $\text{m s}^{-1}$ (1 decimal place).
+A: 17.3
+AD: $17.3\ \text{m s}^{-1}$
+SOL: $v_x=20\cos30^\circ=17.3$.
+H: Horizontal uses cosine.||$v_x=v\cos\theta$.||Substitute $20\cos30^\circ$.
+@quiz Fall time | An object is dropped from rest from $45\ \text{m}$. Find the time to fall (seconds, 2 decimal places, $g=9.8$).
+A: 3.03
+AD: $3.03\ \text{s}$
+SOL: $t=\sqrt{2(45)/9.8}=3.03\ \text{s}$.
+H: Use $s=\frac12gt^2$.||$t=\sqrt{2h/g}$.||Substitute.
+@quiz Horizontal range | A ball is rolled horizontally off a $5.0\ \text{m}$ high table at $8.0\ \text{m s}^{-1}$. Find the horizontal distance travelled (metres, 1 decimal place).
+A: 8.1
+AD: $8.1\ \text{m}$
+SOL: $t=\sqrt{2(5)/9.8}=1.01\ \text{s}$; $x=8.0\times1.01=8.1\ \text{m}$.
+H: Find the fall time first.||$t=1.01$ s.||$x=v_xt$.
+@quiz Maximum height | A projectile has initial vertical velocity $14.7\ \text{m s}^{-1}$. Find its maximum height above the launch point (metres, 1 decimal place).
+A: 11.0
+ALT: 11
+AD: $11.0\ \text{m}$
+SOL: $H=\frac{14.7^2}{2(9.8)}=11.0$.
+H: At the top $v_y=0$.||$v^2=u^2+2as$.||$H=u^2/(2g)$.
+@quiz Time of flight | Initial vertical velocity is $14.7\ \text{m s}^{-1}$ and the projectile lands at the launch height. Find the time of flight (seconds).
+A: 3.0
+ALT: 3||3.00
+AD: $3.0\ \text{s}$
+SOL: $T=\frac{2(14.7)}{9.8}=3.0$.
+H: Up time equals down time.||$t_{up}=u_y/g$.||Double it.
+@quiz Best angle | For a given launch speed on level ground, what launch angle (degrees) gives the maximum range?
+A: 45
+AD: $45^\circ$
+SOL: $R=v^2\sin2\theta/g$ is maximum when $\sin2\theta=1$.
+H: Range depends on $\sin2\theta$.||The maximum of sine is 1.||$2\theta=90^\circ$.
+@quiz Top of flight | What is the magnitude of the acceleration of a projectile at the very top of its path ($\text{m s}^{-2}$, no air resistance)?
+A: 9.8
+AD: $9.8\ \text{m s}^{-2}$ downward
+SOL: Gravity acts throughout the flight.
+H: Is gravity switched off at the top?||Only the vertical velocity is zero.||Acceleration is $g$.
+@quiz Landing speed | A ball is dropped from $20\ \text{m}$. Find its speed just before landing ($\text{m s}^{-1}$, 1 decimal place).
+A: 19.8
+AD: $19.8\ \text{m s}^{-1}$
+SOL: $v=\sqrt{2gh}=\sqrt{2(9.8)(20)}=19.8$.
+H: $v^2=u^2+2as$.||$u=0$.||$v=\sqrt{2gh}$.
+@quiz Range | Find the range of a projectile launched at $20\ \text{m s}^{-1}$ at $30^\circ$ from level ground (metres, 1 decimal place).
+A: 35.3
+ALT: 35.4||35.35
+AD: $35.3\ \text{m}$
+SOL: $R=\frac{400\sin60^\circ}{9.8}=35.3$.
+H: $R=v^2\sin2\theta/g$.||$\sin60^\circ=0.866$.||Divide by 9.8.
+@quiz Vertical velocity | An object falls from rest for $2.0\ \text{s}$. Find its speed at that time ($\text{m s}^{-1}$).
+A: 19.6
+ALT: 20
+AD: $19.6\ \text{m s}^{-1}$
+SOL: $v=gt=9.8\times2.0$.
+H: $v=u+at$.||$u=0$.||Multiply by 2.0.
+@comet Extension: Complementary launch | A ball is launched at $20\ \text{m s}^{-1}$ at $60^\circ$ from level ground. Find its range in metres (1 decimal place).
+A: 35.3
+ALT: 35.4||35.35
+AD: $35.3\ \text{m}$
+SOL: $R=\frac{400\sin120^\circ}{9.8}=35.3$, the same as at $30^\circ$.
+H: $\sin120^\circ=\sin60^\circ$.||Complementary angles give equal ranges.||Compute.
+@comet Extension: Maximum height | Find the maximum height of a $20\ \text{m s}^{-1}$ projectile launched at $30^\circ$ from level ground (metres, 1 decimal place).
+A: 5.1
+AD: $5.1\ \text{m}$
+SOL: $v_y=10$; $H=\frac{100}{19.6}=5.1$.
+H: $v_y=20\sin30^\circ$.||$H=v_y^2/2g$.||$100/19.6$.

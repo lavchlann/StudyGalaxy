@@ -1,0 +1,102 @@
+=== mm3-c03 | append
+## 3.2
+@ex Chain rule, three layers
+Q: Differentiate $y=\sin^3(2x)$.
+S: Treat as $u^3$ with $u=\sin(2x)$: $3u^2\cdot u'$.
+S: $u'=2\cos(2x)$.
+A: $6\sin^2(2x)\cos(2x)$
+@ex Chain rule with e
+Q: Differentiate $y=e^{\sin x}$.
+S: Outside $e^u$ gives $e^u$, inside $u=\sin x$ gives $\cos x$.
+A: $\cos x\,e^{\sin x}$
+@p **Why it works.** Rates multiply: if $y$ changes $\frac{dy}{du}$ times as fast as $u$, and $u$ changes $\frac{du}{dx}$ times as fast as $x$, then $y$ changes $\frac{dy}{du}\cdot\frac{du}{dx}$ times as fast as $x$. Say the rule out loud: "derivative of the outside, leave the inside alone, times derivative of the inside".
+## 3.3
+@ex Product of three pieces
+Q: Differentiate $y=x^2e^{x}\sin x$.
+S: Differentiate one factor at a time, keeping the others: $2xe^x\sin x+x^2e^x\sin x+x^2e^x\cos x$.
+A: $xe^x\left(2\sin x+x\sin x+x\cos x\right)$
+@ex Product with chain
+Q: Differentiate $y=x\,e^{-2x}$ and find its stationary point.
+S: $y'=e^{-2x}-2xe^{-2x}=e^{-2x}(1-2x)$.
+S: $e^{-2x}>0$, so $y'=0\Rightarrow x=\frac12$.
+A: $y'=e^{-2x}(1-2x)$; stationary at $x=\frac12$.
+## 3.4
+@ex Quotient with logs
+Q: Differentiate $y=\dfrac{\ln x}{x}$ and find where it is stationary.
+S: $y'=\dfrac{\frac1x\cdot x-\ln x\cdot1}{x^2}=\dfrac{1-\ln x}{x^2}$.
+S: Zero when $\ln x=1$, so $x=e$.
+A: $y'=\dfrac{1-\ln x}{x^2}$; stationary at $x=e$.
+@warn Many quotient problems are easier as products: $\frac{e^x}{x^2}=e^xx^{-2}$. Choose whichever you trust under pressure.
+## 3.5
+@ex Normal line
+Q: Find the normal to $y=e^{2x}$ at $x=0$.
+S: $y'=2e^{2x}$, tangent gradient $2$; normal gradient $-\frac12$; point $(0,1)$.
+A: $y=-\frac12x+1$
+@ex Optimisation by differentiation
+Q: A rectangle has perimeter $40$. Find the maximum area.
+S: Sides $x$ and $20-x$, area $A=x(20-x)=20x-x^2$.
+S: $A'=20-2x=0\Rightarrow x=10$; $A''=-2<0$ so a maximum.
+A: $100$ square units (a square, $10\times10$).
+## X | Exam toolkit
+@p **Spotting the rule.** Sum or difference: differentiate each term. Product of two functions of $x$: product rule. Fraction with $x$ in the denominator: quotient rule (or a product with a negative power). Function inside a function: chain rule. Many questions need two of these at once.
+@p **Verification habit.** After differentiating, test at one value. For $y=x e^{-2x}$ at $x=0$: $y'=e^0(1-0)=1$, and the curve visibly rises from the origin. A thirty second sanity check catches sign errors.
+@quiz Chain rule | Differentiate $y=(3x^2+1)^4$.
+A: 24x(3x^2+1)^3
+AD: $24x(3x^2+1)^3$
+SOL: $4(3x^2+1)^3\cdot6x$.
+H: Outer power.||Inner derivative is $6x$.||Multiply.
+@quiz Chain with exp | Differentiate $y=e^{x^2+1}$.
+A: 2xe^(x^2+1)
+ALT: 2x*e^(x^2+1)
+AD: $2xe^{x^2+1}$
+SOL: $e^{u}\cdot u'$ with $u'=2x$.
+H: Inside is $x^2+1$.||Derivative $2x$.||Keep $e^u$.
+@quiz Product | Differentiate $y=x^2\ln x$.
+A: 2xlnx+x
+ALT: x(2lnx+1)||2xln(x)+x
+AD: $2x\ln x+x$
+SOL: $2x\ln x+x^2\cdot\frac1x$.
+H: Product rule.||$u=x^2$, $v=\ln x$.||Simplify $x^2\cdot\frac1x$.
+@quiz Quotient | Differentiate $y=\dfrac{e^x}{x}$.
+A: e^x(x-1)/x^2
+ALT: (xe^x-e^x)/x^2||(e^x(x-1))/x^2
+AD: $\dfrac{e^x(x-1)}{x^2}$
+SOL: $\frac{e^x x-e^x}{x^2}$.
+H: Quotient rule.||$u=e^x$, $v=x$.||Factor $e^x$.
+@quiz Gradient | Find $f'(1)$ for $f(x)=xe^{x}$. Exact.
+A: 2e
+AD: $2e$
+SOL: $f'=e^x+xe^x=e^x(1+x)$, so $2e$.
+H: Product rule.||$e^x(1+x)$.||Substitute 1.
+@quiz Optimisation | Maximise $A=x(30-x)$. What is the maximum area?
+A: 225
+AD: $225$
+SOL: $x=15$, $A=225$.
+H: Differentiate.||$30-2x=0$.||$A(15)$.
+@quiz Normal | The tangent to $y=e^{2x}$ at $x=0$ has gradient 2. State the normal's gradient.
+A: -1/2
+ALT: -0.5
+AD: $-\frac12$
+SOL: Perpendicular gradients multiply to $-1$.
+H: $m_1m_2=-1$.||$2m=-1$.||Solve.
+@quiz Chain | Differentiate $y=\cos(x^2)$.
+A: -2xsin(x^2)
+AD: $-2x\sin(x^2)$
+SOL: $-\sin(u)\cdot u'$.
+H: Outer is cos.||Inner derivative $2x$.||Combine.
+@quiz Chain | Differentiate $y=\ln(5x-2)$.
+A: 5/(5x-2)
+AD: $\frac5{5x-2}$
+SOL: $\frac{f'}{f}$.
+H: $\frac{d}{dx}\ln f=\frac{f'}f$.||$f'=5$.||Write it.
+@quiz Stationary | Where is $y=xe^{-x}$ stationary?
+A: 1
+ALT: x=1
+AD: $x=1$
+SOL: $y'=e^{-x}(1-x)=0$.
+H: Product rule.||Factor $e^{-x}$.||Solve $1-x=0$.
+@comet Extension: Nth derivative | If $f(x)=xe^x$, find $f^{(10)}(0)$.
+A: 10
+AD: $10$
+SOL: $f^{(n)}(x)=(x+n)e^x$, so $f^{(10)}(0)=10$.
+H: Compute $f'$, $f''$.||Pattern: $(x+n)e^x$.||Substitute.

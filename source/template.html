@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Study Galaxy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&family=Unbounded:wght@500;700&display=swap">
+<style id="app-style">
+:root{
+  /* Layout: full-bleed night-sky canvas with a floating top bar, a bottom chip rail and a right-hand drawer for lessons. */
+  --bg:#060a14; --panel:#0d1526; --panel2:#142040; --ink:#e9edf7; --mute:#8d98b2; --line:#24345a;
+  --gold:#d9b878; --new:#5d6882; --learn:#8fa8c8; --revise:#c9a86a; --solid:#86bfa6; --risk:#c98585;
+  --display:'Unbounded','Trebuchet MS',system-ui,sans-serif;
+  --body:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--body)}
+button{font:inherit;color:inherit}
+#shell{position:relative;height:100%;overflow:hidden}
+#sky{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:manipulation}
+#bar{position:absolute;top:0;left:0;right:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;padding:14px 20px;pointer-events:none}
+#bar>*{pointer-events:auto}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .mark{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe2a8,var(--gold) 55%,#b36a12);box-shadow:0 0 14px 2px #ffb45488}
+h1{font:700 12px var(--display);letter-spacing:.16em;text-transform:uppercase;margin:0}
+#crumbs{display:flex;align-items:center;gap:8px;color:var(--mute);font-size:14px}
+#crumbs .here{color:var(--ink);font-weight:500}
+#crumbs .cue{color:var(--mute);font-size:13px}
+.crumb{background:none;border:0;padding:2px 0;color:var(--gold);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+#units{display:flex;gap:6px}
+#units button{border:1px solid var(--line);background:rgba(13,21,38,.8);border-radius:999px;padding:5px 14px;cursor:pointer;font-weight:500;font-size:13px}
+#units button small{margin-left:8px;color:var(--mute);font-size:12px;font-variant-numeric:tabular-nums}
+#units button[aria-selected="true"]{border-color:var(--gold);background:#2a1f0c}
+#insightsBtn{border:1px solid var(--line);background:rgba(13,21,38,.8);border-radius:999px;padding:5px 14px;cursor:pointer;font-weight:500;font-size:13px}
+#insightsBtn[aria-pressed="true"]{border-color:var(--gold);background:#2a1f0c}
+#streak{font-size:13px;color:var(--mute)}
+#streak b{color:var(--gold);font-variant-numeric:tabular-nums}
+#legend{list-style:none;display:flex;flex-wrap:wrap;gap:4px 14px;margin:0 0 0 auto;padding:0;font-size:12px;color:var(--mute)}
+#legend li{display:flex;align-items:center;gap:6px}
+.sw{width:10px;height:10px;border-radius:50%;background:var(--c);display:inline-block}
+.sw.ring{background:none;border:2px solid var(--c)}
+.sw.dash{background:none;border:2px dashed var(--c)}
+#chips{position:absolute;left:0;right:0;bottom:0;display:flex;gap:8px;padding:10px 16px 14px;overflow-x:auto;scrollbar-width:thin}
+.chip{flex:none;display:flex;gap:8px;align-items:center;max-width:250px;padding:7px 13px;border:1px solid var(--line);background:rgba(13,21,38,.88);border-radius:999px;font-size:13px;font-weight:500;cursor:pointer}
+.chip span.t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip .dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--c)}
+.chip[aria-current="true"]{border-color:var(--gold)}
+.chip.add{border-style:dashed;color:var(--mute)}
+.chip:focus-visible,button:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#panel{position:absolute;top:64px;right:16px;bottom:64px;width:min(440px,calc(100% - 32px));background:rgba(13,21,38,.95);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:18px;padding:18px 20px 24px;overflow:auto;transform:translateX(calc(100% + 24px));opacity:0;pointer-events:none;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .3s}
+#panel.open{transform:none;opacity:1;pointer-events:auto}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.x{flex:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:none;cursor:pointer;font-size:18px;line-height:1}
+.eyebrow{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+#panel h2{font:700 17px/1.3 var(--display);margin:6px 0 12px;text-wrap:balance}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:3px 11px;border-radius:999px;border:1px solid var(--c);font-size:12px;font-weight:700;color:var(--c)}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:16px 0}
+.stats div{background:var(--panel2);border-radius:12px;padding:10px 12px}
+.stats b{display:block;font-size:18px;font-variant-numeric:tabular-nums}
+.stats span{font-size:12px;color:var(--mute)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.btn{border:1px solid var(--gold);background:var(--gold);color:#1b1204;border-radius:12px;padding:10px 16px;font-weight:700;cursor:pointer}
+.btn.ghost{background:none;color:var(--ink);border-color:var(--line)}
+.btn.link{border:0;background:none;color:var(--mute);padding:4px 2px;font-weight:500;text-decoration:underline;text-underline-offset:3px}
+.btn[disabled]{opacity:.5;cursor:default}
+.sub{font-size:13px;color:var(--mute);margin:6px 0}
+.muted{color:var(--mute);font-size:14px}
+.lesson p,.lesson li{margin:.5em 0}
+.lesson h4{font:700 13px var(--display);margin:1.4em 0 .4em;color:var(--gold);letter-spacing:.04em}
+.lesson ul{padding-left:1.2em;margin:.4em 0}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;background:#0a1224;border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+.qhead{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+.tag{border:1px solid var(--line);border-radius:999px;padding:1px 9px;text-transform:none;letter-spacing:0}
+.qtext{white-space:pre-wrap;background:var(--panel2);border-radius:12px;padding:14px;margin:10px 0;font-size:16px}
+textarea,input[type=text]{width:100%;background:#09101f;border:1px solid var(--line);border-radius:10px;color:var(--ink);padding:10px 12px;font:inherit}
+textarea{min-height:64px;resize:vertical}
+.fb{border-radius:12px;padding:10px 14px;margin:10px 0;border:1px solid var(--line);background:var(--panel2)}
+.fb.ok{border-color:var(--solid)}
+.fb.no{border-color:var(--risk)}
+.hint{border-left:3px solid var(--learn);padding:4px 12px;margin:8px 0;background:#0e1a33;border-radius:0 8px 8px 0}
+.sol{border-left:3px solid var(--solid);padding:6px 12px;margin:8px 0;white-space:pre-wrap;background:#0d2220;border-radius:0 8px 8px 0}
+.res{display:grid;gap:6px;margin:10px 0}
+.res div{display:flex;justify-content:space-between;gap:10px;background:var(--panel2);border-radius:10px;padding:8px 12px;font-size:14px}
+.big{font:700 34px var(--display);margin:6px 0}
+.wk{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin:6px 0;cursor:pointer}
+.wk b{display:block;font-size:14px}
+.wk span{font-size:12px;color:var(--mute)}
+.wk .n{flex:none;font:700 16px var(--display);color:var(--gold)}
+.wk .cw{color:var(--risk)}
+.qa{border-top:1px solid var(--line);margin-top:14px;padding-top:10px}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--gold);border-radius:50%;animation:sp .9s linear infinite;vertical-align:-2px;margin-right:8px}
+@keyframes sp{to{transform:rotate(360deg)}}
+#toast{position:absolute;left:50%;top:70px;transform:translate(-50%,-20px);background:var(--panel2);border:1px solid var(--gold);border-radius:12px;padding:9px 16px;font-size:14px;opacity:0;pointer-events:none;transition:all .4s;max-width:90%}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+@media (max-width:759px){
+  #bar{padding:10px 12px}
+  #legend{margin-left:0}
+  #panel{top:auto;left:8px;right:8px;width:auto;bottom:56px;max-height:70%;transform:translateY(calc(100% + 80px))}
+}
+@media (prefers-reduced-motion:reduce){#panel,#toast{transition:none}.spin{animation:none}}
+</style>
+</head>
+<body>
+<div id="shell">
+  <canvas id="sky" aria-label="Study map. Planets are chapters; use the list at the bottom to pick one with a keyboard."></canvas>
+  <header id="bar">
+    <div class="brand"><span class="mark"></span><h1>Study Galaxy</h1></div>
+    <nav id="crumbs" aria-label="Where you are"></nav>
+    <div id="units" role="tablist" aria-label="Unit"></div>
+    <button id="insightsBtn" data-insights="1" aria-pressed="false">Weak spots and this week</button>
+    <span id="streak"></span>
+    <ul id="legend" aria-label="Colour key">
+      <li><span class="sw" style="--c:var(--new)"></span>Not started</li>
+      <li><span class="sw" style="--c:var(--learn)"></span>Learning</li>
+      <li><span class="sw" style="--c:var(--revise)"></span>Needs revision</li>
+      <li><span class="sw" style="--c:var(--solid)"></span>Solid</li>
+      <li><span class="sw ring" style="--c:var(--revise)"></span>Due for review</li>
+      <li><span class="sw dash" style="--c:var(--risk)"></span>Confident but wrong</li>
+    </ul>
+  </header>
+  <div id="chips" role="list"></div>
+  <aside id="panel" aria-live="polite"></aside>
+  <div id="toast" role="status"></div>
+  <noscript>This page needs JavaScript.</noscript>
+</div>
+<script type="application/json" id="state">__STATE__</script>
+<script id="app-script">
+(function(){
+'use strict';
+var SHELL=document.getElementById('shell').outerHTML;
+var S=JSON.parse(document.getElementById('state').textContent);
+S.log=S.log||[];S.mistakes=S.mistakes||[];S.progress=S.progress||{};S.lessons=S.lessons||{};S.practice=S.practice||{};S.bank=S.bank||{};
+const DIRTY=new Set();
+const norm=s=>String(s).toLowerCase().replace(/\s+/g,'').replace(/[·×]/g,'*').replace(/−/g,'-');
+var HEAD='<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Study Galaxy</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700&family=Unbounded:wght@500;700&display=swap">';
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const DAY=864e5, REDUCE=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cssv=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const COL={new:cssv('--new'),learning:cssv('--learn'),revise:cssv('--revise'),solid:cssv('--solid'),due:cssv('--solid'),risk:cssv('--risk'),gold:cssv('--gold'),ink:cssv('--ink'),mute:cssv('--mute')};
+const LABEL={new:'Not started',learning:'Learning',revise:'Needs revision',solid:'Solid',due:'Due for review'};
+const fmtDate=t=>new Date(t).toLocaleDateString(undefined,{day:'numeric',month:'short'});
+
+/* ---------- data helpers ---------- */
+const subj=id=>S.subjects.find(s=>s.id===id);
+const VS=()=>S.subjects.filter(s=>!s.hidden);
+const UNITS=['3','4'];
+const chaptersOf=(s,u)=>s.units[u]||[];
+function findCh(id){for(const s of S.subjects)for(const u of UNITS){const l=chaptersOf(s,u),i=l.findIndex(c=>c.id===id);if(i>=0)return{s,u,ch:l[i],i,list:l};}return null;}
+function effStatus(id){const p=S.progress[id];if(!p)return'new';if(p.status==='solid'&&p.due&&Date.now()>=p.due)return'due';return p.status||'new';}
+const solidCount=l=>l.filter(c=>effStatus(c.id)==='solid').length;
+const nextOf=l=>l.find(c=>effStatus(c.id)!=='solid');
+const numOf=(c,i)=>parseInt(String(c.n||'').replace(/\D/g,''),10)||i+1;
+const openMistakes=id=>S.mistakes.filter(m=>m.ch===id&&m.rights.length<2);
+function subjectTotals(s){let t=0,d=0;for(const u of UNITS){const l=chaptersOf(s,u);t+=l.length;d+=solidCount(l);}return{t,d};}
+
+/* ---------- view state ---------- */
+const V={view:'galaxy',subj:null,unit:'3',sel:null,add:false,insights:false,hover:null};
+let sess=null, SAMPLE, tr=null, unitT0=-9999, hits=[], shiftX=0;
+
+/* ---------- canvas ---------- */
+const cv=$('#sky'), ctx=cv.getContext('2d');
+let W=0,H=0;
+function resize(){const d=Math.min(window.devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=Math.round(W*d);cv.height=Math.round(H*d);ctx.setTransform(d,0,0,d,0,0);}
+let seed=11;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+const stars=Array.from({length:260},()=>({x:rnd(),y:rnd(),r:rnd()*1.3+.2,p:rnd()*6.28,s:rnd()*.0015+.0004,d:rnd()*.7+.3}));
+function hex(c){const n=parseInt(c.slice(1),16);return[(n>>16)&255,(n>>8)&255,n&255];}
+function mix(c,t){const[r,g,b]=hex(c),k=t>0?255:0,a=Math.abs(t);return'rgb('+Math.round(r+(k-r)*a)+','+Math.round(g+(k-g)*a)+','+Math.round(b+(k-b)*a)+')';}
+const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const panelOpen=()=>(V.insights||(V.view==='subject'&&(V.sel||V.add)))&&W>=760;
+function cx0(){return W/2-shiftX;}
+function freeW(){return W-2*shiftX;}
+
+function drawStars(t){
+  for(const s of stars){
+    const a=.3+.4*Math.sin(t*s.s+s.p);
+    ctx.globalAlpha=Math.max(.05,a)*(.5+s.d*.5);
+    ctx.fillStyle='#cfd8ff';
+    const x=((s.x*W-shiftX*s.d*.4)%W+W)%W;
+    ctx.beginPath();ctx.arc(x,s.y*H,s.r,0,6.283);ctx.fill();
+  }
+  ctx.globalAlpha=1;
+}
+function sphere(x,y,r,color,glow){
+  ctx.save();
+  if(glow){ctx.shadowColor=color;ctx.shadowBlur=glow;}
+  const g=ctx.createRadialGradient(x-r*.35,y-r*.4,r*.1,x,y,r);
+  g.addColorStop(0,mix(color,.6));g.addColorStop(.55,color);g.addColorStop(1,mix(color,-.5));
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fill();
+  ctx.restore();
+}
+function pill(text,x,y){
+  ctx.save();ctx.font='500 12px "Hanken Grotesk",system-ui,sans-serif';
+  const w=ctx.measureText(text).width+20,h=24;
+  const px=clamp(x-w/2,8,W-w-8),py=Math.max(8,y-h);
+  ctx.fillStyle='rgba(13,21,38,.95)';ctx.strokeStyle=COL.gold;ctx.lineWidth=1;
+  ctx.beginPath();ctx.roundRect(px,py,w,h,12);ctx.fill();ctx.stroke();
+  ctx.fillStyle=COL.ink;ctx.textAlign='left';ctx.textBaseline='middle';ctx.fillText(text,px+10,py+h/2+.5);
+  ctx.restore();
+}
+function drawSun(x,y,r,color,t,ring){
+  ctx.save();
+  const pulse=1+.04*Math.sin(t*.002);
+  const g=ctx.createRadialGradient(x,y,r*.5,x,y,r*3.4*pulse);
+  g.addColorStop(0,color+'55');g.addColorStop(1,color+'00');
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r*3.4*pulse,0,6.283);ctx.fill();
+  sphere(x,y,r,color,24);
+  if(ring){
+    ctx.lineWidth=3;ctx.strokeStyle='rgba(255,255,255,.12)';
+    ctx.beginPath();ctx.arc(x,y,r+9,0,6.283);ctx.stroke();
+    if(ring.f>0){ctx.strokeStyle=COL.solid;ctx.lineCap='round';ctx.beginPath();ctx.arc(x,y,r+9,-1.5708,-1.5708+6.283*ring.f);ctx.stroke();}
+  }
+  ctx.restore();
+}
+function text(t,x,y,font,color,align){ctx.font=font;ctx.fillStyle=color;ctx.textAlign=align||'center';ctx.textBaseline='alphabetic';ctx.fillText(t,x,y);}
+
+function sunPos(i,n,t){
+  const a=n<=2?i/n*6.283-3.1416:i/n*6.283-1.5708,fw=freeW();
+  const rx=fw*.33,ry=Math.min(H*.3,rx*.8);
+  return{x:cx0()+Math.cos(a)*rx,y:H/2+8+Math.sin(a)*ry+Math.sin(t*.0007+i*1.7)*5};
+}
+function drawGalaxy(t,o){
+  o=o||{};
+  const fw=freeW(),R=clamp(Math.min(fw,H)*.062,22,40);
+  ctx.save();ctx.globalAlpha=o.alpha==null?1:o.alpha;
+  let zp=null;
+  if(o.zoomOn){const i=VS().findIndex(s=>s.id===o.zoomOn);if(i>=0)zp=sunPos(i,VS().length,t);}
+  if(zp){ctx.translate(zp.x,zp.y);ctx.scale(o.z,o.z);ctx.translate(-zp.x,-zp.y);}
+  ctx.strokeStyle='rgba(120,150,220,.12)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.ellipse(cx0(),H/2+8,fw*.33,Math.min(H*.3,fw*.33*.8),0,0,6.283);ctx.stroke();
+  ctx.beginPath();ctx.ellipse(cx0(),H/2+8,fw*.2,Math.min(H*.3,fw*.33*.8)*.6,0,0,6.283);ctx.stroke();
+  const core=ctx.createRadialGradient(cx0(),H/2,0,cx0(),H/2,R*3);
+  core.addColorStop(0,'rgba(255,200,120,.10)');core.addColorStop(1,'rgba(255,200,120,0)');
+  ctx.fillStyle=core;ctx.beginPath();ctx.arc(cx0(),H/2,R*3,0,6.283);ctx.fill();
+  VS().forEach((s,i)=>{
+    const p=sunPos(i,VS().length,t),tot=subjectTotals(s),hov=V.hover===s.id&&!o.zoomOn;
+    const r=R*(hov?1.1:1)*(tot.t?1:.8);
+    ctx.save();if(!tot.t)ctx.globalAlpha*=.6;
+    drawSun(p.x,p.y,r,s.hue,t,tot.t?{f:tot.d/tot.t}:null);
+    ctx.restore();
+    text(s.name,p.x,p.y+r+30,'700 13px "Hanken Grotesk",system-ui,sans-serif',COL.ink);
+    text(tot.t?tot.d+' of '+tot.t+' chapters solid':'No chapters yet',p.x,p.y+r+47,'400 12px "Hanken Grotesk",system-ui,sans-serif',COL.mute);
+    if(!o.zoomOn)hits.push({kind:'sun',id:s.id,x:p.x,y:p.y,r:r+14});
+  });
+  ctx.restore();
+}
+function drawSubject(t,o){
+  o=o||{};const s=subj(V.subj);if(!s)return;
+  const list=chaptersOf(s,V.unit),n=list.length,fw=freeW(),cx=cx0(),cy=H/2-6,tilt=.72;
+  const R0=clamp(Math.min(fw,H)*.07,24,44);
+  const ku=ease(clamp((performance.now()-unitT0)/650,0,1));
+  const sc=(o.scale==null?1:o.scale);
+  ctx.save();ctx.globalAlpha=o.alpha==null?1:o.alpha;
+  ctx.translate(cx,cy);ctx.scale(sc,sc);ctx.translate(-cx,-cy);
+  const rMin=R0+44,rMax=Math.max(rMin+10,Math.min(fw/2-30,(H/2-84)/tilt));
+  const step=n>1?(rMax-rMin)/(n-1):0;
+  const pr=clamp((n>1?step:60)*.36,11,21);
+  const nxt=nextOf(list);
+  drawSun(cx,cy,R0,s.hue,t,null);
+  text(s.name,cx,cy+R0+22,'700 14px "Hanken Grotesk",system-ui,sans-serif',COL.ink);
+  text('Unit '+V.unit+(n?' · '+solidCount(list)+' of '+n+' solid':''),cx,cy+R0+39,'400 12px "Hanken Grotesk",system-ui,sans-serif',COL.mute);
+  if(!n){text('No chapters here yet. Add some from the list below.',cx,cy-R0-40,'400 14px "Hanken Grotesk",system-ui,sans-serif',COL.mute);}
+  const items=[];
+  list.forEach((c,i)=>{
+    const r=(rMin+i*step)*ku,a=i*2.399963+(REDUCE?0:t*.00011/(1+i*.28));
+    items.push({c,i,r,a,x:cx+Math.cos(a)*r,y:cy+Math.sin(a)*r*tilt,z:Math.sin(a)});
+    ctx.strokeStyle='rgba(120,150,220,'+(.10+.08*(1-i/Math.max(n,1)))+')';ctx.lineWidth=1;
+    ctx.beginPath();ctx.ellipse(cx,cy,Math.max(r,1),Math.max(r*tilt,1),0,0,6.283);ctx.stroke();
+  });
+  items.sort((p,q)=>p.z-q.z);
+  for(const it of items){
+    const c=it.c,st=effStatus(c.id),p=S.progress[c.id]||{},sel=V.sel===c.id,hov=V.hover===c.id;
+    const r=pr*(1+.14*it.z)*(hov?1.14:1)*(.4+.6*ku),x=it.x,y=it.y,col=COL[st];
+    ctx.save();ctx.globalAlpha*=.4+.6*ku;
+    if(st==='new'){
+      ctx.fillStyle='rgba(93,104,130,.18)';ctx.strokeStyle=COL.new;ctx.lineWidth=1.6;ctx.setLineDash([4,3]);
+      ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fill();ctx.stroke();ctx.setLineDash([]);
+    }else sphere(x,y,r,col,st==='solid'||st==='due'?16:10);
+    if(st==='due'){const k=(Math.sin(t*.004)+1)/2;ctx.strokeStyle=COL.revise;ctx.lineWidth=2.4;ctx.globalAlpha*=.5+.5*k;ctx.beginPath();ctx.arc(x,y,r+5+k*4,0,6.283);ctx.stroke();ctx.globalAlpha=1;}
+    if(p.risky){ctx.strokeStyle=COL.risk;ctx.lineWidth=2;ctx.setLineDash([3,3]);ctx.beginPath();ctx.arc(x,y,r+4,0,6.283);ctx.stroke();ctx.setLineDash([]);}
+    if(sel){ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,r+8,0,6.283);ctx.stroke();}
+    const fl=S.flash;
+    if(fl&&fl.id===c.id&&Date.now()-fl.t<120000){
+      const k=((performance.now()-FLASH0)/1600)%1;
+      if(performance.now()-FLASH0<6400){ctx.strokeStyle=col;ctx.lineWidth=3;ctx.globalAlpha=1-k;ctx.beginPath();ctx.arc(x,y,r+6+k*46,0,6.283);ctx.stroke();ctx.globalAlpha=1;}
+    }
+    ctx.restore();
+    text(String(numOf(c,it.i)),x,y+4,'700 '+Math.round(clamp(r*.75,10,15))+'px "Hanken Grotesk",system-ui,sans-serif',st==='new'?COL.mute:'#0a1020');
+    if(nxt&&nxt.id===c.id&&!sel){text('NEXT',x,y+r+14,'700 9px "Hanken Grotesk",system-ui,sans-serif',COL.gold);}
+    if(hov||sel)pill('Ch '+numOf(c,it.i)+' · '+c.title,x,y-r-8);
+    if(!o.scale||o.scale>.95)hits.push({kind:'planet',id:c.id,x:x,y:y,r:Math.max(r+7,16)});
+  }
+  ctx.restore();
+}
+let FLASH0=performance.now();
+function frame(now){
+  requestAnimationFrame(frame);
+  const t=REDUCE?0:now;
+  const target=panelOpen()?230:0;
+  shiftX+=(target-shiftX)*(REDUCE?1:.09);
+  ctx.clearRect(0,0,W,H);
+  const bg=ctx.createRadialGradient(W/2,H*.55,0,W/2,H*.55,Math.max(W,H)*.75);
+  bg.addColorStop(0,'#0e1830');bg.addColorStop(1,'#060a14');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  drawStars(now);
+  hits=[];
+  if(tr){
+    const k=Math.min(1,(now-tr.t0)/tr.dur);
+    if(tr.kind==='in'){
+      if(k<.5){const e=ease(k*2);drawGalaxy(now,{zoomOn:tr.subj,z:1+e*9,alpha:1-e*.92});}
+      else{if(V.view!=='subject'){V.view='subject';V.subj=tr.subj;chrome();}const e=ease((k-.5)*2);drawSubject(now,{scale:.35+.65*e,alpha:e});}
+    }else{
+      if(k<.5){const e=ease(k*2);drawSubject(now,{scale:1-.65*e,alpha:1-e});}
+      else{if(V.view!=='galaxy'){V.view='galaxy';chrome();}const e=ease((k-.5)*2);drawGalaxy(now,{zoomOn:tr.subj,z:10-9*e,alpha:.08+.92*e});}
+    }
+    if(k>=1)tr=null;
+    return;
+  }
+  if(V.view==='galaxy')drawGalaxy(now);else drawSubject(now);
+}
+function go(kind,id){
+  if(REDUCE){if(kind==='in'){V.view='subject';V.subj=id;}else{V.view='galaxy';}chrome();return;}
+  tr={kind:kind,subj:id,t0:performance.now(),dur:1100};
+}
+
+/* ---------- pointer ---------- */
+function hitAt(e){
+  const b=cv.getBoundingClientRect(),x=e.clientX-b.left,y=e.clientY-b.top;
+  for(let i=hits.length-1;i>=0;i--){const h=hits[i];if(Math.hypot(x-h.x,y-h.y)<=h.r)return h;}
+  return null;
+}
+cv.addEventListener('pointermove',e=>{const h=hitAt(e);V.hover=h?h.id:null;cv.style.cursor=h?'pointer':'default';});
+cv.addEventListener('pointerleave',()=>{V.hover=null;});
+cv.addEventListener('click',e=>{const h=hitAt(e);if(!h||tr)return;if(h.kind==='sun')enterSubject(h.id);else openChapter(h.id);});
+
+/* ---------- navigation ---------- */
+function enterSubject(id){V.sel=null;V.add=false;V.insights=false;endSess();const s=subj(id);const u=chaptersOf(s,'3').length||!chaptersOf(s,'4').length?'3':'4';V.unit=u;unitT0=-9999;go('in',id);renderPanel();}
+function leave(){const id=V.subj;V.sel=null;V.add=false;V.insights=false;endSess();renderPanel();go('out',id);}
+function setUnit(u){if(u===V.unit)return;V.unit=u;V.sel=null;V.add=false;V.insights=false;endSess();unitT0=performance.now();chrome();renderPanel();}
+function openChapter(id){
+  endSess();V.add=false;V.insights=false;
+  const f=findCh(id);
+  if(f&&(V.view!=='subject'||V.subj!==f.s.id||V.unit!==f.u)){tr=null;V.view='subject';V.subj=f.s.id;V.unit=f.u;unitT0=performance.now();}
+  V.sel=id;renderPanel();chrome();
+}
+function closePanel(){endSess();V.sel=null;V.add=false;V.insights=false;renderPanel();chrome();}
+
+/* ---------- chrome (crumbs, tabs, chips) ---------- */
+function chrome(){
+  const cr=$('#crumbs'),un=$('#units'),ch=$('#chips');
+  const sk=streakInfo();$('#streak').innerHTML=sk.n?'<b>'+sk.n+'</b> day streak'+(sk.today?'':' · study today to keep it'):'No streak yet';
+  $('#insightsBtn').setAttribute('aria-pressed',String(V.insights));
+  if(V.view==='subject'){
+    const s=subj(V.subj);
+    cr.innerHTML='<button class="crumb" data-go="galaxy">Galaxy</button><span aria-hidden="true">›</span><span class="here">'+esc(s.name)+'</span>';
+    un.innerHTML=UNITS.map(u=>{const l=chaptersOf(s,u);return'<button role="tab" aria-selected="'+(V.unit===u)+'" data-unit="'+u+'">Unit '+u+'<small>'+solidCount(l)+'/'+l.length+'</small></button>';}).join('');
+    const l=chaptersOf(s,V.unit),nx=nextOf(l);
+    ch.innerHTML=l.map((c,i)=>'<button class="chip" role="listitem" style="--c:'+COL[effStatus(c.id)]+'" data-ch="'+c.id+'" aria-current="'+(V.sel===c.id)+'"><i class="dot"></i><span class="t">'+numOf(c,i)+' · '+esc(c.title)+(nx&&nx.id===c.id?' (next)':'')+'</span></button>').join('')+'<button class="chip add" role="listitem" data-add="1">+ Add chapters</button>';
+  }else{
+    cr.innerHTML='<span class="here">Galaxy</span><span class="cue">Pick a subject to enter its solar system</span>';
+    un.innerHTML='';
+    ch.innerHTML=VS().map(s=>{const t=subjectTotals(s);return'<button class="chip" role="listitem" style="--c:'+s.hue+'" data-sun="'+s.id+'"><i class="dot"></i><span class="t">'+esc(s.name)+(t.t?' · '+t.d+'/'+t.t:'')+'</span></button>';}).join('');
+  }
+}
+$('#shell').addEventListener('click',e=>{
+  const g=e.target.closest('[data-go]');if(g){leave();return;}
+  const u=e.target.closest('[data-unit]');if(u){setUnit(u.dataset.unit);return;}
+  const s=e.target.closest('[data-sun]');if(s&&!tr){enterSubject(s.dataset.sun);return;}
+  const c=e.target.closest('[data-ch]');if(c){openChapter(c.dataset.ch);return;}
+  if(e.target.closest('[data-insights]')){endSess();V.sel=null;V.add=false;V.insights=!V.insights;renderPanel();chrome();return;}
+  if(e.target.closest('[data-add]')){endSess();V.sel=null;V.insights=false;V.add=true;renderPanel();chrome();}
+});
+
+/* ---------- toast ---------- */
+let toastT;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),4200);}
+
+/* ---------- saving ---------- */
+function buildDoc(){
+  const style=document.getElementById('app-style').textContent,script=document.getElementById('app-script').textContent;
+  const state=JSON.stringify(S).replace(/</g,'\\u003c');
+  return'<!DOCTYPE html>\n<html lang="en">\n<head>\n'+HEAD+'\n<style id="app-style">'+style+'</style>\n</head>\n<body>\n'+SHELL+'\n<script type="application/json" id="state">'+state+'</scr'+'ipt>\n<script id="app-script">'+script+'</scr'+'ipt>\n</body>\n</html>';
+}
+async function commit(){
+  let art=null;
+  try{art=window.claude&&window.claude.use?await window.claude.use('artifact'):null;}catch(e){}
+  if(!art){toast('Progress is kept in this view only. Open the saved page in Claude to keep it.');chrome();renderPanel();return;}
+  try{await art.publish(buildDoc());}
+  catch(e){
+    if(e&&(e.code==='not_granted'||e.code==='not_writer'))toast('This copy is view-only, so progress was not kept. Make your own copy to save progress.');
+    else if(!(e&&e.code==='conflict'))toast('Could not save progress. Try again.');
+    chrome();renderPanel();
+  }
+}
+
+/* ---------- asking Claude ---------- */
+async function getSample(){
+  if(SAMPLE!==undefined)return SAMPLE;
+  try{SAMPLE=window.claude&&window.claude.use?await window.claude.use('sample'):null;}catch(e){SAMPLE=null;}
+  return SAMPLE;
+}
+function errText(e){
+  if(!e)return'Something went wrong.';
+  if(e.code==='unavailable')return'Lessons and quizzes need this page to be open in Claude.';
+  if(e.code==='not_granted')return'Claude access was not allowed for this page.';
+  if(e.code==='rate_limited')return'Too many requests just now. Wait a moment and try again.';
+  return e.message||'Something went wrong. Try again.';
+}
+async function askText(prompt,onText,signal){
+  const s=await getSample();if(!s)throw{code:'unavailable'};
+  const r=await s(prompt,{onText:onText,signal:signal,modelTier:'default',cache:false});
+  return r.text;
+}
+async function askJSON(prompt,signal){
+  const s=await getSample();if(!s)throw{code:'unavailable'};
+  return s.json(prompt,{signal:signal,modelTier:'default',cache:false});
+}
+function endSess(){if(sess&&sess.abort)try{sess.abort.abort();}catch(e){}sess=null;}
+
+/* ---------- text formatting ---------- */
+const inl=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/`([^`]+)`/g,'<code>$1</code>');
+function md(t){
+  let out='',ul=false;
+  for(const raw of String(t).split('\n')){
+    const l=raw.trimEnd();
+    if(/^\s*[-•*]\s+/.test(l)){if(!ul){out+='<ul>';ul=true;}out+='<li>'+inl(l.replace(/^\s*[-•*]\s+/,''))+'</li>';continue;}
+    if(ul){out+='</ul>';ul=false;}
+    if(/^#{1,4}\s/.test(l))out+='<h4>'+inl(l.replace(/^#+\s*/,''))+'</h4>';
+    else if(l.trim())out+='<p>'+inl(l)+'</p>';
+  }
+  return out+(ul?'</ul>':'');
+}
+
+/* ---------- insights ---------- */
+const dayKey=t=>new Date(t).toLocaleDateString('en-CA');
+function streakInfo(){
+  const days=new Set(S.log.map(e=>dayKey(e.t))),d=new Date(),today=days.has(dayKey(d));
+  if(!today)d.setDate(d.getDate()-1);
+  let n=0;while(days.has(dayKey(d))){n++;d.setDate(d.getDate()-1);}
+  return{n:n,today:today};
+}
+function weekInfo(){
+  const now=Date.now(),w=S.log.filter(e=>now-e.t<7*DAY),pv=S.log.filter(e=>now-e.t>=7*DAY&&now-e.t<14*DAY);
+  const avg=l=>{const r=l.filter(e=>e.k==='revise');return r.length?Math.round(r.reduce((a,e)=>a+e.pct,0)/r.length):null;};
+  return{days:new Set(w.map(e=>dayKey(e.t))).size,checks:w.filter(e=>e.k==='revise').length,learns:w.filter(e=>e.k==='learn').length,avg:avg(w),prevAvg:avg(pv),newSolid:w.filter(e=>e.after==='solid'&&e.before!=='solid').length,fixed:w.reduce((a,e)=>a+(e.fixed||0),0)};
+}
+function weakTopics(){
+  const g={};
+  for(const m of S.mistakes){
+    if(m.rights.length>=2)continue;
+    const k=m.ch+'|'+(m.topic||'General'),o=g[k]||(g[k]={ch:m.ch,topic:m.topic||'General',n:0,cw:0,types:{},t:0});
+    o.n++;if(m.conf===3)o.cw++;o.types[m.type]=(o.types[m.type]||0)+1;o.t=Math.max(o.t,m.t);
+  }
+  return Object.values(g).sort((a,b)=>b.n-a.n||b.t-a.t).slice(0,8);
+}
+function insightsHTML(){
+  const sk=streakInfo(),w=weekInfo(),wt=weakTopics();
+  let delta='';
+  if(w.avg!=null&&w.prevAvg!=null){const d=w.avg-w.prevAvg;delta=' ('+(d>=0?'+':'')+d+' vs last week)';}
+  const rows=wt.length?wt.map(o=>{
+    const f=findCh(o.ch);if(!f)return'';
+    const top=Object.keys(o.types).sort((a,b)=>o.types[b]-o.types[a])[0];
+    return'<button class="wk" data-ch="'+o.ch+'"><div><b>'+esc(o.topic)+'</b><span>'+esc(f.s.name)+' · Unit '+f.u+' · Ch '+numOf(f.ch,f.i)+' · mostly '+esc(top)+' errors'+(o.cw?' · <span class="cw">'+o.cw+' confident but wrong</span>':'')+'</span></div><span class="n">'+o.n+'</span></button>';
+  }).join(''):'<p class="muted">No open mistakes yet. Take a Revise checkpoint and the topics you miss will collect here.</p>';
+  return'<div class="top"><div><p class="eyebrow">All subjects</p><h2>Weak spots and this week</h2></div><button class="x" data-act="close" aria-label="Close">×</button></div>'+
+   '<div class="stats"><div><b>'+sk.n+'</b><span>Day streak'+(sk.n&&!sk.today?' (study today to keep it)':'')+'</span></div><div><b>'+w.days+' of 7</b><span>Days studied this week</span></div><div><b>'+w.checks+'</b><span>Checkpoints this week</span></div><div><b>'+(w.avg==null?'—':w.avg+'%')+'</b><span>Average checkpoint'+delta+'</span></div><div><b>'+w.newSolid+'</b><span>Chapters turned solid</span></div><div><b>'+w.fixed+'</b><span>Mistakes fixed</span></div></div>'+
+   '<h4 class="eyebrow" style="margin:18px 0 6px">Most-missed topics (tap to open the chapter)</h4>'+rows+
+   '<p class="sub">A mistake counts as fixed after you answer a fresh version of it correctly on two separate days.</p>';
+}
+
+/* ---------- panel ---------- */
+function renderPanel(){
+  const p=$('#panel');
+  if(V.insights){p.innerHTML=insightsHTML();p.classList.add('open');return;}
+  if(V.add){p.innerHTML=addHTML();p.classList.add('open');return;}
+  if(!V.sel){p.classList.remove('open');return;}
+  const c=findCh(V.sel);if(!c){V.sel=null;p.classList.remove('open');return;}
+  p.classList.add('open');
+  const st=effStatus(c.ch.id);
+  p.innerHTML='<div class="top"><div><p class="eyebrow">'+esc(c.s.name)+' · Unit '+c.u+' · Chapter '+numOf(c.ch,c.i)+'</p><h2>'+esc(c.ch.title)+'</h2></div><button class="x" data-act="close" aria-label="Close">×</button></div>'+
+    '<span class="pill" style="--c:'+COL[st]+'"><i></i>'+LABEL[st]+'</span>'+(sess&&sess.ch.ch.id===c.ch.id?sessHTML():overviewHTML(c,st));
+}
+function overviewHTML(c,st){
+  const p=S.progress[c.ch.id]||{history:[]},h=p.history||[],last=h[h.length-1],best=h.reduce((a,x)=>Math.max(a,x.pct),0);
+  const om=openMistakes(c.ch.id),topics={};om.forEach(m=>{if(m.topic)topics[m.topic]=(topics[m.topic]||0)+1;});
+  const tl=Object.keys(topics).slice(0,4).map(k=>esc(k)).join(', ');
+  const nextText=st==='solid'?fmtDate(p.due):st==='due'?'Now':p.due&&st==='revise'?fmtDate(p.due):'—';
+  return'<div class="stats"><div><b>'+(last?last.pct+'%':'—')+'</b><span>Last checkpoint</span></div><div><b>'+(h.length?best+'%':'—')+'</b><span>Best checkpoint</span></div><div><b>'+(p.attempts||0)+'</b><span>Checkpoints taken</span></div><div><b>'+nextText+'</b><span>Review by</span></div></div>'+
+   (om.length?'<p class="sub"><strong>'+om.length+' open mistake'+(om.length>1?'s':'')+'</strong>'+(tl?': '+tl:'')+'. These come back in your next Revise checkpoint.</p>':'<p class="sub">No open mistakes on this chapter.</p>')+
+   '<div class="row"><button class="btn" data-act="learn">Learn this chapter</button><button class="btn ghost" data-act="revise">Revise (checkpoint)</button></div>'+
+   '<p class="sub"><strong>Learn</strong> explains with worked examples and lets you take hints freely. <strong>Revise</strong> is strict: an 8-question checkpoint where you rate your confidence first, hints cost marks, and 80% or more with at most one hint turns the planet green.</p>';
+}
+function addHTML(){
+  const s=subj(V.subj);
+  return'<div class="top"><div><p class="eyebrow">'+esc(s.name)+' · Unit '+V.unit+'</p><h2>Add chapters</h2></div><button class="x" data-act="close" aria-label="Close">×</button></div><p class="muted">One chapter or topic per line, in the order you study them. They appear as new planets.</p><textarea id="addbox" rows="6" placeholder="Newton’s laws&#10;Momentum and impulse"></textarea><div class="row"><button class="btn" data-act="addch">Add and save</button></div>';
+}
+function sessHTML(){
+  if(sess.err)return'<p class="fb no">'+esc(sess.err)+'</p><div class="row"><button class="btn ghost" data-act="back">Back</button>'+(sess.retry?'<button class="btn" data-act="retry">Try again</button>':'')+'</div>';
+  if(sess.phase==='loading')return'<p class="muted"><span class="spin"></span>'+esc(sess.msg||'Working…')+'</p>'+(sess.kind==='learn'&&sess.text?'<div class="lesson" id="lessonBody">'+md(sess.text)+'</div>':'');
+  if(sess.phase==='lesson'){
+    return'<div class="lesson" id="lessonBody">'+md(sess.text)+'</div><div class="row"><button class="btn" data-act="practice">Practise (3 questions)</button><button class="btn ghost" data-act="finishlearn">Save and finish</button>'+(DIRTY.has(sess.ch.ch.id)?'<button class="btn ghost" data-act="keep">Keep this lesson</button>':'')+'<button class="btn link" data-act="regen">Regenerate</button></div><p class="sub">'+(DIRTY.has(sess.ch.ch.id)?'Not stored yet. Press Keep, or save any result, so reopening costs no usage.':'Stored on this page. Reopening costs no usage.')+'</p><div class="qa"><p class="sub">Stuck on something? Ask the tutor.</p>'+
+      sess.qa.map(x=>'<p><strong>You:</strong> '+esc(x.q)+'</p><div class="lesson">'+(x.a?md(x.a):'<span class="spin"></span>')+'</div>').join('')+
+      '<input type="text" id="askbox" placeholder="Ask a question about this chapter" '+(sess.askBusy?'disabled':'')+'><div class="row"><button class="btn ghost" data-act="ask"'+(sess.askBusy?' disabled':'')+'>Ask</button></div></div>';
+  }
+  if(sess.phase==='q')return qHTML();
+  if(sess.phase==='results')return resHTML();
+  if(sess.phase==='learndone')return'<p class="big">Nice work</p><p class="muted">Chapter marked as learning. Take a Revise checkpoint when you feel ready: that is what turns the planet green.</p><div class="row"><button class="btn" data-act="savelearn">Save to map</button><button class="btn ghost" data-act="back">Discard</button></div>';
+  return'';
+}
+const HL=['Nudge','Outline','Full first step'];
+function qHTML(){
+  const q=sess.qs[sess.i],st=q.st,strict=sess.kind==='revise',n=sess.qs.length;
+  let h='<div class="qhead"><span>'+(strict?'Checkpoint':'Practice')+' · '+(sess.i+1)+' of '+n+'</span>'+(q.topic?'<span class="tag">'+esc(q.topic)+'</span>':'')+'</div><div class="qtext">'+inl(q.q)+'</div>';
+  if(strict&&st.conf==null&&!st.done)return h+'<p class="muted">Before you answer, how sure are you that you can get this right?</p><div class="row">'+[[1,'Guessing'],[2,'Fairly sure'],[3,'Certain']].map(a=>'<button class="btn ghost" data-act="conf" data-v="'+a[0]+'">'+a[1]+'</button>').join('')+'</div>';
+  h+=q.hints.slice(0,st.hints).map((x,i)=>'<div class="hint"><b>'+HL[i]+'.</b> '+inl(x)+'</div>').join('');
+  if(st.done){
+    h+='<div class="fb '+(st.credit>0||(!strict&&!st.revealed)?'ok':'no')+'">'+(st.revealed?(strict?'Solution shown. No marks for this one.':'Here is the full solution.'):(strict?(st.credit===1?'Correct, full marks.':st.credit>0?'Correct with help, half marks.':'Correct, but only after the full hint. No marks.'):'Correct.'))+(st.note?' '+esc(st.note):'')+'</div>';
+    if(st.credit<1&&q.solution||st.revealed||!strict)h+='<div class="sol"><b>Worked solution</b>\n'+esc(q.solution)+'\n\n<b>Answer:</b> '+esc(q.answer)+'</div>';
+    return h+'<div class="row"><button class="btn" data-act="next">'+(sess.i+1<n?'Next question':'See results')+'</button></div>';
+  }
+  if(st.wrong)h+='<div class="fb no"><strong>Not quite.</strong> '+esc(st.note)+'</div><div class="row"><button class="btn link" data-act="iwasright">I was right</button><button class="btn link" data-act="keybad">The answer key looks wrong</button></div>';
+  if(st.err)h+='<div class="fb no">'+esc(st.err)+'</div><div class="row"><button class="btn ghost" data-act="self" data-v="1">Mark me right</button><button class="btn ghost" data-act="self" data-v="0">Mark me wrong</button></div>';
+  h+='<textarea id="abox" placeholder="Type your final answer'+(strict?' (show the method in your head, not here)':'')+'" '+(st.busy?'disabled':'')+'>'+esc(st.text)+'</textarea><div class="row"><button class="btn" data-act="submit"'+(st.busy?' disabled':'')+'>'+(st.busy?'Marking…':'Check answer')+'</button>';
+  if(st.hints<3&&(!strict||st.attempts>0))h+='<button class="btn ghost" data-act="hint">Hint: '+HL[st.hints].toLowerCase()+(strict?' (costs marks)':'')+'</button>';
+  h+='<button class="btn link" data-act="giveup">'+(strict?'Give up, show solution':'Show solution')+'</button></div>';
+  if(strict&&st.attempts===0)h+='<p class="sub">Hints unlock after your first attempt.</p>';
+  return h;
+}
+function summarize(){
+  const qs=sess.qs.filter(q=>!q.st.void),score=qs.length?qs.reduce((a,q)=>a+q.st.credit,0)/qs.length:0;
+  return{score:score,hints:sess.qs.reduce((a,q)=>a+q.st.hints,0),cw:qs.filter(q=>q.st.conf===3&&q.st.firstWrong).length,n:qs.length};
+}
+function outcome(sum){return sum.score>=.8&&sum.hints<=1?'solid':sum.score>=.5?'revise':'learning';}
+function resHTML(){
+  const sum=summarize(),o=outcome(sum),pct=Math.round(sum.score*100);
+  return'<p class="big" style="color:'+COL[o]+'">'+pct+'%</p><p class="muted">'+(o==='solid'?'This planet turns green. I will bring it back for review in a few days.':o==='revise'?'This planet turns amber: you have most of it, but there are gaps to close.':'Back to learning for this chapter. Try the Learn mode again, then another checkpoint.')+'</p>'+
+   '<div class="res">'+sess.qs.map((q,i)=>'<div><span>'+(i+1)+'. '+esc(q.topic||'Question')+(q.st.conf===3&&q.st.firstWrong?' (certain, but wrong)':'')+'</span><b>'+(q.st.void?'void':q.st.credit===1?'✓':q.st.credit>0?'½':'✗')+'</b></div>').join('')+'</div>'+
+   '<p class="sub">Hints used: '+sum.hints+'. Confident-but-wrong answers: '+sum.cw+'.</p><div class="row"><button class="btn" data-act="saverev">Save to map</button><button class="btn ghost" data-act="back">Discard</button></div>';
+}
+
+/* ---------- prompts ---------- */
+function ctxLine(c){return'Subject: '+c.s.name+'. Unit '+c.u+' of Queensland senior secondary (QCE Units 3 and 4, Year 12). Textbook chapter: "'+c.ch.title+'".';}
+const MATHSTYLE='Write maths in plain text and Unicode only (x², √x, π, ∫, e^(2x), (a+b)/c, d/dx). Never use LaTeX or dollar signs.';
+function lessonPrompt(c){
+  const maths=/math/i.test(c.s.name);
+  return'You are a warm, clear, patient tutor teaching a Year 12 student.\n'+ctxLine(c)+'\nTeach this chapter from scratch using these markdown headings: ## What this chapter is about, ## Key ideas (short bullets with the key formulas), ## Worked example 1 (a standard question with every step shown), ## Worked example 2 (harder, exam-style), ## Common mistakes. About 500 to 700 words.\n'+(maths?MATHSTYLE+' Put each key equation or step on its own line wrapped in backticks. ':'')+'Check every calculation by substituting back before you write it. You are working from the chapter title and the usual curriculum, not from the textbook text, so do not claim to quote the textbook.';
+}
+function qPrompt(c,n,strict,re){
+  const maths=/math/i.test(c.s.name);
+  return'You are writing '+n+' '+(strict?'exam-style checkpoint':'guided practice')+' questions for a Year 12 student.\n'+ctxLine(c)+'\n'+
+   (maths?'Each question must have one short final answer that can be typed as plain text (a number, an expression, an interval or a probability). No graphs or diagrams, and nothing that needs more than simple arithmetic by hand. '+MATHSTYLE:'Each question should be answerable in one to three sentences. Write in plain text.')+
+   '\nCover different sub-topics of the chapter and ramp up in difficulty ('+(strict?'start with a standard skill and finish with a harder multi-step question':'easy, then medium, then slightly harder')+'). Work every question out fully and verify each answer by substituting back or re-deriving it before you write it down.\n'+
+   (re.length?'The first '+re.length+' question(s) must be fresh variants of questions the student previously got wrong (same skill, changed numbers or wording), in this order:\n'+re.map((m,i)=>(i+1)+'. '+m.q).join('\n')+'\n':'')+
+   'Return only JSON: an array of '+n+' objects {"q": question text, "answer": final answer, "solution": numbered steps as one string, "topic": 2 to 4 word sub-topic, "hints": [a small nudge, an outline of the method, the full first step]}. No hint may state the final answer.';
+}
+function gradePrompt(c,q,ans,strict){
+  const maths=/math/i.test(c.s.name);
+  return'You are marking a Year 12 answer.\nQuestion: '+q.q+'\nReference answer: '+q.answer+'\nReference solution: '+q.solution+'\nStudent answer: '+ans+'\n'+
+   (maths?'Accept mathematically equivalent forms (simplified or not, reasonable rounding, equal expressions, equivalent intervals). ':'Accept answers that make the same key points in different words. ')+
+   'Reply only as JSON: {"correct": true or false, "errorType": "none" or "concept" or "method" or "arithmetic" or "misread" or "incomplete", "note": "at most two sentences. '+(strict?'If wrong, say what kind of error it looks like and roughly where, WITHOUT giving the correct answer or the solution.':'If wrong, explain the likely error kindly and point toward the fix.')+'"}';
+}
+
+/* ---------- sessions ---------- */
+function mkQs(arr,n,re){
+  if(arr&&!Array.isArray(arr)&&Array.isArray(arr.questions))arr=arr.questions;
+  if(!Array.isArray(arr))throw{message:'Claude sent back something unexpected. Try again.'};
+  const g=['Think about which rule or definition applies first.','Write down what you are given, then pick the method that uses it.','Start with the first step of that method and apply it carefully.'];
+  const qs=arr.slice(0,n).filter(o=>o&&o.q&&o.answer).map((o,i)=>({q:String(o.q),answer:String(o.answer),solution:String(o.solution||''),topic:String(o.topic||''),hints:[0,1,2].map(k=>String((o.hints||[])[k]||g[k])),retestOf:re[i]?re[i].id:null,st:{conf:null,text:'',attempts:0,hints:0,credit:0,done:false,void:false,note:'',errorType:'',firstWrong:false,wrong:false,busy:false,err:'',revealed:false}}));
+  if(!qs.length)throw{message:'No usable questions came back. Try again.'};
+  return qs;
+}
+async function startLearn(force){
+  const c=findCh(V.sel),cid=c.ch.id;
+  if(force!==true&&S.lessons[cid]){sess={kind:'learn',ch:c,phase:'lesson',text:S.lessons[cid],qa:[],abort:new AbortController(),retry:startLearn};renderPanel();return;}
+  sess={kind:'learn',ch:c,phase:'loading',msg:'Writing your lesson…',text:'',qa:[],abort:new AbortController(),retry:startLearn};renderPanel();
+  const me=sess;
+  try{
+    const t=await askText(lessonPrompt(c),x=>{if(sess!==me)return;me.text=x.text;const b=$('#lessonBody');if(b)b.innerHTML=md(x.text);else renderPanel();},me.abort.signal);
+    if(sess!==me)return;me.text=t;me.phase='lesson';S.lessons[cid]=t;DIRTY.add(cid);renderPanel();
+  }catch(e){if(sess!==me)return;me.err=errText(e);renderPanel();}
+}
+async function startQuiz(strict,force){
+  const c=findCh(V.sel),cid=c.ch.id;
+  const keep=sess&&sess.kind==='learn'?sess:null;
+  const re=strict?openMistakes(c.ch.id).slice(0,3):[];
+  const me=sess={kind:strict?'revise':'learn',ch:c,phase:'loading',msg:strict?'Building your checkpoint…':'Building practice questions…',qa:[],text:keep?keep.text:'',abort:new AbortController(),retry:()=>startQuiz(strict)};
+  me.practice=!strict;
+  const n=strict?8:3;
+  try{
+    if(force!==true){
+      if(!strict&&S.practice[cid]){me.qs=mkQs(S.practice[cid],n,[]);me.i=0;me.phase='q';renderPanel();return;}
+      if(strict&&S.bank[cid]){const re2=(S.bank[cid].re||[]).map(i=>S.mistakes.find(m=>m.id===i)).filter(Boolean);me.qs=mkQs(S.bank[cid].arr,n,re2);me.i=0;me.phase='q';renderPanel();return;}
+    }
+  }catch(e){}
+  renderPanel();
+  try{
+    const arr=await askJSON(qPrompt(c,n,strict,re),me.abort.signal);
+    if(sess!==me)return;
+    me.qs=mkQs(arr,n,re);
+    const raw=Array.isArray(arr)?arr:arr.questions;
+    if(strict)S.bank[cid]={arr:raw,re:re.map(m=>m.id)};else S.practice[cid]=raw;
+    me.i=0;me.phase='q';renderPanel();
+  }catch(e){if(sess!==me)return;me.err=errText(e);renderPanel();}
+}
+async function submit(){
+  const q=sess.qs[sess.i],st=q.st,strict=sess.kind==='revise';
+  const box=$('#abox');if(box)st.text=box.value;
+  if(!st.text.trim()){toast('Type an answer first.');return;}
+  if(norm(st.text)===norm(q.answer)){st.attempts++;st.note='';st.errorType='none';st.wrong=false;st.err='';st.done=true;st.credit=(st.attempts===1&&st.hints===0)?1:(st.hints<3?.5:0);renderPanel();return;}
+  st.busy=true;st.err='';st.wrong=false;renderPanel();
+  const me=sess;
+  try{
+    const r=await askJSON(gradePrompt(sess.ch,q,st.text,strict),me.abort.signal);
+    if(sess!==me)return;
+    st.busy=false;st.attempts++;st.note=String(r.note||'');st.errorType=String(r.errorType||'');
+    if(r.correct===true||r.correct==='true'){st.done=true;st.credit=(st.attempts===1&&st.hints===0)?1:(st.hints<3?.5:0);}
+    else{if(st.attempts===1)st.firstWrong=true;st.wrong=true;}
+  }catch(e){if(sess!==me)return;st.busy=false;st.err=errText(e)+' You can mark this one yourself.';}
+  renderPanel();
+}
+function settleSelf(ok){
+  const q=sess.qs[sess.i],st=q.st;st.err='';st.attempts++;
+  if(ok){st.done=true;st.credit=(st.attempts===1&&st.hints===0)?1:(st.hints<3?.5:0);}else{if(st.attempts===1)st.firstWrong=true;st.wrong=true;}
+}
+function nextQ(){
+  if(sess.i+1<sess.qs.length){sess.i++;sess.phase='q';}
+  else sess.phase=sess.kind==='revise'?'results':'learndone';
+}
+function applyRevise(c,sum){
+  const id=c.ch.id,p=S.progress[id]||(S.progress[id]={status:'new',attempts:0,history:[],streak:0,due:0}),before=effStatus(id);let fixed=0;
+  delete S.bank[id];
+  p.attempts=(p.attempts||0)+1;p.history=(p.history||[]).concat([{t:Date.now(),pct:Math.round(sum.score*100),hints:sum.hints,mode:'revise'}]).slice(-12);
+  p.risky=sum.cw>0;
+  if(sum.score>=.8&&sum.hints<=1){p.status='solid';p.streak=(p.streak||0)+1;p.due=Date.now()+[7,21,60][Math.min(p.streak-1,2)]*DAY;}
+  else if(sum.score>=.5){p.status='revise';p.streak=0;p.due=Date.now()+2*DAY;}
+  else{p.status='learning';p.streak=0;p.due=0;}
+  for(const q of sess.qs){
+    if(q.st.void)continue;
+    if(q.retestOf){const m=S.mistakes.find(m=>m.id===q.retestOf);if(m&&q.st.credit===1){const d=new Date().toDateString();if(!m.rights.includes(d)){m.rights.push(d);if(m.rights.length===2)fixed++;}}}
+    else if(q.st.credit<1)S.mistakes.push({id:'m'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),ch:id,topic:q.topic,q:q.q,a:q.answer,type:q.st.errorType||'method',conf:q.st.conf,t:Date.now(),rights:[]});
+  }
+  S.mistakes=S.mistakes.slice(-200);
+  S.flash={id:id,t:Date.now(),to:effStatus(id)};
+  S.log=S.log.concat([{t:Date.now(),k:'revise',ch:id,pct:Math.round(sum.score*100),before:before,after:effStatus(id),fixed:fixed}]).slice(-300);
+}
+function applyLearn(c){
+  const id=c.ch.id,p=S.progress[id]||(S.progress[id]={status:'new',attempts:0,history:[],streak:0,due:0});
+  const before=effStatus(id);
+  if(!p.status||p.status==='new')p.status='learning';
+  p.learned=Date.now();S.flash={id:id,t:Date.now(),to:effStatus(id)};
+  S.log=S.log.concat([{t:Date.now(),k:'learn',ch:id,before:before,after:effStatus(id)}]).slice(-300);
+}
+
+/* ---------- panel events ---------- */
+$('#panel').addEventListener('input',e=>{if(!sess||sess.phase!=='q')return;if(e.target.id==='abox')sess.qs[sess.i].st.text=e.target.value;});
+$('#panel').addEventListener('keydown',e=>{
+  if(e.target.id==='abox'&&e.key==='Enter'&&(e.metaKey||e.ctrlKey)){e.preventDefault();submit();}
+  if(e.target.id==='askbox'&&e.key==='Enter'){e.preventDefault();ask();}
+});
+async function ask(){
+  const b=$('#askbox');if(!b||!b.value.trim()||sess.askBusy)return;
+  const q=b.value.trim(),item={q:q,a:''};sess.qa.push(item);sess.askBusy=true;renderPanel();const me=sess;
+  try{
+    const prev=sess.qa.slice(0,-1).map(x=>'Student: '+x.q+'\nTutor: '+x.a).join('\n');
+    const prompt='You are a warm, clear tutor for a Year 12 student. '+ctxLine(sess.ch)+'\nLesson already given:\n'+sess.text.slice(0,3500)+'\n'+(prev?'Earlier questions:\n'+prev+'\n':'')+'Student question: '+q+'\nAnswer in under 200 words. '+MATHSTYLE;
+    const t=await askText(prompt,x=>{if(sess!==me)return;item.a=x.text;renderPanel();},me.abort.signal);
+    if(sess!==me)return;item.a=t;
+  }catch(e){if(sess!==me)return;item.a=errText(e);}
+  me.askBusy=false;renderPanel();
+}
+$('#panel').addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;
+  const a=b.dataset.act,v=b.dataset.v;
+  const q=sess&&sess.qs&&sess.phase==='q'?sess.qs[sess.i]:null;
+  switch(a){
+    case'close':closePanel();return;
+    case'keep':commit();return;
+    case'regen':{const rid=sess.ch.ch.id;delete S.lessons[rid];delete S.practice[rid];DIRTY.delete(rid);startLearn(true);return;}
+    case'learn':startLearn();return;
+    case'revise':startQuiz(true);return;
+    case'back':endSess();renderPanel();return;
+    case'retry':if(sess&&sess.retry)sess.retry();return;
+    case'practice':startQuiz(false);return;
+    case'ask':ask();return;
+    case'finishlearn':sess.phase='learndone';renderPanel();return;
+    case'savelearn':applyLearn(sess.ch);endSess();chrome();renderPanel();commit();return;
+    case'saverev':applyRevise(sess.ch,summarize());endSess();chrome();renderPanel();commit();return;
+    case'conf':q.st.conf=+v;break;
+    case'submit':submit();return;
+    case'hint':if(q.st.hints<3)q.st.hints++;break;
+    case'giveup':q.st.done=true;q.st.credit=0;q.st.revealed=true;q.st.attempts++;if(q.st.attempts===1)q.st.firstWrong=true;break;
+    case'iwasright':q.st.wrong=false;q.st.done=true;q.st.credit=(q.st.hints===0&&q.st.attempts===1)?1:.5;q.st.note='Marked correct by you.';q.st.firstWrong=false;break;
+    case'keybad':q.st.void=true;q.st.done=true;q.st.credit=0;q.st.wrong=false;q.st.note='Question removed from your score.';break;
+    case'self':settleSelf(v==='1');break;
+    case'next':nextQ();break;
+    case'addch':{
+      const box=$('#addbox'),lines=(box?box.value:'').split('\n').map(x=>x.trim()).filter(Boolean);
+      if(!lines.length){toast('Type at least one chapter name.');return;}
+      const s=subj(V.subj),l=s.units[V.unit]||(s.units[V.unit]=[]);
+      lines.forEach(t=>l.push({id:s.id+V.unit+'-x'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),n:'',title:t}));
+      V.add=false;chrome();renderPanel();commit();return;
+    }
+  }
+  renderPanel();
+});
+
+/* ---------- boot ---------- */
+function start(d){
+  d=d||{};
+  if(d.view==='subject'&&subj(d.subj)){V.view='subject';V.subj=d.subj;V.unit=d.unit||'3';if(d.sel&&findCh(d.sel))V.sel=d.sel;}
+  if(S.flash&&Date.now()-S.flash.t<120000){
+    const f=findCh(S.flash.id);
+    if(f){V.view='subject';V.subj=f.s.id;V.unit=f.u;V.sel=f.ch.id;toast(f.s.name+' · chapter '+numOf(f.ch,f.i)+' is now: '+LABEL[effStatus(f.ch.id)]);}
+  }
+  FLASH0=performance.now();
+  resize();chrome();renderPanel();
+  window.addEventListener('resize',resize);
+  if(window.claude&&window.claude.hot&&window.claude.hot.snapshot)window.claude.hot.snapshot(()=>({view:V.view,subj:V.subj,unit:V.unit,sel:V.sel}));
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{});
+  requestAnimationFrame(frame);
+}
+if(window.claude&&window.claude.hot&&window.claude.hot.ready)window.claude.hot.ready(start);
+else start(window.claude&&window.claude.hot&&window.claude.hot.data?window.claude.hot.data:{});
+})();
+</script>
+</body>
+</html>

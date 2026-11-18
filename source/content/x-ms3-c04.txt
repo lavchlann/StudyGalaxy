@@ -1,0 +1,92 @@
+=== ms3-c04 | append
+## 4.2
+@ex Circle parametric
+Q: Convert $\mathbf r=(3\cos t,\ 3\sin t)$ to Cartesian.
+S: $x^2+y^2=9\cos^2t+9\sin^2t=9$.
+A: $x^2+y^2=9$
+## 4.3
+@ex Collision
+Q: $\mathbf r_1=(t,\,2t)$ and $\mathbf r_2=(4-t,\,3)$. Do they meet?
+S: $t=4-t\Rightarrow t=2$ and $2t=3\Rightarrow t=1.5$.
+S: Times differ, so the paths cross but the objects do not collide.
+A: No collision.
+## 4.4
+@ex Differentiate
+Q: $\mathbf r=(t^2,\ e^{t})$. Find $\dot{\mathbf r}$ and $\ddot{\mathbf r}$.
+S: $\dot{\mathbf r}=(2t,e^t)$; $\ddot{\mathbf r}=(2,e^t)$.
+A: As above.
+@ex Integrate
+Q: $\mathbf v=(2t,\,3)$, $\mathbf r(0)=(1,0)$.
+S: $\mathbf r=(t^2+1,\ 3t)$.
+A: $\mathbf r=(t^2+1,\ 3t)$
+## 4.5
+@ex Speed
+Q: Speed at $t=1$ for $\mathbf r=(t^2,\ t^3)$.
+S: $\dot{\mathbf r}=(2t,3t^2)=(2,3)$.
+S: Speed $=\sqrt{13}$.
+A: $\sqrt{13}$
+## 4.6
+@ex Projectile
+Q: Launch at $20$ m/s at $30^\circ$. Position $(20\cos30^\circ\,t,\ 20\sin30^\circ\,t-5t^2)$. When does it land?
+S: $10t-5t^2=0\Rightarrow t=2$.
+A: $t=2$ s
+## X | Exam toolkit
+@p **Eliminate the parameter** by solving one equation for $t$ and substituting, or by using an identity like $\cos^2+\sin^2=1$. State the domain implied by the parameter range.
+@p **Rates.** Velocity is $\dot{\mathbf r}$, speed is $|\dot{\mathbf r}|$, acceleration is $\ddot{\mathbf r}$. Speed is a scalar; velocity is a vector.
+@quiz Derivative | $\mathbf r=(t^3,\,2t)$. $\dot{\mathbf r}$ at $t=1$: enter the first component.
+A: 3
+AD: $3$
+SOL: $3t^2$.
+H: Differentiate.||$3t^2$.||At 1.
+@quiz Speed | $\dot{\mathbf r}=(3,4)$. Speed?
+A: 5
+AD: $5$
+SOL: $\sqrt{9+16}$.
+H: Magnitude.||$\sqrt{25}$.||5.
+@quiz Integrate | $\mathbf v=(4t,0)$, $\mathbf r(0)=(0,0)$. $x(2)$?
+A: 8
+AD: $8$
+SOL: $x=2t^2$.
+H: Integrate.||$2t^2$.||At 2.
+@quiz Acceleration | $\mathbf r=(t^2,t^2)$. Magnitude of acceleration?
+A: 2sqrt2
+ALT: 2√2||sqrt8
+AD: $2\sqrt2$
+SOL: $\ddot{\mathbf r}=(2,2)$.
+H: Differentiate twice.||$(2,2)$.||Magnitude.
+@quiz Eliminate | $x=t$, $y=t^2$. Write $y$ in terms of $x$: enter the power.
+A: 2
+AD: $y=x^2$
+SOL: Substitute.
+H: $x=t$.||$y=x^2$.||Power 2.
+@quiz Time | Projectile height $10t-5t^2$. Maximum height?
+A: 5
+AD: $5$
+SOL: At $t=1$: $10-5=5$.
+H: Vertex.||$t=1$.||Substitute.
+@quiz Stationary | $\mathbf v=(t-2,\ t-2)$ is zero when $t=$?
+A: 2
+AD: $2$
+SOL: Both components vanish.
+H: Set zero.||$t-2=0$.||2.
+@quiz Distance | Position $(3t,4t)$. Distance from origin at $t=2$?
+A: 10
+AD: $10$
+SOL: $(6,8)$, length $10$.
+H: Position.||$(6,8)$.||Magnitude.
+@quiz Direction | $\mathbf v=(0,5)$. Is the object moving in the $x$ or $y$ direction?
+A: y
+ALT: Y
+AD: $y$
+SOL: Only $y$ changes.
+H: Components.||$x$ speed zero.||$y$.
+@quiz Constant | If $\ddot{\mathbf r}=(0,-10)$ and the initial velocity is $(5,0)$, the $x$-component of velocity at $t=3$?
+A: 5
+AD: $5$
+SOL: No horizontal acceleration.
+H: $\ddot x=0$.||Constant.||5.
+@comet Extension: Maximum range | For speed $v$ at angle $\theta$ with $g=10$, the range is $\frac{v^2\sin2\theta}{10}$. For $v=20$, the maximum range is?
+A: 40
+AD: $40$ m at $45^\circ$
+SOL: $\sin2\theta=1$: $\frac{400}{10}$.
+H: Maximise $\sin2\theta$.||It is 1.||Compute.

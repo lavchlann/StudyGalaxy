@@ -1,0 +1,111 @@
+=== ph3-c03 | interactive: none
+@summary Objects moving in a circle accelerate toward the centre even at constant speed. This chapter covers uniform circular motion, centripetal acceleration and force, horizontal circles including flat and banked curves, and vertical circles.
+@video F | Centripetal acceleration and force | search:centripetal force circular motion physics
+@video K | Uniform circular motion | search:uniform circular motion centripetal acceleration
+@video V | Veritasium: Why does the water stay in the bucket | search:Veritasium centrifugal force
+
+## 3.1 | Uniform circular motion
+@p In **uniform circular motion** the speed is constant but the **direction changes**, so the velocity changes and the object **accelerates toward the centre**. For a radius $r$ and period $T$ (time for one revolution): $v=\dfrac{2\pi r}{T}=2\pi rf$ where $f=\frac1T$ is the frequency in hertz. Angular speed $\omega=\dfrac{2\pi}{T}$ in $\text{rad s}^{-1}$ and $v=\omega r$.
+@key $$v=\frac{2\pi r}{T},\qquad a_c=\frac{v^2}{r}=\frac{4\pi^2r}{T^2}=\omega^2r$$
+@ex Speed and acceleration
+Q: A stone on a $0.80\ \text{m}$ string is whirled at $2.0$ revolutions per second. Find its speed and centripetal acceleration.
+S: $T=0.50\ \text{s}$; $v=\frac{2\pi(0.80)}{0.50}=10.1\ \text{m s}^{-1}$.
+S: $a_c=\frac{v^2}{r}=\frac{10.05^2}{0.80}=126\ \text{m s}^{-2}$.
+A: $10.1\ \text{m s}^{-1}$ and $126\ \text{m s}^{-2}$ toward the centre.
+@warn "Centrifugal force" is not a real force on the object. The object would move in a straight line at a tangent if the inward force vanished. Always name the real force providing the centripetal force (tension, friction, normal force, gravity).
+
+## 3.2 | Centripetal force
+@p **Centripetal force** is the **net** force toward the centre: $F_c=ma_c=\dfrac{mv^2}{r}$. It is not a new force; it is the resultant of the real forces. On a flat curve it is **friction**; on a string it is **tension**; for a planet it is **gravity**.
+@ex Car on a flat curve
+Q: A $1200\ \text{kg}$ car goes around a flat curve of radius $50\ \text{m}$ at $15\ \text{m s}^{-1}$. Find the friction force needed and the minimum coefficient of friction.
+S: $F=\frac{mv^2}{r}=\frac{1200(225)}{50}=5400\ \text{N}$.
+S: $\mu mg=\frac{mv^2}{r}\Rightarrow\mu=\frac{v^2}{rg}=\frac{225}{50(9.8)}=0.46$.
+A: $5400\ \text{N}$ and $\mu\ge0.46$.
+
+## 3.3 | Banked curves and horizontal circles
+@p On a **frictionless banked curve**, the horizontal component of the normal force provides the centripetal force: $N\sin\theta=\frac{mv^2}{r}$ and $N\cos\theta=mg$. Dividing gives $\tan\theta=\dfrac{v^2}{rg}$. The same method works for a conical pendulum (tension has horizontal and vertical components).
+@ex Banked road
+Q: At what angle should a frictionless curve of radius $80\ \text{m}$ be banked for $20\ \text{m s}^{-1}$?
+S: $\tan\theta=\frac{v^2}{rg}=\frac{400}{80(9.8)}=0.510$.
+A: $\theta=27.0^\circ$
+@p **Method:** resolve forces vertically (no acceleration) and horizontally toward the centre ($F=mv^2/r$), then combine.
+
+## 3.4 | Vertical circles
+@p In a vertical circle, speed changes and the net inward force changes with position. **Top:** $T+mg=\frac{mv^2}{r}$. **Bottom:** $T-mg=\frac{mv^2}{r}$. The minimum speed at the top for a string to stay taut is when $T=0$: $v_{\min}=\sqrt{gr}$. On a hill or bridge, $mg-N=\frac{mv^2}{r}$ at the top, so you feel lighter.
+@ex Bottom of a swing
+Q: A $2.0\ \text{kg}$ mass moves at $3.0\ \text{m s}^{-1}$ at the bottom of a vertical circle of radius $1.5\ \text{m}$. Find the tension.
+S: $T-mg=\frac{mv^2}{r}$, so $T=2.0\left(9.8+\frac{9.0}{1.5}\right)=31.6\ \text{N}$.
+A: $31.6\ \text{N}$
+@ex Minimum speed
+Q: Find the minimum speed at the top of a vertical circle of radius $0.50\ \text{m}$.
+S: $T=0\Rightarrow mg=\frac{mv^2}{r}\Rightarrow v=\sqrt{gr}=\sqrt{4.9}=2.21\ \text{m s}^{-1}$.
+A: $2.21\ \text{m s}^{-1}$
+
+## X | Exam toolkit
+@p **Say which force.** Examiners want the real force supplying the centripetal force, and its direction toward the centre. "Centripetal force" alone as a labelled arrow on a free-body diagram is usually wrong.
+@p **Check your signs.** Take the direction toward the centre as positive for circular-motion equations. At the top of a circle gravity points toward the centre; at the bottom it points away.
+@quiz Speed | A stone moves in a circle of radius $2.0\ \text{m}$ with period $4.0\ \text{s}$. Find its speed ($\text{m s}^{-1}$, 2 decimal places).
+A: 3.14
+AD: $3.14\ \text{m s}^{-1}$
+SOL: $v=\frac{2\pi(2.0)}{4.0}=3.14$.
+H: $v=2\pi r/T$.||$2\pi\times2.0=12.57$.||Divide by 4.0.
+@quiz Acceleration | $v=6.0\ \text{m s}^{-1}$ and $r=3.0\ \text{m}$. Find the centripetal acceleration ($\text{m s}^{-2}$).
+A: 12
+ALT: 12.0
+AD: $12\ \text{m s}^{-2}$
+SOL: $a=v^2/r=36/3.0$.
+H: $a=v^2/r$.||$36\div3$.||Compute.
+@quiz Force | A $0.50\ \text{kg}$ mass moves at $4.0\ \text{m s}^{-1}$ on a radius of $2.0\ \text{m}$. Find the centripetal force (N).
+A: 4.0
+ALT: 4
+AD: $4.0\ \text{N}$
+SOL: $F=mv^2/r=0.50(16)/2.0$.
+H: $F=mv^2/r$.||$16/2$.||Multiply by 0.50.
+@quiz Period | A motor turns at $5.0\ \text{Hz}$. Find the period (s).
+A: 0.20
+ALT: 0.2
+AD: $0.20\ \text{s}$
+SOL: $T=1/f$.
+H: $T=1/f$.||$1/5.0$.||Compute.
+@quiz Minimum speed | Find the minimum speed at the top of a vertical circle of radius $2.5\ \text{m}$ ($\text{m s}^{-1}$, 2 decimal places).
+A: 4.95
+AD: $4.95\ \text{m s}^{-1}$
+SOL: $v=\sqrt{gr}=\sqrt{24.5}=4.95$.
+H: Tension is zero at the minimum.||$mg=mv^2/r$.||$v=\sqrt{gr}$.
+@quiz Banking | A frictionless curve of radius $50\ \text{m}$ is designed for $14\ \text{m s}^{-1}$. Find the banking angle (degrees, 1 decimal place).
+A: 21.8
+AD: $21.8^\circ$
+SOL: $\tan\theta=\frac{196}{490}=0.40$, $\theta=21.8^\circ$.
+H: $\tan\theta=v^2/rg$.||$196/490$.||$\tan^{-1}0.40$.
+@quiz Accelerating? | A satellite orbits at constant speed in a circle. Is it accelerating? Answer yes or no.
+A: yes
+ALT: Yes
+AD: Yes
+SOL: Direction of velocity changes, so acceleration is non-zero toward the centre.
+H: Acceleration is change in velocity.||Velocity is a vector.||Direction changes.
+@quiz Bottom tension | $m=2.0\ \text{kg}$, $v=3.0\ \text{m s}^{-1}$, $r=1.5\ \text{m}$ at the bottom of a vertical circle. Find the tension (N, 1 decimal place).
+A: 31.6
+AD: $31.6\ \text{N}$
+SOL: $T=m(g+v^2/r)=2.0(9.8+6.0)$.
+H: Tension minus weight gives centripetal force.||$T=mg+mv^2/r$.||Substitute.
+@quiz Hill | A $1000\ \text{kg}$ car crosses the top of a hill of radius $40\ \text{m}$ at $10\ \text{m s}^{-1}$. Find the normal force (N).
+A: 7300
+AD: $7300\ \text{N}$
+SOL: $N=m(g-v^2/r)=1000(9.8-2.5)=7300$.
+H: Weight minus normal gives the inward force.||$mg-N=mv^2/r$.||Substitute.
+@quiz Angular speed | A wheel turns at $60\ \text{rpm}$. Find $\omega$ ($\text{rad s}^{-1}$, 2 decimal places).
+A: 6.28
+AD: $6.28\ \text{rad s}^{-1}$
+SOL: $f=1\ \text{Hz}$, $\omega=2\pi f$.
+H: Convert to revolutions per second.||$\omega=2\pi f$.||$2\pi\times1$.
+@comet Extension: Lifting off | A car crosses the top of a hill of radius $40\ \text{m}$. At what speed does the normal force become zero ($\text{m s}^{-1}$, 1 decimal place)?
+A: 19.8
+AD: $19.8\ \text{m s}^{-1}$
+SOL: $N=0\Rightarrow mg=\frac{mv^2}{r}\Rightarrow v=\sqrt{gr}=\sqrt{392}=19.8$.
+H: Set $N=0$.||$mg=mv^2/r$.||$v=\sqrt{gr}$.
+@comet Extension: Flat curve limit | The maximum speed on a flat curve of radius $40\ \text{m}$ with $\mu=0.50$ is?
+A: 14
+ALT: 14.0
+AD: $14\ \text{m s}^{-1}$
+SOL: $\mu mg=\frac{mv^2}{r}\Rightarrow v=\sqrt{\mu gr}=\sqrt{196}=14$.
+H: Friction provides the inward force.||$\mu g=v^2/r$.||$v=\sqrt{\mu gr}$.
