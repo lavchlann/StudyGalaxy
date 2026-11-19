@@ -10,7 +10,7 @@ const CLOUD=Array.from({length:26},()=>({u:rnd(),v:(rnd()-.5)*.7,r:rnd()*.5+.25,
 const SKY=Array.from({length:520},()=>({x:rnd(),y:rnd(),r:rnd()*rnd()*1.2+.2,a:rnd()*.5+.15,c:rnd()}));
 let BG=null,BGk='';
 function buildBG(){
-  const d=Math.min(window.devicePixelRatio||1,2),bw=Math.round(W*1.08),bh=Math.round(H*1.08);
+  const d=qd(),bw=Math.round(W*1.08),bh=Math.round(H*1.08);
   BG=document.createElement('canvas');BG.width=Math.round(bw*d);BG.height=Math.round(bh*d);
   const g=BG.getContext('2d');g.scale(d,d);
   const base=g.createLinearGradient(0,0,bw,bh);base.addColorStop(0,'#000000');base.addColorStop(.55,'#020203');base.addColorStop(1,'#030304');
@@ -31,19 +31,14 @@ function buildBG(){
   const ox=bw*.5,oy=bh*1.9;
   for(let i=1;i<=9;i++){g.beginPath();g.arc(ox,oy,bh*(.75+i*.17),Math.PI*1.08,Math.PI*1.92);g.stroke();}
   for(let i=-6;i<=6;i++){const a=-Math.PI/2+i*.11;g.beginPath();g.moveTo(ox+Math.cos(a)*bh*.9,oy+Math.sin(a)*bh*.9);g.lineTo(ox+Math.cos(a)*bh*2.6,oy+Math.sin(a)*bh*2.6);g.stroke();}
-  BGk=W+'x'+H;
+  BGk=W+'x'+H+'@'+qd();
 }
 let SS={next:2500,t0:-1e9,x:0,y:0,dx:0,dy:0};
 function drawBackdrop(t){
-  if(!BG||BGk!==W+'x'+H)buildBG();
+  if(!BG||BGk!==W+'x'+H+'@'+qd())buildBG();
   PX+=(PXt-PX)*.04;PY+=(PYt-PY)*.04;
   const ox=-W*.04-PX*W*.03-shiftX*.06,oy=-H*.04-PY*H*.03;
   ctx.drawImage(BG,ox,oy,W*1.08,H*1.08);
-  const sj=V.view==='subject'?subj(V.subj):null;
-  const tint=[[.18,.22,.55,'#2a2c36',.04],[.86,.78,.6,'#24262e',.035]];
-  if(sj)tint.push([.5,.5,.55,sj.hue,.03]);
-  tint.forEach((b,i)=>{const x=W*b[0]+Math.sin(t*.00004+i*1.3)*40-PX*30,y=H*b[1]+Math.cos(t*.00003+i*2.1)*30-PY*20,r=Math.max(W,H)*b[2];
-    const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,b[3]+hexA(b[4]));g.addColorStop(1,b[3]+'00');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);});
   drawStars(t);
   drawMist(t);
   if(tr&&!REDUCE)warp(t);
@@ -370,10 +365,26 @@ function drawReveal(c,i,p,base,A,fw,cx){
 
 /* slow drifting mist and a breathing dark edge */
 const MIST=Array.from({length:7},(_,i)=>({x:rnd(),y:rnd(),r:.35+rnd()*.4,s:.4+rnd()*.8,p:rnd()*6.28}));
-function drawMist(t){
+/* Tint, mist and vignette are soft, nearly invisible and drift very slowly. Painting them
+   full-screen every frame was the main cause of lag, so they are painted small a few times
+   a second and stretched up in a single cheap copy. */
+const LAYS={k:'',t:-1e9,a:null};
+function layersPaint(t){
+  const sc=.25,w=Math.max(8,Math.round(W*sc)),h=Math.max(8,Math.round(H*sc)),k=w+'x'+h;
+  if(LAYS.k!==k){LAYS.k=k;LAYS.t=-1e9;{const c=document.createElement('canvas');c.width=w;c.height=h;LAYS.a=c;}}
+  if(t>=LAYS.t&&t-LAYS.t<130)return;
+  LAYS.t=t;
+  const A=LAYS.a.getContext('2d');A.setTransform(sc,0,0,sc,0,0);A.clearRect(0,0,W,H);
+  const sj=V.view==='subject'?subj(V.subj):null;
+  const tint=[[.18,.22,.55,'#2a2c36',.04],[.86,.78,.6,'#24262e',.035]];
+  if(sj)tint.push([.5,.5,.55,sj.hue,.03]);
+  tint.forEach((b,i)=>{const x=W*b[0]+Math.sin(t*.00004+i*1.3)*40-PX*30,y=H*b[1]+Math.cos(t*.00003+i*2.1)*30-PY*20,r=Math.max(W,H)*b[2];
+    const g=A.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,b[3]+hexA(b[4]));g.addColorStop(1,b[3]+'00');A.fillStyle=g;A.fillRect(0,0,W,H);});
+  const B=A;
   const tt=REDUCE?0:t;
   MIST.forEach(m=>{const x=(((m.x+tt*.0000045*m.s)%1.4)-.2)*W,y=(m.y+.06*Math.sin(tt*.00007*m.s+m.p))*H,r=Math.max(W,H)*m.r;
-    const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,'rgba(120,125,145,.028)');g.addColorStop(.6,'rgba(90,95,115,.012)');g.addColorStop(1,'rgba(90,95,115,0)');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);});
-  const b=REDUCE?.5:.5+.5*Math.sin(tt*.00045),g=ctx.createRadialGradient(W/2,H/2,Math.min(W,H)*.35,W/2,H/2,Math.max(W,H)*.78);
-  g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,'+(.45+.2*b).toFixed(3)+')');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    const g=B.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,'rgba(120,125,145,.028)');g.addColorStop(.6,'rgba(90,95,115,.012)');g.addColorStop(1,'rgba(90,95,115,0)');B.fillStyle=g;B.fillRect(0,0,W,H);});
+  const bb=REDUCE?.5:.5+.5*Math.sin(tt*.00045),g=B.createRadialGradient(W/2,H/2,Math.min(W,H)*.35,W/2,H/2,Math.max(W,H)*.78);
+  g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,'+(.45+.2*bb).toFixed(3)+')');B.fillStyle=g;B.fillRect(0,0,W,H);
 }
+function drawMist(t){layersPaint(t);ctx.drawImage(LAYS.a,0,0,W,H);}

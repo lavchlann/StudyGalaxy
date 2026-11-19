@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><script>window.SG_WEB=true;window.SG_BUILD="20261118-8452242c";</script><meta name="theme-color" content="#0a0a0c"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-180.png">
+<meta charset="utf-8"><script>window.SG_WEB=true;window.SG_BUILD="20261119-205eabe5";</script><meta name="theme-color" content="#0a0a0c"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-180.png">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Study Galaxy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap">
@@ -785,7 +785,18 @@ let sess=null, SAMPLE, tr=null, unitT0=-9999, hits=[], shiftX=0;
 /* ---------- canvas ---------- */
 const cv=$('#sky'), ctx=cv.getContext('2d');
 let W=0,H=0;
-function resize(){const d=Math.min(window.devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=Math.round(W*d);cv.height=Math.round(H*d);ctx.setTransform(d,0,0,d,0,0);}
+let QUAL=1;try{QUAL=Math.min(1,Math.max(.5,+localStorage.getItem('sg_q')||((window.devicePixelRatio||1)>1.5?.75:1)));}catch(e){}
+function qd(){return Math.max(.75,Math.min(window.devicePixelRatio||1,2)*QUAL);}
+const QM={s:0,n:0,bad:0,l:0};
+function qualityWatch(now){
+  const dt=now-QM.l;QM.l=now;
+  if(now<5000||document.hidden||dt<=0||dt>250)return;
+  QM.s+=dt;QM.n++;
+  if(QM.n<90)return;
+  const avg=QM.s/QM.n;QM.s=0;QM.n=0;
+  if(avg>30&&QUAL>.5){if(++QM.bad>=2){QM.bad=0;QUAL=Math.max(.5,QUAL-.25);try{localStorage.setItem('sg_q',String(QUAL));}catch(e){}resize();}}else QM.bad=0;
+}
+function resize(){const d=qd();W=cv.clientWidth;H=cv.clientHeight;cv.width=Math.round(W*d);cv.height=Math.round(H*d);ctx.setTransform(d,0,0,d,0,0);}
 let seed=11;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
 const stars=Array.from({length:430},()=>({x:rnd(),y:rnd(),r:rnd()*1.3+.2,p:rnd()*6.28,s:rnd()*.0015+.0004,d:rnd()*.7+.3}));
 function hex(c){const n=parseInt(c.slice(1),16);return[(n>>16)&255,(n>>8)&255,n&255];}
@@ -808,7 +819,7 @@ const CLOUD=Array.from({length:26},()=>({u:rnd(),v:(rnd()-.5)*.7,r:rnd()*.5+.25,
 const SKY=Array.from({length:520},()=>({x:rnd(),y:rnd(),r:rnd()*rnd()*1.2+.2,a:rnd()*.5+.15,c:rnd()}));
 let BG=null,BGk='';
 function buildBG(){
-  const d=Math.min(window.devicePixelRatio||1,2),bw=Math.round(W*1.08),bh=Math.round(H*1.08);
+  const d=qd(),bw=Math.round(W*1.08),bh=Math.round(H*1.08);
   BG=document.createElement('canvas');BG.width=Math.round(bw*d);BG.height=Math.round(bh*d);
   const g=BG.getContext('2d');g.scale(d,d);
   const base=g.createLinearGradient(0,0,bw,bh);base.addColorStop(0,'#000000');base.addColorStop(.55,'#020203');base.addColorStop(1,'#030304');
@@ -829,19 +840,14 @@ function buildBG(){
   const ox=bw*.5,oy=bh*1.9;
   for(let i=1;i<=9;i++){g.beginPath();g.arc(ox,oy,bh*(.75+i*.17),Math.PI*1.08,Math.PI*1.92);g.stroke();}
   for(let i=-6;i<=6;i++){const a=-Math.PI/2+i*.11;g.beginPath();g.moveTo(ox+Math.cos(a)*bh*.9,oy+Math.sin(a)*bh*.9);g.lineTo(ox+Math.cos(a)*bh*2.6,oy+Math.sin(a)*bh*2.6);g.stroke();}
-  BGk=W+'x'+H;
+  BGk=W+'x'+H+'@'+qd();
 }
 let SS={next:2500,t0:-1e9,x:0,y:0,dx:0,dy:0};
 function drawBackdrop(t){
-  if(!BG||BGk!==W+'x'+H)buildBG();
+  if(!BG||BGk!==W+'x'+H+'@'+qd())buildBG();
   PX+=(PXt-PX)*.04;PY+=(PYt-PY)*.04;
   const ox=-W*.04-PX*W*.03-shiftX*.06,oy=-H*.04-PY*H*.03;
   ctx.drawImage(BG,ox,oy,W*1.08,H*1.08);
-  const sj=V.view==='subject'?subj(V.subj):null;
-  const tint=[[.18,.22,.55,'#2a2c36',.04],[.86,.78,.6,'#24262e',.035]];
-  if(sj)tint.push([.5,.5,.55,sj.hue,.03]);
-  tint.forEach((b,i)=>{const x=W*b[0]+Math.sin(t*.00004+i*1.3)*40-PX*30,y=H*b[1]+Math.cos(t*.00003+i*2.1)*30-PY*20,r=Math.max(W,H)*b[2];
-    const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,b[3]+hexA(b[4]));g.addColorStop(1,b[3]+'00');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);});
   drawStars(t);
   drawMist(t);fxEvents(t);
   if(tr&&!REDUCE)warp(t);
@@ -1168,17 +1174,38 @@ function drawReveal(c,i,p,base,A,fw,cx){
 
 /* slow drifting mist and a breathing dark edge */
 const MIST=Array.from({length:7},(_,i)=>({x:rnd(),y:rnd(),r:.35+rnd()*.4,s:.4+rnd()*.8,p:rnd()*6.28}));
-function drawMist(t){
+/* Tint, mist and vignette are soft, nearly invisible and drift very slowly. Painting them
+   full-screen every frame was the main cause of lag, so they are painted small a few times
+   a second and stretched up in a single cheap copy. */
+const LAYS={k:'',t:-1e9,a:null};
+function layersPaint(t){
+  const sc=.25,w=Math.max(8,Math.round(W*sc)),h=Math.max(8,Math.round(H*sc)),k=w+'x'+h;
+  if(LAYS.k!==k){LAYS.k=k;LAYS.t=-1e9;{const c=document.createElement('canvas');c.width=w;c.height=h;LAYS.a=c;}}
+  if(t>=LAYS.t&&t-LAYS.t<130)return;
+  LAYS.t=t;
+  const A=LAYS.a.getContext('2d');A.setTransform(sc,0,0,sc,0,0);A.clearRect(0,0,W,H);
+  const sj=V.view==='subject'?subj(V.subj):null;
+  const tint=[[.18,.22,.55,'#2a2c36',.04],[.86,.78,.6,'#24262e',.035]];
+  if(sj)tint.push([.5,.5,.55,sj.hue,.03]);
+  tint.forEach((b,i)=>{const x=W*b[0]+Math.sin(t*.00004+i*1.3)*40-PX*30,y=H*b[1]+Math.cos(t*.00003+i*2.1)*30-PY*20,r=Math.max(W,H)*b[2];
+    const g=A.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,b[3]+hexA(b[4]));g.addColorStop(1,b[3]+'00');A.fillStyle=g;A.fillRect(0,0,W,H);});
+  const B=A;
   const tt=REDUCE?0:t;
   MIST.forEach(m=>{const x=(((m.x+tt*.0000045*m.s)%1.4)-.2)*W,y=(m.y+.06*Math.sin(tt*.00007*m.s+m.p))*H,r=Math.max(W,H)*m.r;
-    const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,'rgba(120,125,145,.028)');g.addColorStop(.6,'rgba(90,95,115,.012)');g.addColorStop(1,'rgba(90,95,115,0)');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);});
-  const b=REDUCE?.5:.5+.5*Math.sin(tt*.00045),g=ctx.createRadialGradient(W/2,H/2,Math.min(W,H)*.35,W/2,H/2,Math.max(W,H)*.78);
-  g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,'+(.45+.2*b).toFixed(3)+')');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    const g=B.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,'rgba(120,125,145,.028)');g.addColorStop(.6,'rgba(90,95,115,.012)');g.addColorStop(1,'rgba(90,95,115,0)');B.fillStyle=g;B.fillRect(0,0,W,H);});
+  const bb=REDUCE?.5:.5+.5*Math.sin(tt*.00045),g=B.createRadialGradient(W/2,H/2,Math.min(W,H)*.35,W/2,H/2,Math.max(W,H)*.78);
+  g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,'+(.45+.2*bb).toFixed(3)+')');B.fillStyle=g;B.fillRect(0,0,W,H);
 }
+function drawMist(t){layersPaint(t);ctx.drawImage(LAYS.a,0,0,W,H);}
 
 let FLASH0=performance.now();
+let LASTD=0,LPO=false,SETTLE=0;
 function frame(now){
-  requestAnimationFrame(frame);
+  requestAnimationFrame(frame);qualityWatch(now);
+  /* behind a lesson panel or a full-screen view the sky is mostly hidden and blurred, so animate it at a lower rate */
+  {const po=panelOpen();if(po!==LPO){LPO=po;SETTLE=now+1300;}
+   if(!tr&&!REDUCE&&now>SETTLE&&((po&&now-LASTD<48)||(typeof FXOVER!=='undefined'&&FXOVER&&now-LASTD<90)))return;}
+  LASTD=now;
   const t=REDUCE?0:now;
   const target=panelOpen()?255:0;
   shiftX+=(target-shiftX)*(REDUCE?1:.09);{const ht=(V.view==='galaxy'&&W>1100&&!panelOpen())?Math.min(200,W*.13):0;heroX+=(ht-heroX)*(REDUCE?1:.07);}

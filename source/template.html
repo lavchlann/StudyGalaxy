@@ -166,7 +166,18 @@ let sess=null, SAMPLE, tr=null, unitT0=-9999, hits=[], shiftX=0;
 /* ---------- canvas ---------- */
 const cv=$('#sky'), ctx=cv.getContext('2d');
 let W=0,H=0;
-function resize(){const d=Math.min(window.devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=Math.round(W*d);cv.height=Math.round(H*d);ctx.setTransform(d,0,0,d,0,0);}
+let QUAL=1;try{QUAL=Math.min(1,Math.max(.5,+localStorage.getItem('sg_q')||((window.devicePixelRatio||1)>1.5?.75:1)));}catch(e){}
+function qd(){return Math.max(.75,Math.min(window.devicePixelRatio||1,2)*QUAL);}
+const QM={s:0,n:0,bad:0,l:0};
+function qualityWatch(now){
+  const dt=now-QM.l;QM.l=now;
+  if(now<5000||document.hidden||dt<=0||dt>250)return;
+  QM.s+=dt;QM.n++;
+  if(QM.n<90)return;
+  const avg=QM.s/QM.n;QM.s=0;QM.n=0;
+  if(avg>30&&QUAL>.5){if(++QM.bad>=2){QM.bad=0;QUAL=Math.max(.5,QUAL-.25);try{localStorage.setItem('sg_q',String(QUAL));}catch(e){}resize();}}else QM.bad=0;
+}
+function resize(){const d=qd();W=cv.clientWidth;H=cv.clientHeight;cv.width=Math.round(W*d);cv.height=Math.round(H*d);ctx.setTransform(d,0,0,d,0,0);}
 let seed=11;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
 const stars=Array.from({length:260},()=>({x:rnd(),y:rnd(),r:rnd()*1.3+.2,p:rnd()*6.28,s:rnd()*.0015+.0004,d:rnd()*.7+.3}));
 function hex(c){const n=parseInt(c.slice(1),16);return[(n>>16)&255,(n>>8)&255,n&255];}
@@ -299,8 +310,13 @@ function drawSubject(t,o){
   ctx.restore();
 }
 let FLASH0=performance.now();
+let LASTD=0,LPO=false,SETTLE=0;
 function frame(now){
-  requestAnimationFrame(frame);
+  requestAnimationFrame(frame);qualityWatch(now);
+  /* behind a lesson panel or a full-screen view the sky is mostly hidden and blurred, so animate it at a lower rate */
+  {const po=panelOpen();if(po!==LPO){LPO=po;SETTLE=now+1300;}
+   if(!tr&&!REDUCE&&now>SETTLE&&((po&&now-LASTD<48)||(typeof FXOVER!=='undefined'&&FXOVER&&now-LASTD<90)))return;}
+  LASTD=now;
   const t=REDUCE?0:now;
   const target=panelOpen()?230:0;
   shiftX+=(target-shiftX)*(REDUCE?1:.09);
