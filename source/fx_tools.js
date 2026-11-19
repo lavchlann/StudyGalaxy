@@ -17,12 +17,9 @@ const IC={
 /* ---- top bar ---- */
 function fxBar(){
   if(document.getElementById('fxbar'))return;const d=document.createElement('div');d.id='fxbar';
-  d.innerHTML='<button class="fxb star" data-fx="search" title="Search (Ctrl+K)" aria-label="Search">'+IC.star+'</button>'+
-    '<button class="fxb" data-fx="hub" title="Study tools: due today, black hole, drills, exams, printing" aria-label="Study tools"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>'+
+  d.innerHTML='<button class="fxb wide" data-fx="search" title="Search (Ctrl+K)">'+IC.star+'<span>Search</span></button>'+
+    '<button class="fxb wide" data-fx="hub" title="All study tools"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Tools</span></button>'+
     '<button class="fxb wide" id="fx-ft" data-fx="focus" title="Focus timer">'+IC.timer+'<span>Focus</span></button>'+
-    '<button class="fxb" data-fx="cards" title="Flashcards" aria-label="Flashcards">'+IC.cards+'</button>'+
-    '<button class="fxb" data-fx="trophy" title="Trophies and challenges" aria-label="Trophies">'+IC.trophy+'</button>'+
-    '<button class="fxb" data-fx="plan" title="Exam countdown and study plan" aria-label="Exam planner">'+IC.cal+'</button>'+
     '<button class="fxb" id="fx-snd" data-fx="mixer" title="Focus sounds" aria-label="Focus sounds">'+(S.set.sound?IC.snd:IC.mute)+'</button>'+
     '<button class="fxb" data-fx="settings" title="Settings" aria-label="Settings">'+IC.gear+'</button>';
   const lb=document.getElementById('legBtn');lb.parentNode.insertBefore(d,lb);
@@ -97,7 +94,7 @@ function fxAct(a,v,b,e){
   }
 }
 /* ---- panel views ---- */
-function fxPanel(o){flushSave();endSess();V.sel=null;V.add=false;V.insights=false;V.exam=false;V.hidden=false;V.fx=o;RESET=true;renderPanel();chrome();}
+function fxPanel(o){if(FXOVER)fxCloseOverlay();flushSave();endSess();V.sel=null;V.add=false;V.insights=false;V.exam=false;V.hidden=false;V.fx=o;RESET=true;renderPanel();chrome();}
 function fxTop(eb,t){return'<div class="top"><div><p class="eyebrow">'+eb+'</p><h2>'+t+'</h2></div><span class="pbtns"><button class="x" data-act="wide" title="Wide reading view" aria-label="Wide reading view">⤢</button><button class="x" data-act="close" aria-label="Close">×</button></span></div>';}
 function fxPanelHTML(){
   const o=V.fx;
@@ -136,6 +133,7 @@ function fxSettingsHTML(){
     '<div><b>Accent colour</b><div class="fx-sw">'+Object.keys(ACC).map(k=>'<label title="'+k+'"><input type="radio" name="fxs-acc" data-fxs="accent" value="'+k+'"'+(st.accent===k?' checked':'')+'><i style="--c:'+ACC[k][1]+'"></i></label>').join('')+'</div></div>'+
     '<div><b>Ambient sound</b><span class="muted">A soft generated space hum, plus gentle chimes for timers and achievements.</span><label class="chk"><input type="checkbox" data-fxs="sound"'+(st.sound?' checked':'')+'> Sound on</label><label class="fx-vol">Volume <input type="range" min="0" max="100" step="1" value="'+Math.round(st.vol*100)+'" data-fxs="vol"></label></div>'+
     '<div><b>Focus sounds</b><span class="muted">Mix rain, lo-fi, brown noise and more from the speaker button in the top bar.</span><button class="btn ghost sm" data-fx="mixer">Open the sound mixer</button></div>'+
+    '<div><b>Quiet mode</b><span class="muted">Turns off achievement pop-ups, level-up messages and celebrations. Trophies are still recorded.</span><label class="chk"><input type="checkbox" data-fxs="quiet"'+(st.quiet?' checked':'')+'> Quiet mode</label></div>'+
     '<div><b>Opening quote</b><label class="chk"><input type="checkbox" data-fxs="quote"'+(st.quote!==false?' checked':'')+'> Show a quote when the page opens</label></div>'+
     '<div><b>Daily study time</b><span class="muted">Used by the exam planner.</span><label class="fx-vol"><input type="number" min="0.25" max="12" step="0.25" value="'+st.daily+'" data-fxs="daily" style="width:90px"> hours a day</label></div>'+
     fxSafeHTML()+fxWebSettingsHTML()+'</div>';

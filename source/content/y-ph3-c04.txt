@@ -1,0 +1,42 @@
+=== ph3-c04 | deepen
+## 4.1
+@p **An inverse square law.** Gravitational force falls with the square of the distance between centres: double the distance and the force drops to a quarter; triple it and it drops to a ninth. Every mass attracts every other mass, but $G=6.67\times10^{-11}\ \text{N m}^2\text{kg}^{-2}$ is so small that the force is only noticeable when at least one mass is planet-sized.
+@ex Worded problem: Earth and Moon
+Q: Find the gravitational force between Earth ($5.97\times10^{24}$ kg) and the Moon ($7.35\times10^{22}$ kg), whose centres are $3.84\times10^8$ m apart.
+S: $F=\dfrac{6.67\times10^{-11}\times5.97\times10^{24}\times7.35\times10^{22}}{(3.84\times10^8)^2}$.
+A: $F\approx1.98\times10^{20}$ N
+@fc def | Newton's law of universal gravitation. || $F=\dfrac{Gm_1m_2}{r^2}$ where $r$ is the distance between centres and $G=6.67\times10^{-11}\ \text{N m}^2\text{kg}^{-2}$.
+@fc word | If the distance between two masses triples, what happens to the force? || It becomes $\frac19$ of the original.
+@fc word | If both masses double and the distance doubles, the force...? || Stays the same: $\frac{2\times2}{2^2}=1$.
+## 4.2
+@p **Field strength equals free-fall acceleration.** Because $F=mg$ and $F=\frac{GMm}{r^2}$, $g=\frac{GM}{r^2}$. So the field strength in N/kg is also the free-fall acceleration in m/s². Above the surface, $r=R+h$. At a height equal to one Earth radius ($r=2R$), $g$ is a quarter of its surface value, about $2.45\ \text{m s}^{-2}$.
+@ex Worded problem: Mars
+Q: Mars has mass $6.42\times10^{23}$ kg and radius $3.39\times10^6$ m. Find $g$ on its surface and the weight of a 90 kg astronaut there.
+S: $g=\dfrac{6.67\times10^{-11}\times6.42\times10^{23}}{(3.39\times10^6)^2}\approx3.73\ \text{N kg}^{-1}$.
+S: Weight $=90\times3.73\approx335$ N (compared with 882 N on Earth). Their mass is still 90 kg.
+A: $g\approx3.7\ \text{N kg}^{-1}$; weight about $340$ N.
+@fc def | Gravitational field strength at distance $r$ from a planet's centre. || $g=\dfrac{GM}{r^2}$ (N kg⁻¹, equal to m s⁻²).
+@fc word | $g$ at a height of one Earth radius above the surface? || $r=2R$, so $g=\frac{9.8}{4}\approx2.45\ \text{N kg}^{-1}$.
+@fc def | Difference between mass and weight. || Mass (kg) is the amount of matter and is the same everywhere. Weight $W=mg$ (N) is the gravitational force and depends on $g$.
+## 4.3
+@p **Everything follows from one equation.** Set gravity equal to the centripetal force: $\frac{GMm}{r^2}=\frac{mv^2}{r}$. This gives $v=\sqrt{\frac{GM}{r}}$, and with $v=\frac{2\pi r}{T}$ it gives Kepler's third law $\frac{r^3}{T^2}=\frac{GM}{4\pi^2}$. The satellite's mass cancels, so orbital speed and period depend only on the central mass and the orbit radius. Lower orbits are faster and have shorter periods.
+@ex Worded problem: ISS
+Q: The ISS orbits about 420 km above Earth's surface. Find its orbital speed and period. ($R_E=6.37\times10^6$ m, $M_E=5.97\times10^{24}$ kg)
+S: $r=6.37\times10^6+4.20\times10^5=6.79\times10^6$ m.
+S: $v=\sqrt{\frac{6.67\times10^{-11}\times5.97\times10^{24}}{6.79\times10^6}}\approx7.66\times10^3$ m/s.
+S: $T=\frac{2\pi r}{v}=\frac{2\pi\times6.79\times10^6}{7.66\times10^3}\approx5.57\times10^3$ s $\approx93$ minutes.
+A: About $7.7$ km/s and a period of about 93 minutes.
+@fc def | Orbital speed of a satellite. || $v=\sqrt{\dfrac{GM}{r}}$ (independent of the satellite's mass).
+@fc def | Kepler's third law (circular orbits). || $\dfrac{r^3}{T^2}=\dfrac{GM}{4\pi^2}$, the same for all bodies orbiting the same central mass.
+@fc def | State Kepler's first and second laws. || (1) Planets move in ellipses with the Sun at one focus. (2) A line from the Sun to a planet sweeps equal areas in equal times, so planets move faster when closer.
+@fc word | Satellite A orbits at 4 times the radius of satellite B. Compare periods. || $T\propto r^{3/2}$, so $T_A=4^{3/2}T_B=8T_B$.
+## 4.4
+@p **Finding the geostationary radius.** Use Kepler's third law with $T=24$ h $=86400$ s (strictly a sidereal day of about 86164 s): $r=\sqrt[3]{\frac{GMT^2}{4\pi^2}}\approx4.22\times10^7$ m from Earth's centre, about 36 000 km above the surface. Geostationary satellites are used for communications and weather imaging because ground dishes can point at a fixed spot in the sky.
+@ex Geostationary orbit
+Q: Calculate the radius and speed of a geostationary orbit.
+S: $r^3=\dfrac{6.67\times10^{-11}\times5.97\times10^{24}\times86400^2}{4\pi^2}\approx7.53\times10^{22}$, so $r\approx4.22\times10^7$ m.
+S: $v=\frac{2\pi r}{T}=\frac{2\pi\times4.22\times10^7}{86400}\approx3.07\times10^3$ m/s.
+A: $r\approx4.22\times10^7$ m (about $3.58\times10^7$ m above the surface); $v\approx3.1$ km/s.
+@fc def | Three conditions for a geostationary orbit. || Period of 24 h (one sidereal day), circular orbit above the equator, moving in the same direction as Earth rotates.
+@fc def | Radius of a geostationary orbit. || About $4.22\times10^7$ m from Earth's centre (about 36 000 km altitude).
+@fc word | Why do astronauts on the ISS appear weightless? || They and the station are both in free fall around Earth with the same acceleration, so nothing pushes on them. Gravity is still about 90% of its surface value.

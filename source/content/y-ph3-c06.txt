@@ -1,0 +1,44 @@
+=== ph3-c06 | deepen
+## 6.1
+@p **Right-hand grip rule.** Grip a wire with your right thumb in the direction of conventional current: your fingers curl in the direction of the magnetic field lines, which form circles around the wire. For a solenoid, curl your fingers in the direction of the current in the loops and your thumb points to the north end. Inside a long solenoid the field is strong and almost uniform.
+@p **Showing direction in 2D.** A dot $\odot$ means a field or current coming out of the page (the tip of an arrow); a cross $\otimes$ means into the page (the tail feathers). Use these consistently in diagrams and hand-rule answers.
+@ex Field near a wire
+Q: A long straight wire carries 12 A. Find the magnetic field strength 3.0 cm from it.
+S: $B=\dfrac{\mu_0I}{2\pi r}=\dfrac{4\pi\times10^{-7}\times12}{2\pi\times0.030}$.
+A: $B=8.0\times10^{-5}$ T
+@fc def | Right-hand grip rule for a straight wire. || Thumb along the conventional current; curled fingers show the direction of the circular field lines.
+@fc def | Field around a long straight wire. || $B=\dfrac{\mu_0I}{2\pi r}$, with $\mu_0=4\pi\times10^{-7}\ \text{T m A}^{-1}$.
+@fc def | Meaning of $\odot$ and $\otimes$. || $\odot$: out of the page. $\otimes$: into the page.
+## 6.2
+@p **Right-hand palm (or slap) rule.** Point your fingers along the field $B$, your thumb along the conventional current $I$; the force on the wire comes out of your palm. Because $F=BIL\sin\theta$, the force is greatest when the wire is perpendicular to the field and zero when it is parallel.
+@ex Worded problem: balancing a wire
+Q: A horizontal 0.40 m wire of mass 12 g is in a horizontal magnetic field of 0.30 T perpendicular to it. What current makes the magnetic force exactly balance its weight?
+S: Need $BIL=mg\Rightarrow I=\dfrac{mg}{BL}=\dfrac{0.012\times9.8}{0.30\times0.40}$.
+A: $I\approx0.98$ A (directed so the force is upward).
+@fc def | Force on a current-carrying wire in a magnetic field. || $F=BIL\sin\theta$, perpendicular to both the wire and the field.
+@fc def | When is the force on a current-carrying wire zero? || When the wire is parallel (or anti-parallel) to the field ($\sin\theta=0$).
+@fc word | Two parallel wires carry current in the same direction. Do they attract or repel? || Attract.
+## 6.3
+@p **Why charges move in circles.** The magnetic force $qvB$ is always perpendicular to the velocity, so it changes direction but never speed. A constant-size force perpendicular to motion is exactly a centripetal force: $qvB=\frac{mv^2}{r}$, giving $r=\frac{mv}{qB}$. Heavier or faster particles make bigger circles; stronger fields make smaller ones. For a negative charge, reverse the force direction from the hand rule.
+@ex Worded problem: electron in a field
+Q: An electron moving at $3.0\times10^6$ m/s enters a 2.0 mT field at right angles. Find the radius of its path and the time for one revolution.
+S: $r=\dfrac{mv}{qB}=\dfrac{9.11\times10^{-31}\times3.0\times10^6}{1.60\times10^{-19}\times2.0\times10^{-3}}\approx8.5\times10^{-3}$ m.
+S: $T=\dfrac{2\pi m}{qB}=\dfrac{2\pi\times9.11\times10^{-31}}{1.60\times10^{-19}\times2.0\times10^{-3}}\approx1.8\times10^{-8}$ s.
+A: Radius about $8.5$ mm; period about $1.8\times10^{-8}$ s.
+@ex Velocity selector
+Q: Crossed fields of $E=4.0\times10^4\ \text{V m}^{-1}$ and $B=0.020$ T. What speed passes undeflected?
+S: Forces balance when $qE=qvB$, so $v=\frac EB=\frac{4.0\times10^4}{0.020}$.
+A: $2.0\times10^6$ m/s (for any charge or mass)
+@fc def | Force on a charge moving in a magnetic field. || $F=qvB\sin\theta$, perpendicular to both $v$ and $B$.
+@fc def | Radius of a charged particle's circular path in a magnetic field. || $r=\dfrac{mv}{qB}$
+@fc def | Why does a magnetic field do no work on a moving charge? || The force is always perpendicular to the velocity, so it changes direction only, not speed or kinetic energy.
+@fc word | Speed that passes undeflected through crossed $E$ and $B$ fields? || $v=\frac EB$
+## 6.4
+@p **Keeping a motor turning.** In a DC motor, the forces on the two sides of the coil form a turning effect (torque). After half a turn the forces would reverse and stop the coil, so a **split-ring commutator** reverses the current in the coil every half turn, keeping the torque in the same rotational direction. Brushes make sliding contact with the commutator. Torque is greatest when the plane of the coil is parallel to the field.
+@ex Worded problem: force on a motor coil side
+Q: A rectangular motor coil has 50 turns; each side in the field is 0.060 m long and carries 1.5 A in a 0.20 T field. Find the force on one side when the coil is parallel to the field.
+S: $F=NBIL=50\times0.20\times1.5\times0.060$.
+A: $0.90$ N (with an equal and opposite force on the other side)
+@fc def | Role of the split-ring commutator in a DC motor. || It reverses the current in the coil every half turn so the torque keeps acting in the same direction.
+@fc def | Position of a motor coil for maximum torque. || When the plane of the coil is parallel to the magnetic field.
+@fc word | How does a mass spectrometer separate ions? || Ions with the same speed and charge follow circles of radius $r=\frac{mv}{qB}$, so heavier ions travel on larger circles and land in different places.

@@ -1,0 +1,43 @@
+=== ms3-c01 | deepen
+## 1.2
+@p **Complex numbers as points.** Treat $z=a+bi$ as the point $(a,b)$ on the Argand plane. Adding complex numbers is adding vectors (head to tail). The conjugate $\bar z=a-bi$ is a reflection in the real axis. The modulus $|z|$ is the distance from the origin. Thinking geometrically makes later sections (polar form, roots) much easier.
+@p **Useful facts.** $z\bar z=a^2+b^2=|z|^2$, which is always real. That is why we divide by multiplying top and bottom by the conjugate of the denominator. Also $z+\bar z=2\operatorname{Re}(z)$ and $z-\bar z=2i\operatorname{Im}(z)$.
+@ex Solving with real and imaginary parts
+Q: Find real $x$ and $y$ such that $(x+yi)(2-i)=7+i$.
+S: Expand: $2x-xi+2yi-yi^2=(2x+y)+(2y-x)i$.
+S: Equate parts: $2x+y=7$ and $2y-x=1$. Solving, $x=\tfrac{13}{5}$, $y=\tfrac95$.
+A: $x=\frac{13}{5}$, $y=\frac95$
+@fc def | Definition of $i$ and powers of $i$. || $i^2=-1$. The powers cycle: $i,\,-1,\,-i,\,1,\,i,\dots$ (period 4).
+@fc def | What is $z\bar z$ for $z=a+bi$? || $a^2+b^2=|z|^2$, a real number.
+@fc def | How do you divide complex numbers in Cartesian form? || Multiply numerator and denominator by the conjugate of the denominator, then simplify.
+@fc def | Two complex numbers are equal when...? || Their real parts are equal AND their imaginary parts are equal.
+## 1.3
+@p **Choosing the right argument.** $\tan\theta=\frac ba$ gives two possible angles, so always draw $z$ on the Argand plane first. The principal argument $\operatorname{Arg}(z)$ lies in $(-\pi,\pi]$. For $z=-1-i$ in quadrant 3, the reference angle is $\frac\pi4$, so $\operatorname{Arg}(z)=-\pi+\frac\pi4=-\frac{3\pi}4$, not $\frac\pi4$.
+@p **Why polar form multiplies so nicely.** $\operatorname{cis}\theta_1\cdot\operatorname{cis}\theta_2=\operatorname{cis}(\theta_1+\theta_2)$ follows directly from the compound angle formulas for $\cos(A+B)$ and $\sin(A+B)$. Multiplying by $\operatorname{cis}\theta$ rotates a point by $\theta$ about the origin; multiplying by $r$ stretches it. Multiplying by $i=\operatorname{cis}\frac\pi2$ rotates by $90^\circ$.
+@ex Worded geometry: rotation
+Q: The point $z=3+i$ is rotated $\frac\pi2$ anticlockwise about the origin. Find its new position.
+S: Multiply by $i$: $i(3+i)=3i+i^2=-1+3i$.
+A: $-1+3i$
+@fc def | Polar form of $z$. || $z=r\operatorname{cis}\theta=r(\cos\theta+i\sin\theta)$ with $r=|z|$ and $\theta=\arg z$.
+@fc def | Range of the principal argument. || $-\pi<\operatorname{Arg}(z)\le\pi$
+@fc def | Multiplying and dividing in polar form. || Multiply the moduli and add the arguments; divide the moduli and subtract the arguments.
+@fc def | What does multiplying by $i$ do on the Argand plane? || Rotates the point $90^\circ$ ($\frac\pi2$) anticlockwise about the origin.
+## 1.4
+@p **Roots sit on a circle.** The $n$ solutions of $z^n=w$ all have the same modulus $|w|^{1/n}$, so they lie on a circle centred at the origin. They are equally spaced, $\frac{2\pi}{n}$ apart. Once you find one root, you can get the rest by adding $\frac{2\pi}{n}$ to the argument repeatedly. They form the vertices of a regular $n$-sided polygon.
+@ex Cube roots of $-8$
+Q: Solve $z^3=-8$ and write the solutions in Cartesian form.
+S: $-8=8\operatorname{cis}\pi$, so $z=2\operatorname{cis}\left(\frac{\pi+2k\pi}{3}\right)$, $k=-1,0,1$.
+S: $z=2\operatorname{cis}\frac\pi3=1+\sqrt3i$, $z=2\operatorname{cis}\pi=-2$, $z=2\operatorname{cis}\left(-\frac\pi3\right)=1-\sqrt3i$.
+A: $z=-2,\ 1\pm\sqrt3\,i$
+@fc def | State De Moivre's theorem. || $(r\operatorname{cis}\theta)^n=r^n\operatorname{cis}(n\theta)$ for integer $n$.
+@fc def | How are the $n$th roots of a complex number arranged? || Equally spaced around a circle of radius $|w|^{1/n}$, separated by $\frac{2\pi}{n}$: a regular $n$-gon.
+@fc def | General solution of $z^n=r\operatorname{cis}\theta$. || $z=r^{1/n}\operatorname{cis}\left(\frac{\theta+2k\pi}{n}\right)$, $k=0,1,\dots,n-1$ (or any $n$ consecutive integers).
+## 1.5
+@p **Conjugate root theorem.** If a polynomial has **real** coefficients and $a+bi$ is a root, then $a-bi$ is also a root. Together they give a real quadratic factor: $(z-(a+bi))(z-(a-bi))=z^2-2az+(a^2+b^2)$. Divide the polynomial by this quadratic to find the remaining factors.
+@ex Finding all roots from one
+Q: Given $z=1+2i$ is a root of $P(z)=z^3-z^2+3z+5$, find all roots.
+S: $1-2i$ is also a root, giving the factor $z^2-2z+5$.
+S: Divide: $P(z)=(z^2-2z+5)(z+1)$.
+A: $z=1\pm2i$ and $z=-1$
+@fc def | State the conjugate root theorem. || For a polynomial with real coefficients, non-real roots come in conjugate pairs $a\pm bi$.
+@fc def | Real quadratic factor from roots $a\pm bi$. || $z^2-2az+(a^2+b^2)$

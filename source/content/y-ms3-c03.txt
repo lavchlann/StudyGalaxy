@@ -1,0 +1,60 @@
+=== ms3-c03 | deepen
+## 3.2
+@p **Notation that keeps you safe.** Write position vectors with capital-letter points: $\overrightarrow{OA}=\mathbf a$. The vector from $A$ to $B$ is "end minus start": $\overrightarrow{AB}=\mathbf b-\mathbf a$. A unit vector in the direction of $\mathbf a$ is $\hat{\mathbf a}=\frac{\mathbf a}{|\mathbf a|}$. In 3D, $|\mathbf a|=\sqrt{a_1^2+a_2^2+a_3^2}$.
+@ex Midpoint and dividing a segment
+Q: $A(1,2,-1)$ and $B(7,-4,5)$. Find the point $P$ dividing $AB$ in the ratio $1:2$.
+S: $\overrightarrow{OP}=\mathbf a+\tfrac13\overrightarrow{AB}=\mathbf a+\tfrac13(\mathbf b-\mathbf a)$.
+S: $\overrightarrow{AB}=(6,-6,6)$, so $\overrightarrow{OP}=(1,2,-1)+(2,-2,2)=(3,0,1)$.
+A: $P(3,0,1)$
+@fc def | Vector from $A$ to $B$ in terms of position vectors. || $\overrightarrow{AB}=\mathbf b-\mathbf a$ (end minus start).
+@fc def | Unit vector in the direction of $\mathbf a$. || $\hat{\mathbf a}=\dfrac{\mathbf a}{|\mathbf a|}$
+@fc def | Magnitude of $\mathbf a=(a_1,a_2,a_3)$. || $|\mathbf a|=\sqrt{a_1^2+a_2^2+a_3^2}$
+## 3.3
+@p **Scalar and vector projections.** The scalar projection of $\mathbf a$ onto $\mathbf b$ is $\mathbf a\cdot\hat{\mathbf b}$, the length of the "shadow" of $\mathbf a$ along $\mathbf b$. The vector projection is $(\mathbf a\cdot\hat{\mathbf b})\hat{\mathbf b}$. The part of $\mathbf a$ perpendicular to $\mathbf b$ is $\mathbf a-(\mathbf a\cdot\hat{\mathbf b})\hat{\mathbf b}$. These come up in distance problems and in physics (work done by a force).
+@ex Vector projection
+Q: Find the vector projection of $\mathbf a=(2,3,1)$ onto $\mathbf b=(1,0,1)$, and the component of $\mathbf a$ perpendicular to $\mathbf b$.
+S: $\mathbf a\cdot\mathbf b=3$, $|\mathbf b|^2=2$, so the projection is $\frac{3}{2}(1,0,1)=(1.5,0,1.5)$.
+S: Perpendicular part: $(2,3,1)-(1.5,0,1.5)=(0.5,3,-0.5)$. Check: dot with $\mathbf b$ is $0.5-0.5=0$.
+A: $(1.5,0,1.5)$ and $(0.5,3,-0.5)$
+@fc def | Two forms of the dot product. || $\mathbf a\cdot\mathbf b=a_1b_1+a_2b_2+a_3b_3=|\mathbf a||\mathbf b|\cos\theta$
+@fc def | Test for perpendicular vectors. || $\mathbf a\cdot\mathbf b=0$ (for non-zero vectors).
+@fc def | Scalar projection of $\mathbf a$ onto $\mathbf b$. || $\mathbf a\cdot\hat{\mathbf b}=\dfrac{\mathbf a\cdot\mathbf b}{|\mathbf b|}$
+@fc def | Vector projection of $\mathbf a$ onto $\mathbf b$. || $\dfrac{\mathbf a\cdot\mathbf b}{|\mathbf b|^2}\,\mathbf b$
+## 3.4
+@p **Two tools for geometric proofs.** To show two lines are **parallel**, show one vector is a scalar multiple of the other ($\overrightarrow{AB}=k\overrightarrow{CD}$). To show they are **perpendicular**, show the dot product is zero. Points are **collinear** if $\overrightarrow{AB}=k\overrightarrow{AC}$. Set up the vectors in terms of a few base vectors such as $\mathbf a$ and $\mathbf b$, then simplify.
+@ex Midpoint theorem
+Q: In triangle $OAB$, $M$ and $N$ are the midpoints of $OA$ and $OB$. Prove $MN$ is parallel to $AB$ and half its length.
+S: $\overrightarrow{OM}=\tfrac12\mathbf a$ and $\overrightarrow{ON}=\tfrac12\mathbf b$.
+S: $\overrightarrow{MN}=\tfrac12\mathbf b-\tfrac12\mathbf a=\tfrac12(\mathbf b-\mathbf a)=\tfrac12\overrightarrow{AB}$.
+A: $\overrightarrow{MN}$ is a scalar multiple of $\overrightarrow{AB}$, so they are parallel, with $|MN|=\frac12|AB|$.
+@fc def | How to prove two segments are parallel with vectors. || Show one vector is a scalar multiple of the other: $\overrightarrow{AB}=k\overrightarrow{CD}$.
+@fc def | How to prove three points are collinear. || Show $\overrightarrow{AB}=k\overrightarrow{AC}$ (they share point $A$ and are parallel).
+## 3.5
+@p **Three ways to describe a line in 3D.** Vector form $\mathbf r=\mathbf a+\lambda\mathbf d$ (a point plus a direction). Parametric form: $x=a_1+\lambda d_1$, $y=a_2+\lambda d_2$, $z=a_3+\lambda d_3$. Cartesian form: $\frac{x-a_1}{d_1}=\frac{y-a_2}{d_2}=\frac{z-a_3}{d_3}$. Two lines in 3D can be **parallel**, **intersecting** or **skew** (not parallel and never meet).
+@ex Skew lines
+Q: Are the lines $\mathbf r_1=(1,0,0)+\lambda(1,1,0)$ and $\mathbf r_2=(0,0,1)+\mu(0,1,1)$ parallel, intersecting or skew?
+S: The directions are not multiples, so not parallel.
+S: Equate: $1+\lambda=0$, $\lambda=\mu$, $0=1+\mu$. The first gives $\lambda=-1$, the third gives $\mu=-1$, and the second checks: $-1=-1$. They meet!
+S: Point: $(1,0,0)+(-1)(1,1,0)=(0,-1,0)$.
+A: They intersect at $(0,-1,0)$.
+@fc def | Vector equation of a line. || $\mathbf r=\mathbf a+\lambda\mathbf d$: position vector of a point plus a scalar times the direction.
+@fc def | What are skew lines? || Lines in 3D that are not parallel and do not intersect.
+## 3.6
+@p **Meaning of the cross product.** $\mathbf a\times\mathbf b$ is a vector perpendicular to both $\mathbf a$ and $\mathbf b$ (right-hand rule), with length $|\mathbf a||\mathbf b|\sin\theta$, the area of the parallelogram they span. So the triangle area is half of $|\mathbf a\times\mathbf b|$. Order matters: $\mathbf b\times\mathbf a=-\mathbf a\times\mathbf b$, and $\mathbf a\times\mathbf a=\mathbf 0$.
+@ex Normal to two vectors
+Q: Find a unit vector perpendicular to both $\mathbf a=(1,2,0)$ and $\mathbf b=(0,1,3)$.
+S: $\mathbf a\times\mathbf b=(2\cdot3-0\cdot1,\ 0\cdot0-1\cdot3,\ 1\cdot1-2\cdot0)=(6,-3,1)$.
+S: $|(6,-3,1)|=\sqrt{46}$.
+A: $\dfrac{1}{\sqrt{46}}(6,-3,1)$ (or its negative)
+@fc def | Magnitude of $\mathbf a\times\mathbf b$ and its meaning. || $|\mathbf a||\mathbf b|\sin\theta$: the area of the parallelogram formed by $\mathbf a$ and $\mathbf b$.
+@fc def | Is $\mathbf a\times\mathbf b=\mathbf b\times\mathbf a$? || No: $\mathbf b\times\mathbf a=-(\mathbf a\times\mathbf b)$.
+@fc def | Area of a triangle with sides $\mathbf a$ and $\mathbf b$ from one vertex. || $\tfrac12|\mathbf a\times\mathbf b|$
+## 3.7
+@p **Equation of a plane.** A plane is fixed by a point $A$ and a normal vector $\mathbf n$: every point $\mathbf r$ on it satisfies $(\mathbf r-\mathbf a)\cdot\mathbf n=0$, giving the Cartesian form $n_1x+n_2y+n_3z=d$. Given three points, find two vectors in the plane, cross them to get $\mathbf n$, then substitute a point to find $d$.
+@ex Distance from a point to a plane
+Q: Find the distance from $P(1,2,3)$ to the plane $2x-y+2z=4$.
+S: Use $D=\dfrac{|n_1x_0+n_2y_0+n_3z_0-d|}{|\mathbf n|}=\dfrac{|2-2+6-4|}{\sqrt{4+1+4}}$.
+A: $\dfrac{2}{3}$
+@fc def | Cartesian equation of a plane with normal $\mathbf n=(a,b,c)$ through $A$. || $ax+by+cz=d$, where $d=\mathbf a\cdot\mathbf n$.
+@fc def | Distance from $(x_0,y_0,z_0)$ to $ax+by+cz=d$. || $\dfrac{|ax_0+by_0+cz_0-d|}{\sqrt{a^2+b^2+c^2}}$
+@fc word | Find the plane through $(1,0,0)$, $(0,1,0)$, $(0,0,1)$. || Vectors $(-1,1,0)$ and $(-1,0,1)$; cross product $(1,1,1)$. Plane $x+y+z=1$.

@@ -1,0 +1,58 @@
+=== ms3-c05 | deepen
+## 5.2
+@p **Why the determinant matters.** For a $2\times2$ matrix, $|\det A|$ is the area scale factor of the transformation $A$. If $\det A=0$ the matrix squashes the plane onto a line, information is lost, and there is no inverse. So $\det A\neq0$ is exactly the condition for $A^{-1}$ to exist and for $AX=B$ to have a unique solution.
+@p **Matrix algebra rules to watch.** Matrix multiplication is **not commutative**: usually $AB\neq BA$. So to solve $AX=B$, multiply on the **left** by $A^{-1}$: $X=A^{-1}B$, never $BA^{-1}$. Also $(AB)^{-1}=B^{-1}A^{-1}$ (order reverses).
+@ex Solving a matrix equation
+Q: Solve $XA=B$ for $X$, where $A=\begin{pmatrix}2&1\\5&3\end{pmatrix}$ and $B=\begin{pmatrix}1&0\\4&1\end{pmatrix}$.
+S: Multiply on the right by $A^{-1}$: $X=BA^{-1}$. $\det A=1$, $A^{-1}=\begin{pmatrix}3&-1\\-5&2\end{pmatrix}$.
+S: $X=\begin{pmatrix}1&0\\4&1\end{pmatrix}\begin{pmatrix}3&-1\\-5&2\end{pmatrix}=\begin{pmatrix}3&-1\\7&-2\end{pmatrix}$.
+A: $X=\begin{pmatrix}3&-1\\7&-2\end{pmatrix}$
+@fc def | Determinant and inverse of $\begin{pmatrix}a&b\\c&d\end{pmatrix}$. || $\det=ad-bc$; inverse $=\frac{1}{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$ (if $ad-bc\neq0$).
+@fc def | Solve $AX=B$ for $X$. || $X=A^{-1}B$ (multiply on the left).
+@fc def | Is matrix multiplication commutative? || No. In general $AB\neq BA$.
+@fc def | What does $\det A=0$ mean? || $A$ is singular: it has no inverse, and the related system has no unique solution.
+## 5.3
+@p **Row operations that keep the solution the same.** (1) Swap two rows. (2) Multiply a row by a non-zero constant. (3) Add a multiple of one row to another. The goal is **row-echelon form**: a staircase of leading entries with zeros below them. Then solve from the bottom row upward (back substitution). Record each operation, e.g. $R_2\to R_2-2R_1$, so a marker can follow your work.
+@ex Worded problem: tickets
+Q: A theatre sells adult, student and child tickets at \$30, \$20 and \$10. One night, 200 tickets earned \$4400, and there were twice as many student as child tickets. How many of each were sold?
+S: $a+s+c=200$, $30a+20s+10c=4400$, $s=2c$.
+S: Substitute $s=2c$: $a+3c=200$ and $30a+50c=4400$. From the first, $a=200-3c$, so $6000-90c+50c=4400\Rightarrow c=40$.
+S: $s=80$, $a=80$.
+A: 80 adult, 80 student and 40 child tickets.
+@fc def | Three elementary row operations. || Swap two rows; multiply a row by a non-zero number; add a multiple of one row to another.
+@fc def | What is back substitution? || Solving a system in row-echelon form from the last equation upward, substituting each value found into the row above.
+## 5.4
+@p **Reading the final row.** After elimination, look at the last row of the augmented matrix. $[0\ 0\ k\mid m]$ with $k\neq0$: **unique solution**. $[0\ 0\ 0\mid m]$ with $m\neq0$: says $0=m$, **no solution** (inconsistent). $[0\ 0\ 0\mid 0]$: a free variable, **infinitely many solutions**, written with a parameter such as $z=t$.
+@ex Infinitely many solutions
+Q: Solve $x+y+z=3$, $2x+3y+z=6$, $3x+4y+2z=9$.
+S: $R_2-2R_1$: $y-z=0$. $R_3-3R_1$: $y-z=0$. $R_3-R_2$: $0=0$.
+S: Let $z=t$: $y=t$, $x=3-2t$.
+A: $(x,y,z)=(3-2t,\ t,\ t)$, $t\in\mathbb R$
+@fc def | Final row $[0\ 0\ 0\mid 5]$ means...? || No solution: the system is inconsistent ($0=5$ is impossible).
+@fc def | Final row $[0\ 0\ 0\mid 0]$ means...? || Infinitely many solutions: one variable is free, so write the solution with a parameter.
+@fc def | Geometric meaning of a $3\times3$ system with a unique solution. || Three planes meeting at a single point.
+## 5.5
+@p **How a Leslie matrix works.** The population vector lists numbers in each age group. The top row holds birth rates (offspring per individual in each group). The sub-diagonal holds survival rates (the fraction surviving into the next group). Multiplying $L\mathbf x_n$ gives next period's population, so $\mathbf x_n=L^n\mathbf x_0$.
+@ex Worded problem: Leslie model
+Q: An animal has two age groups with $L=\begin{pmatrix}0.5&2\\0.6&0\end{pmatrix}$ and starts with 100 young and 50 adults. Find the population after one and two periods.
+S: $\mathbf x_1=L\mathbf x_0=\begin{pmatrix}0.5(100)+2(50)\\0.6(100)\end{pmatrix}=\begin{pmatrix}150\\60\end{pmatrix}$.
+S: $\mathbf x_2=L\mathbf x_1=\begin{pmatrix}75+120\\90\end{pmatrix}=\begin{pmatrix}195\\90\end{pmatrix}$.
+A: After one period 150 young and 60 adults; after two, 195 young and 90 adults.
+@ex Dominance matrix
+Q: In a round robin, A beat B and C, B beat C, C beat D, and D beat A and B. Rank the players using one-step and two-step dominances.
+S: With rows beating columns (order A, B, C, D), the one-step wins are A 2, B 1, C 1, D 2.
+S: Two-step dominances: A beat B and C, who beat C and D, giving A 2. B beat C, who beat D: 1. C beat D, who beat A and B: 2. D beat A and B, who between them beat B, C and C: 3.
+S: Totals of $M+M^2$: A $2+2=4$, B $1+1=2$, C $1+2=3$, D $2+3=5$.
+A: D first, then A, C, B.
+@fc def | Structure of a Leslie matrix. || Top row: birth (fecundity) rates. Sub-diagonal: survival rates. Zeros elsewhere.
+@fc def | Population after $n$ periods with Leslie matrix $L$. || $\mathbf x_n=L^n\mathbf x_0$
+@fc def | How are players ranked with a dominance matrix? || By the row sums of $M+M^2$ (one-step plus two-step dominances).
+## 5.6
+@p **Transition (Markov-style) applications.** When each column of a matrix holds the probabilities of moving from one state to the others, repeated multiplication shows the long-run behaviour. The **steady state** is the vector that does not change: $T\mathbf s=\mathbf s$ with entries adding to the total. Solve it as a system of equations.
+@ex Worded problem: market share
+Q: Each month 80% of Brand A users stay and 20% switch to B; 70% of B users stay and 30% switch to A. Find the long-run share of each brand.
+S: Steady state: $a=0.8a+0.3b$ and $a+b=1$.
+S: $0.2a=0.3b\Rightarrow a=1.5b$, so $2.5b=1$, $b=0.4$, $a=0.6$.
+A: Brand A 60%, Brand B 40% in the long run.
+@fc word | 80% of A stay, 20% go to B; 70% of B stay, 30% go to A. Long-run split? || $0.2a=0.3b$ with $a+b=1$: A 60%, B 40%.
+@fc word | 200 tickets: adults \$30, students \$20, children \$10, total \$4400, students = 2 × children. Set up the system. || $a+s+c=200$, $30a+20s+10c=4400$, $s-2c=0$.

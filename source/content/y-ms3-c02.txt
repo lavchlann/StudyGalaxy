@@ -1,0 +1,55 @@
+=== ms3-c02 | deepen
+## 2.2
+@p **The domino picture.** Induction proves a statement $P(n)$ for every natural number in two steps. The **base case** knocks over the first domino: show $P(1)$ is true. The **inductive step** shows every domino knocks over the next: assume $P(k)$ is true and prove $P(k+1)$ follows. Together they guarantee every domino falls. Both steps are essential; a step without a base proves nothing.
+@p **How to set out the proof (what markers look for).** (1) State $P(n)$ clearly. (2) Base case: check $n=1$ (or the first value given), showing LHS and RHS separately. (3) Assume $P(k)$ is true for some $k\in\mathbb Z^+$, written out in full. (4) Prove $P(k+1)$: start from one side of the $P(k+1)$ statement, use the assumption, and reach the other side. (5) Conclude: "Since $P(1)$ is true and $P(k)\Rightarrow P(k+1)$, by mathematical induction $P(n)$ is true for all $n\in\mathbb Z^+$."
+@ex Sum of squares
+Q: Prove that $\displaystyle\sum_{r=1}^{n}r^2=\frac{n(n+1)(2n+1)}{6}$ for all $n\in\mathbb Z^+$.
+S: Base case $n=1$: LHS $=1$, RHS $=\frac{1\cdot2\cdot3}{6}=1$. True.
+S: Assume $\sum_{r=1}^{k}r^2=\frac{k(k+1)(2k+1)}{6}$.
+S: Then $\sum_{r=1}^{k+1}r^2=\frac{k(k+1)(2k+1)}{6}+(k+1)^2=\frac{(k+1)\left[k(2k+1)+6(k+1)\right]}{6}=\frac{(k+1)(2k^2+7k+6)}{6}$.
+S: $2k^2+7k+6=(k+2)(2k+3)$, so this equals $\frac{(k+1)(k+2)(2(k+1)+1)}{6}$, which is the formula with $n=k+1$.
+S: By the principle of mathematical induction, the result holds for all $n\in\mathbb Z^+$.
+A: Proved.
+@ex Induction with a geometric sum
+Q: Prove $1+2+4+\dots+2^{n-1}=2^n-1$ for all $n\ge1$.
+S: $n=1$: LHS $=1$, RHS $=2-1=1$.
+S: Assume $1+2+\dots+2^{k-1}=2^k-1$. Add the next term: $2^k-1+2^k=2\cdot2^k-1=2^{k+1}-1$.
+S: This is the statement for $n=k+1$, so by induction it holds for all $n\ge1$.
+A: Proved.
+@fc def | Two steps of a proof by induction. || Base case: show $P(1)$ is true. Inductive step: assume $P(k)$ is true and prove $P(k+1)$.
+@fc def | Standard conclusion sentence for induction. || "Since $P(1)$ is true, and $P(k)$ true implies $P(k+1)$ true, by mathematical induction $P(n)$ is true for all $n\in\mathbb Z^+$."
+@fc def | Sum of the first $n$ integers. || $\frac{n(n+1)}{2}$
+@fc def | Sum of the first $n$ squares. || $\frac{n(n+1)(2n+1)}{6}$
+@fc def | In the inductive step, where do you use the assumption? || When you rewrite the first $k$ terms (or the $k$ version of the expression) using $P(k)$, then add or work with the extra $(k+1)$th part.
+## 2.3
+@p **The divisibility trick.** To prove $f(n)$ is divisible by $d$, assume $f(k)=dm$ for some integer $m$. Then write $f(k+1)$ so that $f(k)$ appears inside it, substitute $dm$, and show everything left over is also a multiple of $d$. Rearranging the assumption as "$5^k=4m+1$" and substituting often makes the algebra short.
+@ex Divisibility by 4
+Q: Prove that $5^n-1$ is divisible by 4 for all $n\in\mathbb Z^+$.
+S: $n=1$: $5-1=4$, divisible by 4.
+S: Assume $5^k-1=4m$ for some $m\in\mathbb Z$, so $5^k=4m+1$.
+S: $5^{k+1}-1=5\cdot5^k-1=5(4m+1)-1=20m+4=4(5m+1)$, a multiple of 4.
+S: So by induction, $5^n-1$ is divisible by 4 for all $n\in\mathbb Z^+$.
+A: Proved.
+@ex Divisibility by 6
+Q: Prove that $n^3+5n$ is divisible by 6 for all $n\in\mathbb Z^+$.
+S: $n=1$: $1+5=6$. True.
+S: Assume $k^3+5k=6m$. Then $(k+1)^3+5(k+1)=k^3+3k^2+3k+1+5k+5=(k^3+5k)+3k(k+1)+6$.
+S: $k(k+1)$ is a product of consecutive integers, so it is even, making $3k(k+1)$ a multiple of 6. The whole expression is $6m+6p+6$, divisible by 6.
+A: Proved.
+@fc def | Key move in a divisibility induction proof. || Write the assumption as $f(k)=dm$ (e.g. $5^k=4m+1$), then express $f(k+1)$ in terms of $f(k)$ and show the result is a multiple of $d$.
+@fc def | Why is $k(k+1)$ always even? || It is the product of two consecutive integers, and one of any two consecutive integers is even.
+## 2.4
+@p **De Moivre for identities.** Expand $(\cos\theta+i\sin\theta)^n$ two ways. De Moivre says it equals $\cos n\theta+i\sin n\theta$. The binomial theorem expands it into powers of $\cos\theta$ and $\sin\theta$. Equate real parts to get $\cos n\theta$, and imaginary parts to get $\sin n\theta$. Use $\sin^2\theta=1-\cos^2\theta$ to write the answer in one function if asked.
+@ex Expressing $\cos3\theta$
+Q: Show that $\cos3\theta=4\cos^3\theta-3\cos\theta$.
+S: Let $c=\cos\theta$, $s=\sin\theta$. $(c+is)^3=c^3+3c^2(is)+3c(is)^2+(is)^3=c^3-3cs^2+i(3c^2s-s^3)$.
+S: Real parts with De Moivre: $\cos3\theta=c^3-3cs^2=c^3-3c(1-c^2)=4c^3-3c$.
+A: Shown.
+@ex Using $z+\frac1z$
+Q: If $z=\operatorname{cis}\theta$, show that $z^n+\dfrac1{z^n}=2\cos n\theta$.
+S: $z^n=\operatorname{cis}(n\theta)$ and $z^{-n}=\operatorname{cis}(-n\theta)=\cos n\theta-i\sin n\theta$.
+S: Adding: $2\cos n\theta$.
+A: Shown. (Similarly $z^n-z^{-n}=2i\sin n\theta$.)
+@fc def | How to find $\cos n\theta$ with De Moivre. || Expand $(\cos\theta+i\sin\theta)^n$ binomially and equate real parts with $\cos n\theta$.
+@fc def | If $z=\operatorname{cis}\theta$, what is $z^n+z^{-n}$? || $2\cos n\theta$ (and $z^n-z^{-n}=2i\sin n\theta$).
+@fc def | Triple angle formula for cosine. || $\cos3\theta=4\cos^3\theta-3\cos\theta$

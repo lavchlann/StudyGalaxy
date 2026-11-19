@@ -1,0 +1,48 @@
+=== mm3-c03 | deepen
+## 3.2
+@p **Spotting the inside.** Ask "what would I calculate last?" when evaluating the function. For $y=\sqrt{1+e^{2x}}$ you would work out $1+e^{2x}$ and then take the square root last, so the outside is $\sqrt{\ }$ and the inside is $1+e^{2x}$. When a function has three layers, apply the chain rule twice, working from the outside in.
+@ex Chain rule twice
+Q: Differentiate $y=\sqrt{1+e^{2x}}$.
+S: $y=(1+e^{2x})^{1/2}$, so $y'=\tfrac12(1+e^{2x})^{-1/2}\cdot\frac{d}{dx}(1+e^{2x})$.
+S: $\frac{d}{dx}(1+e^{2x})=2e^{2x}$ (chain rule again).
+A: $y'=\dfrac{e^{2x}}{\sqrt{1+e^{2x}}}$
+@ex Worded problem: chain rule with related rates
+Q: A circular oil spill has radius $r=2\sqrt{t}$ m after $t$ minutes. How fast is its area growing at $t=4$?
+S: $A=\pi r^2=4\pi t$, so $\frac{dA}{dt}=4\pi$. (Or: $\frac{dA}{dt}=\frac{dA}{dr}\cdot\frac{dr}{dt}=2\pi r\cdot\frac{1}{\sqrt t}$, which at $t=4$ is $2\pi(4)\cdot\frac12=4\pi$.)
+A: $4\pi\approx12.6\ \text{m}^2$ per minute (constant).
+@fc def | State the chain rule in Leibniz notation. || $\dfrac{dy}{dx}=\dfrac{dy}{du}\cdot\dfrac{du}{dx}$
+@fc def | Shortcut for $\frac{d}{dx}(ax+b)^n$? || $na(ax+b)^{n-1}$
+## 3.3
+@p **Choosing $u$ and $v$.** It does not matter which factor you call $u$, because $u'v+uv'$ is symmetric. What matters is writing $u$, $u'$, $v$, $v'$ down separately before assembling. Then **factorise** by pulling out common factors, especially exponentials, because a factorised derivative is what you need to find stationary points.
+@ex Product rule and stationary points
+Q: Find the stationary points of $y=x^2e^{-x}$.
+S: $y'=2xe^{-x}-x^2e^{-x}=xe^{-x}(2-x)$.
+S: $e^{-x}\neq0$, so $x=0$ or $x=2$. The points are $(0,0)$ and $(2,4e^{-2})$.
+A: $(0,0)$ and $\left(2,\ 4e^{-2}\right)$
+@fc def | State the product rule. || $\dfrac{d}{dx}(uv)=u'v+uv'$
+@fc def | Why factorise after using the product rule? || To solve $y'=0$ easily: each factor can be set to zero, and factors like $e^{kx}$ are never zero.
+## 3.4
+@p **Quotient or product?** The quotient rule $\frac{u'v-uv'}{v^2}$ always works, but if the bottom is a simple power such as $x^3$ it is faster to rewrite $\frac{\ln x}{x^3}=x^{-3}\ln x$ and use the product rule. If the bottom is a sum, such as $x^2+1$, the quotient rule is usually clearer. The minus sign in the numerator makes the order essential.
+@ex Quotient rule with trig
+Q: Differentiate $y=\dfrac{\cos x}{1+\sin x}$ and simplify.
+S: $y'=\dfrac{-\sin x(1+\sin x)-\cos x\cos x}{(1+\sin x)^2}=\dfrac{-\sin x-(\sin^2x+\cos^2x)}{(1+\sin x)^2}$.
+S: $=\dfrac{-(\sin x+1)}{(1+\sin x)^2}$.
+A: $y'=-\dfrac{1}{1+\sin x}$
+@fc def | State the quotient rule. || $\dfrac{d}{dx}\left(\dfrac uv\right)=\dfrac{u'v-uv'}{v^2}$ (bottom times derivative of top, minus top times derivative of bottom, over bottom squared).
+## 3.5
+@p **Tangent and normal recipe.** (1) Find the point $(a,f(a))$. (2) Find the gradient $m=f'(a)$. (3) Tangent: $y-f(a)=m(x-a)$. (4) Normal: use $-\frac1m$ instead. If the tangent is horizontal ($m=0$) the normal is the vertical line $x=a$.
+@ex Worded problem: particle motion
+Q: A particle moves so its displacement is $x=te^{-0.5t}$ m after $t$ seconds. Find when it is momentarily at rest and its acceleration then.
+S: $v=e^{-0.5t}-0.5te^{-0.5t}=e^{-0.5t}(1-0.5t)$, so $v=0$ at $t=2$ s.
+S: $a=\frac{dv}{dt}=-0.5e^{-0.5t}(1-0.5t)+e^{-0.5t}(-0.5)=e^{-0.5t}(0.25t-1)$.
+S: At $t=2$: $a=e^{-1}(0.5-1)=-0.5e^{-1}\approx-0.18$ m/s².
+A: At rest at $t=2$ s; acceleration about $-0.18$ m/s².
+@ex Worded problem: rate of change in context
+Q: The concentration of a drug is $C=\dfrac{20t}{t^2+4}$ mg/L after $t$ hours. When is the concentration greatest?
+S: $C'=\dfrac{20(t^2+4)-20t(2t)}{(t^2+4)^2}=\dfrac{20(4-t^2)}{(t^2+4)^2}$.
+S: $C'=0$ when $t=2$ ($t>0$). $C'$ changes from positive to negative, so it is a maximum: $C(2)=\frac{40}{8}=5$.
+A: After 2 hours, at $5$ mg/L.
+@fc word | $x=t^3-6t^2+9t$ (m, s). When is the particle at rest? || $v=3t^2-12t+9=3(t-1)(t-3)=0$ at $t=1$ s and $t=3$ s.
+@fc word | Find the tangent to $y=xe^x$ at $x=0$. || $y'=e^x(1+x)$, gradient 1 at $(0,0)$: tangent $y=x$.
+@fc word | $C=\frac{20t}{t^2+4}$. Why is $t=2$ a maximum? || $C'=\frac{20(4-t^2)}{(t^2+4)^2}$ is positive before $t=2$ and negative after, so $C$ rises then falls.
+@fc def | Gradient of the normal if the tangent has gradient $m$? || $-\frac1m$ (the negative reciprocal), because perpendicular gradients multiply to $-1$.

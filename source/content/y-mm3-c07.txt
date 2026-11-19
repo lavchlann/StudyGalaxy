@@ -1,0 +1,46 @@
+=== mm3-c07 | deepen
+## 7.2
+@p **Bernoulli in one line.** A Bernoulli variable is a single yes/no trial coded as 1 (success) or 0 (failure). Its mean is $p$ and its variance is $p(1-p)$. The variance is largest when $p=0.5$ (the most uncertain trial) and zero when $p=0$ or $1$ (no uncertainty at all).
+@ex Bernoulli mean and variance
+Q: A free-throw shooter succeeds 70% of the time. Let $X=1$ for a successful shot. Find $E(X)$ and $\operatorname{SD}(X)$.
+S: $E(X)=p=0.7$.
+S: $\operatorname{Var}(X)=0.7\times0.3=0.21$, so $\operatorname{SD}=\sqrt{0.21}\approx0.458$.
+A: $0.7$ and about $0.458$
+@fc def | Mean and variance of a Bernoulli variable. || $E(X)=p$, $\operatorname{Var}(X)=p(1-p)$
+@fc def | When is the variance of a Bernoulli variable largest? || When $p=0.5$. Then $\operatorname{Var}=0.25$.
+## 7.3
+@p **Why the formula works.** $P(X=k)=\binom nkp^k(1-p)^{n-k}$ has three parts. $p^k$ is the chance of $k$ particular successes, $(1-p)^{n-k}$ is the chance the other trials fail, and $\binom nk$ counts how many different orders those successes could happen in. For $n=3$, $k=2$: SSF, SFS, FSS are the $\binom32=3$ orders.
+@p **Translating words into inequalities.** "At most 3" is $X\le3$. "At least 3" is $X\ge3=1-P(X\le2)$. "Fewer than 3" is $X\le2$. "More than 3" is $X\ge4$. "Between 2 and 5 inclusive" is $P(2\le X\le5)$. Write the inequality before you touch the calculator.
+@ex Worded problem: multiple-choice guessing
+Q: A test has 10 multiple-choice questions, each with 4 options. A student guesses every answer. Find the probability they get at least 5 correct.
+S: $X\sim\text{Bin}(10,0.25)$. $P(X\ge5)=1-P(X\le4)$.
+S: With a CAS, $P(X\le4)\approx0.9219$.
+A: $P(X\ge5)\approx0.0781$
+@ex Finding the number of trials
+Q: The probability a seed germinates is 0.8. How many seeds must be planted to be at least 99% sure that at least one germinates?
+S: $P(X\ge1)=1-0.2^n\ge0.99\Rightarrow0.2^n\le0.01$.
+S: $n\ge\dfrac{\ln0.01}{\ln0.2}\approx2.86$, so $n=3$.
+A: 3 seeds
+@fc def | Four conditions for a binomial model. || Fixed number of trials $n$; each trial has two outcomes; constant probability $p$; trials are independent.
+@fc def | Binomial probability formula. || $P(X=k)=\binom nk p^k(1-p)^{n-k}$
+@fc def | "At least 1" shortcut. || $P(X\ge1)=1-P(X=0)=1-(1-p)^n$
+@fc word | 10 guesses on 4-option questions. $P$(at least 5 right)? || $X\sim\text{Bin}(10,0.25)$; $P(X\ge5)=1-P(X\le4)\approx0.078$.
+@fc word | Germination rate 0.8. Smallest $n$ so $P(\text{at least one})\ge0.99$? || $1-0.2^n\ge0.99$ gives $n\ge2.86$, so $n=3$.
+## 7.4
+@p **Shape of a binomial.** The mean $np$ is where the distribution peaks (approximately). The spread $\sqrt{np(1-p)}$ grows with $n$ but more slowly than $n$, so as $n$ gets large the distribution looks more and more symmetric and bell-shaped. This is the idea behind sample proportions in Unit 4.
+@ex Worded problem: defective parts
+Q: 4% of components from a machine are defective. In a box of 200, find the expected number of defectives and the standard deviation. Would 15 defectives be unusual?
+S: $E(X)=200(0.04)=8$, $\sigma=\sqrt{200(0.04)(0.96)}=\sqrt{7.68}\approx2.77$.
+S: $15$ is $\frac{15-8}{2.77}\approx2.5$ standard deviations above the mean.
+A: Mean 8, SD about 2.77; 15 is unusual (more than 2 SD above the mean), so the machine may need checking.
+@fc def | Mean, variance and SD of $X\sim\text{Bin}(n,p)$. || $E(X)=np$, $\operatorname{Var}(X)=np(1-p)$, $\sigma=\sqrt{np(1-p)}$
+@fc word | 4% defective, box of 200. Expected defectives and SD? || Mean $8$, SD $\sqrt{7.68}\approx2.77$.
+@fc word | A binomial has mean 6 and variance 4.2. Find $n$ and $p$. || $1-p=\frac{4.2}{6}=0.7$, so $p=0.3$ and $n=\frac{6}{0.3}=20$.
+## 7.5
+@p **Commenting on a model.** Exam questions often end with "comment on the validity of the binomial model". Check each condition in context. For example, people in the same household are not independent; the probability of rain is not constant across seasons; drawing without replacement from a small group changes $p$. Name the condition and explain how the context breaks it.
+@ex Worded problem: checking the model
+Q: A quality inspector removes 5 bulbs one at a time from a box of 20, of which 4 are faulty, without replacing them. Is $X$, the number of faulty bulbs chosen, binomial?
+S: The probability of a faulty bulb changes after each draw (from $\frac4{20}$ to $\frac3{19}$ or $\frac4{19}$), so $p$ is not constant and the trials are not independent.
+A: No. Sampling without replacement from a small batch breaks the constant-$p$ and independence conditions.
+@fc word | Why is drawing without replacement from a small group not binomial? || Each draw changes the remaining proportions, so $p$ is not constant and trials are not independent.
+@fc word | Is "number of days it rains in a year" binomial? || Not really: the chance of rain changes with season (not constant $p$) and wet days tend to cluster (not independent).

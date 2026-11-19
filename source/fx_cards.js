@@ -14,7 +14,7 @@ function fxRerender(){if(!FXOVER)return;const el=document.getElementById('fxov')
 function fxCloseOverlay(){const el=document.getElementById('fxov');if(!el)return;if(FXOVER&&FXOVER.opts.onClose)FXOVER.opts.onClose();FXOVER=null;el.classList.remove('open');setTimeout(()=>{if(!FXOVER)el.remove();},450);fxDirty();chrome();}
 /* ---- cards: built from lessons, questions and official formula sheets; any future subject works the same way ---- */
 let CARDS=null;
-const CTYPES=[['q','Questions'],['key','Key ideas'],['ex','Worked examples'],['trap','Common traps'],['formula','Formulas'],['mine','My cards']];
+const CTYPES=[['q','Questions'],['word','Worded problems'],['def','Definitions and facts'],['key','Key ideas'],['ex','Worked examples'],['trap','Common traps'],['formula','Formulas'],['mine','My cards']];
 function fxAllCards(){
   if(CARDS)return CARDS;const out=[];
   for(const s of S.subjects)for(const u of UNITS)chaptersOf(s,u).forEach(c=>{const ct=CT[c.id];if(!ct)return;
@@ -26,6 +26,7 @@ function fxAllCards(){
       else if(b.t==='ex')out.push({id:c.id+'|e'+si+'-'+bi,s:s.id,u:u,ch:c.id,topic:sec.title,type:'ex',f:b.q,b:'**'+b.a+'**\n\n'+b.s.join('\n')});
       else if(b.t==='warn')out.push({id:c.id+'|w'+si+'-'+bi,s:s.id,u:u,ch:c.id,topic:sec.title,type:'trap',f:'What is the trap to avoid in **'+tp+'**?',b:b.x});
     }));
+    (ct.cards||[]).forEach((x,i)=>out.push({id:c.id+'|n'+i,s:s.id,u:u,ch:c.id,topic:x.topic,type:x.type==='word'?'word':'def',f:x.f,b:x.b}));
   });
   Object.keys(FORMULAS).forEach(sid=>{if(!subj(sid))return;FORMULAS[sid].forEach((sec,si)=>sec[1].forEach((r,ri)=>out.push({id:'F|'+sid+'|'+si+'-'+ri,s:sid,u:'F',ch:'F|'+sid,topic:sec[0],type:'formula',f:'Formula · **'+r[0]+'**\n'+sec[0],b:'$$'+r[1]+'$$'})));});
   (S.cards||[]).forEach(c=>out.push(Object.assign({type:'mine'},c)));
@@ -33,7 +34,7 @@ function fxAllCards(){
 }
 const fxConf=id=>(S.fc[id]||{}).c||0;
 function fxText(t){return'<div>'+inl(String(t)).replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')+'</div>';}
-let FC={phase:'setup',sc:{s:'all',u:'all',ch:'all',topic:'all',types:{q:1,key:1,ex:1,trap:1,formula:1,mine:1}},mode:'smart',size:20,q:[],i:0,flip:false,combo:0,best:0,n:0,sum:0,timed:0,start:0,rep:{},xpT:{},fx:[],lit0:0,stars:null};
+let FC={phase:'setup',sc:{s:'all',u:'all',ch:'all',topic:'all',types:{q:1,word:1,def:1,key:1,ex:1,trap:1,formula:1,mine:1}},mode:'smart',size:20,q:[],i:0,flip:false,combo:0,best:0,n:0,sum:0,timed:0,start:0,rep:{},xpT:{},fx:[],lit0:0,stars:null};
 function fxScope(sc){
   sc=sc||FC.sc;return fxAllCards().filter(c=>(sc.s==='all'||c.s===sc.s)&&(sc.u==='all'||c.u===sc.u||(sc.u==='F'&&c.type==='formula'))&&(sc.ch==='all'||c.ch===sc.ch)&&(sc.topic==='all'||c.topic===sc.topic)&&sc.types[c.type]&&(!subj(c.s)||!subj(c.s).hidden||sc.s===c.s));
 }
@@ -55,7 +56,7 @@ function fxBuildQueue(){
 }
 function fxStartCards(opts){
   opts=opts||{};if(opts.sc)FC.sc=Object.assign(FC.sc,opts.sc);
-  if(opts.quick){FC.mode='smart';FC.size=80;FC.timed=Date.now()+15*60000;FC.quick=true;FC.sc.types={q:1,key:1,ex:1,trap:1,formula:1,mine:1};}else{FC.timed=0;FC.quick=false;}
+  if(opts.quick){FC.mode='smart';FC.size=80;FC.timed=Date.now()+15*60000;FC.quick=true;FC.sc.types={q:1,word:1,def:1,key:1,ex:1,trap:1,formula:1,mine:1};}else{FC.timed=0;FC.quick=false;}
   FC.q=fxBuildQueue();if(!FC.q.length){toast('No cards match those filters.');return false;}
   Object.assign(FC,{phase:'run',i:0,flip:false,combo:0,best:0,n:0,sum:0,start:Date.now(),rep:{},fx:[],lit0:fxLit(fxScope()),allHigh:true});
   FC.stars=null;fxRerender();return true;

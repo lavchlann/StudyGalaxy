@@ -1,0 +1,78 @@
+=== mm3-c01 | deepen
+## 1.2
+@p **Three ways to find a limit.** (1) **Substitute** if the function is continuous there. (2) **Simplify** first if substitution gives $\tfrac00$: factorise and cancel, expand brackets, or rationalise a surd. (3) **Estimate** with a table of values either side. The textbook uses all three, and exam questions often ask you to "show" the simplification step.
+@ex Rationalising a limit
+Q: Evaluate $\displaystyle\lim_{x\to 4}\frac{\sqrt x-2}{x-4}$.
+S: Substitution gives $\tfrac00$. Write $x-4=(\sqrt x-2)(\sqrt x+2)$ (difference of two squares).
+S: Cancel $\sqrt x-2$ to get $\dfrac{1}{\sqrt x+2}$, then substitute $x=4$: $\dfrac1{2+2}$.
+A: $\dfrac14$
+@ex First principles with a reciprocal
+Q: Use first principles to show that the derivative of $f(x)=\dfrac1x$ is $-\dfrac1{x^2}$.
+S: $\dfrac{f(x+h)-f(x)}{h}=\dfrac{\frac1{x+h}-\frac1x}{h}=\dfrac{x-(x+h)}{hx(x+h)}=\dfrac{-h}{hx(x+h)}=\dfrac{-1}{x(x+h)}$.
+S: As $h\to0$ this becomes $\dfrac{-1}{x\cdot x}$.
+A: $f'(x)=-\dfrac{1}{x^2}$
+@fc def | What does $\lim_{x\to a}f(x)=L$ mean in words? || As $x$ gets closer and closer to $a$ (from both sides), $f(x)$ gets closer and closer to $L$. The function does not have to equal $L$ at $x=a$.
+@fc def | State the first-principles definition of the derivative. || $$f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}$$ It is the limit of the gradient of a chord as the chord shrinks to a point.
+@fc def | When does a two-sided limit fail to exist? || When the left-hand limit and right-hand limit are different (a jump), or when the function grows without bound (a vertical asymptote).
+## 1.3
+@p **Why $e$?** Every exponential $y=a^x$ has a gradient proportional to its height: $\frac{d}{dx}a^x=k\,a^x$. For $a=2$, $k\approx0.693$; for $a=3$, $k\approx1.099$. Somewhere between 2 and 3 there is a base where $k=1$ exactly, so the gradient equals the height. That base is $e\approx2.718$, and it makes calculus with exponentials as clean as possible.
+@ex Finding an exponential rule with an asymptote
+Q: A graph of the form $y=ae^{x}+k$ has horizontal asymptote $y=-2$ and passes through $(0,3)$. Find $a$ and $k$.
+S: The asymptote gives $k=-2$.
+S: At $x=0$: $3=a\cdot1-2$, so $a=5$.
+A: $y=5e^{x}-2$
+@fc def | What is special about the number $e$? || It is the base for which the gradient of $y=e^x$ equals its height at every point, so $\frac{d}{dx}e^x=e^x$. $e\approx2.718$.
+@fc def | For $y=ae^{b(x-h)}+k$, which constant gives the horizontal asymptote? || $k$. The asymptote is $y=k$. ($h$ shifts sideways and does not move the asymptote.)
+## 1.4
+@p **Reading the derivative.** For $y=Ae^{kx}$, $y'=kAe^{kx}=ky$. So the derivative tells you more than a number: if $k>0$ the curve is always increasing and gets steeper; if $k<0$ it always decreases and flattens towards its asymptote. An exponential has **no stationary points** on its own, which is why questions add another term (like $e^x-2x$) to create one.
+@ex Worded problem: bacteria
+Q: A bacteria culture has $N=200e^{0.3t}$ cells after $t$ hours. Find the rate of growth when $t=5$, and the time when the culture is growing at 1000 cells per hour.
+S: $\dfrac{dN}{dt}=60e^{0.3t}$. At $t=5$: $60e^{1.5}\approx268.9$ cells per hour.
+S: $60e^{0.3t}=1000\Rightarrow e^{0.3t}=\tfrac{50}{3}\Rightarrow t=\dfrac{\ln(50/3)}{0.3}\approx9.38$ hours.
+A: About $269$ cells/h at $t=5$; growth reaches $1000$ cells/h after about $9.4$ hours.
+@fc def | Differentiate $e^{f(x)}$. || $f'(x)\,e^{f(x)}$: the derivative of the power, times the original exponential.
+@fc word | A population is $P=500e^{0.04t}$ (years). How fast is it growing when $t=10$? || $P'=20e^{0.04t}$, so $P'(10)=20e^{0.4}\approx29.8$ per year.
+## 1.5
+@p **Logs undo exponentials.** Read $\log_2 8=3$ as "2 to what power gives 8? Answer 3". Every log law is an index law in disguise: $\log(xy)=\log x+\log y$ comes from $a^ma^n=a^{m+n}$, and $\log(x^n)=n\log x$ comes from $(a^m)^n=a^{mn}$. If you forget a log law, rebuild it from the matching index law.
+@ex Expanding a logarithm
+Q: Write $\ln\!\left(\dfrac{x^3\sqrt{y}}{e^2}\right)$ in terms of $\ln x$ and $\ln y$.
+S: $\ln(x^3)+\ln(y^{1/2})-\ln(e^2)$.
+S: $=3\ln x+\tfrac12\ln y-2$.
+A: $3\ln x+\tfrac12\ln y-2$
+@fc def | State the three main log laws. || $\log(xy)=\log x+\log y$; $\log\frac xy=\log x-\log y$; $\log x^n=n\log x$.
+@fc def | Domain, range and asymptote of $y=\ln x$? || Domain $x>0$, range all real numbers, vertical asymptote $x=0$, passes through $(1,0)$.
+## 1.6
+@p **Equations with different bases.** For $3^{2x}=5^{x+1}$, take $\ln$ of both sides and bring the powers down: $2x\ln3=(x+1)\ln5$. Collect the $x$ terms: $x(2\ln3-\ln5)=\ln5$, so $x=\dfrac{\ln5}{2\ln3-\ln5}\approx2.74$. The strategy is always the same: logs turn powers into multiples you can rearrange.
+@ex Equation with a log on each side
+Q: Solve $2\ln x-\ln(x+2)=\ln 3$.
+S: $\ln\dfrac{x^2}{x+2}=\ln3\Rightarrow x^2=3x+6\Rightarrow x^2-3x-6=0$.
+S: $x=\dfrac{3\pm\sqrt{33}}{2}$. The negative root makes $\ln x$ undefined, so reject it.
+A: $x=\dfrac{3+\sqrt{33}}{2}\approx4.37$
+@fc def | First step to solve $5e^{2x}=40$? || Isolate the exponential: $e^{2x}=8$, then take $\ln$: $2x=\ln 8$, $x=\frac12\ln8$.
+@fc def | Why must you check solutions of log equations? || Logs are only defined for positive arguments. Any solution making an argument zero or negative must be rejected, and you should say why.
+## 1.7
+@p **Using log laws to make differentiation easier.** Before differentiating $\ln\!\left(\frac{(x+1)^2}{\sqrt{x}}\right)$, expand it: $2\ln(x+1)-\tfrac12\ln x$. Then $y'=\dfrac{2}{x+1}-\dfrac{1}{2x}$. This avoids a messy chain-plus-quotient rule. Exam questions often reward this shortcut.
+@ex Stationary point of a log function
+Q: Find the stationary point of $y=x-2\ln x$, $x>0$, and state its nature.
+S: $y'=1-\dfrac2x=0\Rightarrow x=2$, giving $y=2-2\ln2$.
+S: $y''=\dfrac{2}{x^2}>0$, so it is a minimum.
+A: Minimum at $(2,\ 2-2\ln2)$
+@fc def | Differentiate $\ln f(x)$. || $\dfrac{f'(x)}{f(x)}$: derivative of the inside over the inside.
+@fc def | What is $\frac{d}{dx}\ln(kx)$ for a constant $k$? || $\frac1x$. The $k$ cancels: $\frac{k}{kx}=\frac1x$.
+## 1.8
+@p **Building a model from two facts.** If a quantity follows $A=A_0e^{kt}$ and you know two values, use the first to get $A_0$ and the ratio of the two to get $k$. For example, if $A=50$ at $t=0$ and $A=80$ at $t=4$: $80=50e^{4k}\Rightarrow k=\frac14\ln1.6\approx0.1175$. Always write $k$ exactly first, then round only at the end.
+@ex Worded problem: Newton's law of cooling
+Q: A cup of coffee cools according to $T=22+68e^{-kt}$ (°C, $t$ in minutes). After 5 minutes it is 70°C. (a) Find $k$. (b) How long until it reaches a drinkable 55°C? (c) How fast is it cooling at that moment?
+S: (a) $70=22+68e^{-5k}\Rightarrow e^{-5k}=\tfrac{48}{68}\Rightarrow k=-\tfrac15\ln\tfrac{12}{17}\approx0.0697$.
+S: (b) $55=22+68e^{-kt}\Rightarrow e^{-kt}=\tfrac{33}{68}\Rightarrow t=\dfrac{\ln(68/33)}{k}\approx10.4$ minutes.
+S: (c) $\dfrac{dT}{dt}=-68ke^{-kt}=-k(T-22)=-0.0697\times33\approx-2.3$ °C/min.
+A: $k\approx0.0697$; after about $10.4$ min; cooling at about $2.3$ °C per minute.
+@ex Worded problem: radioactive decay
+Q: A radioactive sample has a half-life of 6 hours and starts at 120 mg. How much remains after one day?
+S: $\tfrac12=e^{-6k}\Rightarrow k=\tfrac{\ln2}{6}$.
+S: After 24 h: $120e^{-24k}=120\cdot2^{-4}=7.5$ mg.
+A: $7.5$ mg
+@fc word | A sample halves every 8 years. Find $k$ in $A=A_0e^{-kt}$. || $\tfrac12=e^{-8k}\Rightarrow k=\dfrac{\ln2}{8}\approx0.0866$ per year.
+@fc word | $T=20+60e^{-0.1t}$. What temperature does the object approach and why? || $20$°C, because $e^{-0.1t}\to0$ as $t\to\infty$. This is room temperature (the horizontal asymptote).
+@fc word | A town of 8000 grows 3% per year. Write a continuous model and find when it reaches 12000. || Using $P=8000e^{kt}$ with $e^k=1.03$, $k=\ln1.03$. $12000=8000e^{kt}\Rightarrow t=\dfrac{\ln1.5}{\ln1.03}\approx13.7$ years.
+@fc word | $A=80e^{-0.2t}$ mg. When is the amount decreasing at 4 mg/h? || $A'=-16e^{-0.2t}=-4\Rightarrow e^{-0.2t}=\tfrac14\Rightarrow t=5\ln4\approx6.93$ h.

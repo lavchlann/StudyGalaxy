@@ -1,0 +1,54 @@
+=== ms3-c04 | deepen
+## 4.2
+@p **A vector function draws a path.** $\mathbf r(t)=x(t)\mathbf i+y(t)\mathbf j$ gives the position of a particle at time $t$. Plotting it for several values of $t$ traces the path, with $t$ telling you where the particle is and when. To find the Cartesian equation, eliminate $t$: make $t$ the subject of one equation, or use $\cos^2t+\sin^2t=1$ for trig paths.
+@ex Ellipse path
+Q: A particle moves with $\mathbf r(t)=3\cos t\,\mathbf i+2\sin t\,\mathbf j$. Find the Cartesian equation of the path and the direction of motion.
+S: $\frac x3=\cos t$, $\frac y2=\sin t$, so $\frac{x^2}{9}+\frac{y^2}{4}=1$ (an ellipse).
+S: At $t=0$ it is at $(3,0)$, at $t=\frac\pi2$ at $(0,2)$: it moves anticlockwise.
+A: $\frac{x^2}9+\frac{y^2}4=1$, travelled anticlockwise.
+@fc def | How do you find the Cartesian equation of a path $\mathbf r(t)$? || Eliminate $t$: rearrange one component for $t$ and substitute, or use $\cos^2t+\sin^2t=1$.
+@fc def | Path of $\mathbf r=a\cos t\,\mathbf i+b\sin t\,\mathbf j$. || The ellipse $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ (a circle if $a=b$).
+## 4.3
+@p **Paths cross versus collide.** Two particles' **paths cross** if there are times $t_1$ and $t_2$ (possibly different) with $\mathbf r_A(t_1)=\mathbf r_B(t_2)$. They **collide** only if they are at the same place at the **same time**, $\mathbf r_A(t)=\mathbf r_B(t)$, so both components must match for one value of $t$.
+@ex Worded problem: ships
+Q: Ship A has $\mathbf r_A=(2+t)\mathbf i+(3t)\mathbf j$ and ship B has $\mathbf r_B=(8-2t)\mathbf i+(12-3t)\mathbf j$ (km, hours). Do they collide?
+S: Equate $\mathbf i$: $2+t=8-2t\Rightarrow t=2$.
+S: Equate $\mathbf j$: $3t=12-3t\Rightarrow t=2$.
+S: Same $t$, so they collide at $\mathbf r=4\mathbf i+6\mathbf j$ after 2 hours.
+A: Yes, at $(4,6)$ after 2 hours.
+@fc def | Difference between paths crossing and a collision. || Paths cross: same point at possibly different times. Collision: same point at the same time.
+@fc word | How do you test whether two particles collide? || Set $\mathbf r_A(t)=\mathbf r_B(t)$, solve each component for $t$, and check the same $t$ works for all components.
+## 4.4
+@p **Velocity, speed and acceleration.** $\mathbf v=\mathbf r'(t)$ is tangent to the path. **Speed** is $|\mathbf v|$, a scalar. $\mathbf a=\mathbf v'(t)$. When integrating vectors, each component gets its own constant, so write $+\mathbf c$ as a vector and use the initial conditions for both components.
+@ex Worded problem: speed and direction
+Q: A drone has $\mathbf r(t)=(t^2-4t)\mathbf i+(2t+1)\mathbf j$ m. Find its speed at $t=3$ and when it moves parallel to the $\mathbf j$ direction.
+S: $\mathbf v=(2t-4)\mathbf i+2\mathbf j$. At $t=3$: $\mathbf v=2\mathbf i+2\mathbf j$, speed $\sqrt8=2\sqrt2\approx2.83$ m/s.
+S: Parallel to $\mathbf j$ when the $\mathbf i$ component is zero: $2t-4=0$, $t=2$ s.
+A: $2\sqrt2$ m/s at $t=3$; moving parallel to $\mathbf j$ at $t=2$ s.
+@fc def | Velocity, speed and acceleration from $\mathbf r(t)$. || $\mathbf v=\mathbf r'(t)$, speed $=|\mathbf v|$, $\mathbf a=\mathbf v'(t)=\mathbf r''(t)$.
+@fc def | When is a particle moving parallel to the $\mathbf i$ direction? || When the $\mathbf j$ component of velocity is 0 (and the $\mathbf i$ component is not).
+## 4.5
+@p **Rectilinear motion with variable acceleration.** When acceleration is given in terms of $t$, integrate as usual. When it is given in terms of $v$ or $x$, use $a=\frac{dv}{dt}$ or $a=v\frac{dv}{dx}=\frac{d}{dx}\left(\frac12v^2\right)$ and separate variables. The second form is the one to reach for when position appears in the acceleration.
+@ex Acceleration in terms of position
+Q: A particle has $a=-4x$ m/s² and $v=6$ m/s at $x=0$. Find $v^2$ in terms of $x$ and the furthest distance from the origin.
+S: $\frac{d}{dx}\left(\frac12v^2\right)=-4x\Rightarrow\frac12v^2=-2x^2+c$. At $x=0$, $v=6$: $c=18$.
+S: $v^2=36-4x^2$. It turns around when $v=0$: $x=\pm3$.
+A: $v^2=36-4x^2$; the particle oscillates between $x=-3$ and $x=3$.
+@fc def | Three forms of acceleration in rectilinear motion. || $a=\dfrac{dv}{dt}=\dfrac{d^2x}{dt^2}=v\dfrac{dv}{dx}=\dfrac{d}{dx}\left(\tfrac12v^2\right)$
+@fc def | Which form of acceleration do you use when $a$ depends on $x$? || $a=\frac{d}{dx}\left(\frac12v^2\right)$, then integrate with respect to $x$.
+## 4.6
+@p **Projectiles as vectors.** Take $\mathbf a=-g\mathbf j$ and integrate twice with the launch speed $u$ at angle $\theta$: $\mathbf v=u\cos\theta\,\mathbf i+(u\sin\theta-gt)\mathbf j$ and $\mathbf r=ut\cos\theta\,\mathbf i+(ut\sin\theta-\tfrac12gt^2)\mathbf j$. Maximum height when the $\mathbf j$ component of $\mathbf v$ is 0; landing when the $\mathbf j$ component of $\mathbf r$ is 0 (or equals the ground level).
+@ex Worded problem: kicked ball
+Q: A ball is kicked at 20 m/s at $30^\circ$ above level ground. Using $g=9.8$, find the time of flight and the range.
+S: $\mathbf r=(20\cos30^\circ)t\,\mathbf i+(10t-4.9t^2)\mathbf j$.
+S: Lands when $10t-4.9t^2=0$: $t=\frac{10}{4.9}\approx2.04$ s.
+S: Range $=20\cos30^\circ\times2.04\approx17.3\times2.04\approx35.3$ m.
+A: About $2.04$ s and $35.3$ m.
+@ex Uniform circular motion
+Q: $\mathbf r=5\cos(2t)\mathbf i+5\sin(2t)\mathbf j$. Show the acceleration points towards the centre and find its size.
+S: $\mathbf v=-10\sin(2t)\mathbf i+10\cos(2t)\mathbf j$, $\mathbf a=-20\cos(2t)\mathbf i-20\sin(2t)\mathbf j=-4\mathbf r$.
+S: $\mathbf a$ is a negative multiple of $\mathbf r$, so it points to the origin; $|\mathbf a|=4\times5=20$.
+A: $\mathbf a=-4\mathbf r$, magnitude $20$ (equal to $r\omega^2$).
+@fc def | Position vector of a projectile launched at speed $u$, angle $\theta$, from the origin. || $\mathbf r=ut\cos\theta\,\mathbf i+\left(ut\sin\theta-\tfrac12gt^2\right)\mathbf j$
+@fc word | When does a projectile reach maximum height? || When the vertical ($\mathbf j$) component of velocity is zero.
+@fc word | For circular motion $\mathbf r=r\cos(\omega t)\mathbf i+r\sin(\omega t)\mathbf j$, what is $\mathbf a$? || $\mathbf a=-\omega^2\mathbf r$: towards the centre with magnitude $r\omega^2$.

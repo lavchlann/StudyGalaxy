@@ -1,0 +1,67 @@
+=== mm3-c04 | deepen
+## 4.2
+@p **What the second derivative tells you.** The first derivative is a rate (how fast). The second derivative is how that rate is changing. In words: "the population is growing ($P'>0$) but the growth is slowing down ($P''<0$)". Exam questions often ask you to interpret both signs in a sentence, so practise saying them in context.
+@p **In kinematics.** If $x(t)$ is displacement, then $v=x'(t)$ and $a=x''(t)$. A particle is **speeding up** when $v$ and $a$ have the same sign, and **slowing down** when they have opposite signs. This is a frequent source of lost marks: negative acceleration does not always mean slowing down.
+@ex Worded problem: speeding up or slowing down
+Q: A particle has displacement $x=t^3-9t^2+24t$ m for $t\ge0$. Find its velocity and acceleration at $t=3$ and say whether it is speeding up.
+S: $v=3t^2-18t+24$, so $v(3)=27-54+24=-3$ m/s.
+S: $a=6t-18$, so $a(3)=0$ m/s².
+S: Check just after, at $t=3.5$: $v=-2.25$ and $a=3$, opposite signs, so it is slowing down there.
+A: $v=-3$ m/s, $a=0$; at that instant it is neither speeding up nor slowing down (it switches from speeding up to slowing down).
+@ex Second derivative of a product
+Q: Find $\dfrac{d^2y}{dx^2}$ for $y=x\ln x$.
+S: $y'=\ln x+1$.
+S: $y''=\dfrac1x$.
+A: $\dfrac{1}{x}$
+@fc def | What does $f''(x)>0$ tell you about the graph? || The gradient is increasing, so the graph is concave up (bends like a cup).
+@fc def | When is a particle speeding up? || When velocity and acceleration have the same sign (both positive or both negative).
+@fc word | $P''(t)<0$ while $P'(t)>0$. Describe the population in words. || It is still increasing, but the rate of increase is slowing down.
+## 4.3
+@p **Two tests for a stationary point.** The **second derivative test**: substitute into $f''$; positive means minimum, negative means maximum. It is quick but fails when $f''=0$. The **first derivative (sign) test**: check the sign of $f'$ just left and right of the point. $+\to-$ is a maximum, $-\to+$ is a minimum, and no change of sign is a stationary point of inflection. Use the sign test whenever $f''=0$ or is hard to compute.
+@ex A stationary point of inflection
+Q: Find and classify the stationary point of $f(x)=x^3-3x^2+3x$.
+S: $f'(x)=3x^2-6x+3=3(x-1)^2=0$ gives $x=1$.
+S: $f''(x)=6x-6$, so $f''(1)=0$: the second derivative test fails.
+S: Sign test: $f'(0)=3>0$ and $f'(2)=3>0$. No sign change, so it is a stationary point of inflection at $(1,1)$.
+A: Stationary point of inflection at $(1,1)$.
+@ex Inflection on an exponential curve
+Q: Find the point of inflection of $y=xe^{-x}$.
+S: $y'=e^{-x}(1-x)$ and $y''=e^{-x}(x-2)$.
+S: $y''=0$ at $x=2$, and $y''$ changes from negative to positive there, so it is a point of inflection: $\left(2,\ 2e^{-2}\right)$.
+A: $\left(2,\ \frac{2}{e^2}\right)$
+@fc def | Second derivative test. || At a stationary point: $f''>0$ minimum, $f''<0$ maximum, $f''=0$ inconclusive (use the sign test).
+@fc def | What is a stationary point of inflection? || A point where $f'(x)=0$ and the concavity changes, so the graph flattens but keeps going the same way. Example: $y=x^3$ at $x=0$.
+@fc def | Is $f''(a)=0$ enough for an inflection point? || No. $f''$ must also change sign at $x=a$. ($y=x^4$ has $f''(0)=0$ but no inflection.)
+## 4.4
+@p **What to label on a sketch.** Examiners expect every key feature labelled with exact coordinates: axis intercepts, stationary points with their nature, points of inflection, and asymptotes as dashed lines with their equations. Show the correct shape at the ends (end behaviour) and the correct concavity between key points.
+@ex Sketching a cubic with all features
+Q: Find the key features of $y=-x^3+3x+2$.
+S: $y$-intercept $(0,2)$. Factorise: $-(x+1)^2(x-2)$, so $x$-intercepts $(-1,0)$ and $(2,0)$.
+S: $y'=-3x^2+3=0\Rightarrow x=\pm1$. $y''=-6x$: at $x=-1$, $y''=6>0$, minimum $(-1,0)$; at $x=1$, $y''=-6<0$, maximum $(1,4)$.
+S: $y''=0$ at $x=0$ with a sign change: inflection at $(0,2)$. As $x\to\infty$, $y\to-\infty$.
+A: Min $(-1,0)$ touching the axis, max $(1,4)$, inflection $(0,2)$, crosses at $(2,0)$.
+@fc def | Checklist of features for a curve sketch. || Intercepts, stationary points and their nature, points of inflection, asymptotes, end behaviour. All labelled with exact values.
+## 4.5
+@p **Setting up an optimisation problem** is usually the hard part. Name the quantity you want to optimise (area, cost, time). Write it using two variables, then use the constraint (fixed perimeter, fixed volume) to replace one of them. State the domain from the context, for example lengths must be positive. Only then differentiate.
+@ex Worded problem: fencing against a wall
+Q: A farmer has 120 m of fencing to make a rectangular pen against a straight wall (no fence on the wall side). Find the dimensions that maximise the area.
+S: Let the two sides perpendicular to the wall be $x$, so the side parallel is $120-2x$. Area $A=x(120-2x)=120x-2x^2$, $0<x<60$.
+S: $A'=120-4x=0\Rightarrow x=30$. $A''=-4<0$, so a maximum.
+S: Dimensions $30$ m by $60$ m; area $1800\ \text{m}^2$.
+A: $30$ m $\times$ $60$ m (the long side along the wall), area $1800$ m².
+@ex Worded problem: cheapest can
+Q: A closed cylindrical can must hold $500\ \text{cm}^3$. Find the radius that uses the least metal.
+S: $\pi r^2h=500\Rightarrow h=\dfrac{500}{\pi r^2}$. Surface area $S=2\pi r^2+2\pi rh=2\pi r^2+\dfrac{1000}{r}$.
+S: $S'=4\pi r-\dfrac{1000}{r^2}=0\Rightarrow r^3=\dfrac{250}{\pi}\Rightarrow r\approx4.30$ cm.
+S: $S''=4\pi+\dfrac{2000}{r^3}>0$, so a minimum. Then $h\approx8.60$ cm (the height equals the diameter).
+A: $r\approx4.30$ cm, $h\approx8.60$ cm.
+@ex Worded problem: profit
+Q: A company's weekly profit from selling $x$ hundred items is $P=-2x^3+27x^2-84x+20$ (thousand dollars) for $0\le x\le10$. Find the maximum profit.
+S: $P'=-6x^2+54x-84=-6(x^2-9x+14)=-6(x-2)(x-7)$, so $x=2$ or $7$.
+S: $P''=-12x+54$: $P''(7)=-30<0$, a local maximum, $P(7)=-686+1323-588+20=69$.
+S: Check endpoints: $P(0)=20$, $P(10)=-2000+2700-840+20=-120$. So the maximum is at $x=7$.
+A: Selling 700 items gives the maximum profit of \$69 000.
+@fc word | 120 m of fence, pen against a wall. Best dimensions? || Sides $x$, $x$, $120-2x$. $A=120x-2x^2$ is maximised at $x=30$: $30$ m by $60$ m, area 1800 m².
+@fc word | Two positive numbers have product 64. Minimise their sum. || $S=x+\frac{64}x$, $S'=1-\frac{64}{x^2}=0\Rightarrow x=8$. Both numbers are 8, sum 16.
+@fc word | Why check endpoints in a closed-interval optimisation? || The absolute max or min can occur at an endpoint rather than at a stationary point.
+@fc word | An open box is made by cutting squares of side $x$ from a $30\times30$ cm sheet. Volume function? || $V=x(30-2x)^2$ for $0<x<15$. Maximum at $x=5$: $V=2000$ cm³.

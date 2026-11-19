@@ -603,6 +603,6 @@ function fxMoreAct(a,v,b,e){
     case'mixer':if(FXOVER)fxCloseOverlay();setTimeout(fxMixer,FXOVER?0:0);return true;
     case'mixpre':Object.assign(S.set.mix,MIXP[v]);if(!S.set.sound){S.set.sound=true;}fxDirty();fxSoundStart();fxMixStart();fxMixApply();{const p=document.getElementById('fx-pop');if(p)p.innerHTML=fxMixerHTML();const sb=document.getElementById('fx-snd');if(sb)sb.innerHTML=IC.snd;}return true;
   }
-  return false;
+  return fxUiAct(a,v,b,e);
 }
 addEventListener('pointerdown',()=>{const m=S.set.mix||{};if(S.set.sound&&['rain','brown','keys','drums','crackle'].some(k=>m[k]>0)){fxMixStart();fxMixApply();}},{once:true,capture:true});

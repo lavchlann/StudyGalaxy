@@ -1,0 +1,49 @@
+=== mm3-c02 | deepen
+## 2.2
+@p **Remembering exact values without a table.** Picture the two special triangles. Half of an equilateral triangle with side 2 has sides $1,\sqrt3,2$ and angles $\frac\pi6,\frac\pi3$. Half of a square with side 1 has sides $1,1,\sqrt2$ and angle $\frac\pi4$. Read SOH CAH TOA off these triangles and you can rebuild every exact value in the exam.
+@ex Negative angles and angles beyond $2\pi$
+Q: Find the exact values of $\cos\left(-\frac{\pi}{3}\right)$ and $\sin\frac{9\pi}{4}$.
+S: $-\frac\pi3$ is a clockwise turn into quadrant 4, where cosine is positive: $\cos\left(-\frac\pi3\right)=\cos\frac\pi3=\frac12$.
+S: $\frac{9\pi}4=2\pi+\frac\pi4$, a full turn plus $\frac\pi4$: $\sin\frac{9\pi}4=\sin\frac\pi4=\frac{\sqrt2}2$.
+A: $\tfrac12$ and $\tfrac{\sqrt2}{2}$
+@fc def | Convert between degrees and radians. || Radians $=$ degrees $\times\frac{\pi}{180}$. Degrees $=$ radians $\times\frac{180}{\pi}$. $\pi$ rad $=180^\circ$.
+@fc def | Which trig ratios are positive in each quadrant (ASTC)? || Q1 All, Q2 Sin, Q3 Tan, Q4 Cos.
+@fc def | Exact values of $\sin$, $\cos$, $\tan$ at $\frac\pi6$. || $\sin\frac\pi6=\frac12$, $\cos\frac\pi6=\frac{\sqrt3}2$, $\tan\frac\pi6=\frac1{\sqrt3}=\frac{\sqrt3}3$.
+@fc def | Exact values at $\frac\pi4$. || $\sin\frac\pi4=\cos\frac\pi4=\frac{\sqrt2}2$, $\tan\frac\pi4=1$.
+@fc def | Arc length and sector area for angle $\theta$ in radians. || $s=r\theta$ and $A=\frac12r^2\theta$.
+## 2.3
+@p **Sketching $y=a\sin(b(x-c))+d$ in five points.** Work out the period $\frac{2\pi}{b}$ and split it into four equal quarters starting at $x=c$. A sine graph goes midline, max, midline, min, midline at those five points (cosine starts at the max instead). Plot them, join smoothly, and repeat for the full domain. If $a<0$, swap max and min.
+@ex Equation with a shifted argument
+Q: Solve $\sqrt2\cos\left(x-\frac\pi4\right)=1$ for $0\le x\le2\pi$.
+S: $\cos\left(x-\frac\pi4\right)=\frac1{\sqrt2}$ with $-\frac\pi4\le x-\frac\pi4\le\frac{7\pi}4$.
+S: In that interval, cosine equals $\frac1{\sqrt2}$ at $-\frac\pi4,\frac\pi4,\frac{7\pi}4$.
+S: Add $\frac\pi4$: $x=0,\frac\pi2,2\pi$.
+A: $x=0,\ \frac\pi2,\ 2\pi$
+@fc def | Period of $y=a\sin(bx)$ and of $y=\tan(bx)$? || Sine and cosine: $\frac{2\pi}{b}$. Tangent: $\frac{\pi}{b}$.
+@fc def | For $y=a\cos(b(x-c))+d$, what are the max and min? || Max $=d+|a|$, min $=d-|a|$. The midline is $y=d$.
+## 2.4
+@p **Where the derivatives come from.** Look at $y=\sin x$: its gradient is largest ($1$) at $x=0$, zero at the peak $x=\frac\pi2$, and $-1$ at $x=\pi$. Plotting those gradients traces out $\cos x$. Do the same for $\cos x$ and you get $-\sin x$. This only works in radians, because only then is the gradient of $\sin x$ at the origin exactly 1.
+@ex Second derivative of a trig function
+Q: For $y=\sin(2x)$, show that $\dfrac{d^2y}{dx^2}+4y=0$.
+S: $y'=2\cos(2x)$ and $y''=-4\sin(2x)$.
+S: $y''+4y=-4\sin(2x)+4\sin(2x)=0$.
+A: Shown.
+@ex Worded problem: rate of change of a tide
+Q: Water depth is $D=3+1.5\sin\left(\frac{\pi t}6\right)$ m, $t$ hours after midnight. How fast is the tide rising at 2 am?
+S: $D'=1.5\cdot\frac\pi6\cos\left(\frac{\pi t}6\right)=\frac\pi4\cos\left(\frac{\pi t}6\right)$.
+S: At $t=2$: $\frac\pi4\cos\frac\pi3=\frac\pi8\approx0.39$ m/h.
+A: Rising at about $0.39$ m per hour.
+@fc def | Derivatives of $\sin(ax)$, $\cos(ax)$, $\tan(ax)$. || $a\cos(ax)$, $-a\sin(ax)$, $a\sec^2(ax)$.
+@fc def | Why must you use radians when differentiating trig functions? || The rule $\frac{d}{dx}\sin x=\cos x$ is only true in radians. In degrees an extra factor $\frac{\pi}{180}$ appears.
+## 2.5
+@p **Choosing sine or cosine.** If the situation starts at the middle and goes up (a Ferris wheel seat at hub height going up), use $+\sin$. If it starts at the top (high tide at $t=0$), use $+\cos$. If it starts at the bottom (boarding a Ferris wheel), use $-\cos$. Choosing well avoids a horizontal shift and makes solving easier.
+@ex Worded problem: daylight hours
+Q: In a town, daylight varies from 10 h (21 June, day 172) to 14 h, with period 365 days. Write a cosine model $L(t)$ for day $t$ and find the daylight on day 80.
+S: Midline $12$, amplitude $2$, $b=\frac{2\pi}{365}$. The minimum is at $t=172$, so use $-\cos$ shifted right by 172.
+S: $L(t)=12-2\cos\left(\frac{2\pi}{365}(t-172)\right)$.
+S: $L(80)=12-2\cos\left(\frac{2\pi(-92)}{365}\right)\approx12-2(-0.0129)\approx12.03$ h.
+A: $L(t)=12-2\cos\left(\frac{2\pi}{365}(t-172)\right)$; about $12.0$ hours on day 80.
+@fc word | Tide: max 5 m at 3 am, min 1 m at 9 am. Write a model with $t$ in hours after midnight. || Midline 3, amplitude 2, period 12 h so $b=\frac\pi6$. Max at $t=3$: $D=3+2\cos\left(\frac\pi6(t-3)\right)$.
+@fc word | A Ferris wheel of diameter 30 m, lowest point 2 m, one turn per 60 s, you board at the bottom. Height model? || $h=17-15\cos\left(\frac{\pi t}{30}\right)$.
+@fc word | $T=20-5\cos\left(\frac{\pi t}{12}\right)$ (°C, $t$ hours). When is it warmest and how warm? || When $\cos=-1$: $\frac{\pi t}{12}=\pi$, $t=12$ (midday). $T=25$°C.
+@fc word | When is $D=3+2\sin\left(\frac{\pi t}{6}\right)$ changing fastest? || When $D'=\frac\pi3\cos\left(\frac{\pi t}6\right)$ is largest in size: at $t=0,6,12$ (the midline crossings). Rate $\frac\pi3\approx1.05$ m/h.

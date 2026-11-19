@@ -1,0 +1,50 @@
+=== mm3-c06 | deepen
+## 6.2
+@p **Building a distribution from an experiment.** List every possible value of $X$, then find the probability of each, often with a tree diagram or a table of outcomes. For two dice, a $6\times6$ table of all 36 equally likely outcomes is the fastest way to get the distribution of the sum, the difference or the maximum.
+@ex Distribution from two dice
+Q: Two fair dice are rolled and $X$ is the larger of the two numbers. Find $P(X=x)$ for each $x$ and $P(X\le3)$.
+S: $P(X\le k)=\left(\tfrac k6\right)^2$ because both dice must be at most $k$. So $P(X=k)=\dfrac{k^2-(k-1)^2}{36}=\dfrac{2k-1}{36}$.
+S: Values: $x=1,\dots,6$ with probabilities $\tfrac1{36},\tfrac3{36},\tfrac5{36},\tfrac7{36},\tfrac9{36},\tfrac{11}{36}$ (sum $=1$).
+S: $P(X\le3)=\tfrac{1+3+5}{36}=\tfrac{9}{36}$.
+A: $P(X=k)=\frac{2k-1}{36}$; $P(X\le3)=\frac14$
+@ex Conditional probability with a distribution
+Q: $X$ takes values $0,1,2,3$ with probabilities $0.1,0.3,0.4,0.2$. Find $P(X\ge2\mid X\ge1)$.
+S: $P(X\ge2\mid X\ge1)=\dfrac{P(X\ge2)}{P(X\ge1)}=\dfrac{0.6}{0.9}$.
+A: $\frac23$
+@fc def | Two conditions for a valid discrete probability distribution. || Each $P(X=x)$ is between 0 and 1, and all the probabilities add to exactly 1.
+@fc def | Formula for conditional probability. || $P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}$
+@fc def | What is a discrete random variable? || A variable whose value is a number decided by a random process and that can take only separate (countable) values, like 0, 1, 2, 3.
+## 6.3
+@p **Expected value as a balance point.** Imagine each value $x$ on a number line carrying a weight $P(X=x)$. $E(X)$ is where the line would balance. That is why it can be a value $X$ never takes (like 3.5 for a die). For decision questions, compare expected values, and remember that money questions usually need **net** gain: winnings minus the cost to play.
+@ex Worded problem: insurance
+Q: An insurer sells a \$300 policy. There is a 0.2% chance of a \$50 000 claim, a 1% chance of a \$5000 claim, and otherwise no claim. Find the insurer's expected profit per policy.
+S: Profit $=300$, $300-5000=-4700$, or $300-50000=-49700$, with probabilities $0.988$, $0.01$, $0.002$.
+S: $E=300(0.988)-4700(0.01)-49700(0.002)=296.4-47-99.4=150$.
+A: \$150 profit per policy on average.
+@ex Finding unknowns from the mean
+Q: $X$ takes values $1,2,3$ with $P(X=1)=a$, $P(X=2)=b$, $P(X=3)=0.3$, and $E(X)=2.1$. Find $a$ and $b$.
+S: $a+b=0.7$ and $a+2b+0.9=2.1\Rightarrow a+2b=1.2$.
+S: Subtract: $b=0.5$, so $a=0.2$.
+A: $a=0.2$, $b=0.5$
+@fc def | Formula for $E(X)$. || $E(X)=\sum x\,P(X=x)$
+@fc def | $E(aX+b)$? || $aE(X)+b$
+@fc word | A game costs \$5. You win \$20 with probability 0.2, otherwise nothing. Expected net gain? || $15(0.2)+(-5)(0.8)=3-4=-\$1$ per game. Not fair.
+@fc word | What makes a game fair? || The expected net gain (winnings minus cost) is exactly 0.
+## 6.4
+@p **What variance measures.** Variance is the average squared distance from the mean, so it measures spread. Squaring makes all distances positive and punishes big deviations more. The standard deviation $\sigma$ undoes the squaring so it has the same units as $X$. Rule of thumb: most of the probability lies within about two standard deviations of the mean.
+@ex Variance with a table
+Q: $X$ takes values $0,1,2$ with probabilities $0.25,0.5,0.25$. Find $\operatorname{Var}(X)$ and $\operatorname{Var}(3X-2)$.
+S: $\mu=0+0.5+0.5=1$. $E(X^2)=0+0.5+4(0.25)=1.5$.
+S: $\operatorname{Var}(X)=1.5-1^2=0.5$. $\operatorname{Var}(3X-2)=9(0.5)=4.5$.
+A: $0.5$ and $4.5$
+@fc def | Formula for $\operatorname{Var}(X)$ (computational form). || $\operatorname{Var}(X)=E(X^2)-[E(X)]^2$
+@fc def | $\operatorname{Var}(aX+b)$ and $\operatorname{SD}(aX+b)$? || $a^2\operatorname{Var}(X)$ and $|a|\sigma$. Adding $b$ does not change the spread.
+## 6.5
+@p **Using mean and spread to decide.** Two options can have the same expected value but very different risk. A higher standard deviation means outcomes vary more. A careful answer states both numbers and then makes a recommendation that fits the person, for example a cautious investor preferring the lower standard deviation.
+@ex Worded problem: comparing two investments
+Q: Investment A returns \$100 or \$300 with equal probability. Investment B returns \$0 or \$400 with equal probability. Compare them.
+S: $E(A)=200$, $E(B)=200$.
+S: $\sigma_A=100$ (each outcome is 100 from the mean). $\sigma_B=200$.
+A: Same expected return of \$200, but B is twice as risky ($\sigma=200$ vs $100$). A cautious investor should choose A.
+@fc word | Two options both have mean \$200; SDs are \$100 and \$200. Which is riskier? || The one with SD \$200, because its outcomes are more spread out around the mean.
+@fc word | A raffle sells 500 tickets at \$2. One prize of \$400. Expected net gain per ticket? || $\frac{1}{500}(398)+\frac{499}{500}(-2)=0.796-1.996=-\$1.20$.

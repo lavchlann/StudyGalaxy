@@ -1,0 +1,46 @@
+=== ph3-c01 | deepen
+## 1.1
+@p **Why the motions are independent.** Gravity acts straight down, so it can only change the vertical velocity. Nothing acts horizontally (ignoring air resistance), so by Newton's first law the horizontal velocity stays constant. A ball dropped and a ball fired horizontally from the same height land at the **same time**, because their vertical motions are identical.
+@p **A reliable layout.** Draw a two-column table, horizontal and vertical. Fill in $u$, $v$, $a$, $s$, $t$ for each. Time $t$ is the only quantity shared by both columns, so it is usually what you find first in one column and then use in the other.
+@ex Worded problem: dropped versus thrown
+Q: From a 20 m high window, one ball is dropped and another is thrown horizontally at 8 m/s at the same moment. When does each land, and how far from the wall does the thrown ball land? ($g=9.8$)
+S: Vertically both have $u_y=0$, $s_y=20$ m (taking down as positive): $20=\tfrac12(9.8)t^2\Rightarrow t=\sqrt{\tfrac{40}{9.8}}\approx2.02$ s.
+S: Both land at $2.02$ s. Horizontal distance $=8\times2.02\approx16.2$ m.
+A: Both land after about $2.0$ s; the thrown ball lands $16$ m from the wall.
+@fc def | Horizontal and vertical acceleration of a projectile (no air resistance). || $a_x=0$ and $a_y=9.8\ \text{m s}^{-2}$ downward.
+@fc def | Which quantity links the horizontal and vertical motion? || Time of flight $t$. It is the same for both directions.
+@fc def | Components of a velocity $v$ at angle $\theta$ to the horizontal. || $v_x=v\cos\theta$, $v_y=v\sin\theta$
+@fc def | The four constant-acceleration (SUVAT) equations. || $v=u+at$; $s=ut+\frac12at^2$; $v^2=u^2+2as$; $s=\frac{u+v}{2}t$
+## 1.2
+@p **Final velocity of a horizontal launch.** At landing, $v_x$ is still the launch speed, while $v_y=gt$ downward. The impact speed is $\sqrt{v_x^2+v_y^2}$ and the impact angle below the horizontal is $\tan^{-1}\left(\frac{v_y}{v_x}\right)$. Always state the direction, for example "$32^\circ$ below the horizontal".
+@ex Worded problem: package from a plane
+Q: A plane flying horizontally at 60 m/s at a height of 180 m drops a supply package. How far ahead of the target must it release the package, and at what speed does the package hit the ground?
+S: Fall time: $180=4.9t^2\Rightarrow t=\sqrt{36.7}\approx6.06$ s.
+S: Horizontal distance $=60\times6.06\approx364$ m.
+S: $v_y=9.8\times6.06\approx59.4$ m/s, so speed $=\sqrt{60^2+59.4^2}\approx84.4$ m/s at $\tan^{-1}\frac{59.4}{60}\approx44.7^\circ$ below horizontal.
+A: Release about $364$ m before the target; it lands at about $84$ m/s, $45^\circ$ below the horizontal.
+@fc word | A ball rolls off a 1.25 m table at 3.0 m/s. How far from the table does it land? || $t=\sqrt{2(1.25)/9.8}\approx0.505$ s, so $x=3.0\times0.505\approx1.5$ m.
+@fc word | A plane at height $h$ moving at $v$ drops a package. Where is the plane when the package lands? || Directly above it (ignoring air resistance), because both have the same horizontal velocity.
+## 1.3
+@p **Where the formulas come from.** At maximum height $v_y=0$, so $0=v\sin\theta-gt$ gives the time to the top $t=\frac{v\sin\theta}{g}$; the total flight time on level ground is double this. The range is $v\cos\theta\times\frac{2v\sin\theta}{g}=\frac{v^2\sin2\theta}{g}$, which is largest when $\sin2\theta=1$, at $45^\circ$. Only use these shortcuts when the projectile lands at its launch height.
+@ex Worded problem: long jump
+Q: A long jumper takes off at 9.0 m/s at $22^\circ$ above the horizontal. Treating them as a projectile on level ground, find the time in the air, the maximum height of their centre of mass above take-off, and the length of the jump.
+S: $v_x=9.0\cos22^\circ\approx8.34$ m/s, $v_y=9.0\sin22^\circ\approx3.37$ m/s.
+S: Time $=\frac{2(3.37)}{9.8}\approx0.688$ s. Max height $=\frac{3.37^2}{2(9.8)}\approx0.58$ m.
+S: Range $=8.34\times0.688\approx5.7$ m.
+A: About $0.69$ s in the air, $0.58$ m rise, $5.7$ m jump.
+@fc def | Launch angle for maximum range on level ground. || $45^\circ$ (because $R=\frac{v^2\sin2\theta}{g}$ is largest when $\sin2\theta=1$).
+@fc def | Velocity at the top of a projectile's path. || Only the horizontal component $v\cos\theta$ remains; the vertical velocity is zero. Acceleration is still $g$ downward.
+@fc word | Which angle gives the same range as $30^\circ$ for the same launch speed? || $60^\circ$ (complementary angles give equal ranges on level ground).
+@fc word | A ball is kicked at 20 m/s at $40^\circ$. Time to the top? || $t=\frac{20\sin40^\circ}{9.8}\approx1.31$ s.
+## 1.4
+@p **Solving the quadratic for time.** With up as positive and a landing point below the launch, the vertical displacement is negative, e.g. $-30=15t-4.9t^2$. Rearrange to $4.9t^2-15t-30=0$ and use the quadratic formula. One root is negative (a time before launch) and is rejected. Then use $t$ in the horizontal equation.
+@ex Worded problem: stone off a cliff
+Q: A stone is thrown at 15 m/s at $35^\circ$ above the horizontal from a 30 m cliff. Find the time to reach the water and how far from the cliff base it lands.
+S: $u_x=15\cos35^\circ\approx12.3$ m/s, $u_y=15\sin35^\circ\approx8.60$ m/s.
+S: Vertical: $-30=8.60t-4.9t^2\Rightarrow4.9t^2-8.60t-30=0$, so $t=\dfrac{8.60+\sqrt{8.60^2+4(4.9)(30)}}{9.8}\approx3.50$ s.
+S: Horizontal: $12.3\times3.50\approx43.0$ m.
+A: About $3.5$ s; it lands about $43$ m from the base.
+@fc word | A projectile lands 30 m below its launch point. What is $s_y$ if up is positive? || $s_y=-30$ m.
+@fc word | Why do you reject one root of the time quadratic? || The negative root is a time before the launch, which is not physical.
+@fc def | Effect of air resistance on a projectile's path. || Lower maximum height, shorter range, and a steeper, asymmetrical descent.

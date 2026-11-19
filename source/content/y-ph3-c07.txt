@@ -1,0 +1,45 @@
+=== ph3-c07 | deepen
+## 7.1
+@p **Three ways to change flux.** Since $\Phi=BA\cos\theta$, flux changes when the field strength changes (moving a magnet closer, switching a current), when the area in the field changes (a rod sliding on rails, a loop entering a field), or when the angle changes (a coil rotating). Each of these is a way to induce an emf.
+@ex Worded problem: rotating loop
+Q: A square loop of side 0.10 m sits in a 0.50 T field. Find the flux when the plane of the loop is perpendicular to the field and when it has rotated so its plane is at $30^\circ$ to the field.
+S: Perpendicular plane: normal parallel to $B$, $\theta=0$: $\Phi=0.50\times0.010=5.0\times10^{-3}$ Wb.
+S: Plane at $30^\circ$ to the field means the normal is at $60^\circ$: $\Phi=5.0\times10^{-3}\cos60^\circ=2.5\times10^{-3}$ Wb.
+A: $5.0\times10^{-3}$ Wb and $2.5\times10^{-3}$ Wb.
+@fc def | Definition of magnetic flux. || $\Phi=BA\cos\theta$ (weber, Wb), with $\theta$ between $B$ and the normal to the surface.
+@fc def | Three ways to change the flux through a coil. || Change $B$, change the area $A$ in the field, or change the angle $\theta$.
+@fc def | What is flux linkage? || $N\Phi$: the flux through one turn times the number of turns.
+## 7.2
+@p **Lenz's law is energy conservation.** If the induced current helped the change, it would make the change bigger, creating more current, and so on: free energy. Instead the induced current always opposes the change in flux, so you must do work (push the magnet, turn the generator) to keep it going. That work becomes the electrical energy.
+@p **A step-by-step Lenz method.** (1) What is happening to the flux, and in which direction? (2) The induced field opposes that change: if flux is increasing, the induced field points the opposite way; if decreasing, the same way. (3) Use the right-hand grip rule to turn that induced field into a current direction.
+@ex Worded problem: coil in a changing field
+Q: A 200-turn coil of area $4.0\times10^{-3}\ \text{m}^2$ is perpendicular to a field that falls steadily from 0.60 T to 0.10 T in 0.25 s. Find the average induced emf.
+S: $\Delta\Phi=(0.10-0.60)\times4.0\times10^{-3}=-2.0\times10^{-3}$ Wb.
+S: $\varepsilon=-N\frac{\Delta\Phi}{\Delta t}=-200\times\frac{-2.0\times10^{-3}}{0.25}$.
+A: $1.6$ V
+@fc def | State Faraday's law. || The induced emf equals the rate of change of flux linkage: $\varepsilon=-N\dfrac{\Delta\Phi}{\Delta t}$.
+@fc def | State Lenz's law. || The induced current flows in a direction that opposes the change in flux that produced it.
+@fc def | Why is Lenz's law a consequence of conservation of energy? || If the induced current aided the change, energy would be created from nothing. Opposing the change means work must be done to produce electrical energy.
+@fc word | A magnet's north pole is pushed toward a coil. What pole forms at that end of the coil? || A north pole, to repel the approaching magnet (opposing the increase in flux).
+## 7.3
+@p **Where $\varepsilon=BLv$ comes from.** A rod moving through a field sweeps out area $Lv$ each second, so the flux through the circuit changes at rate $BLv$, giving $\varepsilon=BLv$. Alternatively, each free charge in the rod feels $qvB$ along the rod, pushing charges to one end. If a current flows, the rod also feels a magnetic force $BIL$ opposing its motion (Lenz again), so a force is needed to keep it moving at constant speed.
+@ex Worded problem: sliding rod
+Q: A 0.25 m rod slides at 4.0 m/s along rails in a 0.80 T field perpendicular to the rails. The circuit resistance is 2.0 Ω. Find the emf, the current, and the force needed to keep it moving at constant speed.
+S: $\varepsilon=BLv=0.80\times0.25\times4.0=0.80$ V. $I=\frac{0.80}{2.0}=0.40$ A.
+S: Opposing force $F=BIL=0.80\times0.40\times0.25=0.080$ N, so an applied force of $0.080$ N is needed.
+A: $0.80$ V, $0.40$ A, $0.080$ N.
+@fc def | Emf induced across a rod moving through a field. || $\varepsilon=BLv$ (rod, velocity and field mutually perpendicular).
+@fc word | Why is a force needed to keep a rod moving at constant speed on rails in a field? || The induced current in the rod feels a magnetic force $BIL$ opposing the motion (Lenz's law).
+@fc def | Eddy current braking: how does it work? || Moving conductors in a field get induced circulating currents that, by Lenz's law, produce forces opposing the motion, slowing it without contact.
+## 7.4
+@p **Peak emf of a generator.** For an $N$-turn coil of area $A$ rotating at angular speed $\omega$ in field $B$, the flux is $\Phi=BA\cos(\omega t)$ and the emf is $\varepsilon=NBA\omega\sin(\omega t)$, so the peak emf is $NBA\omega$. Spinning twice as fast doubles both the peak emf and the frequency. AC generators use **slip rings**; DC generators use a split-ring commutator.
+@ex Worded problem: generator output
+Q: A 100-turn coil of area $0.020\ \text{m}^2$ rotates at 50 revolutions per second in a 0.15 T field. Find the peak and RMS emf.
+S: $\omega=2\pi\times50\approx314\ \text{rad s}^{-1}$. Peak $=NBA\omega=100\times0.15\times0.020\times314\approx94$ V.
+S: RMS $=\frac{94}{\sqrt2}\approx67$ V.
+A: Peak about $94$ V, RMS about $67$ V.
+@fc def | Peak emf of a rotating coil. || $\varepsilon_{\max}=NBA\omega$
+@fc def | When is the emf of a rotating coil largest? || When the plane of the coil is parallel to the field (flux is zero but changing fastest).
+@fc def | RMS voltage relationship. || $V_{\text{rms}}=\dfrac{V_{\text{peak}}}{\sqrt2}$
+@fc word | A generator's rotation speed doubles. Effect on peak emf and frequency? || Both double.
+@fc def | Slip rings vs split-ring commutator. || Slip rings give AC output (generators). A split ring reverses connections every half turn, giving DC (motors and DC generators).

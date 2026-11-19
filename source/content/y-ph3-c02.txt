@@ -1,0 +1,44 @@
+=== ph3-c02 | deepen
+## 2.1
+@p **Newton's three laws in one sentence each.** (1) An object keeps its velocity unless a net force acts. (2) Net force causes acceleration: $\Sigma F=ma$, in the direction of the net force. (3) Forces come in equal and opposite pairs acting on **different** objects. Most problems in this chapter are law 2 applied separately along two perpendicular axes.
+@p **Equilibrium.** If an object is at rest or moving at constant velocity, the net force is zero in every direction. That gives you equations even when nothing is accelerating, which is how you find unknown tensions, normal forces or friction.
+@ex Worded problem: lift
+Q: A 60 kg person stands on bathroom scales in a lift accelerating upward at $1.5\ \text{m s}^{-2}$. What do the scales read?
+S: Take up as positive: $N-mg=ma\Rightarrow N=m(g+a)=60(9.8+1.5)$.
+S: $N=678$ N. The scales show the normal force, which corresponds to $\frac{678}{9.8}\approx69$ kg.
+A: $678$ N (it reads about 69 kg).
+@fc def | State Newton's second law. || The net force on an object equals its mass times acceleration: $\Sigma F=ma$.
+@fc def | State Newton's third law. || When object A exerts a force on B, B exerts an equal and opposite force on A. The pair acts on different objects.
+@fc def | What does "equilibrium" mean for forces? || The net force is zero, so the object is at rest or moving with constant velocity.
+@fc word | 60 kg person in a lift accelerating up at 1.5 m/s². Normal force? || $N=m(g+a)=60(11.3)=678$ N.
+## 2.2
+@p **Finding the angle on a slope.** The angle between the weight and the perpendicular to the slope equals the slope angle $\theta$ (the two angles have perpendicular sides). That is why the component along the slope is $mg\sin\theta$ and the component into the slope is $mg\cos\theta$. A quick check: at $\theta=0$ the along-slope part should be zero, and $\sin0=0$.
+@ex Worded problem: trolley on a ramp
+Q: A 12 kg trolley is released on a frictionless ramp inclined at $15^\circ$. Find its acceleration and its speed after travelling 4.0 m down the ramp.
+S: $a=g\sin\theta=9.8\sin15^\circ\approx2.54\ \text{m s}^{-2}$ (the mass cancels).
+S: $v^2=0+2(2.54)(4.0)\Rightarrow v\approx4.5$ m/s.
+A: $2.5\ \text{m s}^{-2}$; about $4.5$ m/s after 4.0 m.
+@fc def | Components of weight on a slope of angle $\theta$. || Parallel to slope: $mg\sin\theta$. Perpendicular: $mg\cos\theta$.
+@fc def | Acceleration down a frictionless slope. || $a=g\sin\theta$, independent of mass.
+@fc def | Normal force on a slope with no other perpendicular forces. || $N=mg\cos\theta$ (less than $mg$).
+## 2.3
+@p **Static or kinetic?** If the object is not moving, static friction takes whatever value is needed to stop motion, up to $\mu_sN$. Only when that limit is reached does it slip. Once it slides, kinetic friction $\mu_kN$ (usually smaller) acts opposite to the motion. Friction always opposes the **relative** motion (or tendency of motion) of the surfaces.
+@ex Worded problem: box pushed up a slope
+Q: A 20 kg box is pushed up a $25^\circ$ slope by a force of 150 N parallel to the slope. The coefficient of kinetic friction is 0.30. Find its acceleration.
+S: $N=mg\cos25^\circ=20(9.8)(0.906)\approx177.6$ N, so $f_k=0.30\times177.6\approx53.3$ N (down the slope).
+S: Weight component down the slope: $mg\sin25^\circ\approx82.8$ N.
+S: $\Sigma F=150-82.8-53.3=13.9$ N, so $a=\frac{13.9}{20}\approx0.70\ \text{m s}^{-2}$ up the slope.
+A: About $0.70\ \text{m s}^{-2}$ up the slope.
+@fc def | Maximum static friction and kinetic friction. || $f_s\le\mu_sN$; $f_k=\mu_kN$
+@fc def | Critical angle at which a block just starts to slide. || $\tan\theta=\mu_s$
+@fc word | A block slides at constant speed down a $20^\circ$ slope. Find $\mu_k$. || Constant speed means net force zero: $mg\sin20^\circ=\mu_kmg\cos20^\circ$, so $\mu_k=\tan20^\circ\approx0.36$.
+## 2.4
+@p **System versus individual masses.** Treat the whole system first to find the shared acceleration: net external force divided by total mass. Then isolate **one** mass to find the tension. The tension is an internal force for the system, so it cancels when you treat everything together.
+@ex Worded problem: block on a table pulling a hanging mass
+Q: A 4.0 kg block on a frictionless table is connected by a string over a pulley to a 1.0 kg hanging mass. Find the acceleration and the tension.
+S: System: the only unbalanced force is the hanging weight, $1.0\times9.8=9.8$ N. Total mass 5.0 kg, so $a=\frac{9.8}{5.0}=1.96\ \text{m s}^{-2}$.
+S: Tension: on the 4.0 kg block, $T=ma=4.0\times1.96=7.84$ N.
+A: $a=1.96\ \text{m s}^{-2}$, $T\approx7.8$ N.
+@fc def | Acceleration of an Atwood machine with masses $m_1>m_2$. || $a=\dfrac{(m_1-m_2)g}{m_1+m_2}$
+@fc word | 4.0 kg block on a frictionless table pulled by a hanging 1.0 kg mass. Acceleration? || $a=\frac{1.0\times9.8}{5.0}=1.96\ \text{m s}^{-2}$
+@fc word | Why is the tension less than the hanging mass's weight when it accelerates down? || For the hanging mass, $mg-T=ma>0$, so $T<mg$.

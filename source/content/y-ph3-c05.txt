@@ -1,0 +1,45 @@
+=== ph3-c05 | deepen
+## 5.1
+@p **Coulomb's law and gravity side by side.** Both are inverse square laws: $F=\frac{kq_1q_2}{r^2}$ and $F=\frac{Gm_1m_2}{r^2}$. The differences: charge comes in two signs, so electric forces can attract or repel, while gravity only attracts; and $k=8.99\times10^9\ \text{N m}^2\text{C}^{-2}$ is about $10^{20}$ times larger than $G$, which is why electric forces dominate at the atomic scale.
+@p **Charging and conservation.** Objects become charged by gaining or losing electrons, never protons. Charge is conserved: when two identical conducting spheres touch, they share their total charge equally.
+@ex Worded problem: touching spheres
+Q: Two identical small conducting spheres carry $+6.0\ \mu\text{C}$ and $-2.0\ \mu\text{C}$. They touch and are then placed 0.30 m apart. Find the force between them.
+S: Total charge $=+4.0\ \mu\text{C}$, shared equally: $+2.0\ \mu\text{C}$ each.
+S: $F=\dfrac{8.99\times10^9\times(2.0\times10^{-6})^2}{0.30^2}\approx0.40$ N.
+A: $0.40$ N, repulsive (both now positive).
+@ex Net force from two charges
+Q: Charges of $+3.0\ \mu\text{C}$ at $x=0$ and $-3.0\ \mu\text{C}$ at $x=0.20$ m. Find the force on a $+1.0\ \mu\text{C}$ charge at $x=0.10$ m.
+S: From the $+3.0$: repelled to the right, $F=\frac{8.99\times10^9\times3.0\times10^{-6}\times1.0\times10^{-6}}{0.10^2}\approx2.70$ N.
+S: From the $-3.0$: attracted to the right, also $2.70$ N.
+A: $5.4$ N in the $+x$ direction.
+@fc def | State Coulomb's law. || $F=\dfrac{kq_1q_2}{r^2}$ with $k=8.99\times10^9\ \text{N m}^2\text{C}^{-2}$. Like charges repel, unlike attract.
+@fc def | Charge on one electron. || $-1.60\times10^{-19}$ C (the elementary charge $e=1.60\times10^{-19}$ C).
+@fc word | Two identical spheres with $+6\ \mu$C and $-2\ \mu$C touch. Charge on each after? || $+2\ \mu$C each (total $+4\ \mu$C shared equally).
+@fc word | If the distance between two charges halves, the force...? || Becomes 4 times larger.
+## 5.2
+@p **Drawing field lines.** Field lines start on positive charges and end on negative charges, never cross, and are closer together where the field is stronger. The line's direction at any point is the direction a small positive test charge would be pushed. Around a single point charge they are radial; between a positive and a negative charge they curve from one to the other (a dipole pattern).
+@ex Worded problem: point of zero field
+Q: Charges of $+4.0\ \mu\text{C}$ and $+1.0\ \mu\text{C}$ are 0.30 m apart. Where between them is the electric field zero?
+S: Let the point be $x$ from the $4.0\ \mu\text{C}$ charge. Fields cancel when $\frac{k(4.0)}{x^2}=\frac{k(1.0)}{(0.30-x)^2}$.
+S: Take square roots: $\frac{2}{x}=\frac{1}{0.30-x}\Rightarrow0.60-2x=x\Rightarrow x=0.20$ m.
+A: $0.20$ m from the $+4.0\ \mu$C charge (closer to the smaller charge).
+@fc def | Electric field strength of a point charge. || $E=\dfrac{kq}{r^2}$, pointing away from a positive charge and toward a negative one.
+@fc def | Rules for electric field lines. || Start on positive, end on negative, never cross, closer together where the field is stronger.
+@fc def | Direction of force on a negative charge in a field $E$. || Opposite to the field direction.
+## 5.3
+@p **Parallel plates are like gravity sideways.** Between parallel plates the field is uniform, so a charged particle feels a constant force $qE$ and a constant acceleration $a=\frac{qE}{m}$. A particle entering at right angles to the field follows a **parabola**, just like a horizontally launched projectile: constant velocity along the plates, constant acceleration across them.
+@ex Worded problem: electron deflection
+Q: An electron enters the space between two plates 2.0 cm apart with a potential difference of 100 V, travelling at $2.0\times10^7$ m/s parallel to the plates. The plates are 5.0 cm long. Find its sideways deflection as it leaves. ($m_e=9.11\times10^{-31}$ kg)
+S: $E=\frac{100}{0.020}=5000\ \text{V m}^{-1}$, $a=\frac{eE}{m}=\frac{1.60\times10^{-19}\times5000}{9.11\times10^{-31}}\approx8.78\times10^{14}\ \text{m s}^{-2}$.
+S: Time between plates: $t=\frac{0.050}{2.0\times10^7}=2.5\times10^{-9}$ s.
+S: Deflection $=\frac12at^2=\frac12(8.78\times10^{14})(2.5\times10^{-9})^2\approx2.7\times10^{-3}$ m.
+A: About $2.7$ mm toward the positive plate.
+@ex Work done by a field
+Q: A proton is accelerated from rest through 2000 V. Find its final speed. ($m_p=1.67\times10^{-27}$ kg)
+S: $qV=\tfrac12mv^2\Rightarrow v=\sqrt{\dfrac{2qV}{m}}=\sqrt{\dfrac{2\times1.60\times10^{-19}\times2000}{1.67\times10^{-27}}}$.
+A: $v\approx6.2\times10^5$ m/s
+@fc def | Field between parallel plates. || $E=\dfrac{V}{d}$, uniform, from the positive plate to the negative plate.
+@fc def | Energy gained by a charge accelerated through potential difference $V$. || $W=qV=\tfrac12mv^2$ (from rest).
+@fc def | What is an electron-volt? || The energy gained by an electron moving through 1 V: $1\ \text{eV}=1.60\times10^{-19}$ J.
+@fc word | Path of an electron fired between parallel plates, perpendicular to the field? || A parabola, curving toward the positive plate (constant sideways acceleration).
+@fc word | Speed of a proton accelerated from rest through 2000 V? || $v=\sqrt{2qV/m}\approx6.2\times10^5$ m/s.

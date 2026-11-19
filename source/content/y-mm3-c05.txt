@@ -1,0 +1,64 @@
+=== mm3-c05 | deepen
+## 5.2
+@p **Anti-differentiation is guessing and checking.** You are looking for a function whose derivative is the one given. The rules are just derivative rules run backwards, and $+c$ appears because adding any constant does not change a derivative. That is why an antiderivative is really a whole family of curves, each a vertical shift of the others.
+@ex Expanding before integrating
+Q: Find $\displaystyle\int\frac{(x+2)^2}{x^4}\,dx$.
+S: Expand and divide: $\dfrac{x^2+4x+4}{x^4}=x^{-2}+4x^{-3}+4x^{-4}$.
+S: Integrate each term: $-x^{-1}-2x^{-2}-\tfrac43x^{-3}+c$.
+A: $-\dfrac1x-\dfrac2{x^2}-\dfrac{4}{3x^3}+c$
+@ex Linear inside
+Q: Find $\displaystyle\int(3x-1)^4\,dx$.
+S: Use $\int(ax+b)^n\,dx=\dfrac{(ax+b)^{n+1}}{a(n+1)}+c$ with $a=3$, $n=4$.
+A: $\dfrac{(3x-1)^5}{15}+c$
+@fc def | Why do indefinite integrals need $+c$? || Constants differentiate to 0, so infinitely many functions share the same derivative. $+c$ represents all of them.
+@fc def | $\int(ax+b)^n\,dx$ for $n\neq-1$? || $\dfrac{(ax+b)^{n+1}}{a(n+1)}+c$
+## 5.3
+@p **Check by differentiating.** $\int e^{4x}dx=\frac14e^{4x}+c$ because $\frac{d}{dx}\frac14e^{4x}=\frac14\cdot4e^{4x}=e^{4x}$. Whenever the inside is linear, divide by its coefficient. If the inside is not linear (like $e^{x^2}$) the simple rule does not work, unless the derivative of the inside appears as a factor.
+@ex Reverse chain rule with e
+Q: Find $\displaystyle\int xe^{x^2}\,dx$.
+S: $\frac{d}{dx}e^{x^2}=2xe^{x^2}$, which is twice the integrand.
+A: $\tfrac12e^{x^2}+c$
+@fc def | $\int e^{ax+b}\,dx$? || $\frac1a e^{ax+b}+c$
+@fc word | $\frac{dN}{dt}=60e^{0.3t}$ and $N(0)=200$. Find $N(t)$. || $N=200e^{0.3t}+c$; $N(0)=200+c=200$ so $c=0$: $N=200e^{0.3t}$.
+## 5.4
+@p **When is the answer a log?** If the integrand is a fraction whose numerator is (a constant multiple of) the derivative of the denominator, the answer is $\ln|\text{denominator}|$. Check: for $\int\frac{x}{x^2+5}dx$, the derivative of $x^2+5$ is $2x$, so the answer is $\frac12\ln(x^2+5)+c$.
+@ex Log integral with a constant adjustment
+Q: Find $\displaystyle\int\frac{6x^2}{x^3+1}\,dx$ for $x>-1$.
+S: $\frac{d}{dx}(x^3+1)=3x^2$, and $6x^2=2\cdot3x^2$.
+A: $2\ln(x^3+1)+c$
+@fc def | $\int\frac{f'(x)}{f(x)}\,dx$? || $\ln|f(x)|+c$
+@fc def | $\int\frac{1}{ax+b}\,dx$? || $\frac1a\ln|ax+b|+c$
+## 5.5
+@p **Signs to remember.** Differentiating goes $\sin\to\cos\to-\sin\to-\cos\to\sin$. Integrating goes the other way: $\int\cos=\sin$ and $\int\sin=-\cos$. A quick check: the area under $\sin x$ from $0$ to $\pi$ is positive, and $[-\cos x]_0^\pi=1-(-1)=2$, so the minus sign is needed.
+@ex Using an identity first
+Q: Find $\displaystyle\int\sin x\cos x\,dx$.
+S: Use $\sin2x=2\sin x\cos x$, so the integrand is $\tfrac12\sin2x$.
+S: $\int\tfrac12\sin2x\,dx=-\tfrac14\cos2x+c$.
+A: $-\tfrac14\cos2x+c$ (equivalently $\tfrac12\sin^2x+c$, a different constant)
+@fc def | $\int\sin(ax)\,dx$ and $\int\cos(ax)\,dx$? || $-\frac1a\cos(ax)+c$ and $\frac1a\sin(ax)+c$
+## 5.6
+@p **Families of curves.** If $f'(x)$ is known, $f(x)=\int f'(x)\,dx$ gives a family of curves stacked vertically. One known point (an initial condition) picks out exactly one curve. In context, the initial condition is usually the starting value: the position at $t=0$, the population at the start, the height when released.
+@ex Worded problem: water in a tank
+Q: Water flows into a tank at $\frac{dV}{dt}=20+4t$ litres per minute. The tank holds 50 L at $t=0$. How much is in it after 10 minutes, and how much flowed in during the 10 minutes?
+S: $V=20t+2t^2+c$, and $V(0)=50$ gives $c=50$.
+S: $V(10)=200+200+50=450$ L.
+S: Water that flowed in $=\int_0^{10}(20+4t)\,dt=[20t+2t^2]_0^{10}=400$ L.
+A: $450$ L in the tank; $400$ L flowed in.
+@fc def | What does $\int_a^b f'(x)\,dx$ measure? || The total change in $f$ from $x=a$ to $x=b$: $f(b)-f(a)$.
+@fc word | Water enters at $r(t)=20+4t$ L/min. How much enters in the first 10 min? || $\int_0^{10}(20+4t)\,dt=[20t+2t^2]_0^{10}=400$ L.
+## 5.7
+@p **Displacement versus distance.** $\int_a^bv\,dt$ is the **displacement** (net change in position). If the particle turns around, the backward motion cancels some forward motion. For **distance travelled**, find where $v=0$, split the interval there, and add the absolute values of each piece.
+@ex Worded problem: distance travelled
+Q: A particle has velocity $v=t^2-4t+3$ m/s for $0\le t\le3$. Find its displacement and the distance travelled.
+S: $v=(t-1)(t-3)$ is positive on $0<t<1$ and negative on $1<t<3$.
+S: $\int_0^1v\,dt=\left[\tfrac{t^3}3-2t^2+3t\right]_0^1=\tfrac43$ and $\int_1^3v\,dt=0-\tfrac43=-\tfrac43$.
+S: Displacement $=\tfrac43-\tfrac43=0$. Distance $=\tfrac43+\tfrac43=\tfrac83$.
+A: Displacement $0$ m (back at the start); distance $\tfrac83\approx2.67$ m.
+@ex Worded problem: from acceleration
+Q: A car accelerates at $a=6-2t$ m/s² from rest at the origin. Find its velocity and position after 3 s.
+S: $v=6t-t^2+c$ with $v(0)=0$, so $v=6t-t^2$; $v(3)=9$ m/s.
+S: $x=3t^2-\tfrac{t^3}3$ (with $x(0)=0$); $x(3)=27-9=18$ m.
+A: $9$ m/s and $18$ m from the start.
+@fc def | Displacement vs distance from a velocity function? || Displacement $=\int_a^bv\,dt$. Distance $=\int_a^b|v|\,dt$: split where $v=0$ and add the sizes.
+@fc word | $v=t^2-4t+3$ on $[0,3]$. Displacement and distance? || Displacement $0$; distance $\frac83$ m (split at $t=1$).
+@fc word | From rest, $a=6-2t$. Velocity at $t=3$? || $v=6t-t^2$, so $v(3)=9$ m/s.
