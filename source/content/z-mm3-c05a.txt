@@ -1,0 +1,138 @@
+=== mm3-c05 | rewrite
+## 5.2
+@p **What this topic is about.** Anti-differentiation reverses differentiation: given a derivative, find the original function. It is the foundation of integration, which gives areas, total change, displacement from velocity and much of Unit 4. This first topic covers powers of $x$ (including negative and fractional powers) and $\frac1{ax+b}$-type terms.
+@key $$\int x^n\,dx=\frac{x^{n+1}}{n+1}+c\quad(n\neq-1)\qquad\int\frac1x\,dx=\ln|x|+c\qquad\int(ax+b)^n\,dx=\frac{(ax+b)^{n+1}}{a(n+1)}+c$$
+@p **Why $+c$?** The derivative of any constant is zero, so $x^2$, $x^2+5$ and $x^2-17$ all have derivative $2x$. An antiderivative is therefore a whole **family** of functions, $x^2+c$, each a vertical shift of the others. Omitting $+c$ from an indefinite integral loses a mark.
+@p **The power rule in words.** Add one to the power, then divide by the new power. Check by differentiating: $\frac{d}{dx}\frac{x^{n+1}}{n+1}=\frac{(n+1)x^n}{n+1}=x^n$ ✓. The rule fails when $n=-1$ (it would divide by zero), which is why $\int x^{-1}dx=\ln|x|$ is a separate rule.
+@p **Preparing the integrand.** You can only integrate term by term once the expression is a **sum of powers**. So: (1) rewrite roots as fractional powers ($\sqrt x=x^{1/2}$, $\sqrt[3]{x^2}=x^{2/3}$); (2) rewrite $\frac1{x^k}$ as $x^{-k}$; (3) expand brackets; (4) split fractions with a single-term denominator ($\frac{x^2+3}{x}=x+3x^{-1}$). There is no product or quotient rule for integration at this level, so never integrate factors separately.
+@p **Linear insides.** If the inside is linear ($ax+b$), integrate as if it were $x$ and then **divide by $a$**, because differentiating would multiply by $a$. So $\int(2x+1)^3dx=\frac{(2x+1)^4}{4\times2}+c=\frac{(2x+1)^4}{8}+c$.
+@ex Integrating a sum of powers (full working)
+Q: Find $\displaystyle\int\left(4x^3-\frac{2}{x^2}+\sqrt x\right)dx$.
+S: **Rewrite every term as a power of $x$:** $4x^3-2x^{-2}+x^{1/2}$.
+S: **Integrate $4x^3$:** add 1 to the power and divide: $4\cdot\frac{x^4}{4}=x^4$.
+S: **Integrate $-2x^{-2}$:** the new power is $-1$: $-2\cdot\frac{x^{-1}}{-1}=2x^{-1}$.
+S: **Integrate $x^{1/2}$:** the new power is $\frac32$: $\frac{x^{3/2}}{3/2}=\frac23x^{3/2}$.
+S: **Combine and add $c$:** $x^4+2x^{-1}+\frac23x^{3/2}+c=x^4+\dfrac2x+\dfrac23x^{3/2}+c$.
+S: **Check by differentiating:** $4x^3-2x^{-2}+x^{1/2}$ ✓.
+A: $x^4+\dfrac2x+\dfrac23x^{3/2}+c$
+@ex Expanding before integrating (full working)
+Q: Find $\displaystyle\int\frac{(x+2)^2}{x^4}\,dx$.
+S: **Expand the numerator:** $(x+2)^2=x^2+4x+4$.
+S: **Split the fraction:** $\dfrac{x^2}{x^4}+\dfrac{4x}{x^4}+\dfrac4{x^4}=x^{-2}+4x^{-3}+4x^{-4}$.
+S: **Integrate each term:** $\dfrac{x^{-1}}{-1}+4\cdot\dfrac{x^{-2}}{-2}+4\cdot\dfrac{x^{-3}}{-3}$.
+S: **Simplify:** $-x^{-1}-2x^{-2}-\frac43x^{-3}+c$.
+S: **Write with positive powers:** $-\dfrac1x-\dfrac2{x^2}-\dfrac{4}{3x^3}+c$.
+A: $-\dfrac1x-\dfrac2{x^2}-\dfrac{4}{3x^3}+c$
+@ex Linear inside (full working)
+Q: Find $\displaystyle\int(3x-1)^4\,dx$ and $\displaystyle\int\frac{5}{2x+3}\,dx$.
+S: **First integral:** treat $3x-1$ like $x$: raise the power to 5 and divide by 5 to get $\frac{(3x-1)^5}{5}$.
+S: **Divide by the inner coefficient 3:** $\dfrac{(3x-1)^5}{15}+c$. Check: differentiating gives $\frac{5(3x-1)^4\cdot3}{15}=(3x-1)^4$ ✓.
+S: **Second integral:** $\int\frac1{ax+b}dx=\frac1a\ln|ax+b|$, so $\int\frac{5}{2x+3}dx=5\cdot\frac12\ln|2x+3|+c$.
+S: **Simplify:** $\dfrac52\ln|2x+3|+c$.
+A: $\dfrac{(3x-1)^5}{15}+c$ and $\dfrac52\ln|2x+3|+c$
+@ex Finding a function from its derivative (full working)
+Q: $f'(x)=6x^2-4$ and the graph of $f$ passes through $(1,5)$. Find $f(x)$.
+S: **Anti-differentiate:** $f(x)=\int(6x^2-4)\,dx=2x^3-4x+c$.
+S: **Use the point:** $f(1)=5\Rightarrow2-4+c=5$.
+S: **Solve for $c$:** $c=7$.
+S: **Write the function:** $f(x)=2x^3-4x+7$.
+A: $f(x)=2x^3-4x+7$
+@warn There is no product rule for anti-differentiation: $\int x(x+1)\,dx$ is **not** $\frac{x^2}2\cdot\frac{(x+1)^2}2$. Expand first: $\int(x^2+x)\,dx=\frac{x^3}3+\frac{x^2}2+c$. Also $\int\frac1x\,dx$ is $\ln|x|$, not $\frac{x^0}{0}$.
+@p **Exam tip.** Show the rewritten integrand (powers of $x$) as its own line. It earns a method mark and makes the integration almost automatic.
+@check Powers | Find $\displaystyle\int(9x^2-4x+5)\,dx$.
+A: 3x^3-2x^2+5x+c
+ALT: 3x³-2x²+5x+c
+AD: $3x^3-2x^2+5x+c$
+SOL: Integrate term by term, adding 1 to each power and dividing. || $\int9x^2dx=9\cdot\frac{x^3}3=3x^3$. || $\int(-4x)dx=-4\cdot\frac{x^2}2=-2x^2$, and $\int5\,dx=5x$. || So the answer is $3x^3-2x^2+5x+c$.
+H: Add 1 to each power. || Divide by the new power. || Remember $+c$.
+@check Negative and fractional powers | Find $\displaystyle\int\left(\frac{3}{x^2}+\sqrt{x}\right)dx$.
+A: -3/x+(2/3)x^(3/2)+c
+ALT: -3/x+2/3x^(3/2)+c || (2/3)x^(3/2)-3/x+c || -3x^(-1)+(2/3)x^(3/2)+c
+AD: $-\dfrac3x+\dfrac23x^{3/2}+c$
+SOL: Rewrite: $3x^{-2}+x^{1/2}$. || $\int3x^{-2}dx=3\cdot\frac{x^{-1}}{-1}=-3x^{-1}$. || $\int x^{1/2}dx=\frac{x^{3/2}}{3/2}=\frac23x^{3/2}$. || Answer: $-\frac3x+\frac23x^{3/2}+c$.
+H: Write as powers of $x$. || $-2+1=-1$ and $\frac12+1=\frac32$. || Divide by the new powers.
+@check Linear inside | Find $\displaystyle\int(4x+1)^3\,dx$.
+A: (4x+1)^4/16+c
+ALT: (1/16)(4x+1)^4+c || 1/16(4x+1)^4+c
+AD: $\dfrac{(4x+1)^4}{16}+c$
+SOL: Raise the power: $\frac{(4x+1)^4}{4}$. || Divide by the inner coefficient 4. || $\frac{(4x+1)^4}{4\times4}=\frac{(4x+1)^4}{16}$. || Add $c$: $\frac{(4x+1)^4}{16}+c$.
+H: Integrate as if the bracket were $x$. || Then divide by 4. || Add $c$.
+@check Reciprocal | Find $\displaystyle\int\frac{6}{3x-2}\,dx$.
+A: 2ln|3x-2|+c
+ALT: 2ln(3x-2)+c || 2ln|3x-2|+c
+AD: $2\ln|3x-2|+c$
+SOL: Use $\int\frac{1}{ax+b}dx=\frac1a\ln|ax+b|+c$. || With $a=3$: $\int\frac{6}{3x-2}dx=6\cdot\frac13\ln|3x-2|$. || Simplify: $2\ln|3x-2|$. || Add $c$.
+H: It is a $\frac1{ax+b}$ form. || Divide by $a=3$. || $6\times\frac13=2$.
+@check Initial condition | $f'(x)=3x^2+2x$ and $f(1)=4$. Find $f(x)$.
+A: x^3+x^2+2
+ALT: f(x)=x^3+x^2+2
+AD: $f(x)=x^3+x^2+2$
+SOL: Anti-differentiate: $f(x)=x^3+x^2+c$. || Use $f(1)=4$: $1+1+c=4$. || So $c=2$. || $f(x)=x^3+x^2+2$.
+H: Integrate each term. || Substitute $x=1$. || Solve for $c$.
+## 5.3
+@p **What this topic is about.** Anti-differentiating exponential functions. Because $\frac{d}{dx}e^x=e^x$, the exponential is its own antiderivative, and with a linear power you divide by the coefficient. These integrals appear in growth and decay problems and in area questions.
+@key $$\int e^x\,dx=e^x+c\qquad\int e^{kx}\,dx=\frac1ke^{kx}+c\qquad\int e^{ax+b}\,dx=\frac1ae^{ax+b}+c$$
+@p **Why divide by $a$?** Differentiating $e^{ax+b}$ multiplies by $a$ (chain rule). To undo that, the antiderivative must contain $\frac1a$. Always check: $\frac{d}{dx}\frac14e^{4x}=\frac14\cdot4e^{4x}=e^{4x}$ ✓.
+@p **Non-linear powers.** The simple rule only works when the power is linear. $\int e^{x^2}dx$ cannot be done with these methods. However, if the derivative of the power appears as a factor, you can reverse the chain rule: $\int2xe^{x^2}dx=e^{x^2}+c$, because $\frac{d}{dx}e^{x^2}=2xe^{x^2}$. Adjust constants as needed: $\int xe^{x^2}dx=\frac12e^{x^2}+c$.
+@p **Simplify with index laws first.** $\int\frac{e^{2x}+1}{e^x}dx=\int(e^x+e^{-x})dx=e^x-e^{-x}+c$. Dividing each term by $e^x$ first turns a quotient into a sum of simple exponentials.
+@ex Exponentials with coefficients (full working)
+Q: Find $\displaystyle\int\left(6e^{2x}+e^{-x}-4\right)dx$.
+S: **First term:** $\int6e^{2x}dx=6\times\frac12e^{2x}=3e^{2x}$.
+S: **Second term:** $\int e^{-x}dx=\frac{1}{-1}e^{-x}=-e^{-x}$.
+S: **Third term:** $\int-4\,dx=-4x$.
+S: **Combine:** $3e^{2x}-e^{-x}-4x+c$.
+S: **Check:** $\frac{d}{dx}(3e^{2x}-e^{-x}-4x)=6e^{2x}+e^{-x}-4$ ✓.
+A: $3e^{2x}-e^{-x}-4x+c$
+@ex Simplifying with index laws (full working)
+Q: Find $\displaystyle\int\frac{e^{3x}+2}{e^{x}}\,dx$.
+S: **Split the fraction:** $\dfrac{e^{3x}}{e^x}+\dfrac{2}{e^x}$.
+S: **Index laws:** $e^{3x-x}+2e^{-x}=e^{2x}+2e^{-x}$.
+S: **Integrate:** $\frac12e^{2x}+2\cdot\frac{1}{-1}e^{-x}$.
+S: **Simplify:** $\frac12e^{2x}-2e^{-x}+c$.
+A: $\tfrac12e^{2x}-2e^{-x}+c$
+@ex Reverse chain rule (full working)
+Q: Find $\displaystyle\int xe^{x^2}\,dx$.
+S: **Guess a function whose derivative contains $e^{x^2}$:** try $e^{x^2}$.
+S: **Differentiate the guess:** $\frac{d}{dx}e^{x^2}=2xe^{x^2}$.
+S: **Compare with the integrand:** we want $xe^{x^2}$, which is half of $2xe^{x^2}$.
+S: **Adjust the constant:** $\int xe^{x^2}dx=\frac12e^{x^2}+c$.
+A: $\tfrac12e^{x^2}+c$
+@ex Worded problem: from a growth rate (full working)
+Q: A colony grows at $\frac{dN}{dt}=60e^{0.3t}$ cells per hour, and $N(0)=200$. Find $N(t)$ and the number of cells after 4 hours.
+S: **Anti-differentiate:** $N=\int60e^{0.3t}dt=60\times\frac{1}{0.3}e^{0.3t}+c=200e^{0.3t}+c$.
+S: **Use $N(0)=200$:** $200e^0+c=200\Rightarrow c=0$.
+S: **Model:** $N(t)=200e^{0.3t}$.
+S: **After 4 hours:** $N(4)=200e^{1.2}\approx200\times3.3201\approx664$ cells.
+A: $N(t)=200e^{0.3t}$; about 664 cells after 4 hours
+@warn $\int e^{4x}dx$ is $\frac14e^{4x}+c$, not $4e^{4x}+c$ (that is the derivative), and not $\frac{e^{4x+1}}{4x+1}$ (the power rule does not apply to exponentials).
+@p **Exam tip.** For "find the function" questions, state the value of $c$ on its own line before writing the final function.
+@check Exponential | Find $\displaystyle\int e^{5x}\,dx$.
+A: (1/5)e^(5x)+c
+ALT: e^(5x)/5+c || 1/5e^(5x)+c || 0.2e^(5x)+c
+AD: $\tfrac15e^{5x}+c$
+SOL: Use $\int e^{kx}dx=\frac1ke^{kx}+c$. || Here $k=5$. || So $\int e^{5x}dx=\frac15e^{5x}+c$. || Check: $\frac{d}{dx}\frac15e^{5x}=e^{5x}$.
+H: Divide by the coefficient of $x$. || $k=5$. || Add $c$.
+@check Negative power | Find $\displaystyle\int4e^{-2x}\,dx$.
+A: -2e^(-2x)+c
+ALT: -2e^-2x+c
+AD: $-2e^{-2x}+c$
+SOL: $\int e^{-2x}dx=\frac{1}{-2}e^{-2x}$. || Multiply by 4: $4\times\left(-\frac12\right)e^{-2x}=-2e^{-2x}$. || Add $c$. || Answer: $-2e^{-2x}+c$.
+H: Divide by $-2$. || Multiply by 4. || Watch the sign.
+@check Index laws | Find $\displaystyle\int\frac{e^{2x}-1}{e^{x}}\,dx$.
+A: e^x+e^(-x)+c
+ALT: e^x+e^-x+c
+AD: $e^x+e^{-x}+c$
+SOL: Split and simplify: $\frac{e^{2x}}{e^x}-\frac1{e^x}=e^x-e^{-x}$. || $\int e^x\,dx=e^x$. || $\int(-e^{-x})\,dx=-\frac{1}{-1}e^{-x}=e^{-x}$. || Answer: $e^x+e^{-x}+c$.
+H: Divide each term by $e^x$. || $\frac1{e^x}=e^{-x}$. || Integrate each term.
+@check Reverse chain | Find $\displaystyle\int3x^2e^{x^3}\,dx$.
+A: e^(x^3)+c
+ALT: e^x^3+c
+AD: $e^{x^3}+c$
+SOL: Guess $e^{x^3}$. || Its derivative is $3x^2e^{x^3}$ (chain rule). || That is exactly the integrand. || So the answer is $e^{x^3}+c$.
+H: Try $e^{x^3}$. || Differentiate your guess. || Compare with the integrand.
+@check Initial value | $\frac{dy}{dx}=2e^{2x}$ and $y(0)=5$. Find $y$.
+A: e^(2x)+4
+ALT: y=e^(2x)+4
+AD: $y=e^{2x}+4$
+SOL: Integrate: $y=2\cdot\frac12e^{2x}+c=e^{2x}+c$. || Use $y(0)=5$: $e^0+c=5$, so $1+c=5$. || $c=4$. || $y=e^{2x}+4$.
+H: Integrate. || Substitute $x=0$. || $e^0=1$.

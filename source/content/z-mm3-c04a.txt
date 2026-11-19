@@ -1,0 +1,140 @@
+=== mm3-c04 | rewrite
+## 4.2
+@p **What this topic is about.** The second derivative is the derivative of the derivative. It tells you how the gradient itself is changing, which describes how a graph **bends** and, in motion, gives acceleration. You will use it to classify stationary points (4.3), sketch curves (4.4) and confirm maxima and minima in optimisation (4.5).
+@key $$f''(x)=\frac{d}{dx}\big(f'(x)\big)=\frac{d^2y}{dx^2}$$ If $f''(x)>0$ the gradient is increasing: the graph is **concave up** (shaped like a cup). If $f''(x)<0$ the gradient is decreasing: **concave down** (shaped like a cap).
+@p **Reading the notation.** $\frac{d^2y}{dx^2}$ is read "d two y by d x squared". It is not a square of anything; it means "differentiate $y$ with respect to $x$, twice". Prime notation: $f'$ first derivative, $f''$ second derivative, $f'''$ third.
+@p **Interpreting signs in words.** Suppose $P(t)$ is a population. $P'(t)>0$ means it is increasing. $P''(t)<0$ at the same time means the increase is **slowing down** (the growth rate is falling). Exam questions often ask for exactly this kind of sentence: give the sign, say what it means for the rate, and use the context.
+@key **Kinematics:** if $x(t)$ is displacement, then $v=x'(t)$ is velocity and $a=v'(t)=x''(t)$ is acceleration. A particle **speeds up** when $v$ and $a$ have the same sign, and **slows down** when they have opposite signs.
+@p **How to find a second derivative safely.** Differentiate once and **simplify fully** (factorise exponentials, collect terms). Then differentiate the simplified expression. If the first derivative is a product or quotient, the second derivative needs the product or quotient rule again. Simplifying first saves a lot of algebra.
+@ex Second derivative of a polynomial (full working)
+Q: For $f(x)=x^4-2x^3+5x$, find $f''(x)$ and $f''(-1)$.
+S: **First derivative** (power rule on each term): $f'(x)=4x^3-6x^2+5$.
+S: **Second derivative** (differentiate $f'$): $f''(x)=12x^2-12x$.
+S: **Substitute $x=-1$:** $f''(-1)=12(1)-12(-1)=12+12=24$.
+S: **Interpret:** $f''(-1)>0$, so the graph is concave up at $x=-1$.
+A: $f''(x)=12x^2-12x$; $f''(-1)=24$
+@ex Second derivative of a product (full working)
+Q: Find $f''(x)$ for $f(x)=x^3e^{-x}$.
+S: **First derivative (product rule):** $u=x^3$, $u'=3x^2$; $v=e^{-x}$, $v'=-e^{-x}$. So $f'(x)=3x^2e^{-x}-x^3e^{-x}=e^{-x}(3x^2-x^3)$.
+S: **Second derivative (product rule again):** now $u=e^{-x}$, $u'=-e^{-x}$; $v=3x^2-x^3$, $v'=6x-3x^2$.
+S: **Assemble:** $f''(x)=-e^{-x}(3x^2-x^3)+e^{-x}(6x-3x^2)$.
+S: **Factor $e^{-x}$ and collect:** $e^{-x}\left(-3x^2+x^3+6x-3x^2\right)=e^{-x}(x^3-6x^2+6x)$.
+A: $f''(x)=e^{-x}(x^3-6x^2+6x)$
+@ex Worded problem: speeding up or slowing down (full working)
+Q: A particle has displacement $x=t^3-9t^2+24t$ m for $t\ge0$ s. Find its velocity and acceleration at $t=3$, and decide whether it is speeding up just before and just after $t=3$.
+S: **Velocity:** $v=\frac{dx}{dt}=3t^2-18t+24$, so $v(3)=27-54+24=-3$ m/s.
+S: **Acceleration:** $a=\frac{dv}{dt}=6t-18$, so $a(3)=0$ m/s$^2$.
+S: **Just before, $t=2.5$:** $v=18.75-45+24=-2.25$ and $a=15-18=-3$. Same sign, so it is **speeding up**.
+S: **Just after, $t=3.5$:** $v=36.75-63+24=-2.25$ and $a=21-18=3$. Opposite signs, so it is **slowing down**.
+S: **Conclude:** at $t=3$ the particle changes from speeding up to slowing down (its speed is greatest there).
+A: $v(3)=-3$ m/s, $a(3)=0$; speeding up before $t=3$, slowing down after
+@ex Interpreting in context (full working)
+Q: The volume of water in a tank is $V(t)=200+30t-t^2$ litres. Find $V'(5)$ and $V''(5)$ and interpret both.
+S: **First derivative:** $V'(t)=30-2t$, so $V'(5)=20$ L/min.
+S: **Interpret $V'$:** positive, so the volume is increasing at 20 litres per minute at $t=5$.
+S: **Second derivative:** $V''(t)=-2$, so $V''(5)=-2$ L/min$^2$.
+S: **Interpret $V''$:** negative, so the rate of filling is decreasing: the tank is still filling, but more slowly each minute.
+A: $V'(5)=20$ (filling at 20 L/min); $V''(5)=-2$ (the filling rate is decreasing)
+@warn Negative acceleration does **not** always mean slowing down. A particle with $v<0$ and $a<0$ is speeding up (moving faster in the negative direction).
+@p **Exam tip.** When asked to "interpret" a second derivative, mention the rate: "the rate of increase is decreasing" is the expected phrase, not "it is decreasing".
+@check Polynomial | Find $f''(x)$ for $f(x)=2x^4-x^3+7x$.
+A: 24x^2-6x
+ALT: 24x²-6x || 6x(4x-1)
+AD: $24x^2-6x$
+SOL: First derivative: $f'(x)=8x^3-3x^2+7$. || Differentiate again term by term. || $\frac{d}{dx}8x^3=24x^2$, $\frac{d}{dx}(-3x^2)=-6x$, $\frac{d}{dx}7=0$. || So $f''(x)=24x^2-6x$.
+H: Differentiate once. || Differentiate again. || Constants vanish.
+@check Exponential | Find $\dfrac{d^2y}{dx^2}$ for $y=4e^{-2x}$.
+A: 16e^(-2x)
+ALT: 16e^-2x
+AD: $16e^{-2x}$
+SOL: First derivative: $y'=4\times(-2)e^{-2x}=-8e^{-2x}$. || Second derivative: $y''=-8\times(-2)e^{-2x}$. || Two negatives make a positive. || $y''=16e^{-2x}$.
+H: Each differentiation multiplies by $-2$. || $-8\times-2=16$. || Keep $e^{-2x}$.
+@check Value | Find $f''(2)$ for $f(x)=x^3-6x^2+4$.
+A: 0
+AD: $0$
+SOL: $f'(x)=3x^2-12x$. || $f''(x)=6x-12$. || $f''(2)=12-12$. || $f''(2)=0$.
+H: Differentiate twice. || $f''(x)=6x-12$. || Substitute 2.
+@check Acceleration | $x=2t^3-15t^2+36t$. Find the acceleration at $t=1$.
+A: -18
+ALT: -18 m/s^2
+AD: $-18$ m/s²
+SOL: $v=\frac{dx}{dt}=6t^2-30t+36$. || $a=\frac{dv}{dt}=12t-30$. || At $t=1$: $12-30$. || $a=-18$ m/s².
+H: Differentiate for $v$. || Differentiate again for $a$. || Substitute $t=1$.
+@check Interpret | $P(t)$ is a population with $P'(t)=40$ and $P''(t)=-3$ at $t=6$. Which statement is correct: (A) decreasing quickly, (B) increasing at a decreasing rate, (C) increasing at an increasing rate?
+A: B
+ALT: b || (B)
+AD: (B) increasing at a decreasing rate
+SOL: $P'(6)=40>0$, so the population is increasing. || $P''(6)=-3<0$, so the rate of increase is getting smaller. || Together: increasing, but more slowly. || That is statement (B).
+H: What does $P'>0$ mean? || What does $P''<0$ say about the rate? || Combine both.
+## 4.3
+@p **What this topic is about.** Using derivatives to find and **classify** stationary points (maximum, minimum, stationary point of inflection), and finding **points of inflection** where the concavity changes. This is the core of curve sketching and of every "find and justify the maximum" question.
+@key **Stationary point:** $f'(a)=0$ (the tangent is horizontal). **Second derivative test:** if $f''(a)>0$ it is a local minimum; if $f''(a)<0$ a local maximum; if $f''(a)=0$ the test is **inconclusive**.
+@key **First derivative (sign) test:** check the sign of $f'$ just to the left and right of $a$. $+\to-$: maximum. $-\to+$: minimum. Same sign both sides: stationary point of inflection.
+@key **Point of inflection:** a point where the concavity changes, i.e. $f''(x)=0$ **and** $f''$ changes sign. If also $f'(x)=0$ it is a **stationary** point of inflection.
+@p **Why the second derivative test works.** At a minimum the curve is cup-shaped (concave up), so $f''>0$. At a maximum it is cap-shaped (concave down), so $f''<0$. When $f''=0$ the curve could be a min ($x^4$), a max ($-x^4$) or an inflection ($x^3$), so you must switch to the sign test.
+@p **Showing the sign test in an exam.** Draw a small table: a row for $x$ values just left of, at, and right of the point, and a row for the sign of $f'$, with arrows (↘ → ↗). This table is accepted as justification and earns the "nature" mark.
+@ex Classifying with the second derivative (full working)
+Q: Find and classify the stationary points of $f(x)=x^3-3x^2-9x+5$.
+S: **Differentiate:** $f'(x)=3x^2-6x-9$.
+S: **Set to zero and factorise:** $3(x^2-2x-3)=0\Rightarrow3(x-3)(x+1)=0$, so $x=3$ or $x=-1$.
+S: **Find the $y$-values:** $f(3)=27-27-27+5=-22$; $f(-1)=-1-3+9+5=10$.
+S: **Second derivative:** $f''(x)=6x-6$.
+S: **Test $x=3$:** $f''(3)=12>0$, concave up, so $(3,-22)$ is a local minimum.
+S: **Test $x=-1$:** $f''(-1)=-12<0$, concave down, so $(-1,10)$ is a local maximum.
+A: Local maximum $(-1,10)$; local minimum $(3,-22)$
+@ex When the second derivative test fails (full working)
+Q: Find and classify the stationary point of $f(x)=x^3-3x^2+3x$.
+S: **Differentiate:** $f'(x)=3x^2-6x+3=3(x-1)^2$.
+S: **Set to zero:** $x=1$. Point: $f(1)=1-3+3=1$, so $(1,1)$.
+S: **Second derivative test:** $f''(x)=6x-6$, so $f''(1)=0$: inconclusive.
+S: **Sign test:** $f'(0)=3>0$ and $f'(2)=3>0$. The gradient is positive on both sides (↗ → ↗).
+S: **Conclude:** no change of sign, so $(1,1)$ is a stationary point of inflection.
+A: Stationary point of inflection at $(1,1)$
+@ex Point of inflection (full working)
+Q: Find the point of inflection of $y=xe^{-x}$ and state where the graph is concave up.
+S: **First derivative:** $y'=e^{-x}-xe^{-x}=e^{-x}(1-x)$.
+S: **Second derivative** (product rule on $e^{-x}(1-x)$): $y''=-e^{-x}(1-x)+e^{-x}(-1)=e^{-x}(x-2)$.
+S: **Set $y''=0$:** $e^{-x}>0$, so $x=2$.
+S: **Check the sign change:** for $x<2$, $y''<0$ (concave down); for $x>2$, $y''>0$ (concave up). It changes, so this is a point of inflection.
+S: **Coordinates:** $y(2)=2e^{-2}$, so the point is $\left(2,\frac{2}{e^2}\right)$.
+A: Inflection at $\left(2,\ 2e^{-2}\right)$; concave up for $x>2$
+@ex Inflection of a cubic (full working)
+Q: Find the point of inflection of $f(x)=x^3-6x^2+9x+1$ and the gradient there.
+S: **Differentiate twice:** $f'(x)=3x^2-12x+9$; $f''(x)=6x-12$.
+S: **Set $f''=0$:** $x=2$.
+S: **Sign change:** $f''(1)=-6<0$ and $f''(3)=6>0$, so concavity changes.
+S: **Coordinates:** $f(2)=8-24+18+1=3$, so $(2,3)$.
+S: **Gradient there:** $f'(2)=12-24+9=-3$ (not zero, so it is a non-stationary inflection).
+A: Point of inflection $(2,3)$ with gradient $-3$
+@warn $f''(a)=0$ is necessary but **not sufficient** for an inflection. $y=x^4$ has $f''(0)=0$ but $x=0$ is a minimum, because $f''=12x^2$ does not change sign.
+@p **Exam tip.** State the test you use and its result in words: "$f''(3)=12>0$, therefore a local minimum". A bare "min" without justification usually loses the mark.
+@check Classify | Find and classify the stationary point of $f(x)=x^2-6x+11$.
+A: min (3,2)
+ALT: minimum at (3,2) || (3,2) min || min(3,2) || (3,2) minimum
+AD: Local minimum at $(3,2)$
+SOL: $f'(x)=2x-6=0$ gives $x=3$. || $f(3)=9-18+11=2$, so the point is $(3,2)$. || $f''(x)=2>0$. || Concave up, so $(3,2)$ is a local minimum.
+H: Set $f'(x)=0$. || Find $f(3)$. || Use the sign of $f''$.
+@check Two points | Find the $x$-coordinate of the local maximum of $f(x)=x^3-12x$.
+A: -2
+ALT: x=-2
+AD: $x=-2$
+SOL: $f'(x)=3x^2-12=0$ gives $x^2=4$, so $x=\pm2$. || $f''(x)=6x$. || $f''(-2)=-12<0$: maximum; $f''(2)=12>0$: minimum. || The local maximum is at $x=-2$.
+H: Solve $3x^2-12=0$. || Two stationary points. || Negative $f''$ means maximum.
+@check Inflection | Find the point of inflection of $y=x^3+3x^2-2$.
+A: (-1,0)
+ALT: x=-1,y=0 || (-1, 0)
+AD: $(-1,0)$
+SOL: $y'=3x^2+6x$, $y''=6x+6$. || $y''=0$ at $x=-1$. || $y''$ changes from negative to positive there, so it is an inflection. || $y(-1)=-1+3-2=0$, giving $(-1,0)$.
+H: Differentiate twice. || Solve $y''=0$. || Check the sign change and find $y$.
+@check Sign test | Classify the stationary point of $y=x^4$ at $x=0$.
+A: min
+ALT: minimum || local minimum || local min
+AD: Local minimum
+SOL: $y'=4x^3=0$ at $x=0$; $y''=12x^2=0$ there, so the second derivative test fails. || Sign test: $y'(-1)=-4<0$ and $y'(1)=4>0$. || The gradient changes from negative to positive. || So $x=0$ is a local minimum.
+H: The second derivative test is inconclusive here. || Check $y'$ either side. || $-$ to $+$ means minimum.
+@check Concavity | On what interval is $f(x)=x^3-6x^2$ concave down?
+A: x<2
+ALT: (-inf,2) || (-∞,2) || x<2
+AD: $x<2$
+SOL: $f'(x)=3x^2-12x$, $f''(x)=6x-12$. || Concave down means $f''(x)<0$. || $6x-12<0\Rightarrow x<2$. || So the graph is concave down for $x<2$.
+H: Find $f''$. || Concave down: $f''<0$. || Solve the inequality.

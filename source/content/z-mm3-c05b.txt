@@ -1,0 +1,134 @@
+=== mm3-c05 | rewrite
+## 5.4
+@p **What this topic is about.** Integrals whose answer is a natural logarithm. They come from reversing $\frac{d}{dx}\ln|f(x)|=\frac{f'(x)}{f(x)}$, and they appear whenever a fraction's numerator is (a multiple of) the derivative of its denominator.
+@key $$\int\frac1x\,dx=\ln|x|+c\qquad\int\frac{1}{ax+b}\,dx=\frac1a\ln|ax+b|+c\qquad\int\frac{f'(x)}{f(x)}\,dx=\ln|f(x)|+c$$
+@p **Why the absolute value?** $\ln x$ is only defined for $x>0$, but $\frac1x$ exists for negative $x$ too. Since $\frac{d}{dx}\ln(-x)=\frac{-1}{-x}=\frac1x$, the antiderivative of $\frac1x$ for $x<0$ is $\ln(-x)$. Writing $\ln|x|$ covers both. If the question states $x>0$ (or the inside is always positive, like $x^2+1$), you may drop the bars.
+@p **Recognising $\frac{f'}{f}$.** Differentiate the denominator and compare it with the numerator. If they match exactly, the answer is $\ln|\text{denominator}|+c$. If they differ by a constant factor, adjust: $\int\frac{x}{x^2+5}dx$: the derivative of $x^2+5$ is $2x$, and the numerator is $\frac12$ of that, so the answer is $\frac12\ln(x^2+5)+c$.
+@p **When it is not a log.** If the numerator is not a constant multiple of the derivative of the denominator, the answer is not simply a log. For example $\int\frac{x^2+1}{x}dx$ should be split: $\int\left(x+\frac1x\right)dx=\frac{x^2}2+\ln|x|+c$.
+@ex Recognising $\frac{f'}{f}$ (full working)
+Q: Find $\displaystyle\int\frac{2x}{x^2+1}\,dx$.
+S: **Differentiate the denominator:** $\frac{d}{dx}(x^2+1)=2x$.
+S: **Compare with the numerator:** it is exactly $2x$, so the integrand is $\frac{f'(x)}{f(x)}$ with $f(x)=x^2+1$.
+S: **Apply the rule:** $\int\frac{f'}{f}dx=\ln|f|+c$.
+S: **Simplify the absolute value:** $x^2+1>0$ always, so $\ln(x^2+1)+c$.
+A: $\ln(x^2+1)+c$
+@ex Adjusting a constant (full working)
+Q: Find $\displaystyle\int\frac{6x^2}{x^3+1}\,dx$ for $x>-1$.
+S: **Derivative of the denominator:** $\frac{d}{dx}(x^3+1)=3x^2$.
+S: **Compare:** $6x^2=2\times3x^2$, so the integrand is $2\times\frac{f'}{f}$.
+S: **Integrate:** $2\ln|x^3+1|+c$.
+S: **Domain:** for $x>-1$, $x^3+1>0$, so write $2\ln(x^3+1)+c$.
+A: $2\ln(x^3+1)+c$
+@ex Splitting a fraction (full working)
+Q: Find $\displaystyle\int\frac{x^2+3x+2}{x}\,dx$ for $x>0$.
+S: **The numerator is not a multiple of the derivative of $x$ (which is 1)**, so split instead.
+S: **Divide each term by $x$:** $x+3+\dfrac2x$.
+S: **Integrate each term:** $\dfrac{x^2}{2}+3x+2\ln x$.
+S: **Add $c$:** $\dfrac{x^2}2+3x+2\ln x+c$ (no absolute value needed since $x>0$).
+A: $\dfrac{x^2}{2}+3x+2\ln x+c$
+@ex Definite integral with a log (full working)
+Q: Evaluate $\displaystyle\int_1^e\frac{3}{x}\,dx$ exactly.
+S: **Antiderivative:** $3\ln|x|$.
+S: **Substitute the limits:** $\left[3\ln x\right]_1^e=3\ln e-3\ln1$.
+S: **Use $\ln e=1$ and $\ln1=0$:** $3(1)-3(0)$.
+S: **Result:** $3$.
+A: $3$
+@warn $\int\frac{1}{x^2}dx$ is **not** $\ln(x^2)$: here the numerator is not the derivative of $x^2$. Rewrite as $x^{-2}$ and use the power rule: $-\frac1x+c$.
+@p **Exam tip.** Write "since the numerator is the derivative of the denominator" as your justification line. It shows the marker why a log appears.
+@check Basic log | Find $\displaystyle\int\frac{5}{x}\,dx$ for $x>0$.
+A: 5lnx+c
+ALT: 5ln(x)+c || 5ln|x|+c
+AD: $5\ln x+c$
+SOL: Take the constant out: $5\int\frac1x\,dx$. || $\int\frac1x\,dx=\ln|x|$. || Since $x>0$, $|x|=x$. || Answer: $5\ln x+c$.
+H: Constants come out. || $\int\frac1x=\ln|x|$. || $x>0$.
+@check f prime over f | Find $\displaystyle\int\frac{3x^2}{x^3+4}\,dx$ for $x>0$.
+A: ln(x^3+4)+c
+ALT: ln|x^3+4|+c
+AD: $\ln(x^3+4)+c$
+SOL: Differentiate the denominator: $3x^2$. || It equals the numerator exactly. || So the integral is $\ln|x^3+4|+c$. || For $x>0$ the inside is positive: $\ln(x^3+4)+c$.
+H: Differentiate the bottom. || Compare with the top. || Use $\ln|f|$.
+@check Adjust constant | Find $\displaystyle\int\frac{x}{x^2+9}\,dx$.
+A: (1/2)ln(x^2+9)+c
+ALT: 1/2ln(x^2+9)+c || ln(x^2+9)/2+c
+AD: $\tfrac12\ln(x^2+9)+c$
+SOL: The derivative of $x^2+9$ is $2x$. || The numerator $x$ is half of $2x$. || So the integral is $\frac12\ln(x^2+9)+c$. || No absolute value is needed because $x^2+9>0$.
+H: Differentiate the denominator. || The numerator is half of that. || Multiply the log by $\frac12$.
+@check Split | Find $\displaystyle\int\frac{2x+1}{x}\,dx$ for $x>0$.
+A: 2x+lnx+c
+ALT: 2x+ln(x)+c || lnx+2x+c
+AD: $2x+\ln x+c$
+SOL: Split: $\frac{2x}{x}+\frac1x=2+\frac1x$. || $\int2\,dx=2x$. || $\int\frac1x\,dx=\ln x$ (for $x>0$). || Answer: $2x+\ln x+c$.
+H: Divide each term by $x$. || Integrate 2 and $\frac1x$. || Add $c$.
+@check Definite | Evaluate $\displaystyle\int_0^1\frac{2}{2x+1}\,dx$ exactly.
+A: ln3
+ALT: ln(3)
+AD: $\ln3$
+SOL: The derivative of $2x+1$ is 2, the numerator, so the antiderivative is $\ln|2x+1|$. || Evaluate: $\ln3-\ln1$. || $\ln1=0$. || The integral equals $\ln3$.
+H: Numerator is the derivative of the denominator. || Substitute 1 and 0. || $\ln1=0$.
+## 5.5
+@p **What this topic is about.** Anti-differentiating sine and cosine (with linear angles). These integrals model periodic quantities: total water flow over a tidal cycle, displacement of an oscillating object, and areas under trig curves.
+@key $$\int\sin x\,dx=-\cos x+c\qquad\int\cos x\,dx=\sin x+c$$ $$\int\sin(ax+b)\,dx=-\frac1a\cos(ax+b)+c\qquad\int\cos(ax+b)\,dx=\frac1a\sin(ax+b)+c$$
+@p **Getting the signs right.** Differentiation cycles $\sin\to\cos\to-\sin\to-\cos\to\sin$. Integration goes the opposite way: $\int\cos=\sin$ and $\int\sin=-\cos$. A quick sanity check: the area under $\sin x$ from $0$ to $\pi$ is clearly positive, and $[-\cos x]_0^\pi=1-(-1)=2>0$, confirming the minus sign is needed.
+@p **Linear angle: divide by the coefficient.** Just as with exponentials, differentiating $\sin(ax+b)$ multiplies by $a$, so integrating divides by $a$. For angles like $\frac{\pi t}{6}$, dividing by $\frac\pi6$ means multiplying by $\frac6\pi$.
+@p **Using identities first.** Some integrands need rewriting: $\sin x\cos x=\frac12\sin2x$; $\int\sec^2x\,dx=\tan x+c$ (from $\frac{d}{dx}\tan x=\sec^2x$).
+@ex Integrating trig with linear angles (full working)
+Q: Find $\displaystyle\int\left(3\cos2x-\sin\frac x2\right)dx$.
+S: **First term:** $\int\cos2x\,dx=\frac12\sin2x$, so $3\times\frac12\sin2x=\frac32\sin2x$.
+S: **Second term:** $\int\sin\frac x2dx=-\frac{1}{1/2}\cos\frac x2=-2\cos\frac x2$.
+S: **Attach the minus sign in front of the second term:** $-(-2\cos\frac x2)=+2\cos\frac x2$.
+S: **Combine:** $\frac32\sin2x+2\cos\frac x2+c$.
+S: **Check:** $\frac{d}{dx}$ gives $3\cos2x-\sin\frac x2$ ✓.
+A: $\tfrac32\sin2x+2\cos\tfrac x2+c$
+@ex Definite trig integral (full working)
+Q: Evaluate $\displaystyle\int_0^{\pi/4}\cos(2x)\,dx$.
+S: **Antiderivative:** $\frac12\sin(2x)$.
+S: **Substitute limits:** $\left[\frac12\sin2x\right]_0^{\pi/4}=\frac12\sin\frac\pi2-\frac12\sin0$.
+S: **Exact values:** $\sin\frac\pi2=1$, $\sin0=0$.
+S: **Result:** $\frac12$.
+A: $\tfrac12$
+@ex Using a double-angle identity (full working)
+Q: Find $\displaystyle\int\sin x\cos x\,dx$.
+S: **Recall** $\sin2x=2\sin x\cos x$, so $\sin x\cos x=\frac12\sin2x$.
+S: **Rewrite the integral:** $\int\frac12\sin2x\,dx$.
+S: **Integrate:** $\frac12\times\left(-\frac12\cos2x\right)=-\frac14\cos2x$.
+S: **Add $c$:** $-\frac14\cos2x+c$. (Another valid form is $\frac12\sin^2x+c$; the two differ only by a constant.)
+A: $-\tfrac14\cos2x+c$
+@ex Worded problem: total flow (full working)
+Q: Water flows into a tank at $r(t)=5+2\sin\left(\frac{\pi t}{6}\right)$ L/min. How much flows in during the first 6 minutes?
+S: **Total amount is the integral of the rate:** $\int_0^6\left(5+2\sin\frac{\pi t}6\right)dt$.
+S: **Antiderivative:** $5t-2\times\frac6\pi\cos\frac{\pi t}6=5t-\frac{12}\pi\cos\frac{\pi t}6$.
+S: **Upper limit $t=6$:** $30-\frac{12}\pi\cos\pi=30+\frac{12}\pi$.
+S: **Lower limit $t=0$:** $0-\frac{12}\pi\cos0=-\frac{12}\pi$.
+S: **Subtract:** $30+\frac{12}\pi-\left(-\frac{12}\pi\right)=30+\frac{24}\pi\approx37.6$ L.
+A: $30+\frac{24}{\pi}\approx37.6$ litres
+@warn The most common sign error: $\int\sin x\,dx=-\cos x$, not $\cos x$. And with $\sin(3x)$, divide by 3; do not multiply.
+@p **Exam tip.** In technology-free papers, write the exact values used ($\cos\pi=-1$) as you substitute limits; it earns the evaluation mark even if arithmetic slips later.
+@check Cosine | Find $\displaystyle\int\cos(4x)\,dx$.
+A: (1/4)sin(4x)+c
+ALT: sin(4x)/4+c || 1/4sin(4x)+c
+AD: $\tfrac14\sin(4x)+c$
+SOL: $\int\cos(ax)dx=\frac1a\sin(ax)$. || Here $a=4$. || So the answer is $\frac14\sin(4x)$. || Add $c$.
+H: $\int\cos=\sin$. || Divide by 4. || Add $c$.
+@check Sine | Find $\displaystyle\int6\sin(3x)\,dx$.
+A: -2cos(3x)+c
+ALT: -2cos3x+c
+AD: $-2\cos(3x)+c$
+SOL: $\int\sin(3x)dx=-\frac13\cos(3x)$. || Multiply by 6: $6\times\left(-\frac13\right)\cos(3x)$. || $=-2\cos(3x)$. || Add $c$.
+H: $\int\sin=-\cos$. || Divide by 3. || Multiply by 6.
+@check Definite | Evaluate $\displaystyle\int_0^{\pi/2}\sin x\,dx$.
+A: 1
+AD: $1$
+SOL: Antiderivative: $-\cos x$. || $\left[-\cos x\right]_0^{\pi/2}=-\cos\frac\pi2-(-\cos0)$. || $=0+1$. || The integral equals 1.
+H: $\int\sin x=-\cos x$. || $\cos\frac\pi2=0$, $\cos0=1$. || Upper minus lower.
+@check Mixed | Find $\displaystyle\int(\sin2x+4\cos x)\,dx$.
+A: -(1/2)cos2x+4sinx+c
+ALT: -cos(2x)/2+4sin(x)+c || 4sinx-(1/2)cos2x+c || -1/2cos2x+4sinx+c
+AD: $-\tfrac12\cos2x+4\sin x+c$
+SOL: $\int\sin2x\,dx=-\frac12\cos2x$. || $\int4\cos x\,dx=4\sin x$. || Add them. || $-\frac12\cos2x+4\sin x+c$.
+H: Integrate each term. || Divide by 2 in the first. || $\int\cos x=\sin x$.
+@check Identity | Evaluate $\displaystyle\int_0^{\pi/2}\sin x\cos x\,dx$.
+A: 1/2
+ALT: 0.5
+AD: $\tfrac12$
+SOL: Rewrite: $\sin x\cos x=\frac12\sin2x$. || Antiderivative: $-\frac14\cos2x$. || $\left[-\frac14\cos2x\right]_0^{\pi/2}=-\frac14\cos\pi+\frac14\cos0=\frac14+\frac14$. || The integral equals $\frac12$.
+H: Use $\sin2x=2\sin x\cos x$. || Integrate $\frac12\sin2x$. || $\cos\pi=-1$.

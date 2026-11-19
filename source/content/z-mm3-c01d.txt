@@ -1,0 +1,154 @@
+=== mm3-c01 | rewrite
+## 1.8
+@p **What this topic is about.** Putting everything together to model real situations: population growth, radioactive decay, drug concentration, cooling and compound growth. Modelling questions are usually long, multi-part and worth many marks in the exam, so a clear, labelled method matters as much as correct algebra.
+@key **Growth and decay model:** $N=N_0e^{kt}$, where $N_0$ is the initial amount ($t=0$) and $k$ is the continuous growth rate ($k>0$ growth, $k<0$ decay). Its rate of change is $\frac{dN}{dt}=kN$.
+@key **Half-life and doubling time:** half-life $t_{1/2}=\dfrac{\ln2}{|k|}$ (decay); doubling time $=\dfrac{\ln2}{k}$ (growth). **Limited growth / cooling:** $T=T_\infty+Ae^{-kt}$ approaches the long-term value $T_\infty$.
+@p **A five-step modelling routine.** (1) **Define** the variables and units in words ("$t$ is time in hours after 9 am"). (2) **Find the parameters** from the given information: substitute $t=0$ to get the starting value, then a second data point to find $k$. Keep $k$ exact (as a log) until the end. (3) **Answer the question**: substitute for "find the value", set equal and solve for "when", differentiate for "how fast". (4) **Interpret** with units and context. (5) **Comment** on validity if asked: exponential growth cannot continue forever.
+@p **Finding $k$ from two facts.** If $N=50$ at $t=0$ and $N=80$ at $t=4$: substituting gives $80=50e^{4k}$. Divide by 50: $e^{4k}=1.6$. Take logs: $4k=\ln1.6$, so $k=\frac14\ln1.6\approx0.1175$. Using the ratio of two values like this always removes $N_0$.
+@p **Interpreting the sign of the derivative.** For decay, $\frac{dN}{dt}<0$. When a question asks "at what rate is it decreasing?", give the size (positive number) with the word "decreasing", or give the negative derivative and explain the sign. Both earn marks if clearly communicated.
+@ex Worked model: radioactive decay (full working)
+Q: A radioactive sample has a half-life of 6 hours and starts at 120 mg. (a) Find $k$ in $A=120e^{-kt}$. (b) How much remains after one day? (c) How fast is it decaying at that time?
+S: **(a) Use the half-life:** after 6 hours, $A=60$, so $60=120e^{-6k}$.
+S: **Simplify:** $e^{-6k}=\frac12$.
+S: **Take logs:** $-6k=\ln\frac12=-\ln2$, so $k=\dfrac{\ln2}{6}\approx0.1155$.
+S: **(b) Substitute $t=24$:** $A=120e^{-24k}=120e^{-4\ln2}=120\times2^{-4}=120\times\frac1{16}=7.5$ mg. (One day is four half-lives: $120\to60\to30\to15\to7.5$, a quick check.)
+S: **(c) Differentiate:** $\dfrac{dA}{dt}=-kA$.
+S: **Substitute $t=24$:** $\dfrac{dA}{dt}=-\dfrac{\ln2}{6}\times7.5\approx-0.866$ mg/h.
+S: **Interpret:** after one day the sample is decaying at about 0.87 mg per hour.
+A: (a) $k=\frac{\ln2}{6}$; (b) $7.5$ mg; (c) decreasing at about $0.87$ mg/h
+@ex Worked model: Newton's law of cooling (full working)
+Q: Coffee cools according to $T=22+68e^{-kt}$ (°C, $t$ minutes). After 5 minutes it is 70°C. (a) Find $k$. (b) When does it reach 55°C? (c) How fast is it cooling then? (d) What temperature does it approach?
+S: **(a) Substitute the data point** $t=5$, $T=70$: $70=22+68e^{-5k}$.
+S: **Isolate the exponential:** $68e^{-5k}=48\Rightarrow e^{-5k}=\frac{48}{68}=\frac{12}{17}$.
+S: **Take logs:** $-5k=\ln\frac{12}{17}$, so $k=-\frac15\ln\frac{12}{17}=\frac15\ln\frac{17}{12}\approx0.0697$.
+S: **(b) Set $T=55$:** $55=22+68e^{-kt}\Rightarrow e^{-kt}=\frac{33}{68}\Rightarrow t=\dfrac{\ln(68/33)}{k}\approx\dfrac{0.7230}{0.0697}\approx10.4$ minutes.
+S: **(c) Differentiate:** $\dfrac{dT}{dt}=-68ke^{-kt}$. Note $68e^{-kt}=T-22$, so $\dfrac{dT}{dt}=-k(T-22)$.
+S: **Substitute $T=55$:** $\dfrac{dT}{dt}=-0.0697\times33\approx-2.30$ °C/min, so it is cooling at about 2.3 °C per minute.
+S: **(d) Long term:** as $t\to\infty$, $e^{-kt}\to0$, so $T\to22$°C (room temperature, the horizontal asymptote).
+A: (a) $k\approx0.0697$; (b) about $10.4$ min; (c) about $2.3$ °C/min; (d) $22$°C
+@ex Worked model: finding the model from data (full working)
+Q: A town had 8000 people in 2020 and 9200 in 2025. Assuming $P=P_0e^{kt}$ with $t$ in years after 2020, find the model and predict when the population reaches 12 000.
+S: **Starting value:** at $t=0$, $P=8000$, so $P_0=8000$.
+S: **Second data point:** at $t=5$, $9200=8000e^{5k}\Rightarrow e^{5k}=1.15$.
+S: **Solve for $k$:** $5k=\ln1.15\Rightarrow k=\frac15\ln1.15\approx0.02795$.
+S: **Model:** $P=8000e^{0.02795t}$.
+S: **Set $P=12000$:** $12000=8000e^{kt}\Rightarrow e^{kt}=1.5\Rightarrow t=\dfrac{\ln1.5}{k}\approx\dfrac{0.4055}{0.02795}\approx14.5$.
+S: **Interpret:** about 14.5 years after 2020, i.e. during 2034 (mid-2034).
+S: **Comment on validity:** this assumes the growth rate stays constant; housing, jobs and services would limit growth, so predictions far ahead are less reliable.
+A: $P=8000e^{0.02795t}$; reaches 12 000 in about 2034
+@ex Worked model: drug concentration (full working)
+Q: A drug amount in the body is $A=80e^{-0.2t}$ mg after $t$ hours. Find (a) the amount after 3 hours, (b) when it falls to 10 mg, (c) when it is decreasing at 4 mg/h.
+S: **(a) Substitute $t=3$:** $A=80e^{-0.6}\approx80\times0.5488\approx43.9$ mg.
+S: **(b) Set $A=10$:** $80e^{-0.2t}=10\Rightarrow e^{-0.2t}=\frac18$.
+S: **Take logs:** $-0.2t=\ln\frac18=-\ln8\Rightarrow t=5\ln8\approx10.4$ hours.
+S: **(c) Differentiate:** $\dfrac{dA}{dt}=80\times(-0.2)e^{-0.2t}=-16e^{-0.2t}$.
+S: **"Decreasing at 4 mg/h" means $\frac{dA}{dt}=-4$:** $-16e^{-0.2t}=-4\Rightarrow e^{-0.2t}=\frac14$.
+S: **Solve:** $-0.2t=-\ln4\Rightarrow t=5\ln4\approx6.93$ hours.
+A: (a) $43.9$ mg; (b) $5\ln8\approx10.4$ h; (c) $5\ln4\approx6.93$ h
+@warn Do not round $k$ early. Rounding $k=0.0697$ to $0.07$ in the cooling example changes the time in (b) noticeably. Store $k$ exactly (e.g. $\frac15\ln\frac{17}{12}$) or keep it in your calculator memory.
+@p **Exam tip: evaluating a model.** Typical marks: one for a limitation tied to the context ("the population cannot grow forever because of limited resources"), one for a suggested improvement ("collect more data points" or "use a model that levels off, such as a limited growth model").
+@check Half-life | A substance decays as $A=A_0e^{-0.05t}$ ($t$ in years). Find its exact half-life.
+A: 20ln2
+ALT: ln2/0.05 || 13.86 || 13.9
+AD: $20\ln2\approx13.9$ years
+SOL: At the half-life $A=\frac12A_0$, so $\frac12A_0=A_0e^{-0.05t}$. || Cancel $A_0$: $e^{-0.05t}=\frac12$. || Take logs: $-0.05t=\ln\frac12=-\ln2$. || So $t=\frac{\ln2}{0.05}=20\ln2\approx13.9$ years.
+H: Set $A=\frac12A_0$. || Cancel $A_0$. || Take $\ln$ and divide by $-0.05$.
+@check Finding k | A colony grows from 500 to 800 in 3 days, following $N=500e^{kt}$. Find $k$ exactly.
+A: (1/3)ln1.6
+ALT: ln(1.6)/3 || ln1.6/3 || (1/3)ln(8/5) || 0.157
+AD: $k=\tfrac13\ln1.6\approx0.157$
+SOL: Substitute $t=3$, $N=800$: $800=500e^{3k}$. || Divide by 500: $e^{3k}=1.6$. || Take logs: $3k=\ln1.6$. || So $k=\frac13\ln1.6\approx0.157$ per day.
+H: Substitute the second data point. || Divide by 500. || Take $\ln$, then divide by 3.
+@check When does it reach | $P=2000e^{0.06t}$. Find when $P=5000$, to 1 decimal place.
+A: 15.3
+ALT: t=15.3 || 15.27
+AD: $t=\dfrac{\ln2.5}{0.06}\approx15.3$
+SOL: Set $2000e^{0.06t}=5000$. || Divide: $e^{0.06t}=2.5$. || Take logs: $0.06t=\ln2.5\approx0.9163$. || So $t\approx15.3$.
+H: Set $P=5000$. || Isolate the exponential. || Take $\ln$ and divide by $0.06$.
+@check Cooling | $T=20+70e^{-0.1t}$. Find the rate of cooling when $t=10$, to 2 decimal places (give the size).
+A: 2.58
+ALT: -2.58 || 2.575
+AD: $\approx2.58$ °C per minute (decreasing)
+SOL: Differentiate: $\frac{dT}{dt}=70\times(-0.1)e^{-0.1t}=-7e^{-0.1t}$. || Substitute $t=10$: $-7e^{-1}$. || Evaluate: $-7\times0.3679\approx-2.575$. || So it is cooling at about 2.58 °C per minute.
+H: Differentiate the exponential term only. || Substitute $t=10$. || Give the size of the rate.
+@check Long-term value | For $T=18+60e^{-0.2t}$, state the initial temperature and the long-term temperature.
+A: 78,18
+ALT: 78 and 18 || initial 78, long term 18 || 78°C,18°C
+AD: Initial $78$°C; long term $18$°C
+SOL: Initial value: substitute $t=0$: $T=18+60e^0=18+60=78$. || Long term: as $t\to\infty$, $e^{-0.2t}\to0$. || So $T\to18+0=18$. || The temperature starts at 78°C and approaches 18°C.
+H: Substitute $t=0$. || What happens to $e^{-0.2t}$ as $t$ grows? || The constant term is the long-term value.
+## X
+@p **What the exam rewards.** Marks are given for the correct method, accurate answers and clear communication. Write the rule you are using ("by the quotient law", "using $\frac{d}{dx}e^{f(x)}=f'(x)e^{f(x)}$"), show substitutions, and give exact answers unless told to round. On the technology-active paper, still write the equation you are solving before using CAS.
+@p **Command words.** *Determine / find / calculate*: show working to a result. *Show that*: you must reach exactly the stated result, so every line must follow from the last; never work backwards from the answer. *Hence*: you must use the previous part. *Evaluate the reasonableness of the model*: comment on accuracy, assumptions and limitations in context.
+@p **Checklist for this chapter.** Limits: substitute, simplify ($\frac00$), estimate. First principles: definition, expand, cancel $h$, then $h\to0$. Exponentials: asymptote $y=k$, intercepts, range. Logs: laws, domain, asymptote $x=h$. Solving: isolate then $\ln$; $u=e^x$; combine logs and check the domain. Derivatives: $\frac{d}{dx}e^{f}=f'e^{f}$, $\frac{d}{dx}\ln f=\frac{f'}{f}$. Models: find $N_0$ and $k$, solve, differentiate, interpret.
+@ex Exam-style extended response (full working)
+Q: A hot metal cools as $T(t)=25+75e^{-kt}$ (°C, $t$ minutes). After 5 minutes it is 55°C. (a) Show that $k=\frac15\ln\frac52$. (b) Find the rate of cooling at $t=5$. (c) Find when the metal is within 1°C of room temperature.
+S: **(a) Substitute the data:** $55=25+75e^{-5k}\Rightarrow75e^{-5k}=30\Rightarrow e^{-5k}=\frac{30}{75}=\frac25$.
+S: **Take logs:** $-5k=\ln\frac25$, so $k=-\frac15\ln\frac25=\frac15\ln\frac52$ (using $-\ln\frac ab=\ln\frac ba$), as required.
+S: **(b) Differentiate:** $T'(t)=-75ke^{-kt}$. At $t=5$, $75e^{-5k}=30$ (from part a), so $T'(5)=-30k=-6\ln\frac52\approx-5.50$.
+S: **Interpret:** the metal is cooling at about 5.5 °C per minute at $t=5$.
+S: **(c) "Within 1°C of room temperature" means $T=26$:** $25+75e^{-kt}=26\Rightarrow e^{-kt}=\frac1{75}$.
+S: **Solve:** $t=\dfrac{\ln75}{k}=\dfrac{\ln75}{\frac15\ln2.5}=\dfrac{5\ln75}{\ln2.5}\approx\dfrac{5\times4.3175}{0.9163}\approx23.6$ minutes.
+A: (a) shown; (b) cooling at about $5.5$ °C/min; (c) after about $23.6$ minutes
+@ex Exam-style: equation and tangent combined (full working)
+Q: Let $f(x)=e^{2x}-3e^x$. (a) Find the exact $x$-intercept. (b) Find the exact coordinates of the stationary point.
+S: **(a) Set $f(x)=0$ and factorise:** $e^x(e^x-3)=0$.
+S: **Solve each factor:** $e^x=0$ has no solution; $e^x=3$ gives $x=\ln3$. So the $x$-intercept is $(\ln3,0)$.
+S: **(b) Differentiate:** $f'(x)=2e^{2x}-3e^x=e^x(2e^x-3)$.
+S: **Set to zero:** $e^x\neq0$, so $2e^x=3\Rightarrow e^x=\frac32\Rightarrow x=\ln\frac32$.
+S: **Find $y$:** $f\left(\ln\frac32\right)=\left(\frac32\right)^2-3\left(\frac32\right)=\frac94-\frac92=-\frac94$.
+A: (a) $(\ln3,0)$; (b) $\left(\ln\frac32,\,-\frac94\right)$
+@warn Common lost marks in this chapter: forgetting to reject a log solution outside the domain, treating $\ln(a+b)$ as $\ln a+\ln b$, rounding $k$ too early, and giving a decimal when an exact answer was asked for.
+@check Show that | $55=25+75e^{-5k}$. Find $k$ exactly.
+A: (1/5)ln(5/2)
+ALT: (1/5)ln2.5 || ln2.5/5 || ln(5/2)/5 || 0.183
+AD: $k=\tfrac15\ln\tfrac52\approx0.183$
+SOL: Subtract 25: $75e^{-5k}=30$. || Divide by 75: $e^{-5k}=\frac25$. || Take logs: $-5k=\ln\frac25$. || So $k=-\frac15\ln\frac25=\frac15\ln\frac52\approx0.183$.
+H: Isolate the exponential. || Take $\ln$. || $-\ln\frac25=\ln\frac52$.
+@check Factorising exponentials | Solve $e^{2x}-3e^x=0$ exactly.
+A: ln3
+ALT: x=ln3
+AD: $x=\ln3$
+SOL: Factorise out $e^x$: $e^x(e^x-3)=0$. || $e^x=0$ is impossible because exponentials are always positive. || So $e^x=3$. || Therefore $x=\ln3$.
+H: Take out a common factor. || Can $e^x$ be zero? || Solve the other factor.
+@check Mixed derivative | Differentiate $y=e^{3x}+\ln(2x)$.
+A: 3e^(3x)+1/x
+ALT: 3e^(3x)+(1/x) || 1/x+3e^(3x)
+AD: $3e^{3x}+\dfrac1x$
+SOL: Differentiate term by term. || $\frac{d}{dx}e^{3x}=3e^{3x}$. || $\frac{d}{dx}\ln(2x)=\frac{2}{2x}=\frac1x$. || So $\frac{dy}{dx}=3e^{3x}+\frac1x$.
+H: Treat each term separately. || Use $\frac{d}{dx}e^{kx}=ke^{kx}$. || $\ln(2x)$ has derivative $\frac1x$.
+@check Stationary value | Find the minimum value of $f(x)=e^{2x}-4e^x$.
+A: -4
+ALT: y=-4
+AD: $-4$
+SOL: Differentiate: $f'(x)=2e^{2x}-4e^x=2e^x(e^x-2)$. || Set to zero: $e^x=2$, so $x=\ln2$. || Evaluate: $f(\ln2)=(e^{\ln2})^2-4e^{\ln2}=4-8=-4$. || The sign of $f'$ changes from negative to positive at $x=\ln2$, so this is the minimum value: $-4$.
+H: Factorise the derivative. || Solve $e^x=2$. || Substitute back using $e^{\ln2}=2$.
+@check Model interpretation | A population follows $P=1200e^{0.03t}$. Give the initial population and the continuous growth rate as a percentage.
+A: 1200,3%
+ALT: 1200 and 3% || 1200, 3 || 1200,0.03
+AD: Initial population $1200$; growth rate $3\%$ per unit time
+SOL: At $t=0$: $P=1200e^0=1200$. || The coefficient of $t$ in the index is $k=0.03$. || As a percentage, $k=3\%$. || So the population starts at 1200 and grows continuously at 3% per unit of time.
+H: Substitute $t=0$. || $k$ is the number multiplying $t$. || Convert $0.03$ to a percentage.
+@solfix 0 | Identify the power of $e$: it is $5x$, whose derivative is $5$. || Using $\frac{d}{dx}e^{kx}=ke^{kx}$, $\frac{d}{dx}e^{5x}=5e^{5x}$. || The constant multiplier 3 stays in front: $3\times5e^{5x}=15e^{5x}$. || So $\frac{dy}{dx}=15e^{5x}$.
+@solfix 1 | The power is $f(x)=x^2-3x$. || Differentiate the power: $f'(x)=2x-3$. || Using $\frac{d}{dx}e^{f(x)}=f'(x)e^{f(x)}$, copy the exponential and multiply by $2x-3$. || So $\frac{dy}{dx}=(2x-3)e^{x^2-3x}$.
+@solfix 2 | Use the quotient law: $\ln8-\ln2=\ln\frac82$. || Simplify: $\frac82=4$, so this is $\ln4$. || Write 4 as a power of 2: $\ln4=\ln2^2$. || Use the power law: $\ln2^2=2\ln2$.
+@solfix 3 | Divide both sides by 2 to isolate the exponential: $e^{3x}=7$. || Take natural logs of both sides: $\ln e^{3x}=\ln7$, so $3x=\ln7$. || Divide by 3: $x=\frac13\ln7$. || As a check, $\frac13\ln7\approx0.649$ and $2e^{3(0.649)}\approx14$.
+@solfix 4 | Notice $e^{2x}=(e^x)^2$ and let $u=e^x$: the equation becomes $u^2-4u-5=0$. || Factorise: two numbers multiplying to $-5$ and adding to $-4$ are $-5$ and $1$, so $(u-5)(u+1)=0$. || So $u=5$ or $u=-1$. Reject $u=-1$ because $e^x$ is always positive. || Solve $e^x=5$: $x=\ln5$.
+@solfix 5 | Domain first: $x+1>0$ and $x-1>0$, so solutions must satisfy $x>1$. || Combine the left side with the product law: $\ln\big((x+1)(x-1)\big)=\ln8$. || Equate the insides: $(x+1)(x-1)=8$, so $x^2-1=8$ and $x^2=9$, giving $x=\pm3$. || Reject $x=-3$ because it makes $\ln(x-1)$ undefined. So $x=3$.
+@solfix 6 | The inside of the log is $f(x)=x^2+1$, with derivative $f'(x)=2x$. || Use $\frac{d}{dx}\ln f(x)=\frac{f'(x)}{f(x)}$. || Put the derivative of the inside over the inside. || So $\frac{dy}{dx}=\frac{2x}{x^2+1}$.
+@solfix 7 | Differentiate term by term: $\frac{d}{dx}e^{2x}=2e^{2x}$ and $\frac{d}{dx}x=1$. || So $\frac{dy}{dx}=2e^{2x}+1$. || Substitute $x=0$: $2e^0+1=2(1)+1$. || The gradient of the tangent at $x=0$ is $3$.
+@solfix 8 | Substitute $t=10$ into the model: $P=500e^{0.04\times10}=500e^{0.4}$. || Evaluate the exponential: $e^{0.4}\approx1.49182$. || Multiply: $500\times1.49182\approx745.9$. || Round to the nearest whole number: $P\approx746$.
+@solfix 9 | At the half-life the amount is half the starting amount: $\frac12A_0=A_0e^{-0.1t}$. || Cancel $A_0$: $e^{-0.1t}=\frac12$. || Take logs: $-0.1t=\ln\frac12=-\ln2$. || Solve: $t=\frac{\ln2}{0.1}=10\ln2\approx6.93$.
+@solfix 10 | Substituting $x=2$ gives $\frac{0}{0}$, so simplify first. || Factorise the numerator as a difference of two squares: $x^2-4=(x-2)(x+2)$. || Cancel $(x-2)$, allowed because $x\neq2$ in a limit: the expression becomes $x+2$. || Substitute: $2+2=4$.
+@solfix 11 | The derivative is the limit of the quotient: $f'(x)=\lim_{h\to0}(2x+h+3)$. || As $h\to0$ the $h$ term vanishes. || What remains is $2x+3$. || So $f'(x)=2x+3$.
+@solfix 12 | Substitute $(0,5)$: $5=ae^0=a$, so $a=5$. || Substitute $(1,5e^{-3})$: $5e^{-3}=5e^{b}$. || Divide by 5: $e^b=e^{-3}$. || Equal bases mean equal indices, so $b=-3$.
+@solfix 13 | Take natural logs of both sides: $\ln3^x=\ln20$. || Use the power law: $x\ln3=\ln20$. || Divide: $x=\frac{\ln20}{\ln3}=\frac{2.9957}{1.0986}$. || So $x\approx2.73$.
+@solfix 14 | Differentiate: $y'=e^x-3$. || Set to zero: $e^x=3$, so $x=\ln3$. || Second derivative: $y''=e^x$, which is positive for all $x$. || So the stationary point at $x=\ln3$ is a minimum.
+@solfix 15 | Domain: $x>0$ and $x-8>0$, so $x>8$. || Combine with the product law: $\log_3\big(x(x-8)\big)=2$. || Convert to index form: $x(x-8)=3^2=9$, so $x^2-8x-9=0$, which factorises to $(x-9)(x+1)=0$. || $x=-1$ is outside the domain, so reject it. The answer is $x=9$.
+@solfix 16 | The inside is $f(x)=\cos x$, with derivative $f'(x)=-\sin x$. || Apply $\frac{d}{dx}\ln f=\frac{f'}{f}$: $\frac{-\sin x}{\cos x}$. || Simplify using $\frac{\sin x}{\cos x}=\tan x$. || So $\frac{dy}{dx}=-\tan x$.
+@solfix 17 | The point on the curve is $(1,\ln1)=(1,0)$. || The gradient is $\frac{dy}{dx}=\frac1x=1$ at $x=1$. || Tangent: $y-0=1(x-1)$, so $y=x-1$. || The $y$-intercept (set $x=0$) is $-1$.
+@solfix 18 | Substitute $t=10$: $T=20+60e^{-0.1\times10}=20+60e^{-1}$. || Evaluate: $e^{-1}\approx0.36788$, so $60e^{-1}\approx22.07$. || Add: $20+22.07=42.07$. || To 1 decimal place, $T\approx42.1$.
+@solfix 19 | Tripling means $P=3P_0$ when $t=6$: $3P_0=P_0e^{6k}$. || Cancel $P_0$: $e^{6k}=3$. || Take logs: $6k=\ln3$. || So $k=\frac{\ln3}{6}\approx0.183$.
+@cometfix 0 | Find the tangent at $x=a$: the point is $(a,e^a)$ and the gradient is $e^a$ (since $\frac{d}{dx}e^x=e^x$). || The tangent is $y-e^a=e^a(x-a)$. || For it to pass through the origin, substitute $(0,0)$: $0-e^a=e^a(0-a)$, so $-e^a=-ae^a$. || Divide by $-e^a$ (never zero): $a=1$.
+@cometfix 1 | Let $u=\ln x$. Then $(\ln x)^2=u^2$ and $\ln(x^3)=3\ln x=3u$. || The equation becomes $u^2=3u-2$, i.e. $u^2-3u+2=0$. || Factorise: $(u-1)(u-2)=0$, so $u=1$ or $u=2$. || Convert back: $\ln x=1\Rightarrow x=e$ and $\ln x=2\Rightarrow x=e^2$. Both are positive, so both are valid.
+@cometfix 2 | If $y=mx$ touches $y=e^x$, it is a tangent to the curve that passes through the origin. || The tangent at $x=a$ is $y=e^ax+e^a(1-a)$, which passes through the origin only if $e^a(1-a)=0$, so $a=1$. || The gradient there is $m=e^a=e^1$. || So $m=e$.

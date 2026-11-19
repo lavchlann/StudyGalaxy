@@ -57,6 +57,23 @@ rep("  if(e.code==='unavailable')return'Lessons and quizzes need this page to be
 rep("async function commit(){\n","async function commit(){\n  if(window.SG_WEB){fxMirror();return;}\n")
 rep("  requestAnimationFrame(frame);\n}","  requestAnimationFrame(frame);\n  fxResumeRestore(d);\n}")
 rep("window.claude.hot.snapshot(()=>({view:V.view,subj:V.subj,unit:V.unit,sel:V.sel}))","window.claude.hot.snapshot(()=>({view:V.view,subj:V.subj,unit:V.unit,sel:V.sel,resume:fxResumeData()}))")
+
+rep("""    return h+'<div class="row"><button class="btn" data-act="next">'+(sess.i+1<n?'Next question':'See results')+'</button></div>';
+  }""","""    if(st.revealed&&!st.selfm)return h+'<div class="selfmark"><p><b>Compare with your working.</b> Did you get it right?</p><div class="row"><button class="btn" data-act="selfright">I got it right</button><button class="btn ghost" data-act="selfwrong">I got it wrong</button></div></div>';
+    return h+'<div class="row"><button class="btn" data-act="next">'+(sess.i+1<n?'Next question':'See results')+'</button></div>';
+  }""")
+rep("""(st.revealed?(strict?'Solution shown. No marks for this one.':'Here is the full solution.'):""","""(st.selfm==='r'?'You marked this right.':st.selfm==='w'?'You marked this wrong. It goes to your mistakes so it comes back.':st.revealed?'Here is the full solution. Work it on paper, then compare.':""")
+rep("""    case'giveup':q.st.done=true;q.st.credit=0;q.st.revealed=true;q.st.attempts++;if(q.st.attempts===1)q.st.firstWrong=true;break;""","""    case'giveup':q.st.done=true;q.st.credit=0;q.st.revealed=true;q.st.attempts++;if(q.st.attempts===1)q.st.firstWrong=true;q.st.sol=99;break;
+    case'selfright':q.st.selfm='r';q.st.credit=(sess.kind==='revise'||sess.kind==='exam')&&q.st.hints>0?.5:1;q.st.firstWrong=false;q.st.note='';try{QOK(q,q.st);}catch(e){}break;
+    case'selfwrong':q.st.selfm='w';q.st.credit=0;break;""")
+rep("""      const idx=rot(ct.quiz.length,0,(p.pc||0)+si*3+1).slice(0,3);
+      sess={kind:'check',ch:par.ch,phase:'q',qa:[],text:'',abort:new AbortController(),qs:idx.map(i=>qObj(ct.quiz[i],id+'-q'+i,id)),i:0,parent:par,secid:v};break;}""","""      const sc=(ct.sections[si].checks||[]);let qs;
+      if(sc.length)qs=sc.slice(0,5).map((x,k)=>qObj(x,id+'-s'+si+'c'+k,id));
+      else{const idx=rot(ct.quiz.length,0,(p.pc||0)+si*3+1).slice(0,5);qs=idx.map(i=>qObj(ct.quiz[i],id+'-q'+i,id));}
+      sess={kind:'check',ch:par.ch,phase:'q',qa:[],text:'',abort:new AbortController(),qs:qs,i:0,parent:par,secid:v};break;}""")
+rep("Check yourself (3 questions)","Check yourself (5 questions)")
+rep("'solnext','solall','wide','hidepanel'].includes(a);","'solnext','solall','wide','hidepanel','selfright','selfwrong'].includes(a);")
+
 rep("const days=new Set(S.log.map(e=>dayKey(e.t))),d=new Date(),today=days.has(dayKey(d));","const days=fxStreakDays(),d=new Date(),today=days.has(dayKey(d));")
 rep("(sk.n?'<b>'+sk.n+'</b> day streak':'no streak yet')","(sk.n?'<b>'+sk.n+'</b> day streak':'no streak yet')+fxShieldTag()")
 rep("'Student question: '+q+'\\nAnswer in under 200 words. '+MATHSTYLE","'Student question: '+q+'\\n'+(S.set.socratic?'Use the Socratic method. Do not give the final answer or the full solution. Ask one or two short guiding questions that lead the student to their next step, and add a small hint only if they seem stuck. If their message shows they have reached the right answer, confirm it and say briefly why it is right. Under 120 words. ':'Answer in under 200 words. ')+MATHSTYLE")

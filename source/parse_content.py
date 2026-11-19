@@ -1,6 +1,6 @@
 import re, json, glob, urllib.parse, sys
 def parse(path,out=None):
-    chap=None; sec=None; cur=None; deep=False; ins=[None]
+    chap=None; sec=None; cur=None; deep=False; rw=False; ins=[None]; tails=[]
     out={} if out is None else out
     def add(b):
         if ins[0] is None: sec['blocks'].append(b)
@@ -11,8 +11,10 @@ def parse(path,out=None):
     for raw in open(path,encoding='utf8').read().split('\n'):
         l=raw.rstrip()
         if not l.strip(): continue
-        if l.startswith('===') and (l.rstrip().endswith('append') or l.rstrip().endswith('deepen')):
-            chap=out[re.match(r'===\s*(\S+)',l).group(1)]; sec=None; cur=None; deep=l.rstrip().endswith('deepen'); continue
+        if l.startswith('===') and (l.rstrip().endswith('append') or l.rstrip().endswith('deepen') or l.rstrip().endswith('rewrite')):
+            chap=out[re.match(r'===\s*(\S+)',l).group(1)]; sec=None; cur=None; deep=l.rstrip().endswith('deepen'); rw=l.rstrip().endswith('rewrite')
+            if rw: chap['cards']=[c for c in chap.get('cards',[])]
+            continue
         if l.startswith('==='):
             m=re.match(r'===\s*(\S+)\s*\|\s*interactive:\s*(\S+)',l)
             chap={'id':m.group(1),'interactive':m.group(2),'summary':'','videos':[],'sections':[],'quiz':[],'comets':[]}
@@ -20,6 +22,9 @@ def parse(path,out=None):
         if l.startswith('## '):
             if '|' not in l:
                 code=l[3:].strip(); sec=[x for x in chap['sections'] if x['code']==code][0]; cur=None
+                if rw:
+                    tail=[b for b in sec['blocks'] if b['t'] in('int','tb')]
+                    sec['blocks']=[b for b in sec['blocks'] if b['t']=='vid']; tails.append((sec,tail)); sec['checks']=[]
                 ins[0]=next((i for i,b in enumerate(sec['blocks']) if b['t']=='tb'),None) if deep else None; continue
             code,title=[x.strip() for x in l[3:].split('|',1)]
             sec={'id':chap['id']+'-s%d'%(len(chap['sections'])+1),'code':code,'title':title,'blocks':[]}
@@ -47,10 +52,13 @@ def parse(path,out=None):
             elif k=='tb':
                 mm=re.match(r'rec=(\S*)\s+ext=(\S*)\s*\|\s*(.*)',rest)
                 sec['blocks'].append({'t':'tb','rec':mm.group(1),'ext':mm.group(2),'x':mm.group(3),'code':sec['code']})
-            elif k in('quiz','comet'):
+            elif k in('quiz','comet','check'):
                 topic,q=[x.strip() for x in rest.split(' | ',1)]
                 cur={'topic':topic,'q':q,'a':'','alt':[],'ad':'','sol':'','h':[]}
-                chap['quiz' if k=='quiz' else 'comets'].append(cur)
+                if k=='check': sec.setdefault('checks',[]).append(cur)
+                else: chap['quiz' if k=='quiz' else 'comets'].append(cur)
+            elif k in('solfix','cometfix'):
+                i,txt=rest.split('|',1); chap['quiz' if k=='solfix' else 'comets'][int(i.strip())]['sol']=txt.strip()
             else: raise Exception('unknown '+k+' '+l)
             continue
         if cur is None: raise Exception('orphan line: '+l)
@@ -66,15 +74,17 @@ def parse(path,out=None):
             elif l.startswith('SOL:'): cur['sol']=l[4:].strip()
             elif l.startswith('H:'): cur['h']=[x.strip() for x in l[2:].split('||')]
             else: raise Exception('bad q line '+l)
+    for sc,tl in tails: sc['blocks'].extend(tl)
     return out
 allc={}
 import sys; sys.path.insert(0,'/home/claude/galaxy-src')
 import vids
 allc={}
 for f in sorted(glob.glob('/tmp/work/content/*.txt')):
-    if '/x-' not in f and '/y-' not in f: parse(f,allc)
+    if '/x-' not in f and '/y-' not in f and '/z-' not in f: parse(f,allc)
 for f in sorted(glob.glob('/tmp/work/content/x-*.txt')): parse(f,allc)
 for f in sorted(glob.glob('/tmp/work/content/y-*.txt')): parse(f,allc)
+for f in sorted(glob.glob('/tmp/work/content/z-*.txt')): parse(f,allc)
 for cid,c in allc.items():
     c['hours']=vids.HOURS[cid]
     for sec in c['sections']:
@@ -82,6 +92,9 @@ for cid,c in allc.items():
         if v and not any(b['t']=='vid' for b in sec['blocks']): sec['blocks'].insert(0,{'t':'vid','items':vids.items(*v,cid)})
 bad=0
 for cid,c in allc.items():
+    for sec in c['sections']:
+        for q in sec.get('checks',[]):
+            if not(q['a'] and q['ad'] and q['sol'] and len(q['h'])==3): print('BADCHECK',cid,sec['code'],q['q'][:50]); bad+=1
     for k in('quiz','comets'):
         for q in c[k]:
             if not(q['a'] and q['ad'] and q['sol'] and len(q['h'])==3):

@@ -1,0 +1,207 @@
+=== mm3-c04 | rewrite
+## 4.4
+@p **What this topic is about.** Using everything about derivatives to draw an accurate sketch of a function, with all key features labelled. Sketching shows that you understand how a function behaves, and graph questions often ask you to label exact coordinates and justify their nature.
+@key **Sketching checklist:** (1) **Domain** and any restrictions. (2) **Intercepts:** $y$-intercept at $x=0$; $x$-intercepts from $y=0$. (3) **Stationary points** from $f'(x)=0$, with their nature. (4) **Points of inflection** from $f''(x)=0$ with a sign change. (5) **Asymptotes** and **end behaviour** (what happens as $x\to\pm\infty$). (6) Join smoothly, respecting the concavity, and **label** every feature with exact coordinates.
+@p **End behaviour.** For a polynomial, the highest-power term decides: $-x^3$ goes to $-\infty$ as $x\to\infty$ and to $+\infty$ as $x\to-\infty$. For $xe^{-x}$, the exponential wins as $x\to\infty$, so $y\to0$ (the $x$-axis is an asymptote). For $\ln x$, there is a vertical asymptote at $x=0$.
+@p **Touching versus crossing.** A repeated factor $(x-a)^2$ means the graph touches the $x$-axis at $a$ (a turning point there); a single factor means it crosses; a cubed factor $(x-a)^3$ means a stationary point of inflection on the axis.
+@p **Labelling in an exam.** Write coordinates next to each feature, e.g. "max $(1,4)$", "PoI $(0,2)$". Draw asymptotes dashed with their equations. Make the curve pass exactly through labelled points with the correct shape (no extra wiggles).
+@ex Full sketch of a cubic (full working)
+Q: Find all key features of $y=-x^3+3x+2$ needed for a sketch.
+S: **$y$-intercept:** $x=0\Rightarrow y=2$, so $(0,2)$.
+S: **$x$-intercepts:** test $x=-1$: $1-3+2=0$ ✓, so $(x+1)$ is a factor. Dividing gives $-x^3+3x+2=-(x+1)^2(x-2)$. So $x=-1$ (repeated, the graph touches) and $x=2$ (crosses).
+S: **Stationary points:** $y'=-3x^2+3=0\Rightarrow x=\pm1$. $y(-1)=1-3+2=0$; $y(1)=-1+3+2=4$.
+S: **Nature:** $y''=-6x$. At $x=-1$, $y''=6>0$: minimum $(-1,0)$. At $x=1$, $y''=-6<0$: maximum $(1,4)$.
+S: **Inflection:** $y''=0$ at $x=0$ with a sign change, so $(0,2)$ is a point of inflection.
+S: **End behaviour:** the leading term $-x^3$ means $y\to-\infty$ as $x\to\infty$ and $y\to\infty$ as $x\to-\infty$.
+A: Min $(-1,0)$ touching the axis, max $(1,4)$, inflection $(0,2)$, crosses at $(2,0)$; falls to the right
+@ex Sketch of an exponential product (full working)
+Q: Find the key features of $f(x)=xe^{-x}$ for $x\ge0$.
+S: **Intercept:** $f(0)=0$; and $f(x)=0$ only when $x=0$ (since $e^{-x}>0$). So the graph starts at the origin.
+S: **Stationary point:** $f'(x)=e^{-x}(1-x)=0\Rightarrow x=1$, $f(1)=e^{-1}\approx0.368$.
+S: **Nature:** $f''(x)=e^{-x}(x-2)$; $f''(1)=-e^{-1}<0$: local maximum $\left(1,e^{-1}\right)$.
+S: **Inflection:** $f''=0$ at $x=2$ with a sign change: $\left(2,2e^{-2}\right)\approx(2,0.271)$.
+S: **End behaviour:** as $x\to\infty$, $xe^{-x}\to0$ (the exponential decays faster than $x$ grows), so $y=0$ is a horizontal asymptote.
+A: Starts at $(0,0)$, max $(1,e^{-1})$, inflection $(2,2e^{-2})$, approaches $y=0$
+@ex Sketch involving a log (full working)
+Q: Find the key features of $y=x-2\ln x$.
+S: **Domain:** $\ln x$ requires $x>0$.
+S: **Vertical asymptote:** as $x\to0^+$, $-2\ln x\to+\infty$, so $y\to+\infty$: the $y$-axis is an asymptote.
+S: **Stationary point:** $y'=1-\frac2x=0\Rightarrow x=2$, $y=2-2\ln2\approx0.614$.
+S: **Nature:** $y''=\frac{2}{x^2}>0$ for all $x>0$, so a minimum, and the graph is concave up everywhere (no inflection).
+S: **$x$-intercepts:** the minimum value $0.614$ is positive, so the graph never reaches the $x$-axis.
+S: **End behaviour:** as $x\to\infty$, $x$ grows faster than $2\ln x$, so $y\to\infty$.
+A: Domain $x>0$, asymptote $x=0$, minimum $(2,\,2-2\ln2)$, concave up, no $x$-intercepts
+@warn Do not draw a turning point where there is only a point of inflection, and do not let a curve cross its asymptote unless your working shows it does. Always label exact coordinates, not just approximate ones.
+@p **Exam tip.** Use your working as a table of features before drawing. A neat sketch that matches a correct table usually earns full marks even if the drawing is not perfectly to scale.
+@check Intercepts | Find the $x$-intercepts of $y=x^3-4x$.
+A: -2,0,2
+ALT: x=-2,0,2 || 0,2,-2 || -2, 0, 2
+AD: $x=-2,\ 0,\ 2$
+SOL: Set $y=0$: $x^3-4x=0$. || Factorise: $x(x^2-4)=x(x-2)(x+2)=0$. || So $x=0$, $x=2$ or $x=-2$. || The graph crosses the axis at $(-2,0)$, $(0,0)$ and $(2,0)$.
+H: Set $y=0$. || Take out $x$. || Difference of two squares.
+@check Touch or cross | At which $x$ does $y=(x-1)^2(x+3)$ touch the $x$-axis without crossing?
+A: 1
+ALT: x=1
+AD: $x=1$
+SOL: The factor $(x-1)^2$ is repeated (squared). || A squared factor does not change sign, so the graph touches the axis there. || The single factor $(x+3)$ gives a crossing at $x=-3$. || So it touches at $x=1$.
+H: Look at the powers of the factors. || Even power: touch. || Odd (single) power: cross.
+@check Stationary points | Find the coordinates of the local maximum of $y=x^3-3x^2$.
+A: (0,0)
+ALT: x=0,y=0 || (0, 0)
+AD: $(0,0)$
+SOL: $y'=3x^2-6x=3x(x-2)=0$ gives $x=0$ or $x=2$. || $y''=6x-6$: $y''(0)=-6<0$, so $x=0$ is a maximum. || $y(0)=0$. || The local maximum is $(0,0)$.
+H: Factorise $y'$. || Test each with $y''$. || Find $y$ at the maximum.
+@check End behaviour | For $y=xe^{-x}$, what does $y$ approach as $x\to\infty$?
+A: 0
+ALT: y=0 || 0 (y=0 asymptote)
+AD: $0$ (the $x$-axis is an asymptote)
+SOL: As $x\to\infty$, $x$ grows without bound. || But $e^{-x}=\frac{1}{e^x}$ shrinks much faster. || The product $\frac{x}{e^x}\to0$. || So $y\to0$ and $y=0$ is a horizontal asymptote.
+H: Rewrite as $\frac{x}{e^x}$. || Which grows faster, $x$ or $e^x$? || The fraction tends to 0.
+@check Inflection on a sketch | Find the $x$-coordinate of the point of inflection of $y=x^3-6x^2+5$.
+A: 2
+ALT: x=2
+AD: $x=2$
+SOL: $y'=3x^2-12x$, $y''=6x-12$. || $y''=0$ when $x=2$. || $y''<0$ for $x<2$ and $y''>0$ for $x>2$. || The concavity changes, so the inflection is at $x=2$.
+H: Differentiate twice. || Solve $y''=0$. || Check the sign change.
+## 4.5
+@p **What this topic is about.** Optimisation means finding the greatest or least value of a quantity: maximum area, minimum cost, shortest time, maximum profit. These questions are worded, multi-step and appear in nearly every external exam. The calculus is usually easy; the setup is where marks are won or lost.
+@key **Optimisation method:** (1) Draw a diagram and **define variables** with units. (2) Write the quantity to optimise using two variables. (3) Use the **constraint** (fixed perimeter, volume, cost) to rewrite it in **one** variable. (4) State the **domain** from the context. (5) Differentiate and solve $=0$. (6) **Justify** max or min (second derivative or sign test) and check the **endpoints** of the domain. (7) Answer the actual question with units.
+@p **Why endpoints matter.** On a closed interval the greatest value can be at an endpoint rather than at a stationary point. Always compare the stationary value with the endpoint values when the domain is closed, e.g. $0\le x\le10$.
+@p **Answer the question asked.** Often you find $x$, but the question wants the area, the cost, or the dimensions. Re-read the question after solving.
+@ex Fencing against a wall (full working)
+Q: A farmer has 120 m of fencing to build a rectangular pen against a straight wall (no fence on the wall side). Find the dimensions that maximise the area.
+S: **Define variables:** let $x$ m be each side perpendicular to the wall; the side parallel to the wall is then $120-2x$ m.
+S: **Area function:** $A=x(120-2x)=120x-2x^2$.
+S: **Domain:** lengths must be positive: $x>0$ and $120-2x>0$, so $0<x<60$.
+S: **Differentiate and solve:** $A'=120-4x=0\Rightarrow x=30$.
+S: **Justify a maximum:** $A''=-4<0$, so concave down: a maximum.
+S: **Answer the question:** the pen is $30$ m by $60$ m (the 60 m side along the wall), with area $30\times60=1800$ m$^2$.
+A: $30$ m $\times$ $60$ m, area $1800$ m²
+@ex The cheapest can (full working)
+Q: A closed cylindrical can must hold $500$ cm$^3$. Find the radius and height that use the least metal.
+S: **Variables:** radius $r$ cm, height $h$ cm. Volume: $\pi r^2h=500$, so $h=\dfrac{500}{\pi r^2}$.
+S: **Quantity to minimise (surface area):** $S=2\pi r^2+2\pi rh$. Substitute $h$: $S=2\pi r^2+2\pi r\cdot\dfrac{500}{\pi r^2}=2\pi r^2+\dfrac{1000}{r}$, with $r>0$.
+S: **Differentiate:** $S'=4\pi r-\dfrac{1000}{r^2}$.
+S: **Solve $S'=0$:** $4\pi r=\dfrac{1000}{r^2}\Rightarrow r^3=\dfrac{250}{\pi}\Rightarrow r=\sqrt[3]{\dfrac{250}{\pi}}\approx4.30$ cm.
+S: **Justify a minimum:** $S''=4\pi+\dfrac{2000}{r^3}>0$ for all $r>0$.
+S: **Height:** $h=\dfrac{500}{\pi(4.30)^2}\approx8.60$ cm (equal to the diameter).
+A: $r\approx4.30$ cm, $h\approx8.60$ cm
+@ex Profit on a closed interval (full working)
+Q: Weekly profit from selling $x$ hundred items is $P=-2x^3+27x^2-84x+20$ thousand dollars, $0\le x\le10$. Find the maximum profit.
+S: **Differentiate:** $P'=-6x^2+54x-84=-6(x^2-9x+14)=-6(x-2)(x-7)$.
+S: **Stationary points:** $x=2$ and $x=7$.
+S: **Nature:** $P''=-12x+54$. $P''(2)=30>0$ (minimum); $P''(7)=-30<0$ (maximum).
+S: **Value at the maximum:** $P(7)=-686+1323-588+20=69$.
+S: **Check endpoints:** $P(0)=20$ and $P(10)=-2000+2700-840+20=-120$. Both are less than 69.
+S: **Answer:** selling 700 items gives the maximum profit of \$69 000.
+A: Maximum profit \$69 000 at 700 items
+@ex Open box from a sheet (full working)
+Q: Squares of side $x$ cm are cut from the corners of a $30\times30$ cm sheet and the sides folded up to make an open box. Find the maximum volume.
+S: **Dimensions:** base $(30-2x)$ by $(30-2x)$, height $x$. **Volume:** $V=x(30-2x)^2$, domain $0<x<15$.
+S: **Differentiate (product + chain):** $V'=(30-2x)^2+x\cdot2(30-2x)(-2)=(30-2x)\left[(30-2x)-4x\right]=(30-2x)(30-6x)$.
+S: **Solve $V'=0$:** $x=15$ (outside the domain) or $x=5$.
+S: **Justify:** for $x$ slightly less than 5, $V'>0$; slightly more, $V'<0$: a maximum.
+S: **Maximum volume:** $V(5)=5\times20^2=2000$ cm$^3$.
+A: $2000$ cm³ when $x=5$ cm
+@warn Forgetting to justify the maximum or minimum loses a mark every time. So does giving $x$ when the question asked for the maximum area.
+@p **Exam tip.** Begin with a labelled diagram and a sentence defining every variable. Markers award marks for a correct model (the function in one variable with its domain) even if later algebra goes wrong.
+@check Product max | Two positive numbers have product 64. Find the minimum possible sum.
+A: 16
+AD: $16$
+SOL: Let the numbers be $x$ and $\frac{64}{x}$, so the sum is $S=x+\frac{64}{x}$ for $x>0$. || $S'=1-\frac{64}{x^2}=0$ gives $x^2=64$, so $x=8$. || $S''=\frac{128}{x^3}>0$, so it is a minimum. || Minimum sum: $8+8=16$.
+H: Write the sum in one variable. || Solve $S'=0$. || Check it is a minimum.
+@check Rectangle | A rectangle has perimeter 36 cm. Find the maximum area.
+A: 81
+ALT: 81 cm^2
+AD: $81$ cm²
+SOL: Width $x$, length $18-x$, area $A=x(18-x)=18x-x^2$. || $A'=18-2x=0$, so $x=9$. || $A''=-2<0$: maximum. || Maximum area $9\times9=81$ cm².
+H: Half the perimeter is 18. || Area in one variable. || Differentiate and solve.
+@check Wall pen | 80 m of fencing makes a rectangular pen against a wall. Find the maximum area.
+A: 800
+ALT: 800 m^2
+AD: $800$ m²
+SOL: Sides $x$, $x$ and $80-2x$, so $A=x(80-2x)=80x-2x^2$. || $A'=80-4x=0$ gives $x=20$. || $A''=-4<0$: maximum. || $A=20\times40=800$ m².
+H: Only three sides need fencing. || $A=x(80-2x)$. || Solve $A'=0$.
+@check Closed interval | Find the maximum value of $f(x)=x^3-3x$ on $-2\le x\le3$.
+A: 18
+AD: $18$
+SOL: $f'(x)=3x^2-3=0$ gives $x=\pm1$. || $f(-1)=2$, $f(1)=-2$. || Endpoints: $f(-2)=-8+6=-2$, $f(3)=27-9=18$. || The greatest value is 18, at the endpoint $x=3$.
+H: Find the stationary points. || Evaluate the endpoints too. || Compare all values.
+@check Box | An open box with a square base has volume 32 cm³. Find the base side $x$ that minimises the surface area $S=x^2+\frac{128}{x}$.
+A: 4
+ALT: x=4
+AD: $x=4$ cm
+SOL: $S'=2x-\frac{128}{x^2}$. || Set to zero: $2x^3=128$, so $x^3=64$. || $x=4$. || $S''=2+\frac{256}{x^3}>0$, so this is a minimum.
+H: Differentiate $\frac{128}{x}=128x^{-1}$. || Solve $2x=\frac{128}{x^2}$. || Cube root of 64.
+## X
+@p **Endpoints and justification.** On a closed interval, list endpoints, stationary points and any points where the function is not differentiable, and compare values. Always state which test proves max/min.
+@p **Describing graphs in words.** Use full sentences with evidence: "$f''(x)>0$ for $x>1$, so the graph is concave up there". Mixing up $f'$ (increasing/decreasing) with $f''$ (concavity) is a classic lost mark.
+@ex Exam-style: the closest point (full working)
+Q: Find the point on the curve $y=\sqrt x$ that is closest to $(4,0)$.
+S: **Distance squared:** a point on the curve is $(x,\sqrt x)$. Distance squared to $(4,0)$ is $D=(x-4)^2+(\sqrt x)^2=(x-4)^2+x$. Minimising $D$ also minimises the distance (the square root is increasing), and $D$ is easier to differentiate.
+S: **Differentiate:** $D'=2(x-4)+1=2x-7$.
+S: **Solve:** $x=\frac72$.
+S: **Justify:** $D''=2>0$, a minimum.
+S: **Point:** $y=\sqrt{3.5}=\frac{\sqrt{14}}{2}\approx1.87$, so $\left(\frac72,\frac{\sqrt{14}}2\right)$. Minimum distance $\sqrt{D}=\sqrt{\frac14+\frac72}=\frac{\sqrt{15}}{2}\approx1.94$.
+A: $\left(\frac72,\ \frac{\sqrt{14}}{2}\right)$, distance $\frac{\sqrt{15}}{2}$
+@ex Exam-style: inflection of a bell curve (full working)
+Q: For $f(x)=e^{-x^2}$, find the exact positive $x$-value of the point of inflection.
+S: **First derivative (chain rule):** $f'(x)=-2xe^{-x^2}$.
+S: **Second derivative (product rule):** $u=-2x$, $u'=-2$; $v=e^{-x^2}$, $v'=-2xe^{-x^2}$. So $f''=-2e^{-x^2}+(-2x)(-2x)e^{-x^2}=e^{-x^2}(4x^2-2)$.
+S: **Set to zero:** $4x^2-2=0\Rightarrow x^2=\frac12\Rightarrow x=\pm\frac1{\sqrt2}$.
+S: **Sign change:** $4x^2-2$ changes sign at $x=\frac1{\sqrt2}$, so it is an inflection.
+A: $x=\dfrac{1}{\sqrt2}=\dfrac{\sqrt2}{2}$
+@warn Common losses: no justification of nature, ignoring endpoints, and answering with the wrong quantity.
+@check Closest point | Minimise $D=(x-6)^2+x$ to find the $x$-value of the point on $y=\sqrt x$ closest to $(6,0)$.
+A: 5.5
+ALT: 11/2 || x=5.5
+AD: $x=\tfrac{11}{2}$
+SOL: $D'=2(x-6)+1=2x-11$. || Set to zero: $x=\frac{11}2$. || $D''=2>0$, so it is a minimum. || The closest point has $x=5.5$.
+H: Differentiate $D$. || Solve $2x-11=0$. || Check $D''$.
+@check Inflection | Find the $x$-value of the point of inflection of $y=x^3-9x^2+2$.
+A: 3
+ALT: x=3
+AD: $x=3$
+SOL: $y'=3x^2-18x$, $y''=6x-18$. || $y''=0$ at $x=3$. || $y''$ is negative before and positive after. || So the inflection is at $x=3$.
+H: Differentiate twice. || Solve $y''=0$. || Confirm the sign change.
+@check Cylinder | A closed cylinder with volume $54\pi$ has surface area $A=2\pi r^2+\frac{108\pi}{r}$. Find the minimising $r$.
+A: 3
+ALT: r=3
+AD: $r=3$
+SOL: $A'=4\pi r-\frac{108\pi}{r^2}$. || Set to zero: $4\pi r^3=108\pi$, so $r^3=27$. || $r=3$. || $A''=4\pi+\frac{216\pi}{r^3}>0$, so it is a minimum.
+H: Differentiate. || Multiply through by $r^2$. || Cube root of 27.
+@check Nature | $f'(x)=(x-2)^2(x+1)$. What type of stationary point is at $x=2$?
+A: stationary point of inflection
+ALT: inflection || stationary inflection || point of inflection || SPOI
+AD: Stationary point of inflection
+SOL: $f'(2)=0$, so $x=2$ is stationary. || Sign test: $f'(1)=1\cdot2>0$ and $f'(3)=1\cdot4>0$. || The gradient is positive on both sides (no sign change). || So $x=2$ is a stationary point of inflection.
+H: Check $f'$ either side of 2. || $(x-2)^2$ is never negative. || No sign change.
+@check Interpret | $C(x)$ is the cost of making $x$ items. $C'(100)=4$ and $C''(100)=-0.02$. Describe the cost at 100 items.
+A: increasing at a decreasing rate
+ALT: increasing, rate decreasing || cost increasing but rate decreasing
+AD: Cost is increasing, at a decreasing rate
+SOL: $C'(100)=4>0$: the cost is increasing (about \$4 per extra item). || $C''(100)<0$: the rate of increase is falling. || Each extra item adds slightly less cost than the one before. || So the cost is increasing at a decreasing rate.
+H: Sign of $C'$. || Sign of $C''$. || Combine into one sentence.
+@solfix 0 | Differentiate once: $f'(x)=4x^3-4x$. || Differentiate again term by term: $\frac{d}{dx}4x^3=12x^2$ and $\frac{d}{dx}(-4x)=-4$. || So $f''(x)=12x^2-4$. || This is the second derivative.
+@solfix 1 | $f'(x)=3x^2-12=0$ gives $x=\pm2$, so $x=2$ is stationary. || Second derivative: $f''(x)=6x$. || At $x=2$: $f''(2)=12>0$, concave up. || So it is a minimum.
+@solfix 2 | $f'(x)=3x^2-12x$ and $f''(x)=6x-12$. || Set $f''(x)=0$: $x=2$. || $f''$ is negative for $x<2$ and positive for $x>2$, so the concavity changes. || The point of inflection is at $x=2$.
+@solfix 3 | First derivative: $f'(x)=3e^{3x}$ (chain factor 3). || Second derivative: differentiate again, multiplying by 3 again. || $f''(x)=3\times3e^{3x}$. || $f''(x)=9e^{3x}$.
+@solfix 4 | $f'(x)=\frac1x=x^{-1}$. || $f''(x)=-x^{-2}=-\frac1{x^2}$. || For every $x>0$, $-\frac1{x^2}<0$. || So $\ln x$ is concave down everywhere on its domain.
+@solfix 5 | Let the numbers be $x$ and $20-x$, so the product is $P=x(20-x)=20x-x^2$. || $P'=20-2x=0$ gives $x=10$. || $P''=-2<0$, so it is a maximum. || Greatest product: $10\times10=100$.
+@solfix 6 | Half the perimeter is 20, so sides are $x$ and $20-x$ and $A=x(20-x)$. || $A'=20-2x=0$ gives $x=10$. || $A''=-2<0$: a maximum. || Maximum area $=10\times10=100$ m².
+@solfix 7 | $f'(x)=2x-4=0$ gives $x=2$. || $f''(x)=2>0$, so it is a minimum. || Evaluate: $f(2)=4-8+9$. || Minimum value $=5$.
+@solfix 8 | Substitute $x=1$ into $f(x)=xe^{-x}$. || $f(1)=1\times e^{-1}$. || $=e^{-1}$. || So the maximum point is $\left(1,\frac1e\right)$.
+@solfix 9 | At a stationary point, a negative second derivative means concave down. || A concave-down shape at a horizontal tangent is the top of a hill. || So $f''=-5<0$ indicates a maximum. || Answer: maximum.
+@solfix 10 | $f'(x)=4x^3-4x$. || $f''(x)=12x^2-4$. || Substitute $x=1$: $12-4$. || $f''(1)=8$.
+@solfix 11 | $f'(x)=3x^2$. || $f''(x)=6x$. || Substitute $x=-1$: $6(-1)$. || $f''(-1)=-6$.
+@solfix 12 | $y'=3x^2-18x$ and $y''=6x-18$. || Set $y''=0$: $x=3$. || $y''$ changes sign there (negative to positive). || The inflection is at $x=3$.
+@solfix 13 | $y'=-2x+6=0$ gives $x=3$. || $y''=-2<0$: a maximum. || $y(3)=-9+18$. || Maximum value $=9$.
+@solfix 14 | Product rule: $y'=e^{-x}-xe^{-x}=e^{-x}(1-x)$, zero at $x=1$. || Second derivative: $y''=e^{-x}(x-2)$. || $y''(1)=-e^{-1}<0$. || So $x=1$ is a maximum.
+@solfix 15 | $S'=2x-\frac{128}{x^2}=0\Rightarrow2x^3=128\Rightarrow x=4$. || $S''=2+\frac{256}{x^3}>0$, so a minimum. || $S(4)=16+\frac{128}4=16+32$. || Minimum surface area $=48$.
+@solfix 16 | $y'=4x^3$, $y''=12x^2$, and $y''(0)=0$. || But $y''=12x^2\ge0$ on both sides of 0, so the concavity does not change. || In fact $y'$ changes from negative to positive, making $x=0$ a minimum. || So there is no inflection: No.
+@solfix 17 | $y'=3e^{3x}$. || $y''=9e^{3x}$. || At $x=0$: $9e^0$. || $y''(0)=9$.
+@solfix 18 | $f'(x)=2x=0$ at $x=0$, where $f(0)=0$ (a minimum). || Closed interval, so check the endpoints: $f(-1)=1$, $f(3)=9$. || Compare: 0, 1 and 9. || The maximum is 9, at $x=3$.
+@solfix 19 | $y'=3x^2-6x=3x(x-2)$, zero at $x=0$ and $x=2$. || $y''=6x-6$. || $y''(2)=6>0$: concave up, a minimum. || So the local minimum is at $x=2$.
+@cometfix 0 | Differentiate: $A'=4\pi r-\frac{108\pi}{r^2}$. || Set to zero and multiply by $r^2$: $4\pi r^3=108\pi$, so $r^3=27$. || $r=3$. || $A''=4\pi+\frac{216\pi}{r^3}>0$, so $r=3$ gives the minimum.
+@cometfix 1 | $f'(x)=-2xe^{-x^2}$ (chain rule). || Product rule: $f''(x)=-2e^{-x^2}+4x^2e^{-x^2}=e^{-x^2}(4x^2-2)$. || Set to zero: $4x^2=2$, so $x^2=\frac12$. || Positive solution $x=\frac{1}{\sqrt2}=\frac{\sqrt2}{2}$, where $f''$ changes sign.
+@cometfix 2 | Minimise the squared distance from $(x,\sqrt x)$ to $(4,0)$: $D=(x-4)^2+x$. || $D'=2(x-4)+1=2x-7$. || $D'=0$ gives $x=\frac72$; $D''=2>0$ confirms a minimum. || So the closest point has $x=\frac72$.

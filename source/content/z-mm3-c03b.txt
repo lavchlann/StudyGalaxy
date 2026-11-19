@@ -1,0 +1,211 @@
+=== mm3-c03 | rewrite
+## 3.4
+@p **What this topic is about.** The quotient rule differentiates one function divided by another, such as $\frac{x}{x^2+1}$, $\frac{e^{2x}}{x}$ or $\frac{\ln x}{x}$. Quotients model concentrations, averages and efficiencies, and they appear in stationary-point and tangent questions.
+@key $$\frac{d}{dx}\left(\frac uv\right)=\frac{u'v-uv'}{v^2}$$ Memory aid: "low d-high minus high d-low, over low squared", where high $=u$ (top) and low $=v$ (bottom).
+@p **Order matters.** Unlike the product rule, the quotient rule has a **minus** sign, so swapping the two terms in the numerator flips the sign of your answer. Check your order with a simple case: $\frac{x}{1}$ should differentiate to 1; with $u=x,v=1$: $\frac{1\cdot1-x\cdot0}{1}=1$ ✓.
+@p **Quotient or product?** Any quotient can be written as a product with a negative power: $\frac{u}{v}=uv^{-1}$. If the bottom is a single power of $x$ (like $x^3$) it is often quicker to rewrite and use the product rule or even just the power rule. If the bottom is a sum ($x^2+1$), the quotient rule is usually cleaner.
+@p **Simplifying the result.** Expand the numerator carefully with brackets, collect like terms, and factorise if possible. Usually leave the denominator as $v^2$ (do not expand it). Then common factors between top and bottom may cancel.
+@ex Quotient with a polynomial bottom (full working)
+Q: Differentiate $y=\dfrac{x}{x^2+1}$ and find the stationary points.
+S: **Set up:** $u=x$, $u'=1$; $v=x^2+1$, $v'=2x$.
+S: **Apply the rule:** $y'=\dfrac{1\cdot(x^2+1)-x\cdot2x}{(x^2+1)^2}$.
+S: **Simplify the numerator:** $x^2+1-2x^2=1-x^2$. So $y'=\dfrac{1-x^2}{(x^2+1)^2}$.
+S: **Stationary points:** a fraction is zero when its numerator is zero: $1-x^2=0\Rightarrow x=\pm1$.
+S: **$y$-values:** $y(1)=\frac12$, $y(-1)=-\frac12$.
+S: **Nature:** $y'$ is positive between $-1$ and $1$ and negative outside, so $\left(1,\frac12\right)$ is a maximum and $\left(-1,-\frac12\right)$ a minimum.
+A: $y'=\dfrac{1-x^2}{(x^2+1)^2}$; max $\left(1,\frac12\right)$, min $\left(-1,-\frac12\right)$
+@ex Quotient with an exponential (full working)
+Q: Differentiate $y=\dfrac{e^{2x}}{x}$.
+S: **Set up:** $u=e^{2x}$, $u'=2e^{2x}$; $v=x$, $v'=1$.
+S: **Apply the rule:** $y'=\dfrac{2e^{2x}\cdot x-e^{2x}\cdot1}{x^2}$.
+S: **Factorise the numerator:** $e^{2x}(2x-1)$.
+S: **Final form:** $y'=\dfrac{e^{2x}(2x-1)}{x^2}$.
+S: **Note:** this is zero only when $2x-1=0$, i.e. $x=\frac12$, because $e^{2x}>0$.
+A: $\dfrac{e^{2x}(2x-1)}{x^2}$
+@ex Quotient with a log (full working)
+Q: Find the maximum value of $y=\dfrac{\ln x}{x}$ for $x>0$.
+S: **Set up:** $u=\ln x$, $u'=\frac1x$; $v=x$, $v'=1$.
+S: **Apply the rule:** $y'=\dfrac{\frac1x\cdot x-\ln x\cdot1}{x^2}=\dfrac{1-\ln x}{x^2}$.
+S: **Set to zero:** $1-\ln x=0\Rightarrow x=e$.
+S: **Nature:** for $x<e$, $\ln x<1$ so $y'>0$; for $x>e$, $y'<0$. Increasing then decreasing: a maximum.
+S: **Maximum value:** $y(e)=\dfrac{\ln e}{e}=\dfrac1e$.
+A: Maximum value $\frac{1}{e}$ at $x=e$
+@ex Quotient with trig, simplified with an identity (full working)
+Q: Differentiate $y=\dfrac{\cos x}{1+\sin x}$ and simplify.
+S: **Set up:** $u=\cos x$, $u'=-\sin x$; $v=1+\sin x$, $v'=\cos x$.
+S: **Apply the rule:** $y'=\dfrac{-\sin x(1+\sin x)-\cos x\cdot\cos x}{(1+\sin x)^2}$.
+S: **Expand the numerator:** $-\sin x-\sin^2x-\cos^2x$.
+S: **Use $\sin^2x+\cos^2x=1$:** numerator $=-\sin x-1=-(1+\sin x)$.
+S: **Cancel one factor of $(1+\sin x)$:** $y'=\dfrac{-(1+\sin x)}{(1+\sin x)^2}=-\dfrac1{1+\sin x}$.
+A: $-\dfrac{1}{1+\sin x}$
+@warn Writing $\frac{uv'-u'v}{v^2}$ (wrong order) gives the negative of the correct answer. Also do not cancel terms across a minus sign in the numerator before simplifying properly.
+@p **Exam tip.** If a question says "hence find the stationary points", only the numerator matters: set it equal to zero and remember to exclude values that make the denominator zero.
+@check Quotient | Differentiate $y=\dfrac{x}{x+3}$.
+A: 3/(x+3)^2
+AD: $\dfrac{3}{(x+3)^2}$
+SOL: $u=x$, $u'=1$; $v=x+3$, $v'=1$. || $y'=\frac{1(x+3)-x(1)}{(x+3)^2}$. || Numerator: $x+3-x=3$. || So $y'=\frac{3}{(x+3)^2}$.
+H: Low d-high minus high d-low. || Both derivatives are 1. || Simplify the numerator.
+@check Quotient with e | Differentiate $y=\dfrac{e^{x}}{x^2}$.
+A: e^x(x-2)/x^3
+ALT: (e^x(x-2))/x^3 || e^x(x-2)/x^3
+AD: $\dfrac{e^x(x-2)}{x^3}$
+SOL: $u=e^x$, $u'=e^x$; $v=x^2$, $v'=2x$. || $y'=\frac{e^x\cdot x^2-e^x\cdot2x}{x^4}$. || Factorise the numerator: $xe^x(x-2)$. || Cancel one $x$: $y'=\frac{e^x(x-2)}{x^3}$.
+H: $v^2=x^4$. || Factor $xe^x$ from the numerator. || Cancel an $x$.
+@check Quotient with trig | Differentiate $y=\dfrac{\sin x}{x}$.
+A: (xcosx-sinx)/x^2
+ALT: (x cos x - sin x)/x^2 || (xcos(x)-sin(x))/x^2
+AD: $\dfrac{x\cos x-\sin x}{x^2}$
+SOL: $u=\sin x$, $u'=\cos x$; $v=x$, $v'=1$. || $y'=\frac{\cos x\cdot x-\sin x\cdot1}{x^2}$. || Tidy the numerator: $x\cos x-\sin x$. || So $y'=\frac{x\cos x-\sin x}{x^2}$.
+H: Top is $\sin x$, bottom is $x$. || Keep the order. || Bottom squared is $x^2$.
+@check Stationary point | Find the $x$-coordinate of the stationary point of $y=\dfrac{\ln x}{x^2}$.
+A: sqrte
+ALT: e^(1/2) || √e || sqrt(e)
+AD: $x=\sqrt e$
+SOL: $u=\ln x$, $u'=\frac1x$; $v=x^2$, $v'=2x$. || $y'=\frac{\frac1x\cdot x^2-\ln x\cdot2x}{x^4}=\frac{x-2x\ln x}{x^4}=\frac{1-2\ln x}{x^3}$. || Set the numerator to zero: $\ln x=\frac12$. || So $x=e^{1/2}=\sqrt e$.
+H: Apply the quotient rule. || Simplify by cancelling $x$. || Solve $1-2\ln x=0$.
+@check Value of derivative | Find $f'(0)$ for $f(x)=\dfrac{x+1}{x^2+1}$.
+A: 1
+AD: $1$
+SOL: $u=x+1$, $u'=1$; $v=x^2+1$, $v'=2x$. || $f'(x)=\frac{(x^2+1)-(x+1)2x}{(x^2+1)^2}=\frac{1-2x-x^2}{(x^2+1)^2}$. || Substitute $x=0$: $\frac{1}{1}$. || $f'(0)=1$.
+H: Quotient rule. || Expand $(x+1)2x$. || Substitute $x=0$.
+## 3.5
+@p **What this topic is about.** Using the rules to answer applied questions: tangents and normals, rates of change in context, kinematics (displacement, velocity, acceleration) and simple optimisation. This is where derivatives earn most of their marks in the exam.
+@key **Tangent at $x=a$:** $y-f(a)=f'(a)(x-a)$. **Normal at $x=a$:** gradient $-\frac{1}{f'(a)}$ (perpendicular gradients multiply to $-1$). If $f'(a)=0$ the tangent is horizontal and the normal is the vertical line $x=a$.
+@key **Kinematics:** displacement $x(t)$; velocity $v=\frac{dx}{dt}$; acceleration $a=\frac{dv}{dt}$. "At rest" means $v=0$. "Initially" means $t=0$. Speed is $|v|$. The particle moves in the positive direction when $v>0$.
+@p **Tangent and normal routine.** (1) Find the point $(a,f(a))$. (2) Differentiate. (3) Substitute to get the gradient $m=f'(a)$. (4) Tangent: $y-y_1=m(x-x_1)$. (5) Normal: use $-\frac1m$. (6) Rearrange to the form asked (usually $y=mx+c$ or $ax+by+c=0$). Give exact values.
+@p **Rates of change in context.** "How fast", "rate of change", "rate of increase" all mean the derivative with respect to time (or the stated variable). Always give units: if $V$ is in litres and $t$ in minutes, $\frac{dV}{dt}$ is in litres per minute. A negative rate means decreasing.
+@ex Tangent and normal (full working)
+Q: Find the equations of the tangent and normal to $y=xe^{x}$ at $x=0$.
+S: **Point:** $y=0\cdot e^0=0$, so $(0,0)$.
+S: **Derivative (product rule):** $y'=e^x+xe^x=e^x(1+x)$.
+S: **Gradient:** at $x=0$, $m=e^0(1)=1$.
+S: **Tangent:** $y-0=1(x-0)\Rightarrow y=x$.
+S: **Normal gradient:** $-\frac1m=-1$, so the normal is $y=-x$.
+A: Tangent $y=x$; normal $y=-x$
+@ex Kinematics (full working)
+Q: A particle moves with displacement $x=te^{-0.5t}$ m for $t\ge0$ s. Find when it is at rest, its displacement then, and its acceleration at that time.
+S: **Velocity (product rule):** $u=t$, $u'=1$; $v=e^{-0.5t}$, $v'=-0.5e^{-0.5t}$. So $v=e^{-0.5t}-0.5te^{-0.5t}=e^{-0.5t}(1-0.5t)$.
+S: **At rest:** $v=0\Rightarrow1-0.5t=0\Rightarrow t=2$ s.
+S: **Displacement then:** $x(2)=2e^{-1}\approx0.736$ m.
+S: **Acceleration:** differentiate $v=e^{-0.5t}(1-0.5t)$ with the product rule: $a=-0.5e^{-0.5t}(1-0.5t)+e^{-0.5t}(-0.5)=e^{-0.5t}(0.25t-1)$.
+S: **At $t=2$:** $a=e^{-1}(0.5-1)=-0.5e^{-1}\approx-0.184$ m/s$^2$.
+A: At rest at $t=2$ s, $x\approx0.736$ m, $a\approx-0.18$ m/s²
+@ex Rate of change with a quotient (full working)
+Q: A drug's concentration is $C=\dfrac{20t}{t^2+4}$ mg/L after $t$ hours. Find when the concentration is greatest and its value.
+S: **Quotient rule:** $u=20t$, $u'=20$; $v=t^2+4$, $v'=2t$.
+S: **Derivative:** $C'=\dfrac{20(t^2+4)-20t\cdot2t}{(t^2+4)^2}=\dfrac{80-20t^2}{(t^2+4)^2}=\dfrac{20(4-t^2)}{(t^2+4)^2}$.
+S: **Set to zero:** $4-t^2=0\Rightarrow t=2$ (time is positive).
+S: **Check it is a maximum:** for $0<t<2$, $C'>0$ (rising); for $t>2$, $C'<0$ (falling).
+S: **Value:** $C(2)=\dfrac{40}{8}=5$ mg/L.
+A: Greatest after 2 hours, at 5 mg/L
+@ex Simple optimisation (full working)
+Q: A rectangle has perimeter 40 cm. Find the dimensions that give the largest area.
+S: **Variables:** let the width be $x$; then the length is $20-x$ (half the perimeter is 20).
+S: **Area function:** $A=x(20-x)=20x-x^2$, with $0<x<20$.
+S: **Differentiate:** $A'=20-2x$.
+S: **Set to zero:** $x=10$.
+S: **Confirm a maximum:** $A''=-2<0$.
+S: **Answer:** $10$ cm by $10$ cm (a square), area $100$ cm$^2$.
+A: $10\times10$ cm, area $100$ cm²
+@warn The normal's gradient is the **negative reciprocal**, not just the negative. And for kinematics, "at rest" is $v=0$, not $x=0$.
+@p **Exam tip.** Write a concluding sentence with units for every applied answer, e.g. "The particle is at rest after 2 seconds, 0.74 m from the origin".
+@check Tangent | Find the equation of the tangent to $y=x^2e^{x}$ at $x=0$.
+A: y=0
+ALT: 0
+AD: $y=0$
+SOL: Point: $y=0$, so $(0,0)$. || Derivative: $y'=2xe^x+x^2e^x=xe^x(2+x)$. || Gradient at $x=0$: $0$. || Tangent: $y-0=0(x-0)$, i.e. $y=0$ (the $x$-axis).
+H: Find the point. || Product rule. || The gradient is 0.
+@check Normal | Find the gradient of the normal to $y=\ln(2x)$ at $x=1$.
+A: -1
+ALT: m=-1
+AD: $-1$
+SOL: Differentiate: $y'=\frac1x$. || At $x=1$ the tangent gradient is 1. || The normal is perpendicular, so its gradient is $-\frac11$. || The normal gradient is $-1$.
+H: $\frac{d}{dx}\ln(2x)=\frac1x$. || Tangent gradient at $x=1$. || Negative reciprocal.
+@check At rest | $x=t^3-6t^2+9t$ (m, s). When is the particle at rest?
+A: 1,3
+ALT: t=1,3 || 1 and 3 || t=1 and t=3
+AD: $t=1$ s and $t=3$ s
+SOL: Velocity: $v=\frac{dx}{dt}=3t^2-12t+9$. || At rest means $v=0$: $3t^2-12t+9=0$. || Divide by 3 and factorise: $(t-1)(t-3)=0$. || So $t=1$ s and $t=3$ s.
+H: Differentiate to get $v$. || Set $v=0$. || Factorise the quadratic.
+@check Acceleration | $x=t^3-6t^2+9t$. Find the acceleration when $t=3$.
+A: 6
+ALT: 6 m/s^2
+AD: $6$ m/s²
+SOL: $v=3t^2-12t+9$. || $a=\frac{dv}{dt}=6t-12$. || Substitute $t=3$: $18-12$. || $a=6$ m/s².
+H: Differentiate twice. || $a=6t-12$. || Substitute $t=3$.
+@check Optimisation | Two numbers add to 30. Find the largest possible product.
+A: 225
+AD: $225$
+SOL: Let the numbers be $x$ and $30-x$, so $P=x(30-x)=30x-x^2$. || $P'=30-2x=0$ gives $x=15$. || $P''=-2<0$, so it is a maximum. || The largest product is $15\times15=225$.
+H: Write the product in one variable. || Differentiate and set to zero. || Evaluate $P(15)$.
+## X
+@p **Spotting the rule.** Sum or difference: differentiate term by term. Product of two functions of $x$: product rule. Fraction with $x$ in the bottom: quotient rule (or rewrite as a product). Function inside a function: chain rule. Many exam questions need two rules at once, e.g. a product whose second factor needs the chain rule.
+@p **A verification habit.** After differentiating, test a value. For $y=xe^{-2x}$ at $x=0$: your $y'=e^{-2x}(1-2x)$ gives 1, and the graph visibly rises through the origin with gradient about 1. A ten-second check catches sign errors.
+@ex Exam-style: rules combined (full working)
+Q: Differentiate $y=\dfrac{xe^{x}}{x+1}$ and give the answer as a single fraction.
+S: **Quotient rule with $u=xe^x$, $v=x+1$.** First find $u'$ with the product rule: $u'=e^x+xe^x=(x+1)e^x$. And $v'=1$.
+S: **Apply:** $y'=\dfrac{(x+1)e^x(x+1)-xe^x\cdot1}{(x+1)^2}$.
+S: **Factor $e^x$ from the numerator:** $e^x\left[(x+1)^2-x\right]$.
+S: **Expand:** $(x+1)^2-x=x^2+2x+1-x=x^2+x+1$.
+S: **Result:** $y'=\dfrac{e^x(x^2+x+1)}{(x+1)^2}$.
+A: $\dfrac{e^x(x^2+x+1)}{(x+1)^2}$
+@ex Exam-style: chain inside product (full working)
+Q: Differentiate $y=x\sqrt{1-x^2}$ and find where the gradient is zero.
+S: **Product rule:** $u=x$, $u'=1$; $v=(1-x^2)^{1/2}$, $v'=\frac12(1-x^2)^{-1/2}(-2x)=\dfrac{-x}{\sqrt{1-x^2}}$.
+S: **Assemble:** $y'=\sqrt{1-x^2}+x\cdot\dfrac{-x}{\sqrt{1-x^2}}$.
+S: **Common denominator:** $y'=\dfrac{(1-x^2)-x^2}{\sqrt{1-x^2}}=\dfrac{1-2x^2}{\sqrt{1-x^2}}$.
+S: **Set the numerator to zero:** $1-2x^2=0\Rightarrow x=\pm\dfrac{1}{\sqrt2}$.
+A: $y'=\dfrac{1-2x^2}{\sqrt{1-x^2}}$; zero at $x=\pm\frac{1}{\sqrt2}$
+@warn Leave the denominator of a quotient-rule answer factorised, and do not forget to apply the chain rule inside a product or quotient.
+@check Combined | Differentiate $y=x^2(2x+1)^3$.
+A: 2x(2x+1)^2(5x+1)
+ALT: 2x(5x+1)(2x+1)^2 || x(2x+1)^2(10x+2)
+AD: $2x(2x+1)^2(5x+1)$
+SOL: $u=x^2$, $u'=2x$; $v=(2x+1)^3$, $v'=3(2x+1)^2\cdot2=6(2x+1)^2$. || $y'=2x(2x+1)^3+6x^2(2x+1)^2$. || Factor out $2x(2x+1)^2$: $2x(2x+1)^2\left[(2x+1)+3x\right]$. || Simplify: $2x(2x+1)^2(5x+1)$.
+H: Product rule with chain rule for $v'$. || Common factor $2x(2x+1)^2$. || Simplify the bracket.
+@check Combined quotient | Differentiate $y=\dfrac{e^{2x}}{x+1}$.
+A: e^(2x)(2x+1)/(x+1)^2
+ALT: (e^(2x)(2x+1))/(x+1)^2
+AD: $\dfrac{e^{2x}(2x+1)}{(x+1)^2}$
+SOL: $u=e^{2x}$, $u'=2e^{2x}$; $v=x+1$, $v'=1$. || $y'=\frac{2e^{2x}(x+1)-e^{2x}}{(x+1)^2}$. || Factor $e^{2x}$: $e^{2x}(2x+2-1)$. || $y'=\frac{e^{2x}(2x+1)}{(x+1)^2}$.
+H: Quotient rule. || $u'$ needs the chain rule. || Factor out $e^{2x}$.
+@check Which rule | Differentiate $y=\ln(x^2+1)^3$ (that is, $\ln\big((x^2+1)^3\big)$).
+A: 6x/(x^2+1)
+ALT: (6x)/(x^2+1)
+AD: $\dfrac{6x}{x^2+1}$
+SOL: Use the log power law first: $y=3\ln(x^2+1)$. || Differentiate: $3\times\frac{2x}{x^2+1}$. || Multiply. || $y'=\frac{6x}{x^2+1}$.
+H: Log laws first. || $\frac{d}{dx}\ln f=\frac{f'}f$. || Multiply by 3.
+@check Tangent gradient | Find the gradient of $y=x\sqrt{x+3}$ at $x=1$.
+A: 9/4
+ALT: 2.25
+AD: $\dfrac94$
+SOL: $u=x$, $u'=1$; $v=(x+3)^{1/2}$, $v'=\frac{1}{2\sqrt{x+3}}$. || $y'=\sqrt{x+3}+\frac{x}{2\sqrt{x+3}}$. || At $x=1$: $\sqrt4+\frac{1}{2\sqrt4}=2+\frac14$. || So the gradient is $\frac94$.
+H: Product rule. || Chain rule for the root. || Substitute $x=1$.
+@check Second derivative | Find $\dfrac{d^2y}{dx^2}$ for $y=xe^{x}$.
+A: e^x(x+2)
+ALT: (x+2)e^x || xe^x+2e^x
+AD: $(x+2)e^x$
+SOL: First derivative: $y'=e^x+xe^x=(x+1)e^x$. || Differentiate again with the product rule: $u=x+1$, $u'=1$; $v=e^x$, $v'=e^x$. || $y''=e^x+(x+1)e^x$. || Factorise: $(x+2)e^x$.
+H: Find $y'$ first. || Differentiate $(x+1)e^x$. || Factor out $e^x$.
+@solfix 0 | Let $u=4x-1$, so $y=u^3$. || $\frac{dy}{du}=3u^2$ and $\frac{du}{dx}=4$. || Chain rule: $\frac{dy}{dx}=3u^2\times4=12u^2$. || Substitute back: $\frac{dy}{dx}=12(4x-1)^2$.
+@solfix 1 | Write $y=(x^2+9)^{1/2}$. || Outside derivative: $\frac12(x^2+9)^{-1/2}$. || Inside derivative: $2x$. || Multiply: $\frac12\cdot2x\,(x^2+9)^{-1/2}=\frac{x}{\sqrt{x^2+9}}$.
+@solfix 2 | Product rule with $u=x$, $u'=1$ and $v=e^x$, $v'=e^x$. || $u'v+uv'=1\cdot e^x+x\cdot e^x$. || Both terms share $e^x$. || Factorise: $(x+1)e^x$.
+@solfix 3 | Product rule with $u=x^3$, $u'=3x^2$ and $v=\ln x$, $v'=\frac1x$. || $u'v+uv'=3x^2\ln x+x^3\cdot\frac1x$. || Simplify $x^3\cdot\frac1x=x^2$: so $3x^2\ln x+x^2$. || Factorise: $x^2(3\ln x+1)$.
+@solfix 4 | Quotient rule with $u=x$, $u'=1$ and $v=x+1$, $v'=1$. || $\frac{u'v-uv'}{v^2}=\frac{1\cdot(x+1)-x\cdot1}{(x+1)^2}$. || Simplify the numerator: $x+1-x=1$. || So $\frac{dy}{dx}=\frac{1}{(x+1)^2}$.
+@solfix 5 | Quotient rule with $u=\sin x$, $u'=\cos x$ and $v=x$, $v'=1$. || $\frac{u'v-uv'}{v^2}=\frac{\cos x\cdot x-\sin x\cdot1}{x^2}$. || Keep the order: low d-high minus high d-low. || So $\frac{dy}{dx}=\frac{x\cos x-\sin x}{x^2}$.
+@solfix 6 | Product rule: $u=x^2$, $u'=2x$; $v=e^{-x}$, $v'=-e^{-x}$. || $y'=2xe^{-x}-x^2e^{-x}=xe^{-x}(2-x)$. || Substitute $x=1$: $1\cdot e^{-1}(2-1)$. || The gradient is $e^{-1}=\frac1e$.
+@solfix 7 | From the product rule, $y'=xe^{-x}(2-x)$. || Set $y'=0$: $x=0$ or $2-x=0$ (since $e^{-x}\neq0$). || The positive solution is $x=2$. || So the stationary point (a maximum) is at $x=2$.
+@solfix 8 | Velocity is the derivative of displacement: $v=\frac{dx}{dt}=3t^2-12t$. || Substitute $t=1$: $v=3(1)-12(1)$. || $v=3-12=-9$. || The velocity is $-9$ (moving in the negative direction).
+@solfix 9 | Tangent gradient: $\frac{d}{dx}e^x=e^x$, which is $e^0=1$ at $x=0$. || The normal is perpendicular, so its gradient is the negative reciprocal. || $-\frac{1}{1}=-1$. || The normal's gradient is $-1$.
+@solfix 10 | Let $u=3x^2+1$, so $y=u^4$. || $\frac{dy}{du}=4u^3$, $\frac{du}{dx}=6x$. || Multiply: $4u^3\times6x=24xu^3$. || So $\frac{dy}{dx}=24x(3x^2+1)^3$.
+@solfix 11 | The power of $e$ is $x^2+1$, with derivative $2x$. || Using $\frac{d}{dx}e^{f}=f'e^{f}$. || Copy the exponential and multiply by $2x$. || $\frac{dy}{dx}=2xe^{x^2+1}$.
+@solfix 12 | Product rule: $u=x^2$, $u'=2x$; $v=\ln x$, $v'=\frac1x$. || $u'v+uv'=2x\ln x+x^2\cdot\frac1x$. || $x^2\cdot\frac1x=x$. || So $\frac{dy}{dx}=2x\ln x+x$.
+@solfix 13 | Quotient rule: $u=e^x$, $u'=e^x$; $v=x$, $v'=1$. || $\frac{dy}{dx}=\frac{e^x\cdot x-e^x\cdot1}{x^2}$. || Factor $e^x$ from the numerator. || $\frac{dy}{dx}=\frac{e^x(x-1)}{x^2}$.
+@solfix 14 | Product rule: $f'(x)=e^x+xe^x=e^x(1+x)$. || Substitute $x=1$: $e^1(1+1)$. || $=2e$. || So $f'(1)=2e\approx5.44$.
+@solfix 15 | Expand: $A=30x-x^2$. || Differentiate: $A'=30-2x$, and set to zero: $x=15$. || $A''=-2<0$, so it is a maximum. || Maximum area: $A(15)=15\times15=225$.
+@solfix 16 | Perpendicular gradients multiply to $-1$: $m_{\text{tangent}}\times m_{\text{normal}}=-1$. || $2\times m=-1$. || Solve: $m=-\frac12$. || The normal's gradient is $-\frac12$.
+@solfix 17 | The angle is $x^2$, with derivative $2x$. || $\cos$ differentiates to $-\sin$. || Multiply: $-\sin(x^2)\times2x$. || $\frac{dy}{dx}=-2x\sin(x^2)$.
+@solfix 18 | The inside is $5x-2$, with derivative $5$. || $\frac{d}{dx}\ln f=\frac{f'}{f}$. || Put the inside's derivative over the inside. || $\frac{dy}{dx}=\frac{5}{5x-2}$.
+@solfix 19 | Product rule: $u=x$, $u'=1$; $v=e^{-x}$, $v'=-e^{-x}$. || $y'=e^{-x}-xe^{-x}=e^{-x}(1-x)$. || $e^{-x}$ is never zero, so $1-x=0$. || Stationary at $x=1$.
+@cometfix 0 | Quotient rule with $u=xe^x$ and $v=x+1$. First $u'$ (product rule): $u'=e^x+xe^x=(x+1)e^x$; and $v'=1$. || $y'=\frac{(x+1)e^x(x+1)-xe^x}{(x+1)^2}$. || Factor out $e^x$: numerator $=e^x\left[(x+1)^2-x\right]=e^x(x^2+2x+1-x)$. || Simplify: $y'=\frac{e^x(x^2+x+1)}{(x+1)^2}$.
+@cometfix 1 | $f'(x)=(x+1)e^x$ by the product rule. || $f''(x)=e^x+(x+1)e^x=(x+2)e^x$. || The pattern is $f^{(n)}(x)=(x+n)e^x$ (each differentiation adds 1 to the constant). || So $f^{(10)}(0)=(0+10)e^0=10$.

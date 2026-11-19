@@ -1,0 +1,145 @@
+=== mm3-c01 | rewrite
+## 1.4
+@p **What this topic is about.** You now learn the derivative of $e^x$ and of $e$ raised to any function, and use them to find gradients, tangents, rates of change and stationary points. These skills appear in almost every calculus question in the Methods external exam, often combined with other rules later in the unit.
+@key $$\frac{d}{dx}\left(e^x\right)=e^x\qquad\frac{d}{dx}\left(e^{kx}\right)=ke^{kx}\qquad\frac{d}{dx}\left(e^{f(x)}\right)=f'(x)\,e^{f(x)}$$
+@p **Why $\frac{d}{dx}e^x=e^x$.** From first principles, $\frac{e^{x+h}-e^x}{h}=e^x\cdot\frac{e^h-1}{h}$. The limit of $\frac{e^h-1}{h}$ as $h\to0$ is exactly 1 (this is what makes $e$ special), so the derivative is $e^x\times1=e^x$. Geometrically: at every point on $y=e^x$ the tangent's gradient equals the point's height.
+@p **The general rule in words.** To differentiate $e^{\text{something}}$: copy the exponential exactly as it is, then multiply by the derivative of the power ("the something"). For example $e^{x^2}$: the power $x^2$ has derivative $2x$, so $\frac{d}{dx}e^{x^2}=2xe^{x^2}$. This is a special case of the chain rule you will formalise in topic 3.
+@p **Constants.** A constant multiplier stays: $\frac{d}{dx}5e^{3x}=5\times3e^{3x}=15e^{3x}$. A constant added disappears: $\frac{d}{dx}(e^{x}+7)=e^x$. Each term in a sum is differentiated separately.
+@p **Three standard applications.** (1) **Gradient at a point:** find $\frac{dy}{dx}$, then substitute the $x$-value. (2) **Tangent line:** find the point and the gradient, then use $y-y_1=m(x-x_1)$. (3) **Stationary points:** solve $\frac{dy}{dx}=0$. Remember $e^{\text{anything}}>0$, so an equation like $e^{2x}=0$ has **no** solution; stationary points come from other factors or terms.
+@ex Differentiating a sum of exponentials (full working)
+Q: Differentiate $y=5e^{4x}-e^{-x^2}+3$.
+S: **Differentiate term by term.** The derivative of a sum is the sum of the derivatives.
+S: **First term, $5e^{4x}$:** the power is $4x$, whose derivative is $4$. Copy the exponential and multiply: $5\times4e^{4x}=20e^{4x}$.
+S: **Second term, $-e^{-x^2}$:** the power is $-x^2$, whose derivative is $-2x$. So $\frac{d}{dx}e^{-x^2}=-2xe^{-x^2}$, and with the minus sign in front the term contributes $-(-2xe^{-x^2})=+2xe^{-x^2}$.
+S: **Third term, $3$:** a constant has derivative $0$.
+S: **Combine:** $\dfrac{dy}{dx}=20e^{4x}+2xe^{-x^2}$.
+A: $\dfrac{dy}{dx}=20e^{4x}+2xe^{-x^2}$
+@ex Equation of a tangent (full working)
+Q: Find the equation of the tangent to $y=e^{2x}+x$ at the point where $x=0$.
+S: **Find the point.** Substitute $x=0$ into the curve: $y=e^0+0=1$. The point is $(0,1)$.
+S: **Find the derivative.** $\dfrac{dy}{dx}=2e^{2x}+1$.
+S: **Find the gradient at the point.** At $x=0$: $m=2e^0+1=2+1=3$.
+S: **Use the point-gradient form** $y-y_1=m(x-x_1)$: $y-1=3(x-0)$.
+S: **Rearrange:** $y=3x+1$.
+A: $y=3x+1$
+@ex Stationary point of an exponential function (full working)
+Q: Find the coordinates of the stationary point of $y=e^x-2x$ and determine its nature.
+S: **Differentiate:** $\dfrac{dy}{dx}=e^x-2$.
+S: **Set the derivative to zero:** $e^x-2=0\Rightarrow e^x=2$.
+S: **Solve using natural logs:** $x=\ln2$.
+S: **Find the $y$-coordinate:** $y=e^{\ln2}-2\ln2=2-2\ln2$ (since $e^{\ln2}=2$). This is about $0.614$.
+S: **Determine the nature with a sign test.** At $x=0$ (left of $\ln2\approx0.69$): $\frac{dy}{dx}=1-2=-1<0$. At $x=1$ (right): $\frac{dy}{dx}=e-2\approx0.72>0$. The gradient goes from negative to positive, so the curve goes down then up.
+S: **Conclude:** a local minimum at $(\ln2,\ 2-2\ln2)$.
+A: Local minimum at $\left(\ln2,\ 2-2\ln2\right)\approx(0.693,0.614)$
+@ex Worded problem: rate of growth (full working)
+Q: A bacteria culture has $N=200e^{0.3t}$ cells after $t$ hours. (a) Find the rate of growth when $t=5$. (b) Find when the culture is growing at 1000 cells per hour.
+S: **Interpret "rate of growth".** This means $\frac{dN}{dt}$, the derivative of $N$ with respect to $t$.
+S: **Differentiate:** $\dfrac{dN}{dt}=200\times0.3e^{0.3t}=60e^{0.3t}$.
+S: **(a) Substitute $t=5$:** $\dfrac{dN}{dt}=60e^{1.5}\approx60\times4.4817\approx268.9$.
+S: **Interpret with units:** after 5 hours the culture is growing at about 269 cells per hour.
+S: **(b) Set the rate equal to 1000:** $60e^{0.3t}=1000\Rightarrow e^{0.3t}=\frac{1000}{60}=\frac{50}{3}$.
+S: **Solve with logs:** $0.3t=\ln\frac{50}3$, so $t=\dfrac{\ln(50/3)}{0.3}\approx\dfrac{2.813}{0.3}\approx9.38$.
+S: **Interpret:** the growth rate reaches 1000 cells per hour after about 9.4 hours.
+A: (a) about $269$ cells/h; (b) after about $9.4$ hours
+@p **Reading the derivative of $Ae^{kt}$.** Since $\frac{d}{dt}Ae^{kt}=kAe^{kt}$, the rate of change is $k$ times the current amount. That is what "the rate of growth is proportional to the size" means, and it is the defining property of exponential growth ($k>0$) and decay ($k<0$).
+@warn Do not use the power rule on $e^x$: $\frac{d}{dx}e^{3x}$ is $3e^{3x}$, **not** $3xe^{3x-1}$. The variable is in the index, not the base. Also remember the chain factor: $\frac{d}{dx}e^{x^2}\neq e^{x^2}$.
+@p **Exam tip.** When a question says "show that the rate of change is proportional to $N$", differentiate and then write the derivative in terms of $N$: e.g. $\frac{dN}{dt}=60e^{0.3t}=0.3\times200e^{0.3t}=0.3N$.
+@check Derivative of e | Differentiate $y=4e^{-3x}$.
+A: -12e^(-3x)
+ALT: -12e^-3x
+AD: $-12e^{-3x}$
+SOL: The power is $-3x$, whose derivative is $-3$. || Copy the exponential and multiply by the derivative of the power: $\frac{d}{dx}e^{-3x}=-3e^{-3x}$. || Keep the constant multiplier 4: $4\times(-3e^{-3x})=-12e^{-3x}$. || So $\frac{dy}{dx}=-12e^{-3x}$.
+H: What is the derivative of the power $-3x$? || $\frac{d}{dx}e^{kx}=ke^{kx}$. || Multiply by the 4 at the front.
+@check Chain with e | Differentiate $y=e^{x^2+2x}$.
+A: (2x+2)e^(x^2+2x)
+ALT: 2(x+1)e^(x^2+2x) || (2x+2)e^(x^2+2x)
+AD: $(2x+2)e^{x^2+2x}$
+SOL: The power is $x^2+2x$. || Its derivative is $2x+2$. || Using $\frac{d}{dx}e^{f(x)}=f'(x)e^{f(x)}$, multiply the unchanged exponential by $2x+2$. || So $\frac{dy}{dx}=(2x+2)e^{x^2+2x}=2(x+1)e^{x^2+2x}$.
+H: Identify the power. || Differentiate the power. || Multiply it by the original exponential.
+@check Gradient at a point | Find the gradient of $y=3e^{2x}-x$ at $x=0$.
+A: 5
+ALT: m=5
+AD: $5$
+SOL: Differentiate each term: $\frac{d}{dx}3e^{2x}=6e^{2x}$ and $\frac{d}{dx}(-x)=-1$. || So $\frac{dy}{dx}=6e^{2x}-1$. || Substitute $x=0$: $6e^0-1=6-1=5$. || The gradient at $x=0$ is 5.
+H: Differentiate term by term. || $e^0=1$. || Substitute $x=0$ into the derivative.
+@check Stationary point | Find the exact $x$-coordinate of the stationary point of $y=e^{2x}-4x$.
+A: (1/2)ln2
+ALT: ln2/2 || ln(2)/2 || 1/2ln2 || x=(1/2)ln2
+AD: $x=\tfrac12\ln2$
+SOL: Differentiate: $\frac{dy}{dx}=2e^{2x}-4$. || Stationary points occur where $\frac{dy}{dx}=0$: $2e^{2x}-4=0$, so $e^{2x}=2$. || Take natural logs: $2x=\ln2$. || Divide by 2: $x=\frac12\ln2\approx0.347$.
+H: Differentiate. || Set the derivative equal to 0. || Isolate $e^{2x}$ then take $\ln$.
+@check Rate of change | A population is $P=800e^{0.05t}$ ($t$ in years). Find the rate of growth when $t=10$, to the nearest whole number.
+A: 66
+ALT: 65.9 || 66 per year
+AD: $\approx66$ per year
+SOL: The rate of growth is $\frac{dP}{dt}$. || Differentiate: $\frac{dP}{dt}=800\times0.05e^{0.05t}=40e^{0.05t}$. || Substitute $t=10$: $40e^{0.5}\approx40\times1.6487=65.95$. || So the population is growing at about 66 per year when $t=10$.
+H: Rate of growth means $\frac{dP}{dt}$. || $\frac{d}{dt}e^{0.05t}=0.05e^{0.05t}$. || Substitute $t=10$.
+## 1.5
+@p **What this topic is about.** Logarithms are the inverse of exponentials: they answer "what power?". You need them to solve exponential equations, to model data and to differentiate later. In this topic you learn what a log means, the log laws, the natural log $\ln x$ and the graph of $y=\ln x$ with its transformations.
+@key $$\log_a x=y\iff a^y=x\qquad(a>0,\ a\neq1,\ x>0)$$ The **natural logarithm** is $\ln x=\log_e x$, so $\ln(e^x)=x$ and $e^{\ln x}=x$.
+@p **Reading a log.** $\log_2 8$ asks "2 to what power gives 8?" The answer is 3. $\log_{10}0.01$ asks "10 to what power gives 0.01?" The answer is $-2$. $\ln e^5=5$ because $e$ to the power 5 is $e^5$. Two values worth memorising: $\log_a1=0$ (since $a^0=1$) and $\log_aa=1$.
+@key **Log laws** (any base $a$, with $x,y>0$): $\log_a(xy)=\log_ax+\log_ay$; $\log_a\left(\frac xy\right)=\log_ax-\log_ay$; $\log_a(x^n)=n\log_ax$; $\log_a\left(\frac1x\right)=-\log_ax$. **Change of base:** $\log_ax=\dfrac{\ln x}{\ln a}$.
+@p **Where the laws come from.** Each log law is an index law in disguise. If $x=a^m$ and $y=a^n$ then $xy=a^{m+n}$, so $\log_a(xy)=m+n=\log_ax+\log_ay$. The power law comes from $(a^m)^n=a^{mn}$. If you forget a law, rebuild it from the matching index law.
+@p **The graph of $y=\ln x$.** Because $\ln$ is the inverse of $e^x$, its graph is the reflection of $y=e^x$ in the line $y=x$. The features swap: $e^x$ has domain $\mathbb R$, range $(0,\infty)$, asymptote $y=0$ and passes through $(0,1)$; so $\ln x$ has domain $(0,\infty)$, range $\mathbb R$, **vertical** asymptote $x=0$ and passes through $(1,0)$. It increases forever but more and more slowly.
+@p **Transformations of $y=a\ln(b(x-h))+k$.** The vertical asymptote is $x=h$ (where the inside equals 0). The domain is where the inside is positive. Find the $x$-intercept by setting $y=0$, isolating the log, and converting to index form.
+@ex Simplifying with log laws (full working)
+Q: Write $2\ln3+\ln5-\ln15$ as a single logarithm and simplify.
+S: **Use the power law on the first term:** $2\ln3=\ln3^2=\ln9$.
+S: **Combine the sum with the product law:** $\ln9+\ln5=\ln(9\times5)=\ln45$.
+S: **Combine the difference with the quotient law:** $\ln45-\ln15=\ln\frac{45}{15}$.
+S: **Simplify the fraction:** $\frac{45}{15}=3$, so the expression equals $\ln3$.
+A: $\ln3$
+@ex Expanding a logarithm (full working)
+Q: Write $\ln\left(\dfrac{x^3\sqrt y}{e^2}\right)$ in terms of $\ln x$ and $\ln y$.
+S: **Split the quotient:** $\ln(x^3\sqrt y)-\ln(e^2)$.
+S: **Split the product:** $\ln(x^3)+\ln(\sqrt y)-\ln(e^2)$.
+S: **Write the root as a power:** $\sqrt y=y^{1/2}$.
+S: **Bring powers down with the power law:** $3\ln x+\tfrac12\ln y-2\ln e$.
+S: **Use $\ln e=1$:** the result is $3\ln x+\tfrac12\ln y-2$.
+A: $3\ln x+\tfrac12\ln y-2$
+@ex Features of a transformed log graph (full working)
+Q: For $y=\ln(x-2)+1$, state the domain, the asymptote and the exact $x$-intercept.
+S: **Domain:** the log needs a positive input, so $x-2>0$, i.e. $x>2$.
+S: **Asymptote:** the vertical asymptote is where the inside equals 0: $x=2$.
+S: **$x$-intercept: set $y=0$:** $\ln(x-2)+1=0\Rightarrow\ln(x-2)=-1$.
+S: **Convert to index form:** $x-2=e^{-1}$.
+S: **Solve:** $x=2+e^{-1}\approx2.37$. This is inside the domain, so it is valid.
+A: Domain $x>2$; asymptote $x=2$; $x$-intercept $\left(2+e^{-1},\,0\right)$
+@ex Change of base (full working)
+Q: Evaluate $\log_2 10$ correct to 3 decimal places, and solve $2^x=10$.
+S: **Use change of base:** $\log_210=\dfrac{\ln10}{\ln2}$.
+S: **Evaluate:** $\dfrac{2.302585}{0.693147}\approx3.322$.
+S: **Connect to the equation:** $2^x=10$ means "2 to what power gives 10?", which is exactly $\log_210$.
+S: **So** $x=\log_210\approx3.322$.
+A: $\log_210\approx3.322$; $x\approx3.322$
+@warn $\ln(x+y)$ is **not** $\ln x+\ln y$, and $(\ln x)(\ln y)$ is **not** $\ln(xy)$. Also $\ln x^2=2\ln x$, but $(\ln x)^2$ is different: it means $\ln x$ times $\ln x$.
+@p **Exam tip.** Show every log law you use on a separate line. Examiners award a mark for each correctly applied law in "show that" or simplification questions.
+@check Evaluate a log | Find the exact value of $\log_3 81-\log_2\frac18$.
+A: 7
+AD: $7$
+SOL: $\log_381$ asks "3 to what power is 81?" Since $3^4=81$, $\log_381=4$. || $\log_2\frac18$ asks "2 to what power is $\frac18$?" Since $2^{-3}=\frac18$, $\log_2\frac18=-3$. || Subtract: $4-(-3)=7$. || So the value is 7.
+H: Turn each log into a "what power?" question. || $81=3^4$. || $\frac18=2^{-3}$.
+@check Single log | Write $3\ln2+\ln5-\ln4$ as a single logarithm.
+A: ln10
+ALT: ln(10)
+AD: $\ln10$
+SOL: Power law: $3\ln2=\ln2^3=\ln8$. || Product law: $\ln8+\ln5=\ln40$. || Quotient law: $\ln40-\ln4=\ln\frac{40}{4}$. || Simplify: $\ln10$.
+H: Use the power law first. || Then combine the sum. || Then the difference.
+@check Expand | Express $\ln\left(\dfrac{x^2}{\sqrt y}\right)$ in terms of $\ln x$ and $\ln y$.
+A: 2lnx-(1/2)lny
+ALT: 2ln(x)-(1/2)ln(y) || 2lnx-lny/2 || 2lnx-0.5lny
+AD: $2\ln x-\tfrac12\ln y$
+SOL: Quotient law: $\ln(x^2)-\ln(\sqrt y)$. || Write $\sqrt y=y^{1/2}$. || Power law on each term: $2\ln x-\frac12\ln y$. || That is the expanded form.
+H: Split the quotient into a difference. || $\sqrt y=y^{1/2}$. || Bring the powers down.
+@check Log graph | For $y=\ln(x+3)$, state the equation of the asymptote and the exact $x$-intercept.
+A: x=-3, x=-2
+ALT: x=-3,-2 || -3,-2 || asymptote x=-3, intercept -2
+AD: Asymptote $x=-3$; $x$-intercept $(-2,0)$
+SOL: The vertical asymptote is where the inside is zero: $x+3=0$, so $x=-3$. || For the $x$-intercept set $y=0$: $\ln(x+3)=0$. || In index form $x+3=e^0=1$. || So $x=-2$, giving the point $(-2,0)$.
+H: Where is the inside of the log zero? || $\ln(\text{something})=0$ means something $=1$. || Solve $x+3=1$.
+@check Change of base | Solve $5^x=40$, correct to 2 decimal places.
+A: 2.29
+ALT: x=2.29 || 2.292
+AD: $x=\dfrac{\ln40}{\ln5}\approx2.29$
+SOL: Take natural logs of both sides: $\ln5^x=\ln40$. || Use the power law: $x\ln5=\ln40$. || Divide: $x=\frac{\ln40}{\ln5}=\frac{3.6889}{1.6094}$. || So $x\approx2.29$.
+H: Take $\ln$ of both sides. || Bring the power down. || Divide by $\ln5$.

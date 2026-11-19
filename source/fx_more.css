@@ -123,3 +123,7 @@ details.cas ol{margin:0 0 12px;padding:0 18px 0 36px;color:var(--ink);font-size:
 .fx-ach{left:auto!important;right:18px!important;bottom:18px!important;top:auto!important;transform:translateY(-8px)!important;opacity:0}
 .fx-ach.in{transform:none!important;opacity:1}
 #fx-upd.on~.fx-ach,.fx-ach{z-index:60}
+.selfmark{margin:12px 0 4px;padding:12px 14px;border:1px solid rgba(232,201,138,.3);border-radius:14px;background:rgba(232,201,138,.04)}.selfmark p{margin:0 0 8px}
+.sol2{margin:12px 0;padding:14px 16px;border:1px solid var(--hair);border-radius:14px;background:rgba(255,255,255,.02);font-size:14.5px;line-height:1.65}
+.sol2 ol{margin:8px 0 0;padding-left:22px}.sol2 li{margin:0 0 9px;padding-left:4px}.sol2 li::marker{color:var(--gold);font-weight:600}
+.sol2 .ans{margin:10px 0 0;padding-top:10px;border-top:1px solid var(--hair)}

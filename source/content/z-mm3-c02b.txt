@@ -1,0 +1,211 @@
+=== mm3-c02 | rewrite
+## 2.4
+@p **What this topic is about.** The derivatives of sine, cosine and tangent, and how to combine them with the chain rule (and, briefly, the product rule) to find gradients, tangents, rates of change and stationary points of trig functions. These are essential for trig modelling, kinematics and optimisation later in the unit.
+@key $$\frac{d}{dx}\sin x=\cos x\qquad\frac{d}{dx}\cos x=-\sin x\qquad\frac{d}{dx}\tan x=\sec^2x=\frac{1}{\cos^2x}$$ With a linear inside: $\frac{d}{dx}\sin(ax+b)=a\cos(ax+b)$, $\frac{d}{dx}\cos(ax+b)=-a\sin(ax+b)$, $\frac{d}{dx}\tan(ax+b)=a\sec^2(ax+b)$. In general $\frac{d}{dx}\sin f(x)=f'(x)\cos f(x)$ and $\frac{d}{dx}\cos f(x)=-f'(x)\sin f(x)$.
+@p **Seeing why from the graphs.** Look at the graph of $y=\sin x$ and estimate its gradient at key points. At $x=0$ it rises most steeply, gradient 1. At $x=\frac\pi2$ (the peak) the gradient is 0. At $x=\pi$ it falls most steeply, gradient $-1$. At $\frac{3\pi}2$ (the trough) the gradient is 0 again. Plot those gradients and you get exactly the cosine curve. Doing the same with $\cos x$ gives $-\sin x$. This only works in radians, because only then is the gradient of $\sin x$ at the origin exactly 1.
+@p **The chain factor.** When the angle is not just $x$, multiply by the derivative of the angle. $\frac{d}{dx}\sin(3x)=3\cos(3x)$; $\frac{d}{dx}\cos(x^2)=-2x\sin(x^2)$; $\frac{d}{dx}\sin\left(\frac{\pi t}{6}\right)=\frac\pi6\cos\left(\frac{\pi t}6\right)$. Forgetting this factor is the most common error in this topic.
+@p **Powers of trig functions.** $\sin^3x$ means $(\sin x)^3$. Treat it as (something)$^3$: bring the power down, reduce it by one, then multiply by the derivative of the something. $\frac{d}{dx}\sin^3x=3\sin^2x\cos x$.
+@ex Chain rule with trig (full working)
+Q: Differentiate $y=3\sin(4x)-\cos(x^2)$.
+S: **Differentiate term by term.**
+S: **First term, $3\sin(4x)$:** the angle is $4x$ with derivative 4, and $\sin$ differentiates to $\cos$: $3\times4\cos(4x)=12\cos(4x)$.
+S: **Second term, $-\cos(x^2)$:** the angle is $x^2$ with derivative $2x$, and $\cos$ differentiates to $-\sin$: $\frac{d}{dx}\cos(x^2)=-2x\sin(x^2)$.
+S: **Attach the minus sign in front of the second term:** $-(-2x\sin(x^2))=+2x\sin(x^2)$.
+S: **Combine:** $\dfrac{dy}{dx}=12\cos(4x)+2x\sin(x^2)$.
+A: $12\cos(4x)+2x\sin(x^2)$
+@ex Tangent to a sine curve (full working)
+Q: Find the exact equation of the tangent to $y=\sin x$ at $x=\frac\pi3$.
+S: **Point:** $y=\sin\frac\pi3=\frac{\sqrt3}2$, so the point is $\left(\frac\pi3,\frac{\sqrt3}2\right)$.
+S: **Derivative:** $\frac{dy}{dx}=\cos x$.
+S: **Gradient at the point:** $m=\cos\frac\pi3=\frac12$.
+S: **Point-gradient form:** $y-\frac{\sqrt3}2=\frac12\left(x-\frac\pi3\right)$.
+S: **Rearrange to $y=mx+c$:** $y=\frac12x-\frac\pi6+\frac{\sqrt3}2$.
+A: $y=\frac12x+\frac{\sqrt3}{2}-\frac{\pi}{6}$
+@ex Stationary points of a trig function (full working)
+Q: Find the exact coordinates of the stationary points of $y=\sin x+\cos x$ for $0\le x\le2\pi$, and their nature.
+S: **Differentiate:** $\frac{dy}{dx}=\cos x-\sin x$.
+S: **Set to zero:** $\cos x=\sin x$. Dividing by $\cos x$ (it is not zero at these points) gives $\tan x=1$.
+S: **Solve on the domain:** tan is positive in Q1 and Q3, reference angle $\frac\pi4$: $x=\frac\pi4$ or $x=\frac{5\pi}4$.
+S: **$y$-values:** $\sin\frac\pi4+\cos\frac\pi4=\frac{\sqrt2}2+\frac{\sqrt2}2=\sqrt2$; $\sin\frac{5\pi}4+\cos\frac{5\pi}4=-\frac{\sqrt2}2-\frac{\sqrt2}2=-\sqrt2$.
+S: **Nature with the second derivative:** $y''=-\sin x-\cos x=-y$. At $x=\frac\pi4$, $y''=-\sqrt2<0$: maximum. At $x=\frac{5\pi}4$, $y''=\sqrt2>0$: minimum.
+A: Maximum $\left(\frac\pi4,\sqrt2\right)$, minimum $\left(\frac{5\pi}4,-\sqrt2\right)$
+@ex Worded problem: rate of change of a tide (full working)
+Q: Water depth is $D=3+1.5\sin\left(\frac{\pi t}6\right)$ m, $t$ hours after midnight. Find how fast the tide is rising at 2 am and at what time it is falling fastest in the first 12 hours.
+S: **Rate of change means $\frac{dD}{dt}$:** $\dfrac{dD}{dt}=1.5\times\dfrac\pi6\cos\left(\dfrac{\pi t}6\right)=\dfrac\pi4\cos\left(\dfrac{\pi t}6\right)$.
+S: **At 2 am, $t=2$:** $\dfrac\pi4\cos\dfrac\pi3=\dfrac\pi4\times\dfrac12=\dfrac\pi8\approx0.39$ m/h.
+S: **Interpret:** positive, so the tide is rising at about 0.39 m per hour.
+S: **Falling fastest means $\frac{dD}{dt}$ is most negative:** this happens when $\cos\left(\frac{\pi t}6\right)=-1$.
+S: **Solve:** $\frac{\pi t}6=\pi\Rightarrow t=6$, i.e. 6 am, when the rate is $-\frac\pi4\approx-0.79$ m/h.
+A: Rising at $\frac{\pi}{8}\approx0.39$ m/h at 2 am; falling fastest at 6 am ($0.79$ m/h)
+@warn $\frac{d}{dx}\cos x=-\sin x$: do not lose the negative. And $\frac{d}{dx}\sin(x^2)=2x\cos(x^2)$, not $\cos(x^2)$ and not $\cos(2x)$. The derivative of the angle multiplies the outside.
+@p **Exam tip.** Check radians: these rules are false in degrees. For tangent lines, give exact answers using $\pi$ and surds unless told to round.
+@check Derivative | Differentiate $y=2\cos(3x)$.
+A: -6sin(3x)
+ALT: -6sin3x
+AD: $-6\sin(3x)$
+SOL: The angle is $3x$, whose derivative is 3. || $\cos$ differentiates to $-\sin$. || So $\frac{d}{dx}\cos(3x)=-3\sin(3x)$. || Multiply by the 2: $\frac{dy}{dx}=-6\sin(3x)$.
+H: Derivative of $\cos$ is $-\sin$. || Multiply by the derivative of $3x$. || Keep the 2.
+@check Chain rule | Differentiate $y=\sin(x^2+1)$.
+A: 2xcos(x^2+1)
+ALT: 2x cos(x^2+1)
+AD: $2x\cos(x^2+1)$
+SOL: The angle is $x^2+1$, with derivative $2x$. || $\sin$ differentiates to $\cos$, keeping the same angle. || Multiply by the derivative of the angle. || So $\frac{dy}{dx}=2x\cos(x^2+1)$.
+H: Identify the angle. || Its derivative is $2x$. || $\frac{d}{dx}\sin f=f'\cos f$.
+@check Gradient | Find the gradient of $y=\cos(2x)$ at $x=\frac{\pi}{4}$.
+A: -2
+ALT: m=-2
+AD: $-2$
+SOL: Differentiate: $\frac{dy}{dx}=-2\sin(2x)$. || Substitute $x=\frac\pi4$: $-2\sin\left(\frac\pi2\right)$. || $\sin\frac\pi2=1$. || So the gradient is $-2$.
+H: Differentiate with the chain factor 2. || Substitute $x=\frac\pi4$. || $\sin\frac\pi2=1$.
+@check Tan derivative | Differentiate $y=\tan(5x)$.
+A: 5sec^2(5x)
+ALT: 5/cos^2(5x) || 5sec²(5x)
+AD: $5\sec^2(5x)$
+SOL: $\frac{d}{dx}\tan u=\sec^2u\times u'$. || Here $u=5x$, so $u'=5$. || Multiply: $5\sec^2(5x)$. || Equivalently $\frac{5}{\cos^2(5x)}$.
+H: Derivative of $\tan$ is $\sec^2$. || Inside derivative is 5. || Multiply.
+@check Stationary point | Find the first positive $x$ where $y=2\sin x+x$ has a stationary point. Give an exact value.
+A: 2pi/3
+ALT: 2π/3 || x=2pi/3
+AD: $x=\dfrac{2\pi}{3}$
+SOL: Differentiate: $\frac{dy}{dx}=2\cos x+1$. || Set to zero: $\cos x=-\frac12$. || Reference angle $\frac\pi3$; cosine is negative in Q2 and Q3, so the first positive solution is $x=\pi-\frac\pi3$. || That is $x=\frac{2\pi}{3}$.
+H: Differentiate each term. || Solve $\cos x=-\frac12$. || The first solution is in quadrant 2.
+## 2.5
+@p **What this topic is about.** Using sine and cosine to model things that repeat: tides, daylight hours, temperature over a day, Ferris wheels, springs and sound. You build the model from information, use it to answer "when" and "how high" questions, and use its derivative for rates of change.
+@key **Building $y=a\sin(b(t-c))+d$ or $y=a\cos(b(t-c))+d$ from information:** midline $d=\dfrac{\max+\min}{2}$; amplitude $a=\dfrac{\max-\min}{2}$; $b=\dfrac{2\pi}{\text{period}}$; shift $c$ chosen to match a known point.
+@p **Choosing sine or cosine to avoid shifts.** Starts at the **top** (high tide at $t=0$): use $+\cos$. Starts at the **bottom** (boarding a Ferris wheel at its lowest point): use $-\cos$. Starts at the **middle going up**: use $+\sin$. Starts at the middle going down: use $-\sin$. If the known point is not at $t=0$, shift by the time at which that feature occurs.
+@p **Typical questions and how to answer them.** "Maximum / minimum value": $d\pm|a|$. "When is it first at its maximum": solve the trig function $=1$ (or $-1$). "When is it above a level": solve the equality, then decide which intervals are above using a sketch. "Rate of change": differentiate and substitute; it is largest in size where the graph crosses the midline and zero at maxima and minima.
+@ex Building a tide model (full working)
+Q: Water depth varies between 2 m and 6 m, with high tide at $t=0$ and a period of 12 hours. Find a model and the first time the depth is 5 m.
+S: **Midline:** $d=\frac{2+6}2=4$.
+S: **Amplitude:** $a=\frac{6-2}2=2$.
+S: **$b$:** $b=\frac{2\pi}{12}=\frac\pi6$.
+S: **Choose cosine:** high tide (maximum) at $t=0$ means $+\cos$ with no shift: $D=2\cos\left(\frac{\pi t}6\right)+4$.
+S: **Set $D=5$:** $2\cos\left(\frac{\pi t}6\right)+4=5\Rightarrow\cos\left(\frac{\pi t}6\right)=\frac12$.
+S: **Solve for the first positive time:** $\frac{\pi t}6=\frac\pi3\Rightarrow t=2$.
+A: $D=2\cos\left(\frac{\pi t}{6}\right)+4$; first at 5 m after 2 hours
+@ex Ferris wheel (full working)
+Q: A Ferris wheel of radius 10 m has its lowest point 2 m above the ground and turns once every 40 s. You board at the lowest point. Find the height model and how long you are above 17 m during one turn.
+S: **Midline:** the centre is $2+10=12$ m high, so $d=12$. **Amplitude:** $a=10$. **$b$:** $\frac{2\pi}{40}=\frac\pi{20}$.
+S: **Start at the bottom:** use $-\cos$: $h=12-10\cos\left(\frac{\pi t}{20}\right)$.
+S: **Set $h=17$:** $-10\cos\left(\frac{\pi t}{20}\right)=5\Rightarrow\cos\left(\frac{\pi t}{20}\right)=-\frac12$.
+S: **Solve in one turn** ($0\le\frac{\pi t}{20}\le2\pi$): $\frac{\pi t}{20}=\frac{2\pi}3$ or $\frac{4\pi}3$, so $t=\frac{40}3\approx13.3$ s or $t=\frac{80}3\approx26.7$ s.
+S: **Interpret:** you are above 17 m between these times (the top of the ride is in the middle), for $\frac{80}3-\frac{40}3=\frac{40}3\approx13.3$ s.
+A: $h=12-10\cos\left(\frac{\pi t}{20}\right)$; above 17 m for about $13.3$ s per turn
+@ex Daylight model with a shift (full working)
+Q: A town's daylight varies from 10 h (minimum on day 172) to 14 h, with period 365 days. Write a cosine model and find the daylight on day 80.
+S: **Midline and amplitude:** $d=12$, $a=2$. **$b$:** $\frac{2\pi}{365}$.
+S: **The minimum occurs at $t=172$:** a $-\cos$ graph has its minimum at the start, so shift it right by 172.
+S: **Model:** $L(t)=12-2\cos\left(\frac{2\pi}{365}(t-172)\right)$.
+S: **Day 80:** $L(80)=12-2\cos\left(\frac{2\pi(80-172)}{365}\right)=12-2\cos(-1.5837)$.
+S: **Evaluate:** $\cos(-1.5837)\approx-0.0129$, so $L\approx12+0.026\approx12.03$ h.
+A: $L(t)=12-2\cos\left(\frac{2\pi}{365}(t-172)\right)$; about 12.0 hours on day 80
+@ex Rate of change in a model (full working)
+Q: The temperature on a summer day is $T=24-6\cos\left(\frac{\pi(t-4)}{12}\right)$ °C, $t$ hours after midnight. Find the maximum temperature and when it occurs, and the rate of change at 10 am.
+S: **Maximum:** when $\cos(\ldots)=-1$, $T=24+6=30$°C.
+S: **When:** $\frac{\pi(t-4)}{12}=\pi\Rightarrow t-4=12\Rightarrow t=16$, i.e. 4 pm.
+S: **Differentiate:** $\frac{dT}{dt}=-6\times\left(-\frac\pi{12}\right)\sin\left(\frac{\pi(t-4)}{12}\right)=\frac\pi2\sin\left(\frac{\pi(t-4)}{12}\right)$.
+S: **At 10 am, $t=10$:** $\frac\pi2\sin\left(\frac{6\pi}{12}\right)=\frac\pi2\sin\frac\pi2=\frac\pi2\approx1.57$ °C/h.
+S: **Interpret:** at 10 am the temperature is rising at its fastest rate, about 1.57°C per hour (10 am is when the curve crosses its midline going up).
+A: Maximum 30°C at 4 pm; rising at $\frac{\pi}{2}\approx1.57$ °C/h at 10 am
+@warn State the meaning of $t=0$ and the units of the answer. "$t=13.3$" is incomplete; "13.3 seconds after boarding" earns the communication mark.
+@p **Exam tip.** In "evaluate the model" questions, comment on whether the assumptions are realistic: real tides are not perfectly sinusoidal, and daylight periods are exactly a year but temperatures vary with weather.
+@check Build a model | Depth has max 5 m, min 1 m, period 12 h, and is at its maximum at $t=0$. Write the model.
+A: D=2cos(pi t/6)+3
+ALT: 2cos(pit/6)+3 || D=2cos((pi/6)t)+3 || 2cos(πt/6)+3 || 3+2cos(pi t/6)
+AD: $D=2\cos\left(\frac{\pi t}{6}\right)+3$
+SOL: Midline $d=\frac{5+1}2=3$. || Amplitude $a=\frac{5-1}2=2$. || $b=\frac{2\pi}{12}=\frac\pi6$. || Maximum at $t=0$ means $+\cos$ with no shift: $D=2\cos\left(\frac{\pi t}6\right)+3$.
+H: Average of max and min. || Half the difference. || A maximum at the start suggests cosine.
+@check Ferris wheel height | $h=17-15\cos\left(\frac{\pi t}{30}\right)$. Find the height at $t=20$ s.
+A: 24.5
+ALT: 24.5 m
+AD: $24.5$ m
+SOL: Substitute $t=20$: $h=17-15\cos\left(\frac{20\pi}{30}\right)=17-15\cos\left(\frac{2\pi}3\right)$. || $\cos\frac{2\pi}3=-\frac12$ (quadrant 2, reference $\frac\pi3$). || So $h=17-15\left(-\frac12\right)=17+7.5$. || $h=24.5$ m.
+H: Substitute $t=20$. || Simplify the angle to $\frac{2\pi}{3}$. || $\cos\frac{2\pi}3=-\frac12$.
+@check When first | For $T=20-5\cos\left(\frac{\pi t}{12}\right)$, find when $T$ is first 22.5.
+A: 8
+ALT: t=8
+AD: $t=8$
+SOL: Set $20-5\cos\left(\frac{\pi t}{12}\right)=22.5$. || Rearrange: $\cos\left(\frac{\pi t}{12}\right)=-\frac12$. || The first positive angle with cosine $-\frac12$ is $\frac{2\pi}3$, so $\frac{\pi t}{12}=\frac{2\pi}3$. || Solve: $t=8$.
+H: Isolate the cosine. || Find the first angle with $\cos=-\frac12$. || Multiply by $\frac{12}{\pi}$.
+@check Rate | For $D=3+2\sin\left(\frac{\pi t}{6}\right)$, find $\frac{dD}{dt}$ at $t=0$ exactly.
+A: pi/3
+ALT: π/3
+AD: $\dfrac{\pi}{3}$
+SOL: Differentiate: $\frac{dD}{dt}=2\times\frac\pi6\cos\left(\frac{\pi t}6\right)=\frac\pi3\cos\left(\frac{\pi t}6\right)$. || Substitute $t=0$: $\frac\pi3\cos0$. || $\cos0=1$. || So the rate is $\frac\pi3\approx1.05$ units per hour.
+H: Use the chain factor $\frac\pi6$. || Substitute $t=0$. || $\cos0=1$.
+@check Max and when | For $h=12-10\cos\left(\frac{\pi t}{20}\right)$, find the maximum height and the first time it occurs.
+A: 22,20
+ALT: 22 at t=20 || 22 and 20 || h=22,t=20
+AD: Maximum 22 m at $t=20$ s
+SOL: The maximum happens when $\cos\left(\frac{\pi t}{20}\right)=-1$. || Then $h=12-10(-1)=22$. || $\frac{\pi t}{20}=\pi$ first at $t=20$. || So the maximum height is 22 m, first reached at $t=20$ s.
+H: Which value of cos makes $h$ largest? || $\cos=-1$ first at angle $\pi$. || Solve for $t$.
+## X
+@p **Exam toolkit for trig.** Radians first: check the mode before any calculation. Exact values must be exact; do not leave $0.866$ when $\frac{\sqrt3}{2}$ is asked. Show the quadrant reasoning in equations, and transform the domain before solving any equation with $bx$ inside.
+@p **Solving routine.** (1) Isolate the trig function. (2) Transform the domain. (3) Reference angle. (4) All quadrants with the right sign. (5) Undo the transformation. (6) Check the number of solutions.
+@p **Modelling routine.** Max and min give the midline and amplitude; the time between peaks gives the period; a known feature chooses sine or cosine and the shift. Check by substituting a known point. Differentiate for rates, and interpret signs and units.
+@ex Exam-style: maximum of a combined wave (full working)
+Q: Find the maximum value of $f(x)=3\sin x+4\cos x$ for $0\le x\le\frac\pi2$ using calculus.
+S: **Differentiate:** $f'(x)=3\cos x-4\sin x$.
+S: **Set to zero:** $3\cos x=4\sin x\Rightarrow\tan x=\frac34$.
+S: **Find sin and cos from a right triangle:** opposite 3, adjacent 4, hypotenuse 5, so $\sin x=\frac35$, $\cos x=\frac45$ (both positive in Q1).
+S: **Evaluate:** $f=3\left(\frac35\right)+4\left(\frac45\right)=\frac95+\frac{16}5=5$.
+S: **Check endpoints:** $f(0)=4$, $f\left(\frac\pi2\right)=3$, both less than 5, so the maximum is 5 at $x=\tan^{-1}\frac34\approx0.644$.
+A: Maximum value 5
+@ex Exam-style: equation from a model (full working)
+Q: The height of a spring-mounted mass is $y=10+3\sin(2\pi t)$ cm. Find all times in the first second when the height is 11.5 cm, and the velocity at the first of these.
+S: **Set up:** $10+3\sin(2\pi t)=11.5\Rightarrow\sin(2\pi t)=\frac12$.
+S: **Domain:** $0\le t\le1$ means $0\le2\pi t\le2\pi$.
+S: **Solve:** $2\pi t=\frac\pi6$ or $\frac{5\pi}6$, so $t=\frac1{12}$ or $t=\frac5{12}$ s.
+S: **Velocity:** $\frac{dy}{dt}=6\pi\cos(2\pi t)$. At $t=\frac1{12}$: $6\pi\cos\frac\pi6=6\pi\times\frac{\sqrt3}2=3\sqrt3\pi\approx16.3$ cm/s.
+A: $t=\frac{1}{12}$ s and $\frac{5}{12}$ s; velocity $3\sqrt3\pi\approx16.3$ cm/s upward
+@warn Frequent errors: degrees mode; forgetting the negative in $\frac{d}{dx}\cos x$; missing solutions when the argument is $2x$; writing $\sin^2x$ as $\sin x^2$ (they are different).
+@check Combined maximum | Find the maximum value of $y=\sin x+\sqrt3\cos x$ for $0\le x\le\frac{\pi}{2}$.
+A: 2
+AD: $2$
+SOL: Differentiate: $y'=\cos x-\sqrt3\sin x$. || Set to zero: $\tan x=\frac{1}{\sqrt3}$, so $x=\frac\pi6$. || Evaluate: $\sin\frac\pi6+\sqrt3\cos\frac\pi6=\frac12+\sqrt3\cdot\frac{\sqrt3}2=\frac12+\frac32=2$. || The endpoints give $\sqrt3\approx1.73$ and $1$, so the maximum is 2.
+H: Differentiate and set to zero. || $\tan x=\frac1{\sqrt3}$. || Evaluate at $x=\frac\pi6$.
+@check Exact value | Evaluate $\sin\frac{7\pi}{6}+\cos\frac{5\pi}{3}$ exactly.
+A: 0
+AD: $0$
+SOL: $\frac{7\pi}6$ is in Q3 with reference $\frac\pi6$; sine is negative there, so $\sin\frac{7\pi}6=-\frac12$. || $\frac{5\pi}3$ is in Q4 with reference $\frac\pi3$; cosine is positive there, so $\cos\frac{5\pi}3=\frac12$. || Add: $-\frac12+\frac12$. || The value is 0.
+H: Find each quadrant. || Reference angles $\frac\pi6$ and $\frac\pi3$. || Apply ASTC signs.
+@check Times | Solve $10+3\sin(2\pi t)=8.5$ for $0\le t\le1$.
+A: 7/12,11/12
+ALT: 7/12 and 11/12 || t=7/12,11/12
+AD: $t=\frac{7}{12},\ \frac{11}{12}$
+SOL: Isolate: $\sin(2\pi t)=-\frac12$. || Domain: $0\le2\pi t\le2\pi$. || Sine is negative in Q3 and Q4 with reference $\frac\pi6$: $2\pi t=\frac{7\pi}6$ or $\frac{11\pi}6$. || Divide by $2\pi$: $t=\frac7{12}$ or $t=\frac{11}{12}$.
+H: Isolate the sine. || Negative sine: Q3 and Q4. || Divide by $2\pi$.
+@check Velocity | For $y=10+3\sin(2\pi t)$, find the velocity when $t=\frac12$.
+A: -6pi
+ALT: -6π || -18.85
+AD: $-6\pi\approx-18.8$ cm/s
+SOL: Velocity is $\frac{dy}{dt}=3\times2\pi\cos(2\pi t)=6\pi\cos(2\pi t)$. || Substitute $t=\frac12$: $6\pi\cos\pi$. || $\cos\pi=-1$. || So the velocity is $-6\pi\approx-18.8$ cm/s (moving down).
+H: Differentiate with the chain factor $2\pi$. || Substitute $t=\frac12$. || $\cos\pi=-1$.
+@check Stationary points | How many stationary points does $y=\sin(2x)$ have for $0\le x\le2\pi$?
+A: 4
+AD: $4$
+SOL: Differentiate: $y'=2\cos(2x)$. || Set to zero: $\cos(2x)=0$ with $0\le2x\le4\pi$. || Solutions: $2x=\frac\pi2,\frac{3\pi}2,\frac{5\pi}2,\frac{7\pi}2$. || So $x=\frac\pi4,\frac{3\pi}4,\frac{5\pi}4,\frac{7\pi}4$: four stationary points.
+H: Differentiate. || Transform the domain to $[0,4\pi]$. || Count the solutions of $\cos\theta=0$.
+@solfix 0 | Convert degrees to radians by multiplying by $\frac{\pi}{180}$: $150\times\frac{\pi}{180}=\frac{150\pi}{180}$. || Simplify the fraction by dividing top and bottom by 30. || $\frac{150}{180}=\frac56$. || So $150^\circ=\frac{5\pi}{6}$.
+@solfix 1 | $\frac{2\pi}{3}$ is between $\frac\pi2$ and $\pi$, so it is in quadrant 2. || The reference angle is $\pi-\frac{2\pi}3=\frac\pi3$, and $\cos\frac\pi3=\frac12$. || Cosine is negative in quadrant 2. || So $\cos\frac{2\pi}3=-\frac12$.
+@solfix 2 | For $y=a\cos(bx)+d$ the period is $\frac{2\pi}{b}$. || Here $b=3$. || So the period is $\frac{2\pi}{3}$. || The graph repeats every $\frac{2\pi}3$ units.
+@solfix 3 | The midline is $y=d=-2$ and the amplitude is $|a|=4$. || The maximum is midline plus amplitude. || $-2+4=2$. || So the maximum value is 2.
+@solfix 4 | The angle is $5x$, whose derivative is 5. || $\sin$ differentiates to $\cos$ with the same angle. || Multiply by the derivative of the angle. || So $\frac{dy}{dx}=5\cos(5x)$.
+@solfix 5 | The angle is $x^2$, whose derivative is $2x$. || $\cos$ differentiates to $-\sin$ with the same angle. || Multiply by $2x$. || So $\frac{dy}{dx}=-2x\sin(x^2)$.
+@solfix 6 | Isolate: $\cos x=\frac12$. || The reference angle is $\frac\pi3$ (since $\cos\frac\pi3=\frac12$). || Cosine is positive in quadrants 1 and 4: $x=\frac\pi3$ and $x=2\pi-\frac\pi3=\frac{5\pi}3$. || Both are in $[0,2\pi]$: $x=\frac\pi3,\frac{5\pi}3$.
+@solfix 7 | Use $\sin^2\theta=1-\cos^2\theta=1-\frac{25}{169}=\frac{144}{169}$. || So $\sin\theta=\pm\frac{12}{13}$. || In quadrant 4, sine (the $y$-coordinate) is negative. || So $\sin\theta=-\frac{12}{13}$.
+@solfix 8 | The midline is 20 and the amplitude is 8. || The maximum occurs when $\sin\left(\frac{\pi t}{12}\right)=1$. || Then $T=8(1)+20$. || Maximum temperature $=28$.
+@solfix 9 | $\frac{d}{dx}\sin x=\cos x$. || Set $\cos x=0$. || Cosine is zero at $x=\frac\pi2,\frac{3\pi}2,\dots$. || The first positive solution is $x=\frac\pi2$.
+@solfix 10 | Arc length in radians is $s=r\theta$. || Substitute $r=5$, $\theta=\frac{3\pi}5$: $s=5\times\frac{3\pi}{5}$. || The 5s cancel. || $s=3\pi$ units.
+@solfix 11 | Use the symmetry identity $\cos(\pi-\theta)=-\cos\theta$ (reflecting across the $y$-axis changes the sign of the $x$-coordinate). || Substitute $\cos\theta=\frac13$. || $\cos(\pi-\theta)=-\frac13$. || So the answer is $-\frac13$.
+@solfix 12 | The midline sits halfway between the maximum and minimum. || $d=\frac{\max+\min}{2}$. || $d=\frac{7+1}{2}=\frac82$. || $d=4$.
+@solfix 13 | $\tan\frac\pi3=\sqrt3$, so the reference angle is $\frac\pi3$. || Tangent is positive in quadrants 1 and 3, giving $\frac\pi3$ and $\frac{4\pi}3$. || The domain is $0\le x\le\pi$, so $\frac{4\pi}3$ is outside it. || The only solution is $x=\frac\pi3$.
+@solfix 14 | Rearrange and factorise (do not divide by $\cos x$): $2\cos^2x-\cos x=0\Rightarrow\cos x(2\cos x-1)=0$. || Case 1: $\cos x=0$ gives $x=\frac\pi2$ in $\left[0,\frac\pi2\right]$. || Case 2: $\cos x=\frac12$ gives $x=\frac\pi3$. || Solutions in order: $x=\frac\pi3,\frac\pi2$.
+@solfix 15 | This is a product $u\cdot v$ with $u=x$ and $v=\cos x$. || $u'=1$ and $v'=-\sin x$. || Product rule: $u'v+uv'=1\cdot\cos x+x(-\sin x)$. || So $\frac{dy}{dx}=\cos x-x\sin x$.
+@solfix 16 | $\frac{d}{dx}\tan u=u'\sec^2u$. || Here $u=2x$ and $u'=2$. || Multiply: $2\sec^2(2x)$. || Equivalently $\frac{2}{\cos^2(2x)}$.
+@solfix 17 | Substitute $t=20$: $h=12-10\cos\left(\frac{20\pi}{20}\right)=12-10\cos\pi$. || $\cos\pi=-1$. || So $h=12-10(-1)=12+10$. || $h=22$.
+@solfix 18 | Differentiate: $\frac{dy}{dx}=2\cos(2x)$ (chain factor 2). || Substitute $x=0$: $2\cos0$. || $\cos0=1$. || The gradient is 2.
+@solfix 19 | The amplitude is 5 and the midline is 12. || The maximum occurs when $\cos x=1$. || $y=5(1)+12$. || Maximum $=17$.
+@cometfix 0 | Differentiate: $y'=\cos x-\sin x$, which is zero when $\tan x=1$, i.e. $x=\frac\pi4$. || Evaluate: $\sin\frac\pi4+\cos\frac\pi4=\frac{\sqrt2}2+\frac{\sqrt2}2$. || Add: $\sqrt2$. || The second derivative $-\sin x-\cos x=-\sqrt2<0$ there, confirming it is the maximum, $\sqrt2$.
+@cometfix 1 | Differentiate: $D'=2\times\left(-\frac\pi6\right)\sin\left(\frac{\pi t}6\right)=-\frac\pi3\sin\left(\frac{\pi t}6\right)$. || The rate is greatest (most positive) when $\sin\left(\frac{\pi t}6\right)=-1$. || Then $D'=-\frac\pi3(-1)=\frac\pi3$. || This happens at $t=9$ hours, when the water is rising fastest.
+@cometfix 2 | Differentiate: $f'(x)=3\cos x-4\sin x=0\Rightarrow\tan x=\frac34$. || With $\tan x=\frac34$ in quadrant 1, a 3-4-5 triangle gives $\sin x=\frac35$, $\cos x=\frac45$. || $f=3\cdot\frac35+4\cdot\frac45=\frac{9+16}5=5$. || (In general $a\sin x+b\cos x$ has maximum $\sqrt{a^2+b^2}=\sqrt{9+16}=5$.)

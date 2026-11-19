@@ -1,0 +1,199 @@
+=== mm3-c05 | rewrite
+## 5.6
+@p **What this topic is about.** Using initial conditions to find the exact function, and evaluating **definite integrals**, which give a number rather than a family of functions. Definite integrals measure total change and area, and they connect anti-differentiation to geometry (the fundamental theorem of calculus).
+@key **Definite integral:** $\displaystyle\int_a^bf(x)\,dx=\big[F(x)\big]_a^b=F(b)-F(a)$, where $F$ is any antiderivative of $f$. No $+c$ is needed (it cancels). **Total change:** $\displaystyle\int_a^bf'(x)\,dx=f(b)-f(a)$.
+@p **Signed area.** If $f(x)\ge0$ on $[a,b]$, $\int_a^bf(x)\,dx$ is the area between the curve and the $x$-axis. Area **below** the axis is counted as **negative**. So for the total (geometric) area of a region that crosses the axis, find the $x$-intercepts, integrate each piece separately, and add the absolute values.
+@key **Area between two curves:** if $f(x)\ge g(x)$ on $[a,b]$, the area between them is $\displaystyle\int_a^b\big(f(x)-g(x)\big)\,dx$ (top minus bottom). Find where they intersect to get the limits.
+@p **Setting out a definite integral for full marks.** (1) Write the antiderivative in square brackets with the limits. (2) Substitute the upper limit, then subtract the substitution of the lower limit, using brackets. (3) Evaluate exactly. (4) For areas, state the answer with "square units" and make it positive.
+@ex Initial condition (full working)
+Q: $f'(x)=6x^2-4x+1$ and $f(2)=10$. Find $f(x)$ and $f(0)$.
+S: **Anti-differentiate:** $f(x)=2x^3-2x^2+x+c$.
+S: **Use the condition $f(2)=10$:** $2(8)-2(4)+2+c=10\Rightarrow16-8+2+c=10$.
+S: **Solve:** $10+c=10\Rightarrow c=0$.
+S: **Function:** $f(x)=2x^3-2x^2+x$, so $f(0)=0$.
+A: $f(x)=2x^3-2x^2+x$; $f(0)=0$
+@ex Definite integral (full working)
+Q: Evaluate $\displaystyle\int_1^3\left(3x^2-2x\right)dx$.
+S: **Antiderivative:** $x^3-x^2$.
+S: **Bracket notation:** $\left[x^3-x^2\right]_1^3$.
+S: **Upper limit:** $27-9=18$.
+S: **Lower limit:** $1-1=0$.
+S: **Subtract:** $18-0=18$.
+A: $18$
+@ex Area that crosses the axis (full working)
+Q: Find the total area between $y=x^2-4$ and the $x$-axis for $0\le x\le3$.
+S: **Find where the curve crosses the axis:** $x^2-4=0\Rightarrow x=2$ (in the interval). The curve is below the axis on $[0,2]$ and above on $[2,3]$.
+S: **First piece:** $\int_0^2(x^2-4)dx=\left[\frac{x^3}3-4x\right]_0^2=\frac83-8=-\frac{16}3$ (negative because it is below the axis).
+S: **Second piece:** $\int_2^3(x^2-4)dx=\left[\frac{x^3}3-4x\right]_2^3=(9-12)-\left(\frac83-8\right)=-3+\frac{16}3=\frac73$.
+S: **Add the sizes:** total area $=\frac{16}3+\frac73=\frac{23}3$ square units.
+S: **Compare:** the plain integral $\int_0^3$ would give $-\frac{16}3+\frac73=-3$, which is not an area.
+A: $\frac{23}{3}$ square units
+@ex Area between two curves (full working)
+Q: Find the area enclosed between $y=x$ and $y=x^2$.
+S: **Intersections:** $x^2=x\Rightarrow x(x-1)=0\Rightarrow x=0,1$.
+S: **Which is on top?** At $x=\frac12$: $y=x$ gives $0.5$, $y=x^2$ gives $0.25$. So $y=x$ is above on $[0,1]$.
+S: **Integrate top minus bottom:** $\int_0^1(x-x^2)dx=\left[\frac{x^2}2-\frac{x^3}3\right]_0^1$.
+S: **Evaluate:** $\frac12-\frac13=\frac16$.
+A: $\frac16$ square units
+@warn A definite integral is a **signed** area. Never report a negative number as an area, and never integrate straight across an $x$-intercept when the question asks for total area.
+@p **Exam tip.** A quick sketch showing which parts are above and below the axis earns method marks and prevents the most common area error.
+@check Initial condition | $f'(x)=4x^3-2$ and $f(1)=5$. Find $f(x)$.
+A: x^4-2x+6
+ALT: f(x)=x^4-2x+6
+AD: $f(x)=x^4-2x+6$
+SOL: Anti-differentiate: $f(x)=x^4-2x+c$. || Use $f(1)=5$: $1-2+c=5$. || So $c=6$. || $f(x)=x^4-2x+6$.
+H: Integrate each term. || Substitute $x=1$. || Solve for $c$.
+@check Definite | Evaluate $\displaystyle\int_0^2(x^3+1)\,dx$.
+A: 6
+AD: $6$
+SOL: Antiderivative: $\frac{x^4}4+x$. || Upper limit: $\frac{16}4+2=6$. || Lower limit: $0$. || Integral $=6-0=6$.
+H: Integrate. || Substitute 2 and 0. || Upper minus lower.
+@check Exponential definite | Evaluate $\displaystyle\int_0^{\ln2}e^{x}\,dx$.
+A: 1
+AD: $1$
+SOL: Antiderivative: $e^x$. || $\left[e^x\right]_0^{\ln2}=e^{\ln2}-e^0$. || $=2-1$. || The integral equals 1.
+H: $\int e^x=e^x$. || $e^{\ln2}=2$. || $e^0=1$.
+@check Area crossing axis | Find the total area between $y=x-1$ and the $x$-axis for $0\le x\le2$.
+A: 1
+AD: $1$ square unit
+SOL: The line crosses the axis at $x=1$. || $\int_0^1(x-1)dx=\left[\frac{x^2}2-x\right]_0^1=-\frac12$ (below the axis). || $\int_1^2(x-1)dx=\left[\frac{x^2}2-x\right]_1^2=0-\left(-\frac12\right)=\frac12$. || Total area $=\frac12+\frac12=1$.
+H: Where does the line cross the axis? || Integrate each piece. || Add the sizes.
+@check Between curves | Find the area between $y=4-x^2$ and $y=0$.
+A: 32/3
+ALT: 10.67 || 10.667
+AD: $\dfrac{32}{3}$ square units
+SOL: The curve meets $y=0$ at $x=\pm2$, and it is above the axis between them. || Area $=\int_{-2}^2(4-x^2)dx=\left[4x-\frac{x^3}3\right]_{-2}^2$. || Upper: $8-\frac83=\frac{16}3$. Lower: $-8+\frac83=-\frac{16}3$. || Area $=\frac{16}3-\left(-\frac{16}3\right)=\frac{32}3$.
+H: Find the $x$-intercepts. || Integrate between them. || Subtract carefully with brackets.
+## 5.7
+@p **What this topic is about.** Using integration to go from rates back to amounts: from acceleration to velocity to displacement in kinematics, and from a rate of flow, growth or production to a total. These are the reverse of the derivative applications in topic 3.
+@key **Kinematics in reverse:** $v=\int a\,dt$ and $x=\int v\,dt$, each with a constant found from an initial condition. **Displacement** from $t=a$ to $t=b$ is $\int_a^bv\,dt$. **Distance travelled** is $\int_a^b|v|\,dt$: split at times where $v=0$ and add the sizes.
+@p **Displacement versus distance.** Displacement is the net change in position (it can be zero if the particle returns to its start). Distance is the total path length. If the particle turns around (velocity changes sign), they differ.
+@p **Rates to totals.** If $R(t)$ is a rate (litres per minute, people per hour), the total over $[a,b]$ is $\int_a^bR(t)\,dt$. The amount at time $t$ is the starting amount plus the total change.
+@ex From acceleration to position (full working)
+Q: A car starts from rest at the origin with acceleration $a=6-2t$ m/s$^2$. Find its velocity and position after 3 seconds.
+S: **Velocity:** $v=\int(6-2t)dt=6t-t^2+c_1$. From rest: $v(0)=0\Rightarrow c_1=0$, so $v=6t-t^2$.
+S: **At $t=3$:** $v=18-9=9$ m/s.
+S: **Position:** $x=\int(6t-t^2)dt=3t^2-\frac{t^3}3+c_2$. At the origin: $x(0)=0\Rightarrow c_2=0$.
+S: **At $t=3$:** $x=27-9=18$ m.
+A: $9$ m/s and $18$ m from the start
+@ex Displacement and distance (full working)
+Q: A particle has $v=t^2-4t+3$ m/s for $0\le t\le3$. Find the displacement and the distance travelled.
+S: **Where does it turn?** $v=(t-1)(t-3)=0$ at $t=1$ and $t=3$. $v>0$ on $(0,1)$, $v<0$ on $(1,3)$.
+S: **Antiderivative:** $F(t)=\frac{t^3}3-2t^2+3t$.
+S: **Displacement:** $F(3)-F(0)=(9-18+9)-0=0$ m. The particle ends where it started.
+S: **First part:** $F(1)-F(0)=\frac13-2+3=\frac43$ m forward.
+S: **Second part:** $F(3)-F(1)=0-\frac43=-\frac43$ m (backward).
+S: **Distance:** $\frac43+\frac43=\frac83\approx2.67$ m.
+A: Displacement $0$ m; distance $\frac{8}{3}$ m
+@ex Worded problem: water in a tank (full working)
+Q: Water flows into a tank at $\frac{dV}{dt}=20+4t$ L/min. The tank holds 50 L at $t=0$. Find $V(t)$, the volume after 10 minutes, and how much flowed in.
+S: **Anti-differentiate:** $V=20t+2t^2+c$.
+S: **Initial condition:** $V(0)=50\Rightarrow c=50$, so $V=20t+2t^2+50$.
+S: **After 10 minutes:** $V(10)=200+200+50=450$ L.
+S: **Amount that flowed in:** $\int_0^{10}(20+4t)dt=\left[20t+2t^2\right]_0^{10}=400$ L (which matches $450-50$).
+A: $V=20t+2t^2+50$; 450 L after 10 min; 400 L flowed in
+@ex Worded problem: total from a decaying rate (full working)
+Q: Oil leaks from a tank at $R(t)=12e^{-0.2t}$ L/h. How much leaks in the first 5 hours?
+S: **Total leaked:** $\int_0^5 12e^{-0.2t}dt$.
+S: **Antiderivative:** $12\times\frac{1}{-0.2}e^{-0.2t}=-60e^{-0.2t}$.
+S: **Evaluate:** $\left[-60e^{-0.2t}\right]_0^5=-60e^{-1}-(-60)=60-60e^{-1}$.
+S: **Approximate:** $60(1-0.3679)\approx37.9$ L.
+A: $60-60e^{-1}\approx37.9$ litres
+@warn If velocity changes sign, $\int v\,dt$ gives displacement, not distance. Always check for turning points before answering a distance question.
+@p **Exam tip.** Label each constant of integration separately ($c_1$, $c_2$) and find each one immediately using its own initial condition.
+@check Velocity | A particle starts from rest with $a=4t$ m/s². Find its velocity at $t=3$.
+A: 18
+ALT: 18 m/s
+AD: $18$ m/s
+SOL: $v=\int4t\,dt=2t^2+c$. || From rest: $v(0)=0$, so $c=0$. || $v=2t^2$. || At $t=3$: $v=18$ m/s.
+H: Integrate $a$. || Use $v(0)=0$. || Substitute $t=3$.
+@check Position | $v=3t^2-2$ and $x(0)=4$. Find $x(2)$.
+A: 8
+AD: $8$
+SOL: $x=\int(3t^2-2)dt=t^3-2t+c$. || $x(0)=4$ gives $c=4$. || $x=t^3-2t+4$. || $x(2)=8-4+4=8$.
+H: Integrate $v$. || Use $x(0)=4$. || Substitute $t=2$.
+@check Distance | $v=2t-4$ for $0\le t\le3$. Find the distance travelled.
+A: 5
+AD: $5$ m
+SOL: $v=0$ at $t=2$ (backwards before, forwards after). || $\int_0^2(2t-4)dt=[t^2-4t]_0^2=-4$, so 4 m backward. || $\int_2^3(2t-4)dt=[t^2-4t]_2^3=-3-(-4)=1$, so 1 m forward. || Distance $=4+1=5$ m.
+H: When is $v=0$? || Integrate each piece. || Add the sizes.
+@check Total from rate | A pump moves water at $R(t)=30-2t$ L/min. How much is pumped in the first 5 minutes?
+A: 125
+ALT: 125 L
+AD: $125$ L
+SOL: Total $=\int_0^5(30-2t)dt$. || Antiderivative: $30t-t^2$. || Evaluate: $150-25=125$. || So 125 litres are pumped.
+H: Integrate the rate. || Upper minus lower. || $30(5)-25$.
+@check Displacement | $v=6-3t$ for $0\le t\le4$. Find the displacement.
+A: 0
+ALT: 0 m
+AD: $0$ m
+SOL: Displacement $=\int_0^4(6-3t)dt$. || Antiderivative: $6t-\frac32t^2$. || At $t=4$: $24-24=0$; at $t=0$: $0$. || Displacement $=0$ m (it returns to its start).
+H: Integrate $v$ over $[0,4]$. || Evaluate. || Upper minus lower.
+## X
+@p **Check by differentiating.** Every antiderivative can be verified in seconds. If differentiating your answer does not give back the integrand, find the mistake before moving on.
+@p **Presentation.** Indefinite integrals need $+c$. Definite integrals show the bracket with limits and both substitutions. Areas are positive and include units. When the question says exact, leave $e$, $\ln$ and $\pi$ unevaluated.
+@ex Exam-style: area under a sine curve (full working)
+Q: Find the exact total area between $y=\sin x$ and the $x$-axis for $0\le x\le2\pi$.
+S: **Sign of $\sin x$:** positive on $(0,\pi)$, negative on $(\pi,2\pi)$.
+S: **First piece:** $\int_0^\pi\sin x\,dx=[-\cos x]_0^\pi=1-(-1)=2$.
+S: **Second piece:** $\int_\pi^{2\pi}\sin x\,dx=[-\cos x]_\pi^{2\pi}=-1-1=-2$.
+S: **Total area:** $2+|-2|=4$ square units (the plain integral over $[0,2\pi]$ would wrongly give 0).
+A: $4$ square units
+@ex Exam-style: function from a mixed derivative (full working)
+Q: $f'(x)=\dfrac1x+e^x$ for $x>0$ and $f(1)=e$. Find $f(e)$ exactly.
+S: **Anti-differentiate:** $f(x)=\ln x+e^x+c$ (no absolute value since $x>0$).
+S: **Use $f(1)=e$:** $\ln1+e+c=e\Rightarrow0+e+c=e\Rightarrow c=0$.
+S: **Function:** $f(x)=\ln x+e^x$.
+S: **Evaluate:** $f(e)=\ln e+e^e=1+e^e$.
+A: $f(e)=1+e^e$
+@warn Lost marks: missing $+c$; integrating across an axis crossing for area; dividing instead of multiplying (or vice versa) by the inner coefficient.
+@check Sine area | Find the area under $y=\sin x$ from $0$ to $\pi$.
+A: 2
+AD: $2$
+SOL: $\int_0^\pi\sin x\,dx=[-\cos x]_0^\pi$. || $=-\cos\pi-(-\cos0)$. || $=1+1$. || Area $=2$.
+H: $\int\sin x=-\cos x$. || $\cos\pi=-1$. || Upper minus lower.
+@check Find f | $f'(x)=e^{x}+2x$ and $f(0)=3$. Find $f(1)$.
+A: e+3
+ALT: 3+e || 5.718
+AD: $e+3$
+SOL: $f(x)=e^x+x^2+c$. || $f(0)=1+0+c=3$, so $c=2$. || $f(x)=e^x+x^2+2$. || $f(1)=e+1+2=e+3$.
+H: Integrate. || $e^0=1$. || Substitute $x=1$.
+@check Average value | Find the average value of $f(x)=x^2$ on $[0,3]$ using $\frac{1}{b-a}\int_a^bf(x)\,dx$.
+A: 3
+AD: $3$
+SOL: $\int_0^3x^2dx=\left[\frac{x^3}3\right]_0^3=9$. || $b-a=3$. || Average $=\frac{1}{3}\times9$. || $=3$.
+H: Integrate $x^2$. || Divide by the interval length. || $9\div3$.
+@check Exact definite | Evaluate $\displaystyle\int_0^1(e^{2x}+1)\,dx$ exactly.
+A: (e^2+1)/2
+ALT: (1/2)(e^2+1) || e^2/2+1/2 || (e^2-1)/2+1
+AD: $\dfrac{e^2+1}{2}$
+SOL: Antiderivative: $\frac12e^{2x}+x$. || Upper: $\frac12e^2+1$. Lower: $\frac12$. || Subtract: $\frac12e^2+1-\frac12=\frac12e^2+\frac12$. || $=\frac{e^2+1}{2}$.
+H: $\int e^{2x}=\frac12e^{2x}$. || Substitute 1 and 0. || Simplify.
+@check Log area | Find the area under $y=\frac{1}{x}$ from $x=1$ to $x=e^2$.
+A: 2
+AD: $2$
+SOL: $\int_1^{e^2}\frac1x\,dx=[\ln x]_1^{e^2}$. || $=\ln e^2-\ln1$. || $=2-0$. || Area $=2$.
+H: $\int\frac1x=\ln x$. || $\ln e^2=2$. || $\ln1=0$.
+@solfix 0 | Integrate term by term, adding 1 to each power and dividing by the new power. || $\int6x^2dx=6\cdot\frac{x^3}3=2x^3$. || $\int(-4x)dx=-4\cdot\frac{x^2}2=-2x^2$. || Answer: $2x^3-2x^2+c$.
+@solfix 1 | Use $\int e^{kx}dx=\frac1ke^{kx}+c$. || Here $k=4$. || So $\int e^{4x}dx=\frac14e^{4x}+c$. || Check: $\frac{d}{dx}\frac14e^{4x}=e^{4x}$ ✓.
+@solfix 2 | Take the constant out: $3\int\frac1x\,dx$. || $\int\frac1x\,dx=\ln|x|$. || Since $x>0$, $|x|=x$. || Answer: $3\ln x+c$.
+@solfix 3 | $\int\cos(ax)dx=\frac1a\sin(ax)+c$. || Here $a=3$. || So $\int\cos(3x)dx=\frac13\sin(3x)$. || Add $c$.
+@solfix 4 | $\int\sin(ax)dx=-\frac1a\cos(ax)+c$. || Here $a=2$. || So $\int\sin(2x)dx=-\frac12\cos(2x)$. || Add $c$.
+@solfix 5 | Anti-differentiate: $f(x)=2x^2-x+c$. || Use $f(0)=3$: $0-0+c=3$, so $c=3$. || $f(x)=2x^2-x+3$. || $f(2)=8-2+3=9$.
+@solfix 6 | Antiderivative of $3x^2$ is $x^3$. || $\left[x^3\right]_0^2=2^3-0^3$. || $=8-0$. || The integral equals 8.
+@solfix 7 | Antiderivative: $\frac12e^{2x}$. || $\left[\frac12e^{2x}\right]_0^1=\frac12e^2-\frac12e^0$. || $e^0=1$. || $=\frac12(e^2-1)=\frac{e^2-1}{2}$.
+@solfix 8 | Position is the integral of velocity: $x=\int(2t+1)dt=t^2+t+c$. || $x(0)=0$ gives $c=0$. || $x=t^2+t$. || $x(3)=9+3=12$.
+@solfix 9 | Differentiate the denominator: $\frac{d}{dx}(x^2+3)=2x$. || That equals the numerator, so the integrand is $\frac{f'}{f}$. || $\int\frac{f'}{f}dx=\ln|f|+c$. || Since $x^2+3>0$: $\ln(x^2+3)+c$.
+@solfix 10 | Integrate each term: $\int4x^3dx=x^4$. || $\int(-6x)dx=-6\cdot\frac{x^2}2=-3x^2$. || Combine. || $x^4-3x^2+c$.
+@solfix 11 | $\int e^{5x}dx=\frac15e^{5x}$. || Multiply by 5: $5\times\frac15e^{5x}=e^{5x}$. || Add $c$. || $e^{5x}+c$ (check: $\frac{d}{dx}e^{5x}=5e^{5x}$ ✓).
+@solfix 12 | $3\int\frac1x\,dx$. || $=3\ln|x|$. || For $x>0$, $|x|=x$. || $3\ln x+c$.
+@solfix 13 | The derivative of the denominator $e^x+1$ is $e^x$. || That is the numerator, so the integrand is $\frac{f'}{f}$. || $\int\frac{f'}{f}dx=\ln|f|$. || $e^x+1>0$, so the answer is $\ln(e^x+1)+c$.
+@solfix 14 | Antiderivative of $3x^2$ is $x^3$. || $\left[x^3\right]_0^1=1-0$. || $=1$. || The integral equals 1.
+@solfix 15 | Antiderivative: $-\cos x$. || $\left[-\cos x\right]_0^\pi=-\cos\pi-(-\cos0)$. || $=-(-1)+1=1+1$. || The integral equals 2.
+@solfix 16 | Area $=\int_0^{\ln3}e^xdx$ (the curve is above the axis). || $=\left[e^x\right]_0^{\ln3}=e^{\ln3}-e^0$. || $=3-1$. || Area $=2$.
+@solfix 17 | $f(x)=\int4x\,dx=2x^2+c$. || $f(0)=3$ gives $c=3$. || $f(x)=2x^2+3$. || $f(2)=8+3=11$.
+@solfix 18 | The curves meet where $x^2=x$: $x=0$ and $x=1$. On $[0,1]$, $y=x$ is on top. || Area $=\int_0^1(x-x^2)dx$. || $=\left[\frac{x^2}2-\frac{x^3}3\right]_0^1=\frac12-\frac13$. || $=\frac16$.
+@solfix 19 | $x=\int2t\,dt=t^2+c$. || $x(0)=1$ gives $c=1$. || $x=t^2+1$. || $x(3)=9+1=10$.
+@cometfix 0 | $\sin x\ge0$ on $[0,\pi]$ and $\le0$ on $[\pi,2\pi]$, so split there. || $\int_0^\pi\sin x\,dx=[-\cos x]_0^\pi=2$. || $\int_\pi^{2\pi}\sin x\,dx=[-\cos x]_\pi^{2\pi}=-1-1=-2$, an area of 2 below the axis. || Total area $=2+2=4$ (not 0).
+@cometfix 1 | Anti-differentiate: $f(x)=\ln x+e^x+c$. || $f(1)=\ln1+e+c=e$, so $c=0$. || $f(x)=\ln x+e^x$. || $f(e)=\ln e+e^e=1+e^e$.
+@cometfix 2 | Average value $=\frac{1}{b-a}\int_a^bf(x)\,dx$. || $\int_0^3x^2dx=\left[\frac{x^3}{3}\right]_0^3=9$. || Divide by the interval length 3. || Average $=3$.

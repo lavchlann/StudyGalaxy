@@ -1,0 +1,150 @@
+=== mm3-c01 | rewrite
+## 1.6
+@p **What this topic is about.** Solving equations where the unknown is in an index or inside a logarithm. These equations appear inside nearly every modelling question ("when does the population reach 5000?"), so the techniques must become automatic. The two key facts are that $\ln$ undoes $e$, and $e$ undoes $\ln$: $\ln(e^A)=A$ and $e^{\ln B}=B$.
+@p **Type 1: a single exponential.** Isolate the exponential term on one side (move other terms, divide by coefficients), then take $\ln$ of both sides. Example: $3e^{2x}=18\Rightarrow e^{2x}=6\Rightarrow2x=\ln6\Rightarrow x=\frac12\ln6$. If the isolated exponential equals a negative number or zero, there is **no solution**, because $e^{\text{anything}}>0$.
+@p **Type 2: different bases or exponentials on both sides.** Take $\ln$ of both sides and use the power law to bring the indices down, then collect the $x$ terms. Example: $3^{2x}=5^{x+1}\Rightarrow2x\ln3=(x+1)\ln5\Rightarrow x(2\ln3-\ln5)=\ln5\Rightarrow x=\frac{\ln5}{2\ln3-\ln5}$.
+@p **Type 3: a quadratic in disguise.** If you see $e^{2x}$ together with $e^x$, notice $e^{2x}=(e^x)^2$. Substitute $u=e^x$ to get a quadratic in $u$, solve it, then solve $e^x=u$ for each root. Reject any $u\le0$, because $e^x$ is always positive.
+@p **Type 4: log equations.** Use the log laws to combine everything into a single log on each side (or one log equal to a number). Then either equate the insides ($\ln A=\ln B\Rightarrow A=B$) or convert to index form ($\ln A=c\Rightarrow A=e^c$). **Always check the domain**: every log in the **original** equation needs a positive input. Reject any solution that breaks this and say why.
+@ex Single exponential (full working)
+Q: Solve $5e^{0.4x}-2=18$ exactly.
+S: **Isolate the exponential term:** add 2 to both sides: $5e^{0.4x}=20$.
+S: **Divide by the coefficient:** $e^{0.4x}=4$.
+S: **Take natural logs of both sides:** $\ln(e^{0.4x})=\ln4$, and since $\ln$ undoes $e$, $0.4x=\ln4$.
+S: **Solve for $x$:** $x=\dfrac{\ln4}{0.4}=\dfrac52\ln4$.
+S: **Simplify if possible:** $\frac52\ln4=\frac52\ln2^2=5\ln2\approx3.47$.
+A: $x=5\ln2$
+@ex Quadratic in $e^x$ (full working)
+Q: Solve $e^{2x}-5e^x+6=0$.
+S: **Recognise the structure:** $e^{2x}=(e^x)^2$, so this is a quadratic in $e^x$.
+S: **Substitute $u=e^x$:** $u^2-5u+6=0$.
+S: **Factorise:** two numbers that multiply to 6 and add to $-5$ are $-2$ and $-3$, so $(u-2)(u-3)=0$, giving $u=2$ or $u=3$.
+S: **Check validity:** both values are positive, so both are possible values of $e^x$.
+S: **Back-substitute and solve:** $e^x=2\Rightarrow x=\ln2$; $e^x=3\Rightarrow x=\ln3$.
+A: $x=\ln2$ or $x=\ln3$
+@ex Log equation with a domain check (full working)
+Q: Solve $\ln x+\ln(x-2)=\ln3$.
+S: **State the domain of the original equation:** $\ln x$ needs $x>0$ and $\ln(x-2)$ needs $x>2$. So any solution must satisfy $x>2$.
+S: **Combine the left side using the product law:** $\ln\big(x(x-2)\big)=\ln3$.
+S: **Equate the insides** (since $\ln$ is one-to-one): $x(x-2)=3$.
+S: **Rearrange to a quadratic:** $x^2-2x-3=0$.
+S: **Factorise:** $(x-3)(x+1)=0$, so $x=3$ or $x=-1$.
+S: **Apply the domain check:** $x=-1$ fails $x>2$ (it would make $\ln x$ undefined), so reject it. $x=3$ satisfies $x>2$.
+S: **State the answer:** $x=3$.
+A: $x=3$
+@ex Log equal to a number (full working)
+Q: Solve $2\ln x-\ln(x+2)=\ln3$.
+S: **Domain:** need $x>0$ and $x>-2$, so $x>0$.
+S: **Power law:** $2\ln x=\ln x^2$, so the equation is $\ln x^2-\ln(x+2)=\ln3$.
+S: **Quotient law:** $\ln\dfrac{x^2}{x+2}=\ln3$.
+S: **Equate insides:** $\dfrac{x^2}{x+2}=3\Rightarrow x^2=3x+6\Rightarrow x^2-3x-6=0$.
+S: **Quadratic formula:** $x=\dfrac{3\pm\sqrt{9+24}}{2}=\dfrac{3\pm\sqrt{33}}2$, giving $x\approx4.37$ or $x\approx-1.37$.
+S: **Domain check:** $-1.37<0$ makes $\ln x$ undefined, so reject it.
+A: $x=\dfrac{3+\sqrt{33}}{2}\approx4.37$
+@ex Different bases (full working)
+Q: Solve $2^{x+1}=3^x$, giving an exact answer and a decimal to 3 places.
+S: **Take natural logs of both sides:** $\ln2^{x+1}=\ln3^x$.
+S: **Power law:** $(x+1)\ln2=x\ln3$.
+S: **Expand:** $x\ln2+\ln2=x\ln3$.
+S: **Collect $x$ terms on one side:** $\ln2=x\ln3-x\ln2=x(\ln3-\ln2)$.
+S: **Solve:** $x=\dfrac{\ln2}{\ln3-\ln2}=\dfrac{\ln2}{\ln1.5}\approx1.710$.
+A: $x=\dfrac{\ln2}{\ln3-\ln2}\approx1.710$
+@warn Rejecting a solution is part of the answer and earns a mark. Write the reason in words, for example "reject $x=-1$ because $\ln(-1)$ is undefined". Also, never "cancel" logs term by term: $\ln x+\ln(x-2)=\ln3$ does **not** give $x+x-2=3$.
+@p **Exam tip.** In the technology-free paper, leave answers in exact form ($\ln$, fractions, surds) unless told otherwise. In the technology-active paper, use your CAS `solve` to check, but still show the setup lines.
+@check Single exponential | Solve $4e^{2x}=36$ exactly.
+A: ln3
+ALT: x=ln3 || (1/2)ln9 || ln(3)
+AD: $x=\ln3$
+SOL: Divide both sides by 4: $e^{2x}=9$. || Take natural logs: $2x=\ln9$. || Divide by 2: $x=\frac12\ln9$. || Simplify using the power law: $\frac12\ln9=\ln9^{1/2}=\ln3$.
+H: Divide by 4 first. || Take $\ln$ of both sides. || $\frac12\ln9=\ln3$.
+@check Quadratic in e^x | Solve $e^{2x}-7e^x+12=0$.
+A: ln3,ln4
+ALT: ln3 and ln4 || x=ln3,x=ln4 || ln4,ln3 || ln3,2ln2
+AD: $x=\ln3$ or $x=\ln4$
+SOL: Let $u=e^x$, so $e^{2x}=u^2$ and the equation becomes $u^2-7u+12=0$. || Factorise: $(u-3)(u-4)=0$, so $u=3$ or $u=4$. || Both are positive so both are valid values of $e^x$. || Solve: $e^x=3\Rightarrow x=\ln3$ and $e^x=4\Rightarrow x=\ln4$.
+H: Let $u=e^x$. || Factorise the quadratic in $u$. || Take $\ln$ of each positive root.
+@check Rejecting a root | Solve $e^{2x}-2e^x-8=0$.
+A: ln4
+ALT: x=ln4 || 2ln2
+AD: $x=\ln4$
+SOL: Let $u=e^x$: $u^2-2u-8=0$. || Factorise: $(u-4)(u+2)=0$, so $u=4$ or $u=-2$. || Reject $u=-2$ because $e^x$ is always positive. || So $e^x=4$, giving $x=\ln4$.
+H: Substitute $u=e^x$. || One root is negative. || $e^x$ can never be negative.
+@check Log equation | Solve $\ln(x+3)+\ln(x-3)=\ln16$.
+A: 5
+ALT: x=5
+AD: $x=5$
+SOL: Domain: need $x+3>0$ and $x-3>0$, so $x>3$. || Product law: $\ln\big((x+3)(x-3)\big)=\ln16$, so $x^2-9=16$. || Then $x^2=25$, giving $x=\pm5$. || Reject $x=-5$ because it makes $\ln(x-3)$ undefined; the answer is $x=5$.
+H: Combine the logs on the left. || Use the difference of two squares. || Check each answer against the domain.
+@check Different bases | Solve $3^{x}=7$, giving an exact answer.
+A: ln7/ln3
+ALT: (ln7)/(ln3) || log3(7) || ln(7)/ln(3)
+AD: $x=\dfrac{\ln7}{\ln3}\approx1.771$
+SOL: Take natural logs of both sides: $\ln3^x=\ln7$. || Power law: $x\ln3=\ln7$. || Divide by $\ln3$: $x=\frac{\ln7}{\ln3}$. || As a decimal, $x\approx1.771$.
+H: Take $\ln$ of both sides. || Bring $x$ down. || Divide by $\ln3$.
+## 1.7
+@p **What this topic is about.** The derivative of the natural logarithm, and how to use it with the chain rule and log laws. You will use $\frac{d}{dx}\ln x=\frac1x$ constantly: in tangents, stationary points, rates of change, and later as the reason $\int\frac1x\,dx=\ln|x|$.
+@key $$\frac{d}{dx}\ln x=\frac1x\ (x>0)\qquad\frac{d}{dx}\ln(kx)=\frac1x\qquad\frac{d}{dx}\ln\big(f(x)\big)=\frac{f'(x)}{f(x)}$$
+@p **Why $\frac{d}{dx}\ln x=\frac1x$.** If $y=\ln x$ then $x=e^y$. Differentiating $x=e^y$ with respect to $y$ gives $\frac{dx}{dy}=e^y=x$. Flipping, $\frac{dy}{dx}=\frac1x$. Geometrically, the graph of $\ln x$ is steep near $x=0$ and flattens as $x$ grows, exactly as $\frac1x$ suggests.
+@p **The rule in words.** To differentiate $\ln(\text{something})$: write the derivative of the something on top, and the something itself underneath. So $\frac{d}{dx}\ln(3x+1)=\frac{3}{3x+1}$ and $\frac{d}{dx}\ln(x^2+4)=\frac{2x}{x^2+4}$.
+@p **Why $\frac{d}{dx}\ln(kx)=\frac1x$.** By the log law, $\ln(kx)=\ln k+\ln x$, and $\ln k$ is a constant with derivative 0. So multiplying the inside by a constant never changes the derivative. This is a frequent multiple-choice trap.
+@p **Simplify first, then differentiate.** Log laws can turn a hard derivative into an easy one. $\ln(x^5)=5\ln x$, so its derivative is $\frac5x$. $\ln\sqrt{2x+1}=\frac12\ln(2x+1)$, with derivative $\frac12\cdot\frac{2}{2x+1}=\frac1{2x+1}$. $\ln\frac{x+1}{x-1}=\ln(x+1)-\ln(x-1)$, with derivative $\frac1{x+1}-\frac1{x-1}$.
+@ex Chain rule with ln (full working)
+Q: Differentiate $y=\ln(x^2+3x)$.
+S: **Identify the inside:** $f(x)=x^2+3x$.
+S: **Differentiate the inside:** $f'(x)=2x+3$.
+S: **Apply $\frac{d}{dx}\ln f(x)=\frac{f'(x)}{f(x)}$:** $\dfrac{dy}{dx}=\dfrac{2x+3}{x^2+3x}$.
+S: **Check for simplification:** the numerator and denominator have no common factor, so this is the final answer.
+A: $\dfrac{2x+3}{x^2+3x}$
+@ex Using log laws first (full working)
+Q: Differentiate $y=\ln\left((2x+1)^3\right)$ in two ways and show they agree.
+S: **Method 1, chain rule directly:** inside $f=(2x+1)^3$, $f'=3(2x+1)^2\times2=6(2x+1)^2$.
+S: **So** $\dfrac{dy}{dx}=\dfrac{6(2x+1)^2}{(2x+1)^3}=\dfrac{6}{2x+1}$.
+S: **Method 2, log law first:** $y=3\ln(2x+1)$.
+S: **Differentiate:** $\dfrac{dy}{dx}=3\times\dfrac{2}{2x+1}=\dfrac{6}{2x+1}$.
+S: **Compare:** both give $\frac{6}{2x+1}$; method 2 is shorter and less error-prone.
+A: $\dfrac{6}{2x+1}$
+@ex Stationary point of a log function (full working)
+Q: Find the stationary point of $y=x-2\ln x$ ($x>0$) and determine its nature.
+S: **Differentiate:** $\dfrac{dy}{dx}=1-\dfrac2x$.
+S: **Set equal to zero:** $1-\dfrac2x=0\Rightarrow\dfrac2x=1\Rightarrow x=2$. This is in the domain $x>0$.
+S: **Find $y$:** $y=2-2\ln2\approx0.614$.
+S: **Second derivative:** $\dfrac{d^2y}{dx^2}=\dfrac{2}{x^2}$, which at $x=2$ is $\frac24=\frac12>0$.
+S: **Conclude:** positive second derivative means concave up, so a local minimum.
+A: Local minimum at $\left(2,\ 2-2\ln2\right)$
+@ex Tangent to a log curve (full working)
+Q: Find the equation of the tangent to $y=\ln x$ at $x=e$, and show it passes through the origin.
+S: **Point:** $y=\ln e=1$, so the point is $(e,1)$.
+S: **Derivative:** $\dfrac{dy}{dx}=\dfrac1x$, so at $x=e$ the gradient is $m=\dfrac1e$.
+S: **Point-gradient form:** $y-1=\dfrac1e(x-e)$.
+S: **Simplify:** $y-1=\dfrac xe-1\Rightarrow y=\dfrac xe$.
+S: **Check the origin:** at $x=0$, $y=0$, so the tangent passes through $(0,0)$.
+A: $y=\dfrac{x}{e}$
+@warn $\frac{d}{dx}\ln(3x)$ is $\frac1x$, **not** $\frac1{3x}$. And $\frac{d}{dx}\ln(x^2+1)$ is $\frac{2x}{x^2+1}$, **not** $\frac{1}{x^2+1}$: always multiply by (put on top) the derivative of the inside.
+@p **Exam tip.** If a question involves $\ln$ of a product, quotient or power, write the log-law expansion as a separate line before differentiating. It shows the marker your method and reduces algebra errors.
+@check Derivative of ln | Differentiate $y=\ln(5x-2)$.
+A: 5/(5x-2)
+AD: $\dfrac{5}{5x-2}$
+SOL: The inside is $f(x)=5x-2$. || Its derivative is $f'(x)=5$. || Apply $\frac{d}{dx}\ln f=\frac{f'}{f}$. || So $\frac{dy}{dx}=\frac{5}{5x-2}$.
+H: What is the inside? || Differentiate the inside. || Derivative of inside over the inside.
+@check ln of kx | Differentiate $y=\ln(7x)$.
+A: 1/x
+AD: $\dfrac1x$
+SOL: Use the log law: $\ln(7x)=\ln7+\ln x$. || $\ln7$ is a constant, so its derivative is 0. || The derivative of $\ln x$ is $\frac1x$. || So $\frac{dy}{dx}=\frac1x$ (the 7 has no effect).
+H: Split with the product law. || Constants differentiate to 0. || $\frac{d}{dx}\ln x=\frac1x$.
+@check Log laws first | Differentiate $y=\ln\left(\dfrac{x^4}{x+1}\right)$.
+A: 4/x-1/(x+1)
+ALT: 4/x - 1/(x+1) || (3x+4)/(x(x+1))
+AD: $\dfrac4x-\dfrac{1}{x+1}$
+SOL: Expand with log laws: $y=\ln x^4-\ln(x+1)=4\ln x-\ln(x+1)$. || Differentiate the first term: $\frac{4}{x}$. || Differentiate the second: $\frac{1}{x+1}$. || So $\frac{dy}{dx}=\frac4x-\frac1{x+1}$, which combines to $\frac{3x+4}{x(x+1)}$.
+H: Use the quotient law to split the log. || Use the power law on $\ln x^4$. || Differentiate each part.
+@check Gradient at a point | Find the gradient of $y=\ln(x^2+1)$ at $x=1$.
+A: 1
+ALT: m=1
+AD: $1$
+SOL: Differentiate: $\frac{dy}{dx}=\frac{2x}{x^2+1}$. || Substitute $x=1$: $\frac{2(1)}{1+1}$. || Simplify: $\frac22=1$. || The gradient is 1.
+H: Use $\frac{f'}{f}$. || The inside derivative is $2x$. || Substitute $x=1$.
+@check Stationary point | Find the $x$-coordinate of the stationary point of $y=x-3\ln x$.
+A: 3
+ALT: x=3
+AD: $x=3$
+SOL: Differentiate: $\frac{dy}{dx}=1-\frac3x$. || Set to zero: $1-\frac3x=0$. || So $\frac3x=1$, giving $x=3$. || This is in the domain $x>0$, so it is valid.
+H: Differentiate each term. || Set the derivative to 0. || Solve for $x$.

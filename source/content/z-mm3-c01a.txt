@@ -1,0 +1,142 @@
+=== mm3-c01 | rewrite
+## 1.2
+@p **What this topic is about.** Calculus is built on one idea: what happens to a quantity as something gets closer and closer to a value, without necessarily reaching it. That idea is a **limit**. In this topic you learn to evaluate limits by substitution, by simplifying, and by estimating with tables, and then you use a limit to define the derivative. Every derivative rule in Units 3 and 4 is built on the first-principles definition you meet here.
+@key $$\lim_{x\to a}f(x)=L$$ means: as $x$ gets as close as we like to $a$ (from both sides, but $x\neq a$), the values of $f(x)$ get as close as we like to $L$.
+@p **The limit is about the approach, not the arrival.** A limit can exist even when $f(a)$ is undefined. For example, $f(x)=\dfrac{x^2-9}{x-3}$ is undefined at $x=3$ (it gives $\frac00$), but for every other $x$ it equals $x+3$. As $x$ approaches 3, $f(x)$ approaches 6. The graph is the straight line $y=x+3$ with a single hole at $(3,6)$, and the limit is the height of that hole.
+@p **Method 1: direct substitution.** If the function is a polynomial, an exponential, or any function with no gap or jump at $x=a$ (a continuous function), the limit is simply $f(a)$. Always try substitution first. For example $\lim_{x\to2}(3x^2-x+1)=3(4)-2+1=11$.
+@p **Method 2: simplify first.** If substitution gives $\frac00$, this is called an **indeterminate form**. It does not mean the answer is 0, and it does not mean the limit does not exist. It means the expression must be rewritten. The common moves are: factorise and cancel a common factor; expand brackets and simplify; or rationalise a surd by multiplying by its conjugate. After simplifying, substitute again.
+@p **Method 3: estimate numerically.** Make a table of $f(x)$ for values of $x$ approaching $a$ from below (e.g. 2.9, 2.99, 2.999) and from above (3.1, 3.01, 3.001). If both columns settle on the same number, that is the limit. This is how you find limits that cannot be simplified by hand, such as $\lim_{h\to0}\frac{e^h-1}{h}=1$, which is the key fact behind the derivative of $e^x$.
+@p **One-sided limits.** $\lim_{x\to a^-}f(x)$ is the value approached from the left and $\lim_{x\to a^+}f(x)$ from the right. The ordinary (two-sided) limit exists only if these agree. A **hybrid (piecewise) function** often has different rules either side of a point, so check both sides separately.
+@ex Limit by factorising (full working)
+Q: Evaluate $\displaystyle\lim_{x\to 3}\frac{x^2-9}{x-3}$.
+S: **Try substitution first.** At $x=3$ the numerator is $3^2-9=0$ and the denominator is $3-3=0$, giving $\frac00$. This is indeterminate, so we must simplify.
+S: **Factorise the numerator** as a difference of two squares: $x^2-9=(x-3)(x+3)$.
+S: **Rewrite the expression:** $\dfrac{(x-3)(x+3)}{x-3}$.
+S: **Cancel the common factor.** Because a limit only looks at $x$ close to 3 and never at $x=3$ itself, $x-3\neq0$, so cancelling is allowed: the expression equals $x+3$.
+S: **Substitute now that the problem is removed:** $\lim_{x\to3}(x+3)=3+3=6$.
+S: **Communicate the answer:** $\displaystyle\lim_{x\to3}\frac{x^2-9}{x-3}=6$.
+A: $6$
+@ex Limit by rationalising a surd (full working)
+Q: Evaluate $\displaystyle\lim_{x\to 4}\frac{\sqrt x-2}{x-4}$.
+S: **Substitute:** numerator $\sqrt4-2=0$, denominator $4-4=0$. We have $\frac00$, so simplify.
+S: **Spot the difference of two squares in the denominator.** Since $(\sqrt x)^2=x$, we can write $x-4=(\sqrt x)^2-2^2=(\sqrt x-2)(\sqrt x+2)$.
+S: **Rewrite:** $\dfrac{\sqrt x-2}{(\sqrt x-2)(\sqrt x+2)}$.
+S: **Cancel** $\sqrt x-2$ (non-zero for $x$ near but not equal to 4) to get $\dfrac{1}{\sqrt x+2}$.
+S: **Substitute** $x=4$: $\dfrac{1}{\sqrt4+2}=\dfrac1{2+2}=\dfrac14$.
+A: $\dfrac14$
+@p **The derivative as a limit.** The gradient of a straight line through two points on a curve (a **chord** or secant) is $\dfrac{f(x+h)-f(x)}{(x+h)-x}=\dfrac{f(x+h)-f(x)}{h}$. As $h\to0$, the second point slides towards the first and the chord turns into the **tangent**. The limit of the chord gradient is the gradient of the tangent, which we call the derivative.
+@key $$f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}$$ This is **differentiation from first principles**. Exam questions say "use first principles" when they want to see this whole process, not the shortcut rules.
+@p **How to set out a first-principles proof for full marks.** (1) Write the definition. (2) Substitute $f(x+h)$ and $f(x)$ carefully, with brackets. (3) Expand and simplify the numerator: every term without an $h$ should cancel. (4) Factorise $h$ out of the numerator and cancel it with the denominator (allowed because $h\neq0$). (5) Only now let $h\to0$. (6) State the result. Never let $h\to0$ while the $h$ is still in the denominator; that produces $\frac00$ again.
+@ex First principles for a quadratic (full working)
+Q: Use first principles to find the derivative of $f(x)=2x^2-3x$.
+S: **Write the definition:** $f'(x)=\displaystyle\lim_{h\to0}\frac{f(x+h)-f(x)}{h}$.
+S: **Find $f(x+h)$** by replacing every $x$ with $(x+h)$: $f(x+h)=2(x+h)^2-3(x+h)=2(x^2+2xh+h^2)-3x-3h=2x^2+4xh+2h^2-3x-3h$.
+S: **Subtract $f(x)$:** $f(x+h)-f(x)=(2x^2+4xh+2h^2-3x-3h)-(2x^2-3x)=4xh+2h^2-3h$. The terms without $h$ cancel, which is a good check.
+S: **Divide by $h$:** $\dfrac{4xh+2h^2-3h}{h}=\dfrac{h(4x+2h-3)}{h}=4x+2h-3$ (cancelling is allowed since $h\neq0$).
+S: **Take the limit:** as $h\to0$, $4x+2h-3\to4x-3$.
+S: **State the result:** $f'(x)=4x-3$.
+A: $f'(x)=4x-3$
+@ex First principles with a reciprocal (full working)
+Q: Use first principles to show that if $f(x)=\dfrac1x$ then $f'(x)=-\dfrac1{x^2}$.
+S: **Definition:** $f'(x)=\displaystyle\lim_{h\to0}\frac{\frac1{x+h}-\frac1x}{h}$.
+S: **Combine the fractions in the numerator** over a common denominator $x(x+h)$: $\dfrac1{x+h}-\dfrac1x=\dfrac{x-(x+h)}{x(x+h)}=\dfrac{-h}{x(x+h)}$.
+S: **Divide by $h$:** dividing by $h$ is the same as multiplying by $\frac1h$, so $\dfrac{-h}{x(x+h)}\cdot\dfrac1h=\dfrac{-1}{x(x+h)}$.
+S: **Take the limit:** as $h\to0$, $x+h\to x$, so the expression tends to $\dfrac{-1}{x\cdot x}=-\dfrac{1}{x^2}$.
+S: **Conclude:** $f'(x)=-\dfrac1{x^2}$, as required.
+A: Shown: $f'(x)=-\frac{1}{x^2}$
+@p **Continuity and differentiability.** A function is **continuous** at $x=a$ if $\lim_{x\to a}f(x)$ exists and equals $f(a)$: no holes, jumps or asymptotes there. It is **differentiable** at $a$ if the first-principles limit exists, which also requires the gradient from the left to match the gradient from the right. A sharp corner (like $y=|x|$ at $x=0$, where the left gradient is $-1$ and the right gradient is $+1$) is continuous but **not** differentiable. Every differentiable function is continuous, but not the other way round.
+@warn Three classic errors: (1) writing $\frac00=0$; (2) letting $h\to0$ before cancelling the $h$ in the denominator; (3) forgetting brackets when finding $f(x+h)$, e.g. writing $2x^2+h$ instead of $2(x+h)^2$.
+@p **Exam tip.** In "show that" first-principles questions, every algebraic line is worth marks. Write the limit symbol on every line until the step where $h$ actually goes to 0, and finish with a clear statement of the result.
+@check Limit by substitution | Evaluate $\displaystyle\lim_{x\to2}(x^3-4x+1)$.
+A: 1
+AD: $1$
+SOL: Check whether direct substitution works: the function is a polynomial, so it is continuous everywhere and the limit is just its value at $x=2$. || Substitute: $2^3-4(2)+1=8-8+1$. || Simplify: $8-8+1=1$. || So $\lim_{x\to2}(x^3-4x+1)=1$.
+H: Is the function continuous at $x=2$? || Polynomials can be evaluated directly. || Substitute $x=2$.
+@check Limit by factorising | Evaluate $\displaystyle\lim_{x\to5}\frac{x^2-3x-10}{x-5}$.
+A: 7
+AD: $7$
+SOL: Substituting $x=5$ gives $\frac{25-15-10}{0}=\frac00$, which is indeterminate, so simplify first. || Factorise the numerator: we need two numbers that multiply to $-10$ and add to $-3$, which are $-5$ and $2$, so $x^2-3x-10=(x-5)(x+2)$. || The expression becomes $\frac{(x-5)(x+2)}{x-5}$. For $x\neq5$ we can cancel $x-5$, leaving $x+2$. || Now substitute: $\lim_{x\to5}(x+2)=5+2=7$.
+H: What happens when you substitute $x=5$? || Factorise the quadratic on top. || Cancel $(x-5)$ and then substitute.
+@check Limit with a surd | Evaluate $\displaystyle\lim_{x\to9}\frac{x-9}{\sqrt x-3}$.
+A: 6
+AD: $6$
+SOL: Substituting gives $\frac{0}{0}$, so simplify. || Write the numerator as a difference of two squares: $x-9=(\sqrt x)^2-3^2=(\sqrt x-3)(\sqrt x+3)$. || The expression becomes $\frac{(\sqrt x-3)(\sqrt x+3)}{\sqrt x-3}=\sqrt x+3$ for $x\neq9$. || Substitute $x=9$: $\sqrt9+3=3+3=6$.
+H: Substitution gives $\frac00$. || Treat $x$ as $(\sqrt x)^2$. || Factorise $x-9$ as a difference of two squares.
+@check First principles | Use first principles to find $f'(x)$ for $f(x)=x^2+5x$.
+A: 2x+5
+AD: $2x+5$
+SOL: Start from the definition $f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}$. || Find $f(x+h)=(x+h)^2+5(x+h)=x^2+2xh+h^2+5x+5h$. || Subtract $f(x)=x^2+5x$: $f(x+h)-f(x)=2xh+h^2+5h$ (all terms without $h$ cancel). || Factorise and divide by $h$: $\frac{h(2x+h+5)}{h}=2x+h+5$. || Let $h\to0$: the $h$ term vanishes, giving $f'(x)=2x+5$.
+H: Write the first-principles definition. || Expand $(x+h)^2+5(x+h)$ carefully. || Cancel $h$ before letting $h\to0$.
+@check Derivative from a simplified quotient | For $f(x)=3x^2$, the first-principles quotient simplifies to $\frac{f(x+h)-f(x)}{h}=6x+3h$. Find $f'(2)$.
+A: 12
+AD: $12$
+SOL: The derivative is the limit of the quotient as $h\to0$: $f'(x)=\lim_{h\to0}(6x+3h)$. || As $h\to0$, $3h\to0$, so $f'(x)=6x$. || Substitute $x=2$: $f'(2)=6(2)=12$. || This means the tangent to $y=3x^2$ at $x=2$ has gradient 12.
+H: What happens to $3h$ as $h\to0$? || Find $f'(x)$ first. || Then substitute $x=2$.
+## 1.3
+@p **What this topic is about.** Exponential functions describe anything that grows or shrinks by a fixed **factor** in each equal time step: populations, bank balances, radioactive material, cooling coffee. In this topic you learn the shape and features of $y=a^x$ and especially $y=e^x$, how transformations move the graph, and how to find intercepts, asymptotes, domain and range.
+@key An **exponential function** has the variable in the index: $y=a^x$, with base $a>0$ and $a\neq1$. Every graph $y=a^x$ passes through $(0,1)$, has horizontal asymptote $y=0$, domain $\mathbb R$ and range $(0,\infty)$.
+@p **Growth or decay?** If $a>1$, $y=a^x$ increases: each step of 1 in $x$ multiplies $y$ by $a$, so it grows faster and faster. If $0<a<1$, it decreases towards 0: this is decay. Note that $\left(\frac12\right)^x=2^{-x}$, so a decaying exponential is a reflection of a growing one in the $y$-axis.
+@p **Why $e$ is the natural base.** The gradient of $y=a^x$ at any point is a constant multiple of the height: $\frac{d}{dx}a^x=k\,a^x$. For $a=2$, $k\approx0.693$; for $a=3$, $k\approx1.099$. There is exactly one base between 2 and 3 for which $k=1$, so that **the gradient equals the height at every point**. That base is Euler's number $e\approx2.71828$. It can also be defined as $e=\lim_{n\to\infty}\left(1+\frac1n\right)^n$. Because its derivative is itself, $e^x$ is the exponential used in calculus.
+@key **Transformations of $y=ae^{b(x-h)}+k$:** $a$ dilates vertically by factor $|a|$ (and reflects in the $x$-axis if $a<0$); $b$ dilates horizontally by factor $\frac1{|b|}$ (and reflects in the $y$-axis if $b<0$); $h$ translates $h$ units right; $k$ translates $k$ units up. **The horizontal asymptote is $y=k$.**
+@p **A reliable method for sketching.** (1) State the asymptote $y=k$ and draw it dashed. (2) Find the $y$-intercept by substituting $x=0$. (3) Find any $x$-intercept by setting $y=0$ and solving (it exists only if $-\frac{k}{a}>0$). (4) Decide whether the graph is above or below the asymptote (sign of $a$) and whether it rises or falls (signs of $a$ and $b$). (5) Plot one more point if needed and draw a smooth curve that approaches but never touches the asymptote. (6) State the range, which depends on the asymptote and on which side the graph is.
+@ex Sketching a transformed exponential (full working)
+Q: For $y=2e^{-x}+1$, state the asymptote, the $y$-intercept, any $x$-intercept and the range, and describe the shape.
+S: **Asymptote.** The vertical translation is $k=1$, so the horizontal asymptote is $y=1$. As $x\to\infty$, $e^{-x}\to0$, so $y\to1$.
+S: **$y$-intercept.** Substitute $x=0$: $y=2e^0+1=2(1)+1=3$. The point is $(0,3)$.
+S: **$x$-intercept.** Set $y=0$: $2e^{-x}+1=0\Rightarrow e^{-x}=-\tfrac12$. An exponential is always positive, so there is no solution and no $x$-intercept.
+S: **Shape.** $a=2>0$ so the graph lies above the asymptote. The $-x$ means the graph of $e^x$ is reflected in the $y$-axis, so it decreases from left to right.
+S: **Range.** The graph is always above $y=1$ and never reaches it, so the range is $(1,\infty)$, i.e. $y>1$. The domain is all real $x$.
+A: Asymptote $y=1$; $y$-intercept $(0,3)$; no $x$-intercept; decreasing; range $(1,\infty)$.
+@ex Finding an $x$-intercept (full working)
+Q: Find the exact $x$-intercept of $y=3e^{2x}-12$.
+S: **Set $y=0$:** $3e^{2x}-12=0$.
+S: **Isolate the exponential:** add 12 and divide by 3 to get $e^{2x}=4$.
+S: **Take the natural log of both sides:** $\ln(e^{2x})=\ln4$, and since $\ln$ undoes $e$, $2x=\ln4$.
+S: **Solve for $x$:** $x=\tfrac12\ln4$. Using log laws this simplifies: $\tfrac12\ln4=\ln4^{1/2}=\ln2$.
+S: **State the point:** the $x$-intercept is $(\ln2,0)$, approximately $(0.693,0)$.
+A: $(\ln 2,\,0)$
+@ex Finding the rule from features (full working)
+Q: A graph of the form $y=ae^{x}+k$ has horizontal asymptote $y=-2$ and passes through $(0,3)$. Find $a$ and $k$.
+S: **Use the asymptote.** For $y=ae^x+k$ the asymptote is $y=k$, so $k=-2$.
+S: **Use the point.** Substitute $x=0$, $y=3$: $3=ae^0-2=a-2$.
+S: **Solve:** $a=5$.
+S: **Check with a second feature:** as $x\to-\infty$, $5e^x\to0$ so $y\to-2$, matching the asymptote.
+A: $y=5e^x-2$
+@ex Using index laws to simplify (full working)
+Q: Simplify $\dfrac{e^{3x}\times e^{x-2}}{e^{2x}}$.
+S: **Multiply the top using $e^m\times e^n=e^{m+n}$:** $e^{3x}\times e^{x-2}=e^{3x+x-2}=e^{4x-2}$.
+S: **Divide using $\frac{e^m}{e^n}=e^{m-n}$:** $\dfrac{e^{4x-2}}{e^{2x}}=e^{4x-2-2x}$.
+S: **Simplify the index:** $4x-2-2x=2x-2$.
+A: $e^{2x-2}$
+@warn $e^{x+2}$ is not $e^x+2$. The first is a horizontal shift (left 2); the second is a vertical shift (up 2) and changes the asymptote. Likewise $e^x\cdot e^y=e^{x+y}$, but $e^x+e^y$ cannot be combined.
+@p **Exam tip.** When asked for the range, use interval notation or an inequality and match the side of the asymptote: for $y=-2e^x+5$ the graph is **below** $y=5$, so the range is $(-\infty,5)$.
+@check Asymptote and intercept | For $y=4e^{x}-8$, find the horizontal asymptote and the exact $x$-intercept.
+A: y=-8, x=ln2
+ALT: y=-8,ln2 || asymptote y=-8, x=ln2 || -8,ln2
+AD: Asymptote $y=-8$; $x$-intercept $(\ln2,0)$
+SOL: The rule has the form $y=ae^x+k$ with $k=-8$, so the horizontal asymptote is $y=-8$. || For the $x$-intercept set $y=0$: $4e^x-8=0$, so $4e^x=8$ and $e^x=2$. || Take natural logs: $x=\ln2$. || So the asymptote is $y=-8$ and the graph crosses the $x$-axis at $(\ln2,0)\approx(0.693,0)$.
+H: The asymptote is $y=k$. || Set $y=0$ and isolate $e^x$. || Take $\ln$ of both sides.
+@check Range | State the range of $y=-3e^{2x}+1$.
+A: y<1
+ALT: (-inf,1) || (-∞,1) || y<1
+AD: $(-\infty,1)$, i.e. $y<1$
+SOL: The asymptote is $y=k=1$. || Because $e^{2x}>0$ for all $x$, the term $-3e^{2x}$ is always negative. || So $y=1+(\text{a negative number})$ is always less than 1, and it can be as negative as we like as $x$ grows. || The range is $(-\infty,1)$, meaning $y<1$.
+H: Find the asymptote first. || What sign is $-3e^{2x}$? || Is the graph above or below the asymptote?
+@check Rule from features | $y=ae^{x}+k$ has asymptote $y=3$ and $y$-intercept $(0,7)$. Find $a$.
+A: 4
+ALT: a=4
+AD: $a=4$
+SOL: The asymptote gives $k=3$. || At $x=0$: $y=ae^0+3=a+3$. || The $y$-intercept is 7, so $a+3=7$. || Therefore $a=4$ and the rule is $y=4e^x+3$.
+H: The asymptote tells you $k$. || $e^0=1$. || Solve $a+k=7$.
+@check Index laws | Simplify $\dfrac{(e^{x})^3\,e^{2}}{e^{x+1}}$.
+A: e^(2x+1)
+ALT: e^(1+2x)
+AD: $e^{2x+1}$
+SOL: Use the power law: $(e^x)^3=e^{3x}$. || Multiply: $e^{3x}\times e^2=e^{3x+2}$. || Divide by subtracting indices: $\frac{e^{3x+2}}{e^{x+1}}=e^{3x+2-(x+1)}$. || Simplify the index carefully with brackets: $3x+2-x-1=2x+1$, so the answer is $e^{2x+1}$.
+H: $(e^m)^n=e^{mn}$. || Add indices when multiplying. || Subtract the whole index $x+1$ when dividing.
+@check Exact intercept | Find the exact $x$-intercept of $y=e^{3x}-5$.
+A: (1/3)ln5
+ALT: ln5/3 || ln(5)/3 || x=(1/3)ln5 || 1/3ln5
+AD: $x=\tfrac13\ln5$
+SOL: Set $y=0$: $e^{3x}-5=0$, so $e^{3x}=5$. || Take natural logs of both sides: $3x=\ln5$. || Divide by 3: $x=\frac13\ln5\approx0.536$. || The $x$-intercept is $\left(\frac13\ln5,\,0\right)$.
+H: Set $y=0$. || Isolate the exponential. || Take $\ln$ and divide by 3.

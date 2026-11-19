@@ -65,3 +65,10 @@ function fxUiAct(a){
   if(a==='insights'){if(FXOVER)fxCloseOverlay();setTimeout(()=>{const b=document.getElementById('insightsBtn');endSess();V.sel=null;V.add=false;V.fx=null;V.hidden=false;V.insights=true;renderPanel();chrome();},FXOVER?300:0);return true;}
   return false;
 }
+/* ---- worked solutions as numbered steps ---- */
+solHTML=function(q,st){
+  const raw=String(q.solution||''),steps=(raw.indexOf('||')>=0?raw.split('||'):raw.split(/(?<=\.)\s+(?=[A-Z$\\(])/)).map(x=>x.trim()).filter(Boolean),n=steps.length;
+  const k=st.revealed?Math.min(n,st.sol||1):n;
+  return'<div class="sol2"><b>Worked solution</b><ol>'+steps.slice(0,k).map(x=>'<li>'+inl(x)+'</li>').join('')+'</ol>'+(k>=n?'<p class="ans"><b>Answer:</b> '+inl(q.answer)+'</p>':'')+'</div>'+
+    (k<n?'<div class="row"><button class="btn ghost" data-act="solnext">Show next step</button><button class="btn link" data-act="solall">Show it all</button></div>':'');
+};
