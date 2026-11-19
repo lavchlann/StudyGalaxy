@@ -59,6 +59,23 @@ setInterval(()=>{
   fxCheckAll();
 },60000);
 (function(){const days=Object.keys(S.time||{}).filter(k=>S.time[k]>=120).sort();const last=days[days.length-1];if(last&&last!==fxToday()&&(Date.now()-new Date(last+'T12:00:00').getTime())>7*DAY)S.flags.returnPending=1;})();
+/* ---- mistakes: recorded the moment a question is finished wrong, in every mode ---- */
+const MQRE=/-(q\d+|s\d+c\d+)$/;
+function fxSrcQ(cid,qid){const ct=CT[cid];if(!ct||!qid)return null;let m=/-q(\d+)$/.exec(qid);if(m)return ct.quiz[+m[1]]||null;m=/-s(\d+)c(\d+)$/.exec(qid);if(m){const s=ct.sections[+m[1]];return s&&s.checks?s.checks[+m[2]]||null:null;}return null;}
+function fxRecMiss(q){
+  if(!q||!q.st||q.retestOf||q.st.void||q.st.mrec||q.st.credit>0)return;
+  q.st.mrec=1;
+  if(q.qid&&S.mistakes.some(m=>m.qid===q.qid&&m.rights.length<2))return;
+  const id='m'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  S.mistakes.push({id:id,ch:q.ch,qid:q.qid,topic:q.topic,q:q.q,a:q.answer,type:q.st.errorType&&q.st.errorType!=='none'?q.st.errorType:'method',conf:q.st.conf,t:Date.now(),rights:[]});
+  q.st.mrecId=id;S.mistakes=S.mistakes.slice(-200);fxDirty();
+}
+function fxSweepMiss(final){
+  if(!sess||!sess.qs||sess.kind==='comet')return;
+  sess.qs.forEach((q,k)=>{const st=q.st;if(!st||st.mrec||st.void||!st.done||st.credit>0)return;
+    if(st.revealed&&!st.selfm&&!final&&k>=sess.i)return;
+    fxRecMiss(q);});
+}
 /* hook: a question answered correctly */
 function QOK(q,st){
   const d=fxDay();d.q++;S.cnt.correct=(S.cnt.correct||0)+1;

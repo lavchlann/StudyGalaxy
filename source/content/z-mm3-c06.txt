@@ -1,0 +1,329 @@
+=== mm3-c06 | rewrite
+## 6.2
+@p **What this topic is about.** A random variable turns the outcome of a chance process into a number, so we can calculate with it. This topic covers **discrete** random variables (which take separate, countable values), how to build and check a probability distribution, and how to calculate probabilities, including cumulative and conditional ones.
+@key A **discrete random variable** $X$ takes countable values $x_1,x_2,\dots$ with probabilities $P(X=x)$. A **probability distribution** is valid when (1) $0\le P(X=x)\le1$ for every $x$, and (2) $\sum P(X=x)=1$.
+@p **Notation.** Capital $X$ is the random variable (the rule); lowercase $x$ is a particular value it can take. $P(X=2)$ means "the probability that $X$ equals 2". A distribution can be given as a table, a rule (such as $P(X=x)=\frac{x}{10}$), or a graph (a column graph of probabilities).
+@p **Building a distribution.** (1) List every possible value of $X$. (2) Find the probability of each, using equally likely outcomes, a tree diagram or a table of outcomes. (3) Check the probabilities add to 1. For two dice, a $6\times6$ grid of the 36 equally likely outcomes is the quickest way to get the distribution of the sum, difference or maximum.
+@p **Cumulative probabilities and complements.** $P(X\le k)$ adds the probabilities of every value up to $k$. "At least 3" is $P(X\ge3)=1-P(X\le2)$; "more than 3" is $P(X>3)=P(X\ge4)$; "fewer than 3" is $P(X<3)=P(X\le2)$. Translate the words into an inequality before adding.
+@key **Conditional probability:** $P(A\mid B)=\dfrac{P(A\cap B)}{P(B)}$. With random variables, e.g. $P(X\ge2\mid X\ge1)=\dfrac{P(X\ge2)}{P(X\ge1)}$, because "$X\ge2$ and $X\ge1$" is just "$X\ge2$".
+@ex Finding an unknown constant (full working)
+Q: $X$ has $P(X=x)=kx$ for $x=1,2,3,4$. Find $k$, then $P(X\ge3)$ and $P(X<3)$.
+S: **List the probabilities in terms of $k$:** $P(X=1)=k$, $P(X=2)=2k$, $P(X=3)=3k$, $P(X=4)=4k$.
+S: **Use the sum-to-1 condition:** $k+2k+3k+4k=1\Rightarrow10k=1\Rightarrow k=\frac1{10}$.
+S: **Check validity:** the probabilities are $0.1,0.2,0.3,0.4$, all between 0 and 1. ✓
+S: **$P(X\ge3)$:** $P(X=3)+P(X=4)=0.3+0.4=0.7$.
+S: **$P(X<3)$:** $P(X=1)+P(X=2)=0.1+0.2=0.3$ (or $1-0.7$).
+A: $k=\frac1{10}$; $P(X\ge3)=0.7$; $P(X<3)=0.3$
+@ex Distribution from two dice (full working)
+Q: Two fair dice are rolled and $X$ is the larger of the two numbers. Find the distribution of $X$ and $P(X\le3)$.
+S: **Cumulative idea:** $X\le k$ means both dice show at most $k$. Each die does this with probability $\frac k6$, so $P(X\le k)=\left(\frac k6\right)^2=\frac{k^2}{36}$.
+S: **Individual probabilities:** $P(X=k)=P(X\le k)-P(X\le k-1)=\frac{k^2-(k-1)^2}{36}=\frac{2k-1}{36}$.
+S: **List them:** $x=1,2,3,4,5,6$ with probabilities $\frac1{36},\frac3{36},\frac5{36},\frac7{36},\frac9{36},\frac{11}{36}$.
+S: **Check the sum:** $\frac{1+3+5+7+9+11}{36}=\frac{36}{36}=1$ ✓.
+S: **$P(X\le3)$:** $\frac{1+3+5}{36}=\frac9{36}=\frac14$.
+A: $P(X=k)=\frac{2k-1}{36}$; $P(X\le3)=\frac14$
+@ex Conditional probability (full working)
+Q: $X$ takes values $0,1,2,3$ with probabilities $0.1,0.3,0.4,0.2$. Find $P(X\ge2\mid X\ge1)$.
+S: **Formula:** $P(X\ge2\mid X\ge1)=\dfrac{P(X\ge2\text{ and }X\ge1)}{P(X\ge1)}$.
+S: **Simplify the intersection:** if $X\ge2$ then automatically $X\ge1$, so the top is $P(X\ge2)=0.4+0.2=0.6$.
+S: **Bottom:** $P(X\ge1)=1-P(X=0)=0.9$.
+S: **Divide:** $\dfrac{0.6}{0.9}=\dfrac23$.
+A: $\frac23$
+@ex Checking validity (full working)
+Q: Is $P(X=x)=\frac{x^2}{30}$ for $x=1,2,3,4$ a valid probability distribution?
+S: **Compute each probability:** $\frac1{30},\frac4{30},\frac9{30},\frac{16}{30}$.
+S: **Condition 1:** each is between 0 and 1 ✓.
+S: **Condition 2:** $\frac{1+4+9+16}{30}=\frac{30}{30}=1$ ✓.
+S: **Conclude:** both conditions hold, so it is valid.
+A: Yes, it is valid
+@warn A distribution must sum to exactly 1. If yours does not, recheck before going on; every later answer (mean, variance) depends on it. Also be careful with "at least" ($\ge$) versus "more than" ($>$).
+@p **Exam tip.** Show the sum-to-1 equation explicitly when finding an unknown; it is usually the method mark.
+@check Unknown | $P(X=x)$ for $x=0,1,2,3$ is $0.15,\ k,\ 0.35,\ 0.2$. Find $k$.
+A: 0.3
+ALT: k=0.3
+AD: $k=0.3$
+SOL: The probabilities must add to 1: $0.15+k+0.35+0.2=1$. || Add the known values: $0.7+k=1$. || So $k=0.3$. || Check: all values are between 0 and 1.
+H: Probabilities sum to 1. || Add the known ones. || Subtract from 1.
+@check Rule | $P(X=x)=\frac{x}{10}$ for $x=1,2,3,4$. Find $P(X>2)$.
+A: 0.7
+ALT: 7/10
+AD: $0.7$
+SOL: $X>2$ means $X=3$ or $X=4$. || $P(X=3)=\frac3{10}$, $P(X=4)=\frac4{10}$. || Add: $\frac7{10}$. || $P(X>2)=0.7$.
+H: "More than 2" means 3 or 4. || Use the rule for each. || Add.
+@check Complement | $P(X=0)=0.25$ for a random variable taking values $0,1,2,\dots$. Find $P(X\ge1)$.
+A: 0.75
+ALT: 3/4
+AD: $0.75$
+SOL: "At least 1" is everything except 0. || $P(X\ge1)=1-P(X=0)$. || $=1-0.25$. || $=0.75$.
+H: Use the complement. || Everything except $X=0$. || $1-0.25$.
+@check Conditional | $X$ takes $1,2,3,4$ with probabilities $0.1,0.2,0.3,0.4$. Find $P(X=4\mid X\ge3)$.
+A: 4/7
+ALT: 0.571 || 0.5714
+AD: $\dfrac{4}{7}$
+SOL: $P(X=4\mid X\ge3)=\frac{P(X=4)}{P(X\ge3)}$ because $X=4$ is inside $X\ge3$. || $P(X=4)=0.4$. || $P(X\ge3)=0.3+0.4=0.7$. || $\frac{0.4}{0.7}=\frac47$.
+H: Use $P(A\mid B)=\frac{P(A\cap B)}{P(B)}$. || The intersection is just $X=4$. || Divide.
+@check Dice | Two fair dice are rolled and $S$ is their sum. Find $P(S=7)$.
+A: 1/6
+ALT: 6/36 || 0.1667
+AD: $\dfrac16$
+SOL: There are 36 equally likely outcomes. || Sums of 7: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1), which is 6 outcomes. || $P(S=7)=\frac6{36}$. || $=\frac16$.
+H: Count all outcomes. || List pairs adding to 7. || Divide.
+## 6.3
+@p **What this topic is about.** The **expected value** (mean) of a random variable is its long-run average. It is used to compare options, set fair prices for games and insurance, and summarise a distribution with one number.
+@key $$E(X)=\mu=\sum x\,P(X=x)\qquad E(aX+b)=aE(X)+b\qquad E\big(g(X)\big)=\sum g(x)P(X=x)$$
+@p **Meaning.** Multiply each value by its probability and add. If you repeated the experiment many times and averaged the results, you would get close to $E(X)$. It does not have to be a value $X$ can take: the mean of a fair die is 3.5. Think of it as the balance point of the probability graph.
+@p **Linear changes.** If every value is multiplied by $a$ and then $b$ is added (e.g. converting to dollars and adding a fee), the mean changes in the same way: $E(aX+b)=aE(X)+b$. This saves recalculating the whole table.
+@p **Fair games and net gain.** In money questions, define $X$ as the **net** gain (winnings minus the cost to play). A game is **fair** when $E(\text{net gain})=0$. If $E<0$ the player loses on average (the house profits).
+@ex Expected value from a table (full working)
+Q: $X$ takes values $0,1,2$ with probabilities $0.2,0.5,0.3$. Find $E(X)$ and $E(3X+1)$.
+S: **Multiply each value by its probability:** $0\times0.2=0$, $1\times0.5=0.5$, $2\times0.3=0.6$.
+S: **Add:** $E(X)=0+0.5+0.6=1.1$.
+S: **Linear rule:** $E(3X+1)=3E(X)+1$.
+S: **Substitute:** $3(1.1)+1=4.3$.
+A: $E(X)=1.1$; $E(3X+1)=4.3$
+@ex Fair game (full working)
+Q: You pay \$2 to roll a fair die. You win \$6 for a six and nothing otherwise. Is the game fair? What prize would make it fair?
+S: **Define the net gain $G$:** a six gives $6-2=+4$ (probability $\frac16$); otherwise $-2$ (probability $\frac56$).
+S: **Expected net gain:** $E(G)=4\times\frac16+(-2)\times\frac56=\frac46-\frac{10}6=-1$.
+S: **Interpret:** on average you lose \$1 per game, so it is not fair.
+S: **Fair prize $w$:** need $(w-2)\frac16-2\cdot\frac56=0\Rightarrow\frac{w-2}{6}=\frac{10}6\Rightarrow w-2=10\Rightarrow w=12$.
+A: Not fair ($E=-\$1$); a \$12 prize makes it fair
+@ex Finding unknowns from the mean (full working)
+Q: $X$ takes values $1,2,3$ with $P(X=1)=a$, $P(X=2)=b$, $P(X=3)=0.3$, and $E(X)=2.1$. Find $a$ and $b$.
+S: **Sum to 1:** $a+b+0.3=1\Rightarrow a+b=0.7$.
+S: **Mean equation:** $1a+2b+3(0.3)=2.1\Rightarrow a+2b=1.2$.
+S: **Subtract the first equation from the second:** $b=0.5$.
+S: **Back-substitute:** $a=0.7-0.5=0.2$.
+A: $a=0.2$, $b=0.5$
+@ex Worded problem: insurance (full working)
+Q: A \$300 policy has a 0.2% chance of a \$50 000 claim, a 1% chance of a \$5000 claim, and otherwise no claim. Find the insurer's expected profit per policy.
+S: **Define profit $P$ and list outcomes:** no claim $+300$ (prob $0.988$); small claim $300-5000=-4700$ (prob $0.01$); large claim $300-50000=-49700$ (prob $0.002$).
+S: **Check probabilities:** $0.988+0.01+0.002=1$ ✓.
+S: **Expected profit:** $300(0.988)-4700(0.01)-49700(0.002)$.
+S: **Evaluate:** $296.4-47-99.4=150$.
+A: \$150 per policy on average
+@warn Remember to subtract the cost to play when finding expected **net** gain, and do not confuse $E(X)$ with the most likely value.
+@p **Exam tip.** Present expected-value calculations as a table with a row for $x$, a row for $P(X=x)$, and a row for $xP(X=x)$, then sum the last row.
+@check Mean | $X=1,2,3$ with $P=0.2,0.5,0.3$. Find $E(X)$.
+A: 2.1
+AD: $2.1$
+SOL: Multiply each value by its probability: $1(0.2)=0.2$, $2(0.5)=1$, $3(0.3)=0.9$. || Add: $0.2+1+0.9$. || $=2.1$. || So $E(X)=2.1$.
+H: $\sum xP(X=x)$. || Three products. || Add them.
+@check Linear | $E(X)=4$. Find $E(5X-3)$.
+A: 17
+AD: $17$
+SOL: Use $E(aX+b)=aE(X)+b$. || $a=5$, $b=-3$. || $5(4)-3$. || $=17$.
+H: Linear rule. || Multiply by 5. || Subtract 3.
+@check Fair game | A game costs \$4. You win \$10 with probability $p$, otherwise nothing. Find $p$ so the game is fair.
+A: 0.4
+ALT: 2/5
+AD: $p=0.4$
+SOL: Net gain: $+6$ with probability $p$, $-4$ with probability $1-p$. || Fair means $6p-4(1-p)=0$. || $10p=4$. || $p=0.4$.
+H: Use net gains. || Set expected net gain to 0. || Solve for $p$.
+@check Unknown from mean | $X=0,1,2$ with $P=0.3,\ a,\ b$ and $E(X)=1.1$. Find $b$.
+A: 0.4
+ALT: b=0.4
+AD: $b=0.4$
+SOL: Sum: $0.3+a+b=1$, so $a+b=0.7$. || Mean: $0(0.3)+a+2b=1.1$, so $a+2b=1.1$. || Subtract: $b=0.4$. || (Then $a=0.3$.)
+H: Write two equations. || Sum to 1 and the mean. || Subtract.
+@check Expected net | Pay \$5; win \$20 with probability 0.2, otherwise nothing. Find the expected net gain.
+A: -1
+ALT: -$1 || -1 dollar
+AD: $-\$1$
+SOL: Net gains: $+15$ with probability 0.2; $-5$ with probability 0.8. || $E=15(0.2)+(-5)(0.8)$. || $=3-4$. || $=-\$1$ per game.
+H: Subtract the cost. || Weight by probabilities. || Add.
+## 6.4
+@p **What this topic is about.** Variance and standard deviation measure the **spread** of a distribution: how far values typically are from the mean. Two options can have the same mean but very different risk, and variance is how we measure that difference.
+@key $$\operatorname{Var}(X)=E\big[(X-\mu)^2\big]=E(X^2)-\big[E(X)\big]^2\qquad\sigma=\operatorname{SD}(X)=\sqrt{\operatorname{Var}(X)}$$ $$\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)\qquad\operatorname{SD}(aX+b)=|a|\,\sigma$$
+@p **What variance means.** Variance is the average **squared** distance from the mean. Squaring makes every distance positive and weights large deviations more. The standard deviation undoes the squaring so it is in the same units as $X$. A useful rule of thumb: most of the probability lies within about two standard deviations of the mean.
+@p **The computational formula.** $E(X^2)=\sum x^2P(X=x)$ (square the values, not the probabilities). Then $\operatorname{Var}(X)=E(X^2)-\mu^2$. This is usually faster than the definition.
+@p **Why adding a constant does not change spread.** Adding $b$ shifts every value by the same amount, so distances from the mean are unchanged. Multiplying by $a$ stretches every distance by $|a|$, so the variance (squared distances) is multiplied by $a^2$.
+@ex Variance with a table (full working)
+Q: $X$ takes values $0,1,2$ with probabilities $0.25,0.5,0.25$. Find $\operatorname{Var}(X)$, $\sigma$ and $\operatorname{Var}(3X-2)$.
+S: **Mean:** $\mu=0(0.25)+1(0.5)+2(0.25)=1$.
+S: **$E(X^2)$:** square the values: $0^2(0.25)+1^2(0.5)+2^2(0.25)=0+0.5+1=1.5$.
+S: **Variance:** $1.5-1^2=0.5$.
+S: **Standard deviation:** $\sigma=\sqrt{0.5}\approx0.707$.
+S: **Transformed variance:** $\operatorname{Var}(3X-2)=3^2\times0.5=4.5$ (the $-2$ has no effect).
+A: $\operatorname{Var}(X)=0.5$, $\sigma\approx0.707$, $\operatorname{Var}(3X-2)=4.5$
+@ex Variance of a die (full working)
+Q: Find the variance and standard deviation of the score on a fair six-sided die.
+S: **Mean:** $\mu=\frac{1+2+3+4+5+6}6=3.5$.
+S: **$E(X^2)$:** $\frac{1+4+9+16+25+36}6=\frac{91}6\approx15.17$.
+S: **Variance:** $\frac{91}6-3.5^2=\frac{91}6-\frac{49}4=\frac{182-147}{12}=\frac{35}{12}\approx2.92$.
+S: **SD:** $\sqrt{35/12}\approx1.71$.
+A: $\operatorname{Var}=\frac{35}{12}\approx2.92$, $\sigma\approx1.71$
+@ex Using variance rules (full working)
+Q: A game's winnings $W$ have $E(W)=3$ and $\operatorname{Var}(W)=4$. A player's profit is $P=5W-8$. Find $E(P)$ and $\sigma(P)$.
+S: **Mean:** $E(P)=5E(W)-8=15-8=7$.
+S: **Variance:** $\operatorname{Var}(P)=5^2\operatorname{Var}(W)=25\times4=100$.
+S: **SD:** $\sigma(P)=\sqrt{100}=10$ (or $|5|\times\sqrt4=10$).
+S: **Interpret:** the player gains \$7 per game on average, with a typical spread of \$10.
+A: $E(P)=7$, $\sigma(P)=10$
+@ex Working backwards (full working)
+Q: $X$ has mean 3 and variance 2. Find $E(X^2)$.
+S: **Rearrange the formula:** $\operatorname{Var}(X)=E(X^2)-\mu^2\Rightarrow E(X^2)=\operatorname{Var}(X)+\mu^2$.
+S: **Substitute:** $E(X^2)=2+3^2$.
+S: **Evaluate:** $2+9=11$.
+S: **Check:** $11-9=2$ ✓.
+A: $E(X^2)=11$
+@warn $E(X^2)\neq\big(E(X)\big)^2$; the difference between them is the variance. And $\operatorname{Var}(3X)=9\operatorname{Var}(X)$, not $3\operatorname{Var}(X)$.
+@p **Exam tip.** Add an $x^2P(X=x)$ row to your table. Then $E(X)$ and $E(X^2)$ come from the same table, and the variance is one line.
+@check Variance | $X=0,1$ with $P=0.6,0.4$. Find $\operatorname{Var}(X)$.
+A: 0.24
+AD: $0.24$
+SOL: $E(X)=0(0.6)+1(0.4)=0.4$. || $E(X^2)=0^2(0.6)+1^2(0.4)=0.4$. || $\operatorname{Var}=0.4-0.4^2=0.4-0.16$. || $=0.24$.
+H: Find $E(X)$. || Find $E(X^2)$. || Subtract $\mu^2$.
+@check Variance rule | $\operatorname{Var}(X)=9$. Find $\operatorname{Var}(2X+7)$.
+A: 36
+AD: $36$
+SOL: $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$. || $a=2$, so $a^2=4$. || The $+7$ has no effect. || $4\times9=36$.
+H: Square the multiplier. || Ignore the added constant. || Multiply.
+@check SD rule | $\operatorname{Var}(X)=16$. Find $\operatorname{SD}(3X)$.
+A: 12
+AD: $12$
+SOL: $\operatorname{SD}(X)=\sqrt{16}=4$. || $\operatorname{SD}(aX)=|a|\operatorname{SD}(X)$. || $3\times4$. || $=12$.
+H: Find $\sigma$ first. || Multiply by $|a|$. || $3\times4$.
+@check From E(X^2) | $E(X)=2$ and $E(X^2)=7$. Find $\operatorname{Var}(X)$.
+A: 3
+AD: $3$
+SOL: $\operatorname{Var}(X)=E(X^2)-[E(X)]^2$. || $=7-2^2$. || $=7-4$. || $=3$.
+H: Use the computational formula. || Square the mean. || Subtract.
+@check Table variance | $X=1,2,3$ with $P=0.2,0.5,0.3$. Find $\operatorname{Var}(X)$.
+A: 0.49
+AD: $0.49$
+SOL: $E(X)=0.2+1+0.9=2.1$. || $E(X^2)=1(0.2)+4(0.5)+9(0.3)=0.2+2+2.7=4.9$. || $\operatorname{Var}=4.9-2.1^2=4.9-4.41$. || $=0.49$.
+H: Compute the mean. || Square values, not probabilities. || Subtract $\mu^2$.
+## 6.5
+@p **What this topic is about.** Using discrete random variables to make decisions in context: pricing games, comparing investments, insurance, quality control. The mathematics is the mean and SD; the marks come from defining variables clearly, building the right distribution, and interpreting results in context.
+@p **Modelling routine.** (1) Define $X$ in words, with units ("$X$ is the profit in dollars from one ticket"). (2) List its values and probabilities in a table; check they sum to 1. (3) Calculate $E(X)$ and, if risk matters, $\sigma$. (4) Interpret: "on average the business makes \$150 per policy". (5) Recommend: choose the option with the better mean, or the lower SD for a cautious decision-maker, and justify with numbers.
+@p **Same mean, different risk.** Investment A returning \$100 or \$300 equally likely and investment B returning \$0 or \$400 equally likely both average \$200. But B's outcomes are further from the mean, so its SD is larger and it is riskier. A good answer states both numbers and links the choice to the person's attitude to risk.
+@ex Comparing investments (full working)
+Q: Investment A returns \$100 or \$300 with equal probability. Investment B returns \$0 or \$400 with equal probability. Compare them.
+S: **Means:** $E(A)=\frac{100+300}2=200$; $E(B)=\frac{0+400}2=200$.
+S: **Variance of A:** $E(A^2)=\frac{10000+90000}2=50000$, so $\operatorname{Var}(A)=50000-200^2=10000$ and $\sigma_A=100$.
+S: **Variance of B:** $E(B^2)=\frac{0+160000}2=80000$, so $\operatorname{Var}(B)=80000-40000=40000$ and $\sigma_B=200$.
+S: **Compare:** equal expected returns, but B's spread is double A's.
+S: **Recommend:** a cautious investor should choose A (lower risk for the same average return).
+A: Both average \$200; A has $\sigma=100$, B has $\sigma=200$; A is less risky
+@ex Raffle (full working)
+Q: A raffle sells 500 tickets at \$2 each. There is one \$400 prize and two \$50 prizes. Find the expected net gain per ticket.
+S: **Define $G$ (net gain):** win \$400: $G=398$, probability $\frac1{500}$; win \$50: $G=48$, probability $\frac2{500}$; no prize: $G=-2$, probability $\frac{497}{500}$.
+S: **Check:** $\frac{1+2+497}{500}=1$ ✓.
+S: **Expected value:** $398\cdot\frac1{500}+48\cdot\frac2{500}-2\cdot\frac{497}{500}=\frac{398+96-994}{500}$.
+S: **Evaluate:** $\frac{-500}{500}=-1$.
+A: $-\$1$ per ticket (the organisers raise \$1 per ticket on average)
+@ex Quality control (full working)
+Q: A machine produces 0, 1 or 2 faulty parts per hour with probabilities 0.7, 0.2, 0.1. Each faulty part costs \$15. Find the expected hourly cost and its standard deviation.
+S: **Mean number of faults:** $E(F)=0(0.7)+1(0.2)+2(0.1)=0.4$.
+S: **$E(F^2)$:** $0+1(0.2)+4(0.1)=0.6$, so $\operatorname{Var}(F)=0.6-0.16=0.44$.
+S: **Cost $C=15F$:** $E(C)=15\times0.4=\$6$ per hour.
+S: **SD:** $\operatorname{SD}(C)=15\sqrt{0.44}\approx15\times0.663\approx\$9.95$.
+A: Expected cost \$6 per hour, SD about \$9.95
+@ex Choosing a price (full working)
+Q: A stall's game pays \$10 with probability 0.15, \$2 with probability 0.3, and nothing otherwise. What should it charge so the stall expects to make \$1 per play?
+S: **Expected payout:** $10(0.15)+2(0.3)+0(0.55)=1.5+0.6=2.1$.
+S: **Stall's profit per play:** price minus payout; expected profit $=c-2.1$.
+S: **Set equal to \$1:** $c-2.1=1$.
+S: **Solve:** $c=3.1$, i.e. \$3.10 per play.
+A: Charge \$3.10
+@warn Always define the random variable in words before calculating, and keep track of whether you are working with winnings or net gain.
+@p **Exam tip.** End with a recommendation that refers to your numbers: "Option A is better for a cautious investor because it has the same mean (\$200) but half the standard deviation."
+@check Raffle | 1000 tickets at \$1; one prize of \$300. Expected net gain per ticket?
+A: -0.7
+ALT: -$0.70 || -0.70
+AD: $-\$0.70$
+SOL: Net gains: $299$ with probability $\frac1{1000}$; $-1$ with probability $\frac{999}{1000}$. || $E=\frac{299}{1000}-\frac{999}{1000}$. || $=\frac{-700}{1000}$. || $=-\$0.70$.
+H: Subtract the ticket cost. || Two outcomes. || Weight and add.
+@check Risk | Options have equal means; SDs are \$40 and \$90. Which is less risky?
+A: 40
+ALT: the one with SD $40 || first || SD 40
+AD: The option with SD \$40
+SOL: Risk is measured by spread. || A smaller SD means outcomes stay closer to the mean. || \$40 < \$90. || So the \$40 option is less risky.
+H: What does SD measure? || Smaller spread means less uncertainty. || Compare.
+@check Cost | Faults per hour $F$ have mean 0.4. Each costs \$15. Expected hourly cost?
+A: 6
+ALT: $6
+AD: \$6
+SOL: Cost $C=15F$. || $E(C)=15E(F)$. || $=15\times0.4$. || $=\$6$.
+H: Write cost in terms of $F$. || Linear rule for means. || Multiply.
+@check Price | A game pays \$8 with probability 0.25, otherwise nothing. What price gives zero expected profit for the stall?
+A: 2
+ALT: $2
+AD: \$2
+SOL: Expected payout $=8(0.25)=2$. || Zero profit means price equals expected payout. || So the price is \$2. || At \$2 the game is fair.
+H: Find the expected payout. || Set price $=$ payout. || $8\times0.25$.
+@check Spread | A return is \$0 or \$400, each with probability 0.5. Find its SD.
+A: 200
+ALT: $200
+AD: \$200
+SOL: Mean: 200. || $E(X^2)=\frac{0+160000}{2}=80000$. || $\operatorname{Var}=80000-40000=40000$. || SD $=\sqrt{40000}=200$.
+H: Mean first. || $E(X^2)$. || Square root of the variance.
+## X
+@p **Checklist.** Valid distribution (0 to 1, sum 1). $E(X)=\sum xP$. $\operatorname{Var}=E(X^2)-\mu^2$. Linear rules: $E(aX+b)=aE(X)+b$, $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$. Conditional: $P(A\mid B)=\frac{P(A\cap B)}{P(B)}$. Always interpret with units.
+@ex Exam-style: unknowns and spread (full working)
+Q: $X=1,2,3$ with $P=a,\ 2a,\ a+0.2$, and $E(X)=2.2$. Find $a$ and $\operatorname{Var}(X)$.
+S: **Sum to 1:** $a+2a+a+0.2=1\Rightarrow4a=0.8\Rightarrow a=0.2$. Probabilities: $0.2,0.4,0.4$.
+S: **Check the mean:** $1(0.2)+2(0.4)+3(0.4)=0.2+0.8+1.2=2.2$ ✓ (consistent with the given mean).
+S: **$E(X^2)$:** $1(0.2)+4(0.4)+9(0.4)=0.2+1.6+3.6=5.4$.
+S: **Variance:** $5.4-2.2^2=5.4-4.84=0.56$.
+A: $a=0.2$, $\operatorname{Var}(X)=0.56$
+@ex Exam-style: transformation in context (full working)
+Q: The number of calls $N$ per hour has mean 6 and SD 2. Staff are paid \$20 per hour plus \$3 per call. Find the mean and SD of the hourly cost.
+S: **Cost:** $C=3N+20$.
+S: **Mean:** $E(C)=3(6)+20=38$.
+S: **SD:** $\operatorname{SD}(C)=|3|\times2=6$ (the \$20 does not affect spread).
+S: **Interpret:** the hourly cost averages \$38 with a typical spread of \$6.
+A: Mean \$38, SD \$6
+@check Combined | $X$ has $E(X)=5$, $\operatorname{Var}(X)=4$. Find $E(2X+1)$ and $\operatorname{SD}(2X+1)$.
+A: 11,4
+ALT: 11 and 4 || E=11, SD=4
+AD: $E=11$, $\operatorname{SD}=4$
+SOL: $E(2X+1)=2(5)+1=11$. || $\operatorname{SD}(X)=\sqrt4=2$. || $\operatorname{SD}(2X+1)=2\times2=4$. || Answers: 11 and 4.
+H: Linear rule for the mean. || $\sigma=2$. || Multiply SD by $|a|$.
+@check Valid | Is $P(X=x)=\frac{x}{15}$ for $x=1,\dots,5$ valid?
+A: yes
+ALT: Yes
+AD: Yes
+SOL: Probabilities: $\frac1{15},\frac2{15},\frac3{15},\frac4{15},\frac5{15}$, all between 0 and 1. || Sum: $\frac{1+2+3+4+5}{15}=\frac{15}{15}$. || $=1$. || Both conditions hold: valid.
+H: Check each is between 0 and 1. || Add them. || Sum must be 1.
+@check Back from variance | $X$ has mean 4 and variance 3. Find $E(X^2)$.
+A: 19
+AD: $19$
+SOL: $E(X^2)=\operatorname{Var}(X)+[E(X)]^2$. || $=3+16$. || $=19$. || Check: $19-16=3$.
+H: Rearrange the variance formula. || Square the mean. || Add.
+@check Conditional | $X=0,1,2$ with $P=0.5,0.3,0.2$. Find $P(X=2\mid X\neq0)$.
+A: 0.4
+ALT: 2/5
+AD: $0.4$
+SOL: $P(X\neq0)=0.3+0.2=0.5$. || $P(X=2\text{ and }X\neq0)=P(X=2)=0.2$. || $\frac{0.2}{0.5}$. || $=0.4$.
+H: Find $P(X\neq0)$. || The intersection is $X=2$. || Divide.
+@check Hourly cost | $N$ has SD 3. Cost is $C=4N+50$. Find $\operatorname{SD}(C)$.
+A: 12
+ALT: $12
+AD: $12$
+SOL: Adding 50 does not change spread. || Multiplying by 4 multiplies the SD by 4. || $4\times3$. || $\operatorname{SD}(C)=12$.
+H: Ignore the added constant. || Multiply SD by 4. || $4\times3$.
+@solfix 0 | Each probability $\frac{x}{15}$ is between 0 and 1 for $x=1,\dots,5$. || Their sum is $\frac{1+2+3+4+5}{15}=\frac{15}{15}=1$. || Both conditions for a valid distribution hold. || So yes, it is valid.
+@solfix 1 | Probabilities must add to 1: $0.1+k+0.4+0.2=1$. || The known values add to $0.7$. || So $k=1-0.7$. || $k=0.3$.
+@solfix 2 | $E(X)=\sum xP(X=x)$. || $1(0.5)+2(0.3)+3(0.2)=0.5+0.6+0.6$. || Add. || $E(X)=1.7$.
+@solfix 3 | Use $E(aX+b)=aE(X)+b$. || $E(5X-3)=5E(X)-3$. || $=5(4)-3$. || $=17$.
+@solfix 4 | $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$. || $a=2$, so multiply by $4$. || The $+7$ does not change the spread. || $4\times9=36$.
+@solfix 5 | $\sigma(X)=\sqrt{16}=4$. || $\sigma(aX)=|a|\sigma(X)$. || $3\times4$. || $=12$.
+@solfix 6 | $E(X)=0(0.6)+1(0.4)=0.4$. || $E(X^2)=0(0.6)+1(0.4)=0.4$. || $\operatorname{Var}=E(X^2)-[E(X)]^2=0.4-0.16$. || $=0.24$.
+@solfix 7 | Net gains: win gives $10-3=7$ (probability 0.2); lose gives $-3$ (probability 0.8). || $E=7(0.2)+(-3)(0.8)$. || $=1.4-2.4$. || Expected net gain $=-\$1$.
+@solfix 8 | $P(X\ge2)=P(X=2)+P(X=3)$. || $=0.3+0.5$. || $=0.8$. || (Equivalently $1-P(X=1)=1-0.2$.)
+@solfix 9 | With equal means, risk is measured by the standard deviation. || Option 2 has $\sigma=5$, larger than option 1's $\sigma=2$. || Larger spread means outcomes are less predictable. || So option 2 is riskier.
+@solfix 10 | $P(X\le2)=P(X=1)+P(X=2)$. || $=\frac1{15}+\frac2{15}$. || $=\frac3{15}$. || $=\frac15$.
+@solfix 11 | $E(X)=1(0.2)+2(0.5)+3(0.3)$. || $=0.2+1+0.9$. || Add. || $E(X)=2.1$.
+@solfix 12 | $E(2X+1)=2E(X)+1$. || $=2(5)+1$. || $=10+1$. || $=11$.
+@solfix 13 | $\operatorname{Var}(3X+1)=3^2\operatorname{Var}(X)$. || $=9\times4$. || The $+1$ has no effect. || $=36$.
+@solfix 14 | The standard deviation is the square root of the variance. || $\operatorname{sd}(X)=\sqrt9$. || $=3$. || So $\sigma=3$.
+@solfix 15 | Net gains: win $9-3=6$ with probability $\frac13$; lose $-3$ with probability $\frac23$. || $E=6\cdot\frac13+(-3)\cdot\frac23$. || $=2-2$. || Expected profit $=0$ (a fair game).
+@solfix 16 | $\operatorname{Var}(X)=E(X^2)-[E(X)]^2$. || $=7-2^2$. || $=7-4$. || $=3$.
+@solfix 17 | Probabilities: $4k,3k,2k,k$ for $x=1,2,3,4$. || Sum to 1: $10k=1$. || $k=\frac1{10}$. || Check: all are between 0 and 1.
+@solfix 18 | $P(X\le2)=P(X=1)+P(X=2)$. || $=0.1+0.4$. || $=0.5$. || So $P(X\le2)=0.5$.
+@solfix 19 | $E(X)=0(0.4)+5(0.6)$. || $=0+3$. || $=3$. || The mean is 3.
+@cometfix 0 | Sum to 1: $a+2a+a+0.2=1$, so $4a=0.8$ and $a=0.2$. || Check against the mean: probabilities $0.2,0.4,0.4$ give $E=0.2+0.8+1.2=2.2$ ✓. || Both conditions agree. || $a=0.2$.
+@cometfix 1 | $E(P)=5E(W)-8=15-8=7$. || $\operatorname{Var}(P)=25\operatorname{Var}(W)=100$. || $\sigma(P)=\sqrt{100}=10$. || Answers: $7, 10$.
+@cometfix 2 | $\operatorname{Var}(X)=E(X^2)-\mu^2$, so $E(X^2)=\operatorname{Var}(X)+\mu^2$. || Substitute: $2+3^2$. || $=2+9$. || $E(X^2)=11$.

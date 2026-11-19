@@ -1,0 +1,420 @@
+=== ms3-c03 | rewrite
+## 3.2
+@p **What this topic is about.** Extending 2D vectors to three dimensions. You need to read and write 3D vectors, find their lengths, the vector between two points, unit vectors and midpoints. Everything later in the chapter (lines, planes, cross products) is built from these basics.
+@key A 3D vector is $\mathbf a=a_1\mathbf i+a_2\mathbf j+a_3\mathbf k=(a_1,a_2,a_3)$, where $\mathbf i,\mathbf j,\mathbf k$ are unit vectors along the $x$, $y$, $z$ axes. **Magnitude:** $|\mathbf a|=\sqrt{a_1^2+a_2^2+a_3^2}$. **Unit vector:** $\hat{\mathbf a}=\frac{\mathbf a}{|\mathbf a|}$.
+@p **Position vectors and displacement.** The position vector of point $A$ is $\overrightarrow{OA}$, the vector from the origin to $A$. The vector from $A$ to $B$ is $\overrightarrow{AB}=\overrightarrow{OB}-\overrightarrow{OA}$ ("end minus start"). Its magnitude is the distance $AB$.
+@p **3D axes.** The axes follow the right-hand rule: point your fingers along $x$, curl them to $y$, and your thumb points along $z$. The coordinate planes are $z=0$ (the $xy$-plane), $y=0$ and $x=0$.
+@p **Midpoint and dividing a segment.** The midpoint $M$ of $AB$ has $\overrightarrow{OM}=\frac12(\overrightarrow{OA}+\overrightarrow{OB})$. The point $P$ dividing $AB$ in ratio $m:n$ has $\overrightarrow{OP}=\overrightarrow{OA}+\frac m{m+n}\overrightarrow{AB}$.
+@ex Magnitude and unit vector (full working)
+Q: Find $|\mathbf a|$ and $\hat{\mathbf a}$ for $\mathbf a=2\mathbf i-3\mathbf j+6\mathbf k$.
+S: **Square components:** $4+9+36=49$.
+S: **Magnitude:** $|\mathbf a|=\sqrt{49}=7$.
+S: **Unit vector:** $\hat{\mathbf a}=\frac17(2\mathbf i-3\mathbf j+6\mathbf k)$.
+S: **Check:** $\frac{4+9+36}{49}=1$ ✓.
+A: $7$; $\frac17(2,-3,6)$
+@ex Distance between points (full working)
+Q: $A(1,1,1)$ and $B(3,4,1)$. Find $\overrightarrow{AB}$ and $AB$.
+S: **End minus start:** $\overrightarrow{AB}=(3-1,4-1,1-1)=(2,3,0)$.
+S: **Magnitude:** $\sqrt{4+9+0}=\sqrt{13}$.
+A: $(2,3,0)$; $\sqrt{13}$
+@ex Dividing a segment (full working)
+Q: $A(2,0,-1)$, $B(8,3,5)$. Find the point $P$ dividing $AB$ in the ratio $1:2$.
+S: **Vector $AB$:** $(6,3,6)$.
+S: **Fraction of the way:** $\frac1{1+2}=\frac13$.
+S: **Position:** $\overrightarrow{OP}=(2,0,-1)+\frac13(6,3,6)=(2,0,-1)+(2,1,2)$.
+S: **Result:** $(4,1,1)$.
+A: $P(4,1,1)$
+@ex Vector of a given length (full working)
+Q: Find a vector of length 10 in the direction of $(1,2,2)$.
+S: **Magnitude:** $\sqrt{1+4+4}=3$.
+S: **Unit vector:** $\frac13(1,2,2)$.
+S: **Scale by 10:** $\frac{10}3(1,2,2)=\left(\frac{10}3,\frac{20}3,\frac{20}3\right)$.
+A: $\frac{10}3(1,2,2)$
+@warn $\overrightarrow{AB}=\mathbf b-\mathbf a$, not $\mathbf a-\mathbf b$. Getting it backwards reverses the direction.
+@check Magnitude | Find $|(2,-3,6)|$.
+A: 7
+AD: $7$
+SOL: $\sqrt{2^2+(-3)^2+6^2}$. || $=\sqrt{4+9+36}$. || $=\sqrt{49}$. || $=7$.
+H: Square each component. || Add. || Square root.
+@check Distance | $A(1,1,1)$, $B(3,4,1)$. Find $|\overrightarrow{AB}|$ exactly.
+A: sqrt13
+ALT: √13 || sqrt(13)
+AD: $\sqrt{13}$
+SOL: $\overrightarrow{AB}=(2,3,0)$. || Magnitude $\sqrt{4+9+0}$. || $=\sqrt{13}$. || Leave exact.
+H: End minus start. || Square and add. || Root.
+@check Unit length | What is $|\hat{\mathbf a}|$ for any non-zero $\mathbf a$?
+A: 1
+AD: $1$
+SOL: $\hat{\mathbf a}=\frac{\mathbf a}{|\mathbf a|}$. || $|\hat{\mathbf a}|=\frac{|\mathbf a|}{|\mathbf a|}$. || $=1$. || Unit vectors have length 1.
+H: Definition of a unit vector. || Divide by its own length. || 1.
+@check Midpoint | Find the $z$-coordinate of the midpoint of $A(1,2,-3)$ and $B(5,0,7)$.
+A: 2
+AD: $2$
+SOL: Midpoint $=\frac12(\mathbf a+\mathbf b)$. || $z$: $\frac{-3+7}2$. || $=\frac42$. || $=2$.
+H: Average the coordinates. || $-3+7$. || Halve.
+@check Magnitude 2 | Find $|(2,3,6)|$.
+A: 7
+AD: $7$
+SOL: $4+9+36=49$. || $\sqrt{49}$. || $=7$. || So the magnitude is 7.
+H: Square components. || Add. || Root.
+## 3.3
+@p **What this topic is about.** The **dot (scalar) product** multiplies two vectors to give a number. It finds angles between vectors, tests perpendicularity, and gives projections (how much of one vector points along another).
+@key $$\mathbf a\cdot\mathbf b=a_1b_1+a_2b_2+a_3b_3=|\mathbf a||\mathbf b|\cos\theta$$ **Perpendicular:** $\mathbf a\cdot\mathbf b=0$. **Angle:** $\cos\theta=\frac{\mathbf a\cdot\mathbf b}{|\mathbf a||\mathbf b|}$. **Scalar projection** of $\mathbf a$ on $\mathbf b$: $\mathbf a\cdot\hat{\mathbf b}$. **Vector projection:** $(\mathbf a\cdot\hat{\mathbf b})\hat{\mathbf b}$.
+@p **Properties.** $\mathbf a\cdot\mathbf b=\mathbf b\cdot\mathbf a$; $\mathbf a\cdot\mathbf a=|\mathbf a|^2$; $\mathbf a\cdot(\mathbf b+\mathbf c)=\mathbf a\cdot\mathbf b+\mathbf a\cdot\mathbf c$. A positive dot product means an acute angle; negative means obtuse.
+@p **Parallel vectors.** $\mathbf a\parallel\mathbf b$ when $\mathbf a=\lambda\mathbf b$ for some scalar $\lambda$. Check by dividing matching components: they must all give the same ratio.
+@p **Direction cosines.** The angles $\alpha,\beta,\gamma$ that $\mathbf a$ makes with the axes satisfy $\cos\alpha=\frac{a_1}{|\mathbf a|}$, etc., and $\cos^2\alpha+\cos^2\beta+\cos^2\gamma=1$.
+@ex Angle between vectors (full working)
+Q: Find the angle between $\mathbf a=(1,2,2)$ and $\mathbf b=(2,-1,2)$.
+S: **Dot product:** $2-2+4=4$.
+S: **Magnitudes:** $|\mathbf a|=3$, $|\mathbf b|=3$.
+S: **Cosine:** $\cos\theta=\frac4{9}$.
+S: **Angle:** $\theta=\cos^{-1}\frac49\approx63.6^\circ$.
+A: $\approx63.6^\circ$
+@ex Perpendicular, find $k$ (full working)
+Q: Find $k$ so that $(k,3,1)\perp(2,1,-5)$.
+S: **Condition:** dot product $=0$.
+S: **Compute:** $2k+3-5=0$.
+S: **Solve:** $2k=2$, $k=1$.
+A: $k=1$
+@ex Projections (full working)
+Q: Find the scalar and vector projections of $\mathbf a=(3,1,4)$ onto $\mathbf b=(1,2,2)$.
+S: **Unit vector:** $|\mathbf b|=3$, $\hat{\mathbf b}=\frac13(1,2,2)$.
+S: **Scalar projection:** $\mathbf a\cdot\hat{\mathbf b}=\frac13(3+2+8)=\frac{13}3$.
+S: **Vector projection:** $\frac{13}3\times\frac13(1,2,2)=\frac{13}9(1,2,2)$.
+A: $\frac{13}3$; $\frac{13}9(1,2,2)$
+@ex Perpendicular component (full working)
+Q: Write $\mathbf a=(3,1,4)$ as a vector parallel to $\mathbf b=(1,2,2)$ plus a vector perpendicular to it.
+S: **Parallel part:** $\frac{13}9(1,2,2)$ (from the previous example).
+S: **Perpendicular part:** $(3,1,4)-\frac{13}9(1,2,2)=\frac19(27-13,9-26,36-26)=\frac19(14,-17,10)$.
+S: **Check:** $\frac19(14-34+20)=0$ ✓ perpendicular to $\mathbf b$.
+A: $\frac{13}9(1,2,2)+\frac19(14,-17,10)$
+@warn The scalar projection uses the **unit** vector $\hat{\mathbf b}$. Forgetting to divide by $|\mathbf b|$ is the common mistake.
+@check Dot | Find $(1,2,3)\cdot(4,-1,2)$.
+A: 8
+AD: $8$
+SOL: $1\times4=4$. || $2\times(-1)=-2$. || $3\times2=6$. || Sum: $4-2+6=8$.
+H: Multiply matching components. || Add. || Watch the sign.
+@check Perpendicular | Find $k$ so that $(2,k,1)\cdot(1,2,-4)=0$.
+A: 1
+ALT: k=1
+AD: $k=1$
+SOL: $2+2k-4=0$. || $2k-2=0$. || $k=1$. || Check: $2+2-4=0$ ✓.
+H: Set the dot product to 0. || Collect. || Solve.
+@check Angle | Find the angle between $(1,0,0)$ and $(1,1,0)$ in degrees.
+A: 45
+AD: $45^\circ$
+SOL: Dot product $=1$. || Magnitudes $1$ and $\sqrt2$. || $\cos\theta=\frac1{\sqrt2}$. || $\theta=45^\circ$.
+H: Dot product. || Divide by magnitudes. || Inverse cos.
+@check Projection | Scalar projection of $(3,4,0)$ onto $(1,0,0)$?
+A: 3
+AD: $3$
+SOL: $(1,0,0)$ is already a unit vector. || $(3,4,0)\cdot(1,0,0)$. || $=3$. || Scalar projection 3.
+H: Is $\mathbf b$ a unit vector? || Dot product. || 3.
+@check Cosine | Exact $\cos\theta$ for $(1,0,0)$ and $(1,1,0)$.
+A: sqrt2/2
+ALT: 1/sqrt2 || √2/2 || 1/√2
+AD: $\frac{\sqrt2}2$
+SOL: Dot $=1$. || $|\mathbf a||\mathbf b|=1\times\sqrt2$. || $\cos\theta=\frac1{\sqrt2}$. || $=\frac{\sqrt2}2$.
+H: Dot product. || Magnitudes. || Rationalise.
+## 3.4
+@p **What this topic is about.** Using vectors to prove geometric facts: that lines are parallel, points are collinear, diagonals bisect each other, or angles are right angles. These are communication-heavy questions where every step must be justified.
+@p **Toolkit.** **Parallel:** $\overrightarrow{AB}=\lambda\overrightarrow{CD}$. **Collinear points** $A,B,C$: $\overrightarrow{AB}=\lambda\overrightarrow{AC}$ (parallel with a shared point). **Perpendicular:** dot product 0. **Equal lengths:** $|\mathbf u|^2=|\mathbf v|^2$, often via $\mathbf u\cdot\mathbf u$. **Midpoint:** $\frac12(\mathbf a+\mathbf b)$.
+@p **Setting up.** Choose an origin (often a vertex). Name the basic vectors, e.g. $\overrightarrow{OA}=\mathbf a$, $\overrightarrow{OB}=\mathbf b$. Express every other vector in terms of these by "walking" around the figure: $\overrightarrow{AB}=\overrightarrow{AO}+\overrightarrow{OB}=-\mathbf a+\mathbf b$.
+@p **Using $\mathbf u\cdot\mathbf u=|\mathbf u|^2$.** To show something involving lengths and angles, expand dot products like brackets: $(\mathbf a+\mathbf b)\cdot(\mathbf a-\mathbf b)=|\mathbf a|^2-|\mathbf b|^2$. This one line proves that the diagonals of a rhombus are perpendicular.
+@ex Midpoint theorem (full working)
+Q: In triangle $OAB$, $M$ and $N$ are the midpoints of $OA$ and $OB$. Prove $MN\parallel AB$ and $MN=\frac12AB$.
+S: **Basis:** $\overrightarrow{OA}=\mathbf a$, $\overrightarrow{OB}=\mathbf b$.
+S: **Midpoints:** $\overrightarrow{OM}=\frac12\mathbf a$, $\overrightarrow{ON}=\frac12\mathbf b$.
+S: **Vectors:** $\overrightarrow{MN}=\frac12\mathbf b-\frac12\mathbf a=\frac12(\mathbf b-\mathbf a)$ and $\overrightarrow{AB}=\mathbf b-\mathbf a$.
+S: **Conclude:** $\overrightarrow{MN}=\frac12\overrightarrow{AB}$, so $MN\parallel AB$ and $MN=\frac12AB$.
+A: Proved
+@ex Rhombus diagonals (full working)
+Q: $OACB$ is a rhombus with $\overrightarrow{OA}=\mathbf a$, $\overrightarrow{OB}=\mathbf b$, $|\mathbf a|=|\mathbf b|$. Prove its diagonals are perpendicular.
+S: **Diagonals:** $\overrightarrow{OC}=\mathbf a+\mathbf b$ and $\overrightarrow{BA}=\mathbf a-\mathbf b$.
+S: **Dot product:** $(\mathbf a+\mathbf b)\cdot(\mathbf a-\mathbf b)=\mathbf a\cdot\mathbf a-\mathbf a\cdot\mathbf b+\mathbf b\cdot\mathbf a-\mathbf b\cdot\mathbf b$.
+S: **Simplify:** $=|\mathbf a|^2-|\mathbf b|^2=0$ since the sides are equal.
+S: **Conclude:** dot product 0, so the diagonals are perpendicular.
+A: Proved
+@ex Collinear points (full working)
+Q: Show that $A(1,2,3)$, $B(3,5,4)$ and $C(7,11,6)$ are collinear.
+S: **Vectors:** $\overrightarrow{AB}=(2,3,1)$, $\overrightarrow{AC}=(6,9,3)$.
+S: **Compare:** $(6,9,3)=3(2,3,1)$, so $\overrightarrow{AC}=3\overrightarrow{AB}$.
+S: **Conclude:** parallel with common point $A$, so collinear.
+A: Collinear
+@ex Angle in a semicircle (full working)
+Q: $AB$ is a diameter of a circle with centre $O$ and $P$ is on the circle. Prove $\angle APB=90^\circ$.
+S: **Basis:** $\overrightarrow{OA}=\mathbf a$, $\overrightarrow{OB}=-\mathbf a$, $\overrightarrow{OP}=\mathbf p$, with $|\mathbf p|=|\mathbf a|$ (radii).
+S: **Vectors:** $\overrightarrow{PA}=\mathbf a-\mathbf p$, $\overrightarrow{PB}=-\mathbf a-\mathbf p$.
+S: **Dot:** $(\mathbf a-\mathbf p)\cdot(-\mathbf a-\mathbf p)=-|\mathbf a|^2-\mathbf a\cdot\mathbf p+\mathbf p\cdot\mathbf a+|\mathbf p|^2=|\mathbf p|^2-|\mathbf a|^2=0$.
+S: **Conclude:** $\angle APB=90^\circ$.
+A: Proved
+@warn Parallel vectors alone do not prove collinearity. You must also mention a shared point.
+@check Parallel | Is $(2,-4,6)$ parallel to $(-1,2,-3)$? Answer yes or no.
+A: yes
+ALT: Yes || Y
+AD: Yes
+SOL: Compare ratios: $\frac2{-1}=-2$, $\frac{-4}2=-2$, $\frac6{-3}=-2$. || All equal. || So $(2,-4,6)=-2(-1,2,-3)$. || Yes, parallel.
+H: Divide matching components. || Same ratio? || Yes.
+@check Midsegment | In triangle $OAB$, $\overrightarrow{MN}=k\overrightarrow{AB}$ where $M,N$ are midpoints of $OA,OB$. Find $k$.
+A: 1/2
+ALT: 0.5
+AD: $\frac12$
+SOL: $\overrightarrow{MN}=\frac12\mathbf b-\frac12\mathbf a$. || $=\frac12(\mathbf b-\mathbf a)$. || $=\frac12\overrightarrow{AB}$. || $k=\frac12$.
+H: Write $OM$ and $ON$. || Subtract. || Factor.
+@check Collinear | $A(0,0,0)$, $B(1,2,3)$, $C(3,6,k)$ are collinear. Find $k$.
+A: 9
+ALT: k=9
+AD: $k=9$
+SOL: $\overrightarrow{AC}=\lambda\overrightarrow{AB}$. || From $x$: $\lambda=3$. || So $z$: $k=3\times3$. || $k=9$.
+H: Find $\lambda$ from one component. || Apply to $z$. || $3\times3$.
+@check Expand | Simplify $(\mathbf a+\mathbf b)\cdot(\mathbf a-\mathbf b)$ when $|\mathbf a|=5$ and $|\mathbf b|=3$.
+A: 16
+AD: $16$
+SOL: Expand: $|\mathbf a|^2-\mathbf a\cdot\mathbf b+\mathbf b\cdot\mathbf a-|\mathbf b|^2$. || Middle terms cancel. || $25-9$. || $=16$.
+H: Expand like brackets. || Middle terms cancel. || $25-9$.
+@check Self dot | If $|\mathbf a|=4$, find $\mathbf a\cdot\mathbf a$.
+A: 16
+AD: $16$
+SOL: $\mathbf a\cdot\mathbf a=|\mathbf a|^2$. || $=4^2$. || $=16$. || (Angle is 0, $\cos0=1$.)
+H: $\mathbf a\cdot\mathbf a=|\mathbf a|^2$. || Square. || 16.
+## 3.5
+@p **What this topic is about.** Describing lines in 3D. A line is fixed by a point on it and a direction. You will write the vector, parametric and Cartesian equations, and decide whether two lines are parallel, intersecting or skew.
+@key **Vector equation:** $\mathbf r=\mathbf a+\lambda\mathbf d$ (point $\mathbf a$, direction $\mathbf d$). **Parametric:** $x=a_1+\lambda d_1$, $y=a_2+\lambda d_2$, $z=a_3+\lambda d_3$. **Cartesian:** $\frac{x-a_1}{d_1}=\frac{y-a_2}{d_2}=\frac{z-a_3}{d_3}$.
+@p **Line through two points.** Use one point as $\mathbf a$ and $\overrightarrow{AB}$ as $\mathbf d$.
+@p **Two lines in 3D.** (1) If directions are parallel: the lines are **parallel** (or the same line if they share a point). (2) Otherwise set the parametric forms equal: three equations, two unknowns $\lambda,\mu$. Solve two of them and **test the third**. If it holds: **intersecting** (substitute to find the point). If not: **skew** (not parallel, never meet).
+@p **Angle between lines** uses the direction vectors: $\cos\theta=\frac{|\mathbf d_1\cdot\mathbf d_2|}{|\mathbf d_1||\mathbf d_2|}$ (absolute value gives the acute angle).
+@ex Line through two points (full working)
+Q: Find vector and Cartesian equations of the line through $A(1,1,1)$ and $B(2,3,5)$.
+S: **Direction:** $\overrightarrow{AB}=(1,2,4)$.
+S: **Vector:** $\mathbf r=(1,1,1)+\lambda(1,2,4)$.
+S: **Parametric:** $x=1+\lambda$, $y=1+2\lambda$, $z=1+4\lambda$.
+S: **Cartesian:** make $\lambda$ the subject of each: $x-1=\frac{y-1}2=\frac{z-1}4$.
+A: $\mathbf r=(1,1,1)+\lambda(1,2,4)$; $x-1=\frac{y-1}2=\frac{z-1}4$
+@ex Intersecting lines (full working)
+Q: $L_1$: $\mathbf r=(1,0,2)+\lambda(1,1,0)$, $L_2$: $\mathbf r=(0,1,1)+\mu(2,0,1)$. Do they intersect?
+S: **Equate:** $1+\lambda=2\mu$; $\lambda=1$; $2=1+\mu$.
+S: **Solve two:** from the second and third, $\lambda=1$, $\mu=1$.
+S: **Test the first:** $1+1=2=2(1)$ ✓.
+S: **Point:** $(1,0,2)+1(1,1,0)=(2,1,2)$.
+A: They intersect at $(2,1,2)$
+@ex Skew lines (full working)
+Q: $L_1$: $\mathbf r=(0,0,0)+\lambda(1,0,1)$, $L_2$: $\mathbf r=(0,1,0)+\mu(0,0,1)$. Classify.
+S: **Directions:** $(1,0,1)$ and $(0,0,1)$ are not multiples, so not parallel.
+S: **Equate:** $x$: $\lambda=0$; $y$: $0=1$.
+S: **Contradiction:** $0=1$ is impossible, so no intersection.
+S: **Conclude:** not parallel and not intersecting: skew.
+A: Skew
+@ex Is a point on a line? (full working)
+Q: Is $(4,7,13)$ on $\mathbf r=(1,1,1)+\lambda(1,2,4)$?
+S: **$x$:** $1+\lambda=4\Rightarrow\lambda=3$.
+S: **$y$:** $1+2(3)=7$ ✓.
+S: **$z$:** $1+4(3)=13$ ✓.
+S: **All agree:** yes, with $\lambda=3$.
+A: Yes ($\lambda=3$)
+@warn Never conclude "intersecting" from two equations. You must test the third; that is where skew lines are detected.
+@check Direction | The line through $(1,1,1)$ and $(2,3,5)$: enter the third component of its direction.
+A: 4
+AD: $4$
+SOL: Direction $=\overrightarrow{AB}$. || $=(2-1,3-1,5-1)$. || $=(1,2,4)$. || Third component 4.
+H: End minus start. || $z$: $5-1$. || 4.
+@check Classify | Lines $\mathbf r=\lambda(1,2,3)$ and $\mathbf r=(1,1,1)+\mu(2,4,6)$: parallel, intersecting or skew?
+A: parallel
+ALT: Parallel
+AD: Parallel
+SOL: $(2,4,6)=2(1,2,3)$, so the directions are parallel. || Is $(1,1,1)$ on the first line? $\lambda=1$ from $x$ gives $y=2\ne1$. || So not the same line. || They are parallel (distinct).
+H: Compare directions. || Check for a shared point. || Parallel.
+@check Parameter | Find $\lambda$ when $(4,7,13)$ lies on $\mathbf r=(1,1,1)+\lambda(1,2,4)$.
+A: 3
+ALT: λ=3
+AD: $\lambda=3$
+SOL: $x$: $1+\lambda=4$. || $\lambda=3$. || Check $y$: $1+6=7$ ✓; $z$: $1+12=13$ ✓. || $\lambda=3$.
+H: Use the $x$ equation. || Solve. || Check the others.
+@check Cartesian | For $\frac{x-2}3=\frac{y+1}{-1}=\frac{z}{4}$, enter the $y$-component of the direction.
+A: -1
+AD: $-1$
+SOL: Cartesian form is $\frac{x-a_1}{d_1}=\frac{y-a_2}{d_2}=\frac{z-a_3}{d_3}$. || The denominators are the direction. || Direction $(3,-1,4)$. || $y$-component $-1$.
+H: Denominators give direction. || Read the $y$ fraction. || $-1$.
+@check Point | Enter the $y$-coordinate of the point on $\mathbf r=(1,0,2)+\lambda(1,1,0)$ with $\lambda=1$.
+A: 1
+AD: $1$
+SOL: $\mathbf r=(1+\lambda,\lambda,2)$. || With $\lambda=1$: $(2,1,2)$. || $y$-coordinate is 1. || Answer 1.
+H: Substitute $\lambda$. || Read off $y$. || 1.
+## 3.6
+@p **What this topic is about.** The **cross (vector) product** multiplies two 3D vectors to give a **vector perpendicular to both**. It finds normals to planes, areas of parallelograms and triangles, and (with the dot product) volumes.
+@key $$\mathbf a\times\mathbf b=\begin{vmatrix}\mathbf i&\mathbf j&\mathbf k\\a_1&a_2&a_3\\b_1&b_2&b_3\end{vmatrix}=(a_2b_3-a_3b_2)\mathbf i-(a_1b_3-a_3b_1)\mathbf j+(a_1b_2-a_2b_1)\mathbf k$$ $|\mathbf a\times\mathbf b|=|\mathbf a||\mathbf b|\sin\theta$ = area of the parallelogram on $\mathbf a,\mathbf b$. Triangle area $=\frac12|\mathbf a\times\mathbf b|$.
+@p **Properties.** $\mathbf b\times\mathbf a=-(\mathbf a\times\mathbf b)$ (order matters). $\mathbf a\times\mathbf a=\mathbf 0$; parallel vectors have zero cross product. $\mathbf i\times\mathbf j=\mathbf k$, $\mathbf j\times\mathbf k=\mathbf i$, $\mathbf k\times\mathbf i=\mathbf j$ (cyclic). Direction follows the right-hand rule.
+@p **Remember the minus sign** on the $\mathbf j$ component. A reliable check: the answer must have dot product 0 with both $\mathbf a$ and $\mathbf b$.
+@key **Volume of a parallelepiped:** $|\mathbf a\cdot(\mathbf b\times\mathbf c)|$. If this is 0, the three vectors are coplanar.
+@ex Computing a cross product (full working)
+Q: Find $(1,2,3)\times(4,5,6)$.
+S: **$\mathbf i$:** $2\times6-3\times5=12-15=-3$.
+S: **$\mathbf j$:** $-(1\times6-3\times4)=-(6-12)=6$.
+S: **$\mathbf k$:** $1\times5-2\times4=5-8=-3$.
+S: **Result:** $(-3,6,-3)$.
+S: **Check:** $(-3,6,-3)\cdot(1,2,3)=-3+12-9=0$ ✓; $\cdot(4,5,6)=-12+30-18=0$ ✓.
+A: $(-3,6,-3)$
+@ex Triangle area (full working)
+Q: Find the area of triangle $A(1,0,0)$, $B(0,2,0)$, $C(0,0,3)$.
+S: **Edge vectors:** $\overrightarrow{AB}=(-1,2,0)$, $\overrightarrow{AC}=(-1,0,3)$.
+S: **Cross:** $\mathbf i$: $6-0=6$; $\mathbf j$: $-(-3-0)=3$; $\mathbf k$: $0+2=2$. So $(6,3,2)$.
+S: **Magnitude:** $\sqrt{36+9+4}=7$.
+S: **Area:** $\frac12\times7=3.5$.
+A: $3.5$ square units
+@ex Unit normal (full working)
+Q: Find a unit vector perpendicular to $(1,1,0)$ and $(0,1,1)$.
+S: **Cross:** $\mathbf i$: $1-0=1$; $\mathbf j$: $-(1-0)=-1$; $\mathbf k$: $1-0=1$. So $(1,-1,1)$.
+S: **Magnitude:** $\sqrt3$.
+S: **Unit:** $\frac1{\sqrt3}(1,-1,1)$ (or its negative).
+A: $\pm\frac1{\sqrt3}(1,-1,1)$
+@ex Volume (full working)
+Q: Find the volume of the parallelepiped with edges $(1,0,0)$, $(0,2,0)$, $(0,0,3)$.
+S: **Cross:** $(0,2,0)\times(0,0,3)=(6,0,0)$.
+S: **Dot:** $(1,0,0)\cdot(6,0,0)=6$.
+S: **Volume:** $|6|=6$ (a $1\times2\times3$ box ✓).
+A: $6$ cubic units
+@warn The $\mathbf j$ component has a minus sign in front. Always check your answer is perpendicular to both vectors.
+@check Basic | Find $(1,0,0)\times(0,1,0)$ as $(x,y,z)$.
+A: (0,0,1)
+ALT: 0,0,1 || k
+AD: $(0,0,1)$
+SOL: $\mathbf i\times\mathbf j$. || By the cyclic rule $\mathbf i\times\mathbf j=\mathbf k$. || $\mathbf k=(0,0,1)$. || Answer $(0,0,1)$.
+H: These are $\mathbf i$ and $\mathbf j$. || Cyclic order. || $\mathbf k$.
+@check Unit vectors | $\mathbf i\times\mathbf j$ equals which of $\mathbf i,\mathbf j,\mathbf k$?
+A: k
+AD: $\mathbf k$
+SOL: Right-hand rule: fingers along $x$, curl to $y$. || Thumb points along $z$. || So $\mathbf i\times\mathbf j=\mathbf k$. || Answer $\mathbf k$.
+H: Right-hand rule. || Cyclic order $i\to j\to k$. || $\mathbf k$.
+@check Area | Area of the parallelogram on $(3,0,0)$ and $(0,4,0)$.
+A: 12
+AD: $12$
+SOL: Cross: $(0,0,12)$. || Magnitude 12. || Area $=|\mathbf a\times\mathbf b|$. || $=12$.
+H: Cross product. || Magnitude. || Perpendicular sides: $3\times4$.
+@check Magnitude | Find $|(1,1,0)\times(0,1,1)|$ exactly.
+A: sqrt3
+ALT: √3 || sqrt(3)
+AD: $\sqrt3$
+SOL: Cross: $(1\cdot1-0\cdot1,\ -(1\cdot1-0\cdot0),\ 1\cdot1-1\cdot0)=(1,-1,1)$. || Magnitude $\sqrt{1+1+1}$. || $=\sqrt3$. || Exact answer $\sqrt3$.
+H: Compute each component. || Remember the $\mathbf j$ minus sign. || Magnitude.
+@check Area 2 | Area of the parallelogram with sides $(3,0,0)$ and $(0,2,0)$.
+A: 6
+AD: $6$
+SOL: Cross: $(0,0,6)$. || Magnitude 6. || So area 6. || (Rectangle $3\times2$ ✓.)
+H: Cross. || Magnitude. || 6.
+## 3.7
+@p **What this topic is about.** Equations of planes and distance problems: point to plane, the angle between a line and a plane, and where a line meets a plane. These combine the dot and cross products.
+@key **Plane** with normal $\mathbf n=(a,b,c)$ through point $\mathbf r_0$: $\mathbf n\cdot\mathbf r=\mathbf n\cdot\mathbf r_0$, i.e. $ax+by+cz=d$ with $d=\mathbf n\cdot\mathbf r_0$. **Distance** from $(x_0,y_0,z_0)$ to $ax+by+cz=d$: $$D=\frac{|ax_0+by_0+cz_0-d|}{\sqrt{a^2+b^2+c^2}}$$
+@p **Plane through three points.** (1) Form two edge vectors. (2) Cross them to get the normal. (3) Use any one of the points to find $d$. (4) Check with another point.
+@p **Line meets plane.** Substitute the parametric line into the plane equation, solve for $\lambda$, then substitute back for the point. If you get $0=0$, the line lies in the plane; if you get a contradiction, the line is parallel to the plane.
+@p **Angle between line and plane.** If $\mathbf d$ is the line direction and $\mathbf n$ the normal, the angle $\theta$ with the plane satisfies $\sin\theta=\frac{|\mathbf d\cdot\mathbf n|}{|\mathbf d||\mathbf n|}$ (sine, because the normal is at $90^\circ$ to the plane).
+@ex Plane from normal and point (full working)
+Q: Find the plane with normal $(2,1,-1)$ through $(1,1,1)$.
+S: **Form:** $2x+y-z=d$.
+S: **Substitute the point:** $d=2+1-1=2$.
+S: **Equation:** $2x+y-z=2$.
+A: $2x+y-z=2$
+@ex Plane through three points (full working)
+Q: Find the plane through $A(1,0,0)$, $B(0,2,0)$, $C(0,0,3)$.
+S: **Edges:** $\overrightarrow{AB}=(-1,2,0)$, $\overrightarrow{AC}=(-1,0,3)$.
+S: **Normal:** $\overrightarrow{AB}\times\overrightarrow{AC}=(6,3,2)$.
+S: **$d$ from $A$:** $6(1)+0+0=6$. Plane: $6x+3y+2z=6$.
+S: **Check $B$:** $0+6+0=6$ ✓; $C$: $0+0+6=6$ ✓.
+A: $6x+3y+2z=6$
+@ex Distance to a plane (full working)
+Q: Find the distance from the origin to $2x-y+2z=9$.
+S: **Numerator:** $|0-0+0-9|=9$.
+S: **Denominator:** $\sqrt{4+1+4}=3$.
+S: **Distance:** $\frac93=3$.
+A: $3$
+@ex Line meets plane (full working)
+Q: Where does $\mathbf r=(1,2,3)+\lambda(1,-1,2)$ meet $x+y+z=12$?
+S: **Parametric:** $x=1+\lambda$, $y=2-\lambda$, $z=3+2\lambda$.
+S: **Substitute:** $(1+\lambda)+(2-\lambda)+(3+2\lambda)=12\Rightarrow6+2\lambda=12$.
+S: **Solve:** $\lambda=3$.
+S: **Point:** $(4,-1,9)$. Check: $4-1+9=12$ ✓.
+A: $(4,-1,9)$
+@warn The distance formula needs the plane in the form $ax+by+cz=d$ and the absolute value. Distances are never negative.
+@check Plane constant | Plane with normal $(2,1,-1)$ through $(1,1,1)$: find $d$ in $2x+y-z=d$.
+A: 2
+AD: $2$
+SOL: $d=\mathbf n\cdot\mathbf r_0$. || $=2(1)+1(1)-1(1)$. || $=2+1-1$. || $=2$.
+H: Substitute the point. || $2+1-1$. || 2.
+@check Origin plane | Normal $(1,2,3)$ through the origin: find $d$ in $x+2y+3z=d$.
+A: 0
+AD: $0$
+SOL: Substitute $(0,0,0)$. || $0+0+0$. || $d=0$. || Planes through the origin have $d=0$.
+H: Use the origin. || All zeros. || 0.
+@check Distance | Distance from the origin to $2x-y+2z=9$.
+A: 3
+AD: $3$
+SOL: $|0-9|=9$. || $\sqrt{4+1+4}=3$. || $D=\frac93$. || $=3$.
+H: Formula. || Normal magnitude. || Divide.
+@check Intersection | Find $\lambda$ where $\mathbf r=(1,2,3)+\lambda(1,-1,2)$ meets $x+y+z=12$.
+A: 3
+ALT: λ=3
+AD: $\lambda=3$
+SOL: Sum of coordinates: $(1+\lambda)+(2-\lambda)+(3+2\lambda)$. || $=6+2\lambda$. || $6+2\lambda=12$. || $\lambda=3$.
+H: Substitute parametric form. || Simplify. || Solve.
+@check Point distance | Distance from $(1,1,1)$ to $x+2y+2z=11$.
+A: 2
+AD: $2$
+SOL: $|1+2+2-11|=|-6|=6$. || $\sqrt{1+4+4}=3$. || $D=\frac63$. || $=2$.
+H: Substitute the point. || Absolute value. || Divide by $|\mathbf n|$.
+## X
+@p **Exam checklist.** End minus start for vectors between points. Dot product for angles, perpendicularity and projections (with a unit vector). Cross product for normals and areas (check perpendicularity). Test the third equation when classifying lines. Plane: normal + point. Distance: absolute value over $|\mathbf n|$.
+@ex Exam-style: shortest distance from a point to a line (full working)
+Q: Find the shortest distance from $P(3,3,0)$ to the line $\mathbf r=(0,0,0)+\lambda(1,1,1)$.
+S: **General point:** $Q=(\lambda,\lambda,\lambda)$; $\overrightarrow{QP}=(3-\lambda,3-\lambda,-\lambda)$.
+S: **Perpendicular condition:** $\overrightarrow{QP}\cdot(1,1,1)=0\Rightarrow6-3\lambda=0\Rightarrow\lambda=2$.
+S: **Vector:** $\overrightarrow{QP}=(1,1,-2)$.
+S: **Distance:** $\sqrt{1+1+4}=\sqrt6$.
+A: $\sqrt6$
+@check Cross magnitude | $|(1,1,0)\times(0,1,1)|$ exactly.
+A: sqrt3
+ALT: √3 || sqrt(3)
+AD: $\sqrt3$
+SOL: Cross product $(1,-1,1)$. || Square components: $1+1+1$. || $\sqrt3$. || Exact.
+H: Compute the cross product. || Magnitude. || Leave as a surd.
+@check Volume | Volume of the parallelepiped with edges $(1,0,0)$, $(0,2,0)$, $(0,0,3)$.
+A: 6
+AD: $6$
+SOL: $(0,2,0)\times(0,0,3)=(6,0,0)$. || $(1,0,0)\cdot(6,0,0)=6$. || Volume $=|6|$. || $=6$.
+H: Triple product. || Cross then dot. || Absolute value.
+@check Distance | Distance from the origin to $2x-y+2z=9$.
+A: 3
+AD: $3$
+SOL: $\frac{|-9|}{\sqrt{4+1+4}}$. || $=\frac93$. || $=3$. || Distance 3.
+H: Formula. || $|\mathbf n|=3$. || Divide.
+@check Dot | $(1,2,3)\cdot(4,-5,6)$.
+A: 12
+AD: $12$
+SOL: $4-10+18$. || $=12$. || So the dot product is 12. || Positive, so the angle is acute.
+H: Multiply components. || Add. || 12.
+@check Shortest distance | Shortest distance from $(3,3,0)$ to the line $\mathbf r=\lambda(1,1,1)$, exact.
+A: sqrt6
+ALT: √6 || sqrt(6)
+AD: $\sqrt6$
+SOL: Foot of perpendicular: $(3-\lambda,3-\lambda,-\lambda)\cdot(1,1,1)=0$ gives $\lambda=2$. || Vector $(1,1,-2)$. || Length $\sqrt{1+1+4}$. || $=\sqrt6$.
+H: General point on the line. || Perpendicular to the direction. || Length.
+@solfix 0 | $|(2,-3,6)|=\sqrt{2^2+(-3)^2+6^2}$. || $=\sqrt{4+9+36}$. || $=\sqrt{49}$. || $=7$.
+@solfix 1 | $\overrightarrow{AB}=B-A=(3-1,4-1,1-1)=(2,3,0)$. || $|\overrightarrow{AB}|=\sqrt{4+9+0}$. || $=\sqrt{13}$. || Leave exact.
+@solfix 2 | Multiply matching components: $1\times4=4$, $2\times(-1)=-2$, $3\times2=6$. || Add: $4-2+6$. || $=8$. || So the dot product is 8.
+@solfix 3 | Perpendicular means dot product 0: $2k+3(1)+1(-5)=0$. || $2k-2=0$. || $k=1$. || Check: $2+3-5=0$ ✓.
+@solfix 4 | Dot product $=1$. || Magnitudes: $1$ and $\sqrt2$. || $\cos\theta=\frac1{\sqrt2}$. || $\theta=45^\circ$.
+@solfix 5 | $(1,0,0)\times(0,1,0)=\mathbf i\times\mathbf j$. || By the determinant: $\mathbf i(0)-\mathbf j(0)+\mathbf k(1\cdot1-0\cdot0)$. || $=\mathbf k$. || $=(0,0,1)$.
+@solfix 6 | $(3,0,0)\times(0,4,0)=(0,0,12)$. || Area $=|\mathbf a\times\mathbf b|$. || $=12$. || (The sides are perpendicular, so it is a $3\times4$ rectangle.)
+@solfix 7 | Plane: $\mathbf n\cdot\mathbf r=\mathbf n\cdot\mathbf r_0$. || $d=2(1)+1(1)-1(1)$. || $=2$. || Plane: $2x+y-z=2$.
+@solfix 8 | $(1,0,0)$ is a unit vector, so the scalar projection is just the dot product. || $(3,4,0)\cdot(1,0,0)$. || $=3$. || Scalar projection 3.
+@solfix 9 | Directions: $(2,4,6)=2(1,2,3)$, so the lines are parallel. || Check whether they coincide: on the first line $x=1$ needs $\lambda=1$, giving $y=2\ne1$. || So $(1,1,1)$ is not on the first line. || The lines are parallel (distinct).
+@solfix 10 | $|(2,3,6)|=\sqrt{4+9+36}$. || $=\sqrt{49}$. || $=7$. || So the magnitude is 7.
+@solfix 11 | $1\times4+2\times(-5)+3\times6$. || $=4-10+18$. || $=12$. || So the dot product is 12.
+@solfix 12 | $(2,k,1)\cdot(1,2,-4)=2+2k-4$. || Set to 0: $2k-2=0$. || $k=1$. || Check: $2+2-4=0$ ✓.
+@solfix 13 | Right-hand rule: fingers along $x$, curl toward $y$. || The thumb points along $z$. || So $\mathbf i\times\mathbf j=\mathbf k$. || Answer $\mathbf k$.
+@solfix 14 | $(3,0,0)\times(0,2,0)=(0,0,6)$. || Area $=|(0,0,6)|$. || $=6$. || (A $3\times2$ rectangle ✓.)
+@solfix 15 | Direction $=B-A=(2-1,3-1,5-1)$. || $=(1,2,4)$. || The third component is $5-1$. || $=4$.
+@solfix 16 | Plane $x+2y+3z=d$ through $(0,0,0)$. || Substitute: $0+0+0=d$. || $d=0$. || Planes through the origin have $d=0$.
+@solfix 17 | $\hat{\mathbf a}=\frac{\mathbf a}{|\mathbf a|}$. || $|\hat{\mathbf a}|=\frac{|\mathbf a|}{|\mathbf a|}$. || $=1$. || Unit vectors always have length 1.
+@solfix 18 | $(1,0,0)$ is already a unit vector. || Scalar projection $=(3,4,0)\cdot(1,0,0)$. || $=3$. || Answer 3.
+@solfix 19 | Dot product $=1\cdot1+0\cdot1+0\cdot0=1$. || Magnitudes $1$ and $\sqrt2$. || $\cos\theta=\frac1{\sqrt2}$. || Rationalise: $\frac{\sqrt2}2$.
+@cometfix 0 | $(1,1,0)\times(0,1,1)$: $\mathbf i(1\cdot1-0\cdot1)-\mathbf j(1\cdot1-0\cdot0)+\mathbf k(1\cdot1-1\cdot0)$. || $=(1,-1,1)$. || Magnitude $\sqrt{1+1+1}$. || $=\sqrt3$.
+@cometfix 1 | Volume $=|\mathbf a\cdot(\mathbf b\times\mathbf c)|$. || $(0,2,0)\times(0,0,3)=(6,0,0)$. || $(1,0,0)\cdot(6,0,0)=6$. || Volume 6 (a $1\times2\times3$ box).
+@cometfix 2 | $D=\frac{|ax_0+by_0+cz_0-d|}{\sqrt{a^2+b^2+c^2}}$ with the origin. || Numerator $|0-9|=9$. || Denominator $\sqrt{4+1+4}=3$. || $D=3$.

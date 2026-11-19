@@ -72,3 +72,7 @@ solHTML=function(q,st){
   return'<div class="sol2"><b>Worked solution</b><ol>'+steps.slice(0,k).map(x=>'<li>'+inl(x)+'</li>').join('')+'</ol>'+(k>=n?'<p class="ans"><b>Answer:</b> '+inl(q.answer)+'</p>':'')+'</div>'+
     (k<n?'<div class="row"><button class="btn ghost" data-act="solnext">Show next step</button><button class="btn link" data-act="solall">Show it all</button></div>':'');
 };
+
+/* ---- record mistakes as you go, not only when a session is saved ---- */
+(function(){const rp=renderPanel;renderPanel=function(){try{fxSweepMiss(false);}catch(e){}return rp.apply(this,arguments);};
+  const es=endSess;endSess=function(){try{fxSweepMiss(true);}catch(e){}return es.apply(this,arguments);};})();

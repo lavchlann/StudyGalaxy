@@ -321,10 +321,10 @@ function fxMGLoop(el){
   requestAnimationFrame(loop);
 }
 function fxRetry(ms){
-  const ok=ms.filter(m=>m.qid&&/-q\d+$/.test(m.qid)&&CT[m.ch]);
+  const ok=ms.filter(m=>m.qid&&MQRE.test(m.qid)&&CT[m.ch]);
   if(!ok.length){toast('These came from AI-made questions. Open the chapter and take a checkpoint to retest them.');return;}
   const cid=ok[0].ch,ct=CT[cid];if(FXOVER)fxCloseOverlay();openChapter(cid);const c=findCh(cid);
-  const qs=ok.filter(m=>m.ch===cid).slice(0,8).map(m=>{const src=ct.quiz[+m.qid.split('-q')[1]];return src?qObj(src,m.qid,cid,m.id):null;}).filter(Boolean);
+  const qs=ok.filter(m=>m.ch===cid).slice(0,8).map(m=>{const src=fxSrcQ(cid,m.qid);return src?qObj(src,m.qid,cid,m.id):null;}).filter(Boolean);
   if(!qs.length)return;sess={kind:'learn',ch:c,phase:'q',qa:[],text:'',abort:new AbortController(),qs:qs,i:0,retry:()=>fxRetry(ms)};RESET=true;renderPanel();
 }
 /* ---- occasional interstellar traces themed by subject ---- */

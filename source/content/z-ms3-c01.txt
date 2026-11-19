@@ -1,0 +1,312 @@
+=== ms3-c01 | rewrite
+## 1.2
+@p **What this topic is about.** Complex numbers extend the real numbers so that every polynomial equation has solutions. This section rebuilds the Unit 1–2 basics you need for everything in this chapter: the imaginary unit, Cartesian form, arithmetic, conjugates, modulus, and solving quadratics with negative discriminants.
+@key $i^2=-1$. A complex number in **Cartesian form** is $z=a+bi$ with $\operatorname{Re}(z)=a$ and $\operatorname{Im}(z)=b$ (both real). **Conjugate:** $\bar z=a-bi$. **Modulus:** $|z|=\sqrt{a^2+b^2}$. Key identity: $z\bar z=a^2+b^2=|z|^2$.
+@p **Arithmetic rules.** Add or subtract real parts and imaginary parts separately. Multiply by expanding brackets and replacing $i^2$ with $-1$. **Divide** by multiplying the top and bottom by the conjugate of the denominator; this makes the denominator real because $(c+di)(c-di)=c^2+d^2$.
+@p **Powers of $i$ cycle with period 4:** $i^1=i$, $i^2=-1$, $i^3=-i$, $i^4=1$. To find $i^n$, divide $n$ by 4 and use the remainder. Example: $i^{13}$: $13=3\times4+1$, so $i^{13}=i^1=i$.
+@p **Equal complex numbers.** $a+bi=c+di$ exactly when $a=c$ **and** $b=d$. This gives two real equations from one complex equation; it is how you find square roots of complex numbers and unknown coefficients.
+@p **Quadratics.** If $\Delta=b^2-4ac<0$, write $\sqrt{\Delta}=i\sqrt{|\Delta|}$. The two roots are then a conjugate pair. You can also complete the square: $z^2-6z+13=(z-3)^2+4=0\Rightarrow z-3=\pm2i$.
+@ex Division (full working)
+Q: Write $\dfrac{3+2i}{1-2i}$ in the form $a+bi$.
+S: **Multiply top and bottom by the conjugate $1+2i$:** $\dfrac{(3+2i)(1+2i)}{(1-2i)(1+2i)}$.
+S: **Numerator:** $3+6i+2i+4i^2=3+8i-4=-1+8i$.
+S: **Denominator:** $1^2+2^2=5$.
+S: **Split:** $\dfrac{-1+8i}{5}=-\dfrac15+\dfrac85i$.
+A: $-\frac15+\frac85i$
+@ex Quadratic with complex roots (full working)
+Q: Solve $z^2-4z+13=0$.
+S: **Discriminant:** $\Delta=16-52=-36$.
+S: **Square root:** $\sqrt{-36}=6i$.
+S: **Formula:** $z=\dfrac{4\pm6i}{2}$.
+S: **Simplify:** $z=2\pm3i$ (a conjugate pair, as expected for real coefficients).
+A: $z=2\pm3i$
+@ex Square root of a complex number (full working)
+Q: Find both square roots of $5+12i$.
+S: **Let** $(a+bi)^2=5+12i$ with $a,b$ real. Expand: $a^2-b^2+2abi=5+12i$.
+S: **Equate parts:** $a^2-b^2=5$ and $2ab=12$, so $b=\frac6a$.
+S: **Substitute:** $a^2-\frac{36}{a^2}=5\Rightarrow a^4-5a^2-36=0\Rightarrow(a^2-9)(a^2+4)=0$.
+S: **Real $a$:** $a^2=9$, $a=\pm3$, $b=\pm2$ (same sign as $a$).
+A: $\pm(3+2i)$
+@ex Using the modulus identity (full working)
+Q: Find $|z|$ and $z\bar z$ for $z=-5+12i$.
+S: **Modulus:** $|z|=\sqrt{(-5)^2+12^2}=\sqrt{25+144}=\sqrt{169}=13$.
+S: **Product:** $z\bar z=(-5+12i)(-5-12i)=25+144=169$.
+S: **Check:** $169=13^2=|z|^2$ ✓.
+A: $|z|=13$, $z\bar z=169$
+@warn $|a+bi|=\sqrt{a^2+b^2}$, **not** $\sqrt{a^2+(bi)^2}$. Leave the $i$ out when finding the modulus.
+@check Modulus | Find $|3-4i|$.
+A: 5
+AD: $5$
+SOL: $|a+bi|=\sqrt{a^2+b^2}$ with $a=3$, $b=-4$. || $\sqrt{9+16}$. || $=\sqrt{25}$. || $=5$.
+H: Use $\sqrt{a^2+b^2}$. || Do not include $i$. || $9+16$.
+@check Product | Evaluate $(2+3i)(2-3i)$.
+A: 13
+AD: $13$
+SOL: This is $z\bar z$ for $z=2+3i$. || $=2^2+3^2$. || $=4+9$. || $=13$.
+H: Conjugate pair. || $a^2+b^2$. || Add.
+@check Powers of i | Simplify $i^{13}$.
+A: i
+AD: $i$
+SOL: Powers of $i$ repeat every 4. || $13=3\times4+1$. || So $i^{13}=i^1$. || $=i$.
+H: Divide by 4. || Remainder 1. || $i^1$.
+@check Square | Expand $(1-i)^2$.
+A: -2i
+AD: $-2i$
+SOL: $(1-i)^2=1-2i+i^2$. || $i^2=-1$. || $=1-2i-1$. || $=-2i$.
+H: Expand like $(a-b)^2$. || Replace $i^2$. || Simplify.
+@check Quadratic | The roots of $z^2-6z+13=0$ add to what?
+A: 6
+AD: $6$
+SOL: $\Delta=36-52=-16$, so $z=\frac{6\pm4i}{2}=3\pm2i$. || Sum $=(3+2i)+(3-2i)$. || $=6$. || (Also: sum of roots $=-\frac ba=6$.)
+H: Solve or use $-\frac ba$. || The imaginary parts cancel. || $3+3$.
+## 1.3
+@p **What this topic is about.** Polar form describes a complex number by its distance from the origin and its angle. It makes multiplication, division and powers far easier than Cartesian form, and it is the basis for De Moivre's theorem in 1.4.
+@key **Polar form:** $z=r\operatorname{cis}\theta=r(\cos\theta+i\sin\theta)$, where $r=|z|$ and $\theta=\arg z$. The **principal argument** $\operatorname{Arg}z$ lies in $(-\pi,\pi]$. **Conversion:** $a=r\cos\theta$, $b=r\sin\theta$; $r=\sqrt{a^2+b^2}$ and $\tan\theta=\frac ba$ **with the quadrant checked**.
+@p **Finding the argument safely.** (1) Plot the point to see its quadrant. (2) Find the reference angle $\alpha=\tan^{-1}\left|\frac ba\right|$. (3) Adjust: Q1 $\theta=\alpha$; Q2 $\theta=\pi-\alpha$; Q3 $\theta=-(\pi-\alpha)$; Q4 $\theta=-\alpha$. Points on the axes: $\operatorname{Arg}(i)=\frac\pi2$, $\operatorname{Arg}(-1)=\pi$, $\operatorname{Arg}(-i)=-\frac\pi2$.
+@key **Multiplication and division:** $$r_1\operatorname{cis}\theta_1\times r_2\operatorname{cis}\theta_2=r_1r_2\operatorname{cis}(\theta_1+\theta_2)\qquad\frac{r_1\operatorname{cis}\theta_1}{r_2\operatorname{cis}\theta_2}=\frac{r_1}{r_2}\operatorname{cis}(\theta_1-\theta_2)$$ Multiply moduli and add arguments; divide moduli and subtract arguments.
+@p **Geometric meaning.** Multiplying by $r\operatorname{cis}\theta$ scales by $r$ and rotates anticlockwise by $\theta$. Multiplying by $i=\operatorname{cis}\frac\pi2$ rotates by $90^\circ$. The conjugate $\bar z=r\operatorname{cis}(-\theta)$ is a reflection in the real axis.
+@p **Keeping arguments principal.** After adding arguments you may get an angle outside $(-\pi,\pi]$. Add or subtract $2\pi$ to bring it back. Example: $\frac{5\pi}4-2\pi=-\frac{3\pi}4$.
+@ex Cartesian to polar (full working)
+Q: Write $z=-1-i$ in polar form using the principal argument.
+S: **Modulus:** $r=\sqrt{(-1)^2+(-1)^2}=\sqrt2$.
+S: **Quadrant:** both parts negative, so Q3.
+S: **Reference angle:** $\alpha=\tan^{-1}\frac11=\frac\pi4$.
+S: **Q3 adjustment:** $\theta=-(\pi-\frac\pi4)=-\frac{3\pi}4$.
+A: $z=\sqrt2\operatorname{cis}\left(-\frac{3\pi}4\right)$
+@ex Polar to Cartesian (full working)
+Q: Write $4\operatorname{cis}\frac{5\pi}6$ in Cartesian form.
+S: **Real part:** $4\cos\frac{5\pi}6=4\times\left(-\frac{\sqrt3}2\right)=-2\sqrt3$.
+S: **Imaginary part:** $4\sin\frac{5\pi}6=4\times\frac12=2$.
+S: **Combine:** $-2\sqrt3+2i$.
+A: $-2\sqrt3+2i$
+@ex Multiplying and dividing (full working)
+Q: $z_1=2\operatorname{cis}\frac\pi6$, $z_2=5\operatorname{cis}\frac{3\pi}4$. Find $z_1z_2$ and $\frac{z_1}{z_2}$ with principal arguments.
+S: **Product modulus:** $2\times5=10$.
+S: **Product argument:** $\frac\pi6+\frac{3\pi}4=\frac{2\pi}{12}+\frac{9\pi}{12}=\frac{11\pi}{12}$, already in $(-\pi,\pi]$.
+S: **Quotient modulus:** $\frac25$.
+S: **Quotient argument:** $\frac\pi6-\frac{3\pi}4=\frac{2\pi-9\pi}{12}=-\frac{7\pi}{12}$.
+A: $z_1z_2=10\operatorname{cis}\frac{11\pi}{12}$, $\frac{z_1}{z_2}=\frac25\operatorname{cis}\left(-\frac{7\pi}{12}\right)$
+@ex Rotation (full working)
+Q: The point $z=3+i$ is rotated $90^\circ$ anticlockwise about the origin. Find the new point.
+S: **Rotation by $90^\circ$** is multiplication by $i$.
+S: **Multiply:** $i(3+i)=3i+i^2=3i-1$.
+S: **Write:** $-1+3i$.
+S: **Check:** the modulus stays $\sqrt{10}$ ✓.
+A: $-1+3i$
+@warn A calculator's $\tan^{-1}$ only returns angles in $(-\frac\pi2,\frac\pi2)$. For points in Q2 or Q3 it gives the wrong angle. Always plot and adjust.
+@check Argument | Find $\operatorname{Arg}(-1-i)$ exactly.
+A: -3pi/4
+ALT: -3π/4 || -(3pi)/4
+AD: $-\frac{3\pi}4$
+SOL: $-1-i$ is in Q3. || Reference angle $\tan^{-1}1=\frac\pi4$. || Q3: $\theta=-(\pi-\frac\pi4)$. || $=-\frac{3\pi}4$.
+H: Which quadrant? || Reference angle. || Q3 gives a negative angle.
+@check Modulus | Find $|\sqrt3+i|$.
+A: 2
+AD: $2$
+SOL: $|z|=\sqrt{(\sqrt3)^2+1^2}$. || $=\sqrt{3+1}$. || $=\sqrt4$. || $=2$.
+H: $\sqrt{a^2+b^2}$. || $(\sqrt3)^2=3$. || $\sqrt4$.
+@check Product modulus | $z_1=2\operatorname{cis}\frac\pi6$, $z_2=5\operatorname{cis}\frac\pi3$. Find $|z_1z_2|$.
+A: 10
+AD: $10$
+SOL: Multiply moduli. || $|z_1z_2|=|z_1||z_2|$. || $=2\times5$. || $=10$.
+H: Moduli multiply. || Arguments add. || $2\times5$.
+@check Axis argument | Find $\operatorname{Arg}(i)$.
+A: pi/2
+ALT: π/2 || 1.5708
+AD: $\frac\pi2$
+SOL: $i$ is $0+1i$. || It sits on the positive imaginary axis. || That direction is $90^\circ$. || $\operatorname{Arg}(i)=\frac\pi2$.
+H: Plot $i$. || Positive imaginary axis. || $90^\circ$ in radians.
+@check Quotient argument | Find a principal argument of $\dfrac{\operatorname{cis}\frac{5\pi}6}{\operatorname{cis}\left(-\frac\pi3\right)}$.
+A: -5pi/6
+ALT: -5π/6
+AD: $-\frac{5\pi}6$
+SOL: Subtract arguments: $\frac{5\pi}6-\left(-\frac\pi3\right)=\frac{5\pi}6+\frac{2\pi}6$. || $=\frac{7\pi}6$, which is outside $(-\pi,\pi]$. || Subtract $2\pi$: $\frac{7\pi}6-\frac{12\pi}6$. || $=-\frac{5\pi}6$.
+H: Subtract the arguments. || Is it in $(-\pi,\pi]$? || Subtract $2\pi$.
+## 1.4
+@p **What this topic is about.** De Moivre's theorem turns large powers of complex numbers into simple arithmetic, and it lets you find every $n$th root of a complex number. The roots form a regular polygon on the Argand plane, a favourite exam diagram.
+@key **De Moivre's theorem:** $(r\operatorname{cis}\theta)^n=r^n\operatorname{cis}(n\theta)$ for integer $n$. Raise the modulus to the power; multiply the argument by $n$.
+@p **Method for a power.** (1) Convert to polar form. (2) Apply De Moivre. (3) Reduce the argument into $(-\pi,\pi]$ by adding or subtracting multiples of $2\pi$. (4) Convert back to Cartesian if asked.
+@key **$n$th roots.** The solutions of $z^n=R\operatorname{cis}\phi$ are $$z=R^{1/n}\operatorname{cis}\left(\frac{\phi+2k\pi}{n}\right),\quad k=0,1,\dots,n-1.$$ There are exactly $n$ distinct roots, all with modulus $R^{1/n}$, spaced $\frac{2\pi}n$ apart: the vertices of a regular $n$-gon centred at the origin.
+@p **Why the $2k\pi$?** The same complex number has arguments $\phi,\phi+2\pi,\phi+4\pi,\dots$. Dividing each by $n$ gives different angles, so different roots. After $n$ of them the pattern repeats.
+@p **Useful facts.** The $n$th roots of unity ($z^n=1$) are $\operatorname{cis}\frac{2k\pi}n$. For $n\ge2$ they add to 0 (they balance around the circle). If the equation has real coefficients, non-real roots come in conjugate pairs.
+@ex A large power (full working)
+Q: Evaluate $(1+i)^8$.
+S: **Polar form:** $|1+i|=\sqrt2$; Q1 with reference angle $\frac\pi4$, so $1+i=\sqrt2\operatorname{cis}\frac\pi4$.
+S: **De Moivre:** $(\sqrt2)^8\operatorname{cis}\left(8\times\frac\pi4\right)=16\operatorname{cis}2\pi$.
+S: **Reduce:** $\operatorname{cis}2\pi=\operatorname{cis}0=1$.
+S: **Answer:** $16$.
+A: $16$
+@ex Power with argument reduction (full working)
+Q: Evaluate $(\sqrt3+i)^6$.
+S: **Polar form:** $r=\sqrt{3+1}=2$; $\theta=\tan^{-1}\frac1{\sqrt3}=\frac\pi6$ (Q1). So $\sqrt3+i=2\operatorname{cis}\frac\pi6$.
+S: **De Moivre:** $2^6\operatorname{cis}\left(6\times\frac\pi6\right)=64\operatorname{cis}\pi$.
+S: **Evaluate:** $\cos\pi+i\sin\pi=-1+0i$.
+S: **Answer:** $64\times(-1)=-64$.
+A: $-64$
+@ex Cube roots (full working)
+Q: Solve $z^3=8i$, giving answers in Cartesian form.
+S: **Polar form of the right side:** $8i=8\operatorname{cis}\frac\pi2$.
+S: **Root formula:** $z=8^{1/3}\operatorname{cis}\left(\frac{\frac\pi2+2k\pi}{3}\right)=2\operatorname{cis}\left(\frac\pi6+\frac{2k\pi}3\right)$, $k=0,1,2$.
+S: **List:** $k=0$: $2\operatorname{cis}\frac\pi6$; $k=1$: $2\operatorname{cis}\frac{5\pi}6$; $k=2$: $2\operatorname{cis}\frac{3\pi}2=2\operatorname{cis}\left(-\frac\pi2\right)$.
+S: **Cartesian:** $2\operatorname{cis}\frac\pi6=\sqrt3+i$; $2\operatorname{cis}\frac{5\pi}6=-\sqrt3+i$; $2\operatorname{cis}\left(-\frac\pi2\right)=-2i$.
+S: **Check one:** $(-2i)^3=-8i^3=-8(-i)=8i$ ✓.
+A: $\sqrt3+i,\ -\sqrt3+i,\ -2i$
+@ex Roots of unity (full working)
+Q: Find the fourth roots of unity and show they add to zero.
+S: **Equation:** $z^4=1=\operatorname{cis}0$.
+S: **Roots:** $\operatorname{cis}\frac{2k\pi}4=\operatorname{cis}\frac{k\pi}2$ for $k=0,1,2,3$.
+S: **Values:** $1,\ i,\ -1,\ -i$ (a square on the unit circle).
+S: **Sum:** $1+i-1-i=0$ ✓.
+A: $1,i,-1,-i$; sum $0$
+@warn Always give **all $n$** roots. Forgetting the $2k\pi$ gives only one root and loses most of the marks.
+@check Power | Evaluate $(\sqrt3+i)^6$.
+A: -64
+AD: $-64$
+SOL: $\sqrt3+i=2\operatorname{cis}\frac\pi6$. || De Moivre: $2^6\operatorname{cis}\pi$. || $=64\operatorname{cis}\pi$. || $\operatorname{cis}\pi=-1$, so the answer is $-64$.
+H: Convert to polar. || Raise $r$ to 6 and multiply the angle by 6. || $\operatorname{cis}\pi$.
+@check Power of cis | Evaluate $\left(\operatorname{cis}\frac\pi6\right)^{12}$.
+A: 1
+AD: $1$
+SOL: De Moivre: $\operatorname{cis}\left(12\times\frac\pi6\right)$. || $=\operatorname{cis}2\pi$. || $\cos2\pi=1$ and $\sin2\pi=0$. || So the answer is 1.
+H: Multiply the argument by 12. || $2\pi$. || $\operatorname{cis}2\pi$.
+@check Number of roots | How many distinct complex solutions does $z^5=1$ have?
+A: 5
+AD: $5$
+SOL: An equation $z^n=w$ ($w\ne0$) has $n$ distinct roots. || Here $n=5$. || They are $\operatorname{cis}\frac{2k\pi}5$, $k=0,\dots,4$. || So 5 solutions.
+H: Degree $n$. || $k=0$ to $n-1$. || Count.
+@check Root modulus | Every solution of $z^4=16i$ has what modulus?
+A: 2
+AD: $2$
+SOL: $|z^4|=|16i|=16$. || So $|z|^4=16$. || $|z|=16^{1/4}$. || $=2$.
+H: Take modulus of both sides. || $|z|^4=16$. || Fourth root.
+@check Sum of roots | Find the sum of all solutions of $z^7=1$.
+A: 0
+AD: $0$
+SOL: The solutions are the 7th roots of unity, equally spaced on the unit circle. || By symmetry their vector sum is zero. || Algebraically, $z^7-1=0$ has no $z^6$ term, so the sum of roots $=0$. || Answer: 0.
+H: Regular heptagon. || Symmetry. || Coefficient of $z^6$.
+## 1.5
+@p **What this topic is about.** Factorising polynomials over the complex numbers. Every polynomial of degree $n$ has exactly $n$ complex roots (counted with multiplicity), so it splits completely into linear factors. You will use the remainder and factor theorems, polynomial division, and the conjugate root theorem.
+@key **Remainder theorem:** dividing $P(z)$ by $z-a$ leaves remainder $P(a)$. **Factor theorem:** $z-a$ is a factor exactly when $P(a)=0$. **Conjugate root theorem:** if $P$ has **real** coefficients and $a+bi$ is a root, so is $a-bi$.
+@p **Quadratic factor from a conjugate pair.** If $a\pm bi$ are roots, then $(z-(a+bi))(z-(a-bi))=(z-a)^2+b^2=z^2-2az+(a^2+b^2)$. This real quadratic is a factor. Then divide (or compare coefficients) to find the rest.
+@p **Method for cubics and quartics.** (1) Find one root: try factors of the constant term with the factor theorem, or use a given root. (2) Divide or compare coefficients to reduce the degree. (3) Solve the remaining quadratic, completing the square if $\Delta<0$. (4) Write the full factorisation.
+@p **Sum and product of roots.** For $z^2+bz+c$: sum $=-b$, product $=c$. For a cubic $z^3+bz^2+cz+d$: sum $=-b$. These are quick checks.
+@ex Cubic with one real root (full working)
+Q: Factorise $P(z)=z^3-3z^2+4z-2$ over $\mathbb C$.
+S: **Find a root:** $P(1)=1-3+4-2=0$, so $z-1$ is a factor.
+S: **Divide:** $P(z)=(z-1)(z^2-2z+2)$ (check: $z^3-2z^2+2z-z^2+2z-2$ ✓).
+S: **Quadratic:** $z^2-2z+2=(z-1)^2+1$, roots $z=1\pm i$.
+S: **Full factorisation:** $(z-1)(z-1-i)(z-1+i)$.
+A: $(z-1)(z-1-i)(z-1+i)$
+@ex Using a given complex root (full working)
+Q: $2-i$ is a root of $P(z)=z^3-5z^2+9z-5$. Find the other roots.
+S: **Conjugate root theorem** (real coefficients): $2+i$ is also a root.
+S: **Quadratic factor:** $(z-2)^2+1=z^2-4z+5$.
+S: **Compare coefficients:** $P(z)=(z^2-4z+5)(z+c)$; constant term $5c=-5$ gives $c=-1$.
+S: **Check $z^2$ coefficient:** $c-4=-5$ ✓.
+A: Roots $2-i$, $2+i$, $1$
+@ex Finding unknown coefficients (full working)
+Q: $P(z)=z^3+az^2+bz+10$ has real coefficients and $z=1+2i$ is a root. Find $a$ and $b$.
+S: **Other complex root:** $1-2i$.
+S: **Quadratic factor:** $(z-1)^2+4=z^2-2z+5$.
+S: **Third factor from the constant:** $P(z)=(z^2-2z+5)(z+c)$ with $5c=10$, $c=2$.
+S: **Expand:** $z^3+2z^2-2z^2-4z+5z+10=z^3+0z^2+z+10$.
+A: $a=0$, $b=1$
+@ex Quartic with a factor given (full working)
+Q: Solve $z^4+5z^2+4=0$.
+S: **Substitute** $u=z^2$: $u^2+5u+4=0$.
+S: **Factorise:** $(u+1)(u+4)=0$, so $u=-1$ or $u=-4$.
+S: **Back-substitute:** $z^2=-1\Rightarrow z=\pm i$; $z^2=-4\Rightarrow z=\pm2i$.
+S: **Count:** four roots for a quartic ✓.
+A: $z=\pm i,\ \pm2i$
+@warn The conjugate root theorem needs **real** coefficients. For $z^2-iz+2=0$ the roots are $2i$ and $-i$, not a conjugate pair.
+@check Conjugate root | A real cubic has roots $1$ and $3+2i$. Find the third root.
+A: 3-2i
+AD: $3-2i$
+SOL: The coefficients are real. || So non-real roots come in conjugate pairs. || The conjugate of $3+2i$ is $3-2i$. || Third root: $3-2i$.
+H: Real coefficients. || Conjugate pairs. || Change the sign of the imaginary part.
+@check Conjugate root 2 | A real polynomial has root $3-2i$. State another root.
+A: 3+2i
+AD: $3+2i$
+SOL: Real coefficients mean conjugate pairs. || $\overline{3-2i}=3+2i$. || So $3+2i$ is a root. || Answer: $3+2i$.
+H: Conjugate root theorem. || Flip the imaginary sign. || $3+2i$.
+@check Quadratic factor | Roots $1\pm2i$ come from which quadratic $z^2+bz+c$? Enter $c$.
+A: 5
+AD: $c=5$
+SOL: $(z-1)^2+2^2$. || $=z^2-2z+1+4$. || $=z^2-2z+5$. || $c=5$.
+H: $(z-a)^2+b^2$. || $a=1$, $b=2$. || Constant term.
+@check Remainder | Find the remainder when $z^3+2z-1$ is divided by $z-i$.
+A: i-1
+ALT: -1+i
+AD: $-1+i$
+SOL: Remainder $=P(i)$. || $i^3+2i-1$. || $=-i+2i-1$. || $=-1+i$.
+H: Remainder theorem. || $i^3=-i$. || Collect.
+@check Sum of roots | Find the sum of the roots of $z^3-4z^2+6z-4=0$.
+A: 4
+AD: $4$
+SOL: For $z^3+bz^2+cz+d$, sum of roots $=-b$. || Here $b=-4$. || Sum $=4$. || (Check: roots $2$, $1\pm i$ add to 4 ✓.)
+H: Coefficient of $z^2$. || Change its sign. || $4$.
+## X
+@p **Exam checklist.** Plot before finding an argument; keep principal arguments in $(-\pi,\pi]$; for powers use De Moivre; for roots include $2k\pi$ and list all $n$; for real polynomials use conjugate pairs and build the quadratic factor $(z-a)^2+b^2$; show a check by substitution.
+@ex Exam-style: quotient power (full working)
+Q: Evaluate $\left(\dfrac{1+i}{1-i}\right)^{2026}$.
+S: **Simplify inside first:** $\dfrac{(1+i)^2}{(1-i)(1+i)}=\dfrac{2i}{2}=i$.
+S: **Power of $i$:** $i^{2026}$; $2026=506\times4+2$.
+S: **Remainder 2:** $i^2=-1$.
+A: $-1$
+@ex Exam-style: roots on a diagram (full working)
+Q: Solve $z^6=-64$ and state the shape the roots form.
+S: **Polar:** $-64=64\operatorname{cis}\pi$.
+S: **Formula:** $z=2\operatorname{cis}\left(\frac{\pi+2k\pi}6\right)$, $k=0,\dots,5$: arguments $\pm\frac\pi6,\pm\frac\pi2,\pm\frac{5\pi}6$.
+S: **Cartesian:** $\pm\sqrt3\pm i$ and $\pm2i$.
+S: **Shape:** six points of modulus 2, spaced $\frac\pi3$ apart: a regular hexagon.
+A: $\pm\sqrt3\pm i$, $\pm2i$; regular hexagon
+@check Cube roots sum | The three cube roots of 1 add to what?
+A: 0
+AD: $0$
+SOL: Roots: $1$, $\operatorname{cis}\frac{2\pi}3$, $\operatorname{cis}\frac{4\pi}3$. || $=1,\ -\frac12+\frac{\sqrt3}2i,\ -\frac12-\frac{\sqrt3}2i$. || Real parts: $1-\frac12-\frac12=0$; imaginary parts cancel. || Sum $=0$.
+H: List the roots. || Add real parts. || Imaginary parts cancel.
+@check Quotient power | Evaluate $\left(\dfrac{1+i}{1-i}\right)^{2026}$.
+A: -1
+AD: $-1$
+SOL: $\frac{1+i}{1-i}=\frac{(1+i)^2}{2}=i$. || $i^{2026}$. || $2026$ leaves remainder 2 on division by 4. || $i^2=-1$.
+H: Simplify the fraction first. || Powers of $i$ cycle. || Remainder 2.
+@check Division | Write $\dfrac1{2-i}$ as $a+bi$ (enter like 2/5+1/5i).
+A: 2/5+1/5i
+ALT: 0.4+0.2i || 2/5+i/5
+AD: $\frac25+\frac15i$
+SOL: Multiply by $\frac{2+i}{2+i}$. || Numerator: $2+i$. || Denominator: $4+1=5$. || $\frac25+\frac15i$.
+H: Multiply by the conjugate. || $(2-i)(2+i)=5$. || Split.
+@check Solve | Solve $z^2+9=0$ (answer as $\pm$ something).
+A: ±3i
+ALT: +-3i || 3i,-3i
+AD: $\pm3i$
+SOL: $z^2=-9$. || $z=\pm\sqrt{-9}$. || $\sqrt{-9}=3i$. || $z=\pm3i$.
+H: Isolate $z^2$. || Square root of a negative. || $\pm$.
+@check Product modulus | $2\operatorname{cis}\frac\pi3\times4\operatorname{cis}\frac\pi6$ has what modulus?
+A: 8
+AD: $8$
+SOL: Moduli multiply. || $2\times4$. || $=8$. || (The argument is $\frac\pi2$.)
+H: Multiply moduli. || Ignore the angles. || $8$.
+@solfix 0 | Multiply top and bottom by the conjugate $2+i$: $\frac{2+i}{(2-i)(2+i)}$. || Denominator: $2^2+1^2=5$. || So $\frac{2+i}{5}$. || $=\frac25+\frac15i$.
+@solfix 1 | $|a+bi|=\sqrt{a^2+b^2}$ with $a=3$, $b=-4$. || $=\sqrt{9+16}$. || $=\sqrt{25}$. || $=5$.
+@solfix 2 | $z^2=-9$. || $z=\pm\sqrt{-9}$. || $\sqrt{-9}=\sqrt9\,i=3i$. || $z=\pm3i$.
+@solfix 3 | $-1-i$ is in Q3 (both parts negative). || Reference angle: $\tan^{-1}\frac11=\frac\pi4$. || In Q3 the principal argument is $-(\pi-\frac\pi4)$. || $=-\frac{3\pi}4$.
+@solfix 4 | $|\sqrt3+i|=\sqrt{(\sqrt3)^2+1^2}$. || $=\sqrt{3+1}$. || $=\sqrt4$. || $=2$.
+@solfix 5 | When multiplying in polar form, moduli multiply. || $|z_1z_2|=2\times5$. || $=10$. || (Arguments add: $\frac\pi6+\frac\pi3=\frac\pi2$.)
+@solfix 6 | Polar form: $\sqrt3+i=2\operatorname{cis}\frac\pi6$. || De Moivre: $(2\operatorname{cis}\frac\pi6)^6=2^6\operatorname{cis}\pi$. || $=64\operatorname{cis}\pi$. || $\operatorname{cis}\pi=-1$, so the answer is $-64$.
+@solfix 7 | $z^n=w$ with $w\ne0$ has exactly $n$ distinct roots. || Here $n=5$. || They are $\operatorname{cis}\frac{2k\pi}5$ for $k=0,1,2,3,4$. || So 5 solutions.
+@solfix 8 | A real cubic has real coefficients. || Non-real roots then come in conjugate pairs. || The conjugate of $3+2i$ is $3-2i$. || The third root is $3-2i$.
+@solfix 9 | $i=0+1i$ lies on the positive imaginary axis. || That direction makes a $90^\circ$ angle with the positive real axis. || $90^\circ=\frac\pi2$ radians. || $\operatorname{Arg}(i)=\frac\pi2$.
+@solfix 10 | $|3-4i|=\sqrt{3^2+(-4)^2}$. || $=\sqrt{9+16}$. || $=\sqrt{25}$. || $=5$.
+@solfix 11 | This is $z\bar z$ with $z=2+3i$. || $(2+3i)(2-3i)=4-6i+6i-9i^2$. || $=4+9$. || $=13$.
+@solfix 12 | $-1-i$ lies in Q3. || Reference angle $\frac\pi4$. || Principal argument $=-\pi+\frac\pi4$. || $=-\frac{3\pi}4$.
+@solfix 13 | In polar form, moduli multiply. || $2\times4$. || $=8$. || (Arguments add to $\frac\pi3+\frac\pi6=\frac\pi2$.)
+@solfix 14 | De Moivre: $\left(\operatorname{cis}\frac\pi6\right)^{12}=\operatorname{cis}\frac{12\pi}6$. || $=\operatorname{cis}2\pi$. || $=\cos2\pi+i\sin2\pi$. || $=1$.
+@solfix 15 | $z^5=1$ is a degree-5 equation. || It has exactly 5 roots, $\operatorname{cis}\frac{2k\pi}5$, $k=0,\dots,4$. || These are all distinct (different arguments). || Answer: 5.
+@solfix 16 | Real coefficients mean non-real roots come in conjugate pairs. || $\overline{3-2i}=3+2i$. || So $3+2i$ is also a root. || Answer: $3+2i$.
+@solfix 17 | Powers of $i$ repeat every 4: $i,-1,-i,1$. || $13=3\times4+1$. || So $i^{13}=i^1$. || $=i$.
+@solfix 18 | $(1-i)^2=1-2i+i^2$. || Replace $i^2$ with $-1$. || $=1-2i-1$. || $=-2i$.
+@solfix 19 | $\Delta=36-52=-16$, so $z=\frac{6\pm4i}2=3\pm2i$. || Add: $(3+2i)+(3-2i)$. || $=6$. || (Quick check: sum of roots $=-\frac ba=6$.)
+@cometfix 0 | Cube roots of 1: $\operatorname{cis}0$, $\operatorname{cis}\frac{2\pi}3$, $\operatorname{cis}\frac{4\pi}3$. || In Cartesian: $1$, $-\frac12+\frac{\sqrt3}2i$, $-\frac12-\frac{\sqrt3}2i$. || Real parts add to $1-\frac12-\frac12=0$; imaginary parts cancel. || Sum $=0$.
+@cometfix 1 | Simplify first: $\frac{1+i}{1-i}=\frac{(1+i)^2}{(1-i)(1+i)}=\frac{2i}{2}=i$. || So we need $i^{2026}$. || $2026=4\times506+2$, remainder 2. || $i^2=-1$.
+@cometfix 2 | The solutions are the 7th roots of unity, spaced $\frac{2\pi}7$ apart on the unit circle. || By symmetry the vectors balance, so their sum is 0. || Algebraic check: $z^7-1$ has no $z^6$ term, so the sum of roots is $-0=0$. || Answer: 0.

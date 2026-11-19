@@ -1,0 +1,353 @@
+=== ms3-c04 | rewrite
+## 4.2
+@p **What this topic is about.** Describing the motion of an object by a position vector that changes with time, $\mathbf r(t)$. You will sketch paths, convert to Cartesian equations, and find where an object is at a given time.
+@key $\mathbf r(t)=x(t)\mathbf i+y(t)\mathbf j\ (+z(t)\mathbf k)$ gives the position at time $t$. The **path** (Cartesian equation) is found by **eliminating $t$** between $x(t)$ and $y(t)$. Always state any domain or range restrictions that come from $t$.
+@p **Eliminating $t$.** (1) If one coordinate is simple, make $t$ the subject and substitute: $x=t+1\Rightarrow t=x-1$. (2) If both involve $\sin$ and $\cos$ of the same angle, use $\sin^2+\cos^2=1$: $x=3\cos t$, $y=3\sin t\Rightarrow\left(\frac x3\right)^2+\left(\frac y3\right)^2=1\Rightarrow x^2+y^2=9$. (3) If $x=a\cos t$, $y=b\sin t$, you get an ellipse $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$.
+@p **Restrictions.** If $x=t^2$, then $x\ge0$, so only part of the curve is traced. If $t\in[0,\pi]$ with $x=\cos t$, $y=\sin t$, only the upper semicircle is traced. Markers expect you to state these.
+@p **Direction of motion.** Make a small table of $t$, $x$, $y$ values and plot points in order, adding arrows. For $\cos t,\sin t$ with increasing $t$ the motion is anticlockwise.
+@ex Circle (full working)
+Q: $\mathbf r(t)=3\cos t\,\mathbf i+3\sin t\,\mathbf j$, $t\ge0$. Find the Cartesian equation and describe the motion.
+S: **Isolate trig:** $\cos t=\frac x3$, $\sin t=\frac y3$.
+S: **Identity:** $\frac{x^2}9+\frac{y^2}9=1\Rightarrow x^2+y^2=9$.
+S: **Start:** $t=0$ gives $(3,0)$; $t=\frac\pi2$ gives $(0,3)$.
+S: **Describe:** circle of radius 3 centred at the origin, travelled anticlockwise starting at $(3,0)$, period $2\pi$.
+A: $x^2+y^2=9$, anticlockwise
+@ex Parabola with restriction (full working)
+Q: $\mathbf r(t)=t^2\mathbf i+(t^2+2)\mathbf j$, $t\in\mathbb R$. Find the path.
+S: **Eliminate:** $x=t^2$, so $y=x+2$.
+S: **Restriction:** $x=t^2\ge0$.
+S: **Path:** the half-line $y=x+2$ for $x\ge0$ (starting at $(0,2)$).
+A: $y=x+2$, $x\ge0$
+@ex Ellipse (full working)
+Q: Find the Cartesian equation of $\mathbf r(t)=4\cos t\,\mathbf i+2\sin t\,\mathbf j$.
+S: **Isolate:** $\cos t=\frac x4$, $\sin t=\frac y2$.
+S: **Identity:** $\frac{x^2}{16}+\frac{y^2}4=1$.
+S: **Shape:** ellipse with $x$-intercepts $\pm4$ and $y$-intercepts $\pm2$.
+A: $\frac{x^2}{16}+\frac{y^2}4=1$
+@ex Position at a time (full working)
+Q: $\mathbf r(t)=(t^2-1)\mathbf i+(3t)\mathbf j$. Find the position at $t=2$ and its distance from the origin.
+S: **Substitute:** $x=4-1=3$, $y=6$.
+S: **Position:** $(3,6)$.
+S: **Distance:** $\sqrt{9+36}=\sqrt{45}=3\sqrt5$.
+A: $(3,6)$, $3\sqrt5$
+@warn State restrictions from the parameter: $x=t^2$ means $x\ge0$, and limited $t$ intervals trace only part of the curve.
+@check Circle | $\mathbf r=(3\cos t,3\sin t)$. Complete: $x^2+y^2=\ ?$
+A: 9
+AD: $9$
+SOL: $x^2+y^2=9\cos^2t+9\sin^2t$. || $=9(\cos^2t+\sin^2t)$. || $=9(1)$. || $=9$.
+H: Square and add. || Factor 9. || Pythagorean identity.
+@check Power | $x=t$, $y=t^2$. Write $y$ in terms of $x$: enter the power.
+A: 2
+AD: $2$
+SOL: $t=x$. || $y=t^2$. || $y=x^2$. || Power 2.
+H: Make $t$ the subject. || Substitute. || $x^2$.
+@check Distance | Position $(3t,4t)$. Distance from the origin at $t=2$?
+A: 10
+AD: $10$
+SOL: At $t=2$: $(6,8)$. || Distance $\sqrt{36+64}$. || $=\sqrt{100}$. || $=10$.
+H: Substitute $t=2$. || Pythagoras. || $\sqrt{100}$.
+@check Ellipse | $\mathbf r=(4\cos t,2\sin t)$. Enter the positive $x$-intercept of the path.
+A: 4
+AD: $4$
+SOL: Path: $\frac{x^2}{16}+\frac{y^2}4=1$. || $x$-intercept: set $y=0$. || $x^2=16$. || Positive intercept 4.
+H: Eliminate $t$. || Set $y=0$. || Solve.
+@check Start | $\mathbf r=(t^2-1,3t)$. Enter the $x$-coordinate at $t=0$.
+A: -1
+AD: $-1$
+SOL: $x(0)=0^2-1$. || $=-1$. || $y(0)=0$. || Start at $(-1,0)$, $x=-1$.
+H: Substitute $t=0$. || $0-1$. || $-1$.
+## 4.3
+@p **What this topic is about.** Deciding whether two moving objects collide (are at the same place **at the same time**) or whether their paths merely cross (same place, different times). Also finding the closest approach.
+@key **Collision:** solve $\mathbf r_1(t)=\mathbf r_2(t)$ with the **same** $t$ in both. Equate each component; a single $t$ must satisfy **every** equation. **Paths cross:** solve $\mathbf r_1(t)=\mathbf r_2(s)$ with **different** parameters.
+@p **Method.** (1) Write each component equation. (2) Solve one for $t$. (3) Check that value in the other equation(s). If it works: collision at that time; find the point. If not: no collision (but the paths may still cross; test with $t$ and $s$).
+@p **Closest approach.** The separation is $\mathbf d(t)=\mathbf r_2(t)-\mathbf r_1(t)$. Minimise $|\mathbf d|^2$ (no square root to differentiate): set $\frac{d}{dt}|\mathbf d|^2=0$, or complete the square.
+@ex Collision (full working)
+Q: $\mathbf r_1=(t,2t)$ and $\mathbf r_2=(3-t,3)$. Do the objects collide?
+S: **$x$:** $t=3-t\Rightarrow t=1.5$.
+S: **$y$:** $2t=3\Rightarrow t=1.5$.
+S: **Same time:** both give $t=1.5$ ✓.
+S: **Point:** $\mathbf r_1(1.5)=(1.5,3)$.
+A: Collide at $t=1.5$ at $(1.5,3)$
+@ex Paths cross but no collision (full working)
+Q: $\mathbf r_1=(t,t)$ and $\mathbf r_2=(4-t,2)$. Collision? Do the paths cross?
+S: **Same time, $x$:** $t=4-t\Rightarrow t=2$. **$y$:** $t=2$ ✓. So they collide at $(2,2)$.
+S: **Compare** with $\mathbf r_2=(4-t,1)$: $x$ gives $t=2$ but $y$ gives $t=1$, so no collision.
+S: **Paths:** $\mathbf r_1(t)=\mathbf r_2(s)$: $t=4-s$ and $t=1$, so $s=3$. Paths cross at $(1,1)$ at different times.
+A: First pair collides at $(2,2)$; second pair's paths cross at $(1,1)$ but no collision
+@ex Closest approach (full working)
+Q: $\mathbf r_1=(t,0)$ and $\mathbf r_2=(0,t-2)$. Find the minimum distance.
+S: **Separation:** $\mathbf d=(-t,t-2)$.
+S: **Squared distance:** $D=t^2+(t-2)^2=2t^2-4t+4$.
+S: **Minimise:** $D'=4t-4=0\Rightarrow t=1$; $D(1)=2-4+4=2$.
+S: **Distance:** $\sqrt2$.
+A: Minimum distance $\sqrt2$ at $t=1$
+@ex Collision in 3D (full working)
+Q: $\mathbf r_1=(1+t,2t,3)$, $\mathbf r_2=(5-t,4,1+t)$. Collision?
+S: **$x$:** $1+t=5-t\Rightarrow t=2$.
+S: **$y$:** $2t=4\Rightarrow t=2$ ✓.
+S: **$z$:** $3=1+t\Rightarrow t=2$ ✓.
+S: **Point:** $(3,4,3)$.
+A: Collide at $t=2$ at $(3,4,3)$
+@warn Same point is not enough. A collision needs the same point at the **same time**.
+@check Collision time | $\mathbf r_1=(t,2t)$ and $\mathbf r_2=(3-t,3)$. At what $t$ do they collide?
+A: 1.5
+ALT: 3/2
+AD: $t=1.5$
+SOL: $x$: $t=3-t$, so $t=1.5$. || $y$: $2t=3$, so $t=1.5$. || Same time ✓. || $t=1.5$.
+H: Equate $x$. || Equate $y$. || Same $t$?
+@check Min squared distance | $\mathbf r_1=(t,0)$, $\mathbf r_2=(0,t-2)$. Find the minimum of $d^2$.
+A: 2
+AD: $2$
+SOL: $d^2=t^2+(t-2)^2=2t^2-4t+4$. || Derivative $4t-4=0$, $t=1$. || $d^2(1)=1+1$. || $=2$.
+H: Square the components. || Differentiate. || Substitute.
+@check 3D collision | $\mathbf r_1=(1+t,2t,3)$, $\mathbf r_2=(5-t,4,1+t)$. Collision time?
+A: 2
+ALT: t=2
+AD: $t=2$
+SOL: $x$: $t=2$. || $y$: $t=2$. || $z$: $t=2$. || All agree: $t=2$.
+H: Each component. || Same $t$? || 2.
+@check No collision | $\mathbf r_1=(t,t)$, $\mathbf r_2=(4-t,1)$. Do they collide? (yes/no)
+A: no
+ALT: No
+AD: No
+SOL: $x$: $t=2$. || $y$: $t=1$. || Different times. || No collision.
+H: Solve $x$. || Solve $y$. || Compare.
+@check Separation | $\mathbf r_1=(2t,1)$, $\mathbf r_2=(t,3)$. Distance between them at $t=0$?
+A: 2
+AD: $2$
+SOL: At $t=0$: $(0,1)$ and $(0,3)$. || Difference $(0,2)$. || Length 2. || Distance 2.
+H: Substitute $t=0$. || Subtract. || Length.
+## 4.4
+@p **What this topic is about.** Differentiating and integrating position vectors to get velocity and acceleration, and working backwards from acceleration to position with initial conditions. Speed is the magnitude of velocity.
+@key $$\mathbf v=\dot{\mathbf r}=\frac{d\mathbf r}{dt}\qquad\mathbf a=\ddot{\mathbf r}=\frac{d\mathbf v}{dt}\qquad\text{speed}=|\mathbf v|$$ Differentiate or integrate **each component separately**. When integrating, include a **vector** constant $\mathbf c$ and find it from an initial condition.
+@p **Interpreting.** $\mathbf v$ is tangent to the path and points in the direction of motion. The object is momentarily at rest when $\mathbf v=\mathbf 0$ (all components zero at the same time). Maximum or minimum speed: maximise $|\mathbf v|^2$.
+@p **Integration with initial conditions.** $\mathbf v(t)=\int\mathbf a\,dt=(\text{antiderivatives})+\mathbf c$. Substitute $t=0$ (or the given time) and the given vector to find $\mathbf c$. Repeat to go from $\mathbf v$ to $\mathbf r$.
+@ex Velocity and speed (full working)
+Q: $\mathbf r=(t^2,3t)$. Find $\mathbf v(2)$ and the speed at $t=2$.
+S: **Differentiate:** $\mathbf v=(2t,3)$.
+S: **Substitute:** $\mathbf v(2)=(4,3)$.
+S: **Speed:** $\sqrt{16+9}=5$.
+A: $\mathbf v(2)=(4,3)$; speed 5
+@ex Acceleration (full working)
+Q: $\mathbf r=(t^3,2t^2)$. Find $\mathbf a(1)$.
+S: **Velocity:** $\mathbf v=(3t^2,4t)$.
+S: **Acceleration:** $\mathbf a=(6t,4)$.
+S: **At $t=1$:** $(6,4)$.
+A: $(6,4)$
+@ex Integrating to position (full working)
+Q: $\mathbf v=(2t,6t^2)$ and $\mathbf r(0)=(1,0)$. Find $\mathbf r(1)$.
+S: **Integrate:** $\mathbf r=(t^2,2t^3)+\mathbf c$.
+S: **Initial condition:** $\mathbf r(0)=\mathbf c=(1,0)$.
+S: **Position:** $\mathbf r=(t^2+1,2t^3)$.
+S: **At $t=1$:** $(2,2)$.
+A: $(2,2)$
+@ex Speed on a circle (full working)
+Q: $\mathbf r=(5\cos2t,5\sin2t)$. Find the speed and show $\mathbf v\perp\mathbf r$.
+S: **Velocity (chain rule):** $\mathbf v=(-10\sin2t,10\cos2t)$.
+S: **Speed:** $\sqrt{100\sin^22t+100\cos^22t}=10$ (constant).
+S: **Dot:** $\mathbf r\cdot\mathbf v=-50\cos2t\sin2t+50\sin2t\cos2t=0$.
+S: **So** velocity is perpendicular to the radius, as expected for circular motion.
+A: Speed 10; $\mathbf r\cdot\mathbf v=0$
+@warn Integrating needs a constant vector. Forgetting it, or finding only one component of it, loses marks.
+@check Velocity | $\mathbf r=(t^2,3t)$. Find $\mathbf v(2)$ as $(x,y)$.
+A: (4,3)
+ALT: 4,3
+AD: $(4,3)$
+SOL: $\mathbf v=(2t,3)$. || At $t=2$: $(2\times2,3)$. || $=(4,3)$. || Answer $(4,3)$.
+H: Differentiate each component. || Substitute. || $(4,3)$.
+@check Speed | $\mathbf v=(4,3)$. Find the speed.
+A: 5
+AD: $5$
+SOL: Speed $=|\mathbf v|$. || $\sqrt{16+9}$. || $=\sqrt{25}$. || $=5$.
+H: Magnitude. || Square and add. || Root.
+@check Acceleration | $\mathbf r=(t^3,2t^2)$. Find $\mathbf a(1)$.
+A: (6,4)
+ALT: 6,4
+AD: $(6,4)$
+SOL: $\mathbf v=(3t^2,4t)$. || $\mathbf a=(6t,4)$. || At $t=1$: $(6,4)$. || Answer $(6,4)$.
+H: Differentiate twice. || Substitute. || $(6,4)$.
+@check Integrate | $\mathbf v=(2t,6t^2)$, $\mathbf r(0)=(1,0)$. Find $\mathbf r(1)$.
+A: (2,2)
+ALT: 2,2
+AD: $(2,2)$
+SOL: $\mathbf r=(t^2,2t^3)+\mathbf c$. || $\mathbf c=(1,0)$. || $\mathbf r=(t^2+1,2t^3)$. || $\mathbf r(1)=(2,2)$.
+H: Integrate. || Use $\mathbf r(0)$. || Substitute $t=1$.
+@check Acceleration magnitude | $\mathbf r=(t^2,t^2)$. Find $|\mathbf a|$ exactly.
+A: 2sqrt2
+ALT: 2√2 || sqrt8 || 2.83
+AD: $2\sqrt2$
+SOL: $\mathbf v=(2t,2t)$. || $\mathbf a=(2,2)$. || $|\mathbf a|=\sqrt{4+4}=\sqrt8$. || $=2\sqrt2$.
+H: Differentiate twice. || Magnitude. || Simplify the surd.
+## 4.5
+@p **What this topic is about.** Motion along a straight line: displacement $x$, velocity $v$ and acceleration $a$ as functions of time. You will also use the extra forms of acceleration that let you work with $v$ as a function of $x$.
+@key $$v=\frac{dx}{dt},\quad a=\frac{dv}{dt}=\frac{d^2x}{dt^2}=v\frac{dv}{dx}=\frac{d}{dx}\left(\frac12v^2\right)$$ **At rest:** $v=0$. **Displacement** over $[t_1,t_2]$: $\int v\,dt$. **Distance travelled:** $\int|v|\,dt$ (split at times when $v=0$).
+@p **Choosing the form.** If $a$ is given in terms of $t$, integrate $\frac{dv}{dt}=a(t)$. If $a$ is given in terms of $x$, use $\frac{d}{dx}\left(\frac12v^2\right)=a(x)$ and integrate with respect to $x$. If $a$ is in terms of $v$, use $\frac{dv}{dt}=a(v)$ (separate) or $v\frac{dv}{dx}=a(v)$.
+@p **Speeding up or slowing down.** Speeding up when $v$ and $a$ have the same sign; slowing down when opposite signs.
+@ex At rest and distance (full working)
+Q: $x=t^2-4t$ for $0\le t\le5$. When is the particle at rest, and how far does it travel?
+S: **Velocity:** $v=2t-4=0$ at $t=2$.
+S: **Positions:** $x(0)=0$, $x(2)=-4$, $x(5)=5$.
+S: **Distance:** $|{-4}-0|+|5-(-4)|=4+9=13$.
+S: **Displacement** (for comparison): $5-0=5$.
+A: At rest at $t=2$; distance 13
+@ex Displacement from velocity (full working)
+Q: $v=2t$ for $0\le t\le3$. Find the displacement.
+S: **Integrate:** $\int_0^3 2t\,dt=[t^2]_0^3$.
+S: **Evaluate:** $9-0=9$.
+S: **Note:** $v\ge0$ throughout, so distance also 9.
+A: 9
+@ex Acceleration as a function of $x$ (full working)
+Q: $a=-4x$ and $v=6$ when $x=0$. Find $v^2$ in terms of $x$.
+S: **Form:** $\frac{d}{dx}\left(\frac12v^2\right)=-4x$.
+S: **Integrate:** $\frac12v^2=-2x^2+c$.
+S: **Condition:** $\frac12(36)=c\Rightarrow c=18$.
+S: **Result:** $v^2=36-4x^2$. (Motion is between $x=\pm3$, where $v=0$.)
+A: $v^2=36-4x^2$
+@ex Acceleration in terms of $v$ (full working)
+Q: $\frac{dv}{dt}=-2v$ with $v(0)=10$. Find $v(t)$.
+S: **Separate:** $\frac{dv}{v}=-2\,dt$.
+S: **Integrate:** $\ln v=-2t+c$.
+S: **Condition:** $\ln10=c$.
+S: **Result:** $v=10e^{-2t}$.
+A: $v=10e^{-2t}$
+@warn Distance is not displacement. If $v$ changes sign, split the interval at the turning time.
+@check Rest | $x=t^2-4t$. When is the particle at rest?
+A: 2
+ALT: t=2
+AD: $t=2$
+SOL: $v=\frac{dx}{dt}=2t-4$. || Set $v=0$. || $2t=4$. || $t=2$.
+H: Differentiate. || Set to 0. || Solve.
+@check Displacement | $v=2t$ on $0\le t\le3$. Find the displacement.
+A: 9
+AD: $9$
+SOL: $\int_0^3 2t\,dt$. || $=[t^2]_0^3$. || $=9-0$. || $=9$.
+H: Integrate velocity. || Limits 0 and 3. || Evaluate.
+@check Zero velocity | $\mathbf v=(t-2,t-2)$ is zero when $t=$?
+A: 2
+AD: $t=2$
+SOL: Both components are zero at the same time. || $t-2=0$. || $t=2$. || Check both: $(0,0)$ ✓.
+H: Set each component to 0. || Same $t$? || 2.
+@check Distance | $x=t^2-4t$ on $0\le t\le5$. Find the total distance travelled.
+A: 13
+AD: $13$
+SOL: Turns at $t=2$. || $x(0)=0$, $x(2)=-4$, $x(5)=5$. || $4+9$. || $=13$.
+H: Find when $v=0$. || Positions at key times. || Add distances.
+@check v squared | $a=-4x$, $v=6$ at $x=0$. Find $v^2$ when $x=1$.
+A: 32
+AD: $32$
+SOL: $\frac12v^2=-2x^2+18$. || $v^2=36-4x^2$. || At $x=1$: $36-4$. || $=32$.
+H: Use $\frac{d}{dx}(\frac12v^2)$. || Find $c$. || Substitute.
+## 4.6
+@p **What this topic is about.** Two key applications: **projectile motion** (constant downward acceleration $g$) and **uniform circular motion**. Both are modelled with vector calculus from 4.4.
+@key **Projectile** launched at speed $V$ and angle $\theta$, with $\mathbf a=(0,-g)$: $$\mathbf v=(V\cos\theta,\ V\sin\theta-gt),\qquad\mathbf r=(Vt\cos\theta,\ Vt\sin\theta-\tfrac12gt^2)$$ (from the origin). **Max height** when $\dot y=0$. **Time of flight** when $y=0$ ($t>0$). **Range** $=\frac{V^2\sin2\theta}g$, maximum at $\theta=45^\circ$.
+@key **Circular motion** $\mathbf r=(R\cos\omega t,R\sin\omega t)$: speed $R\omega$, acceleration $\mathbf a=-\omega^2\mathbf r$ (towards the centre), magnitude $R\omega^2$, period $\frac{2\pi}\omega$.
+@p **Projectile method.** (1) Set up $\mathbf a$ and integrate twice using the initial velocity and position. (2) Use the vertical component for heights and flight times. (3) Use the horizontal component for distances. (4) Answer with units.
+@ex Projectile (full working)
+Q: A ball is thrown from ground level with initial velocity $(20,15)$ m/s and $g=10$. Find the time of flight, maximum height and range.
+S: **Position:** $\mathbf r=(20t,\ 15t-5t^2)$.
+S: **Flight:** $15t-5t^2=0\Rightarrow5t(3-t)=0\Rightarrow t=3$ s.
+S: **Max height:** $\dot y=15-10t=0$ at $t=1.5$; $y=22.5-11.25=11.25$ m.
+S: **Range:** $x(3)=60$ m.
+A: 3 s, 11.25 m, 60 m
+@ex Height reached (full working)
+Q: Height $y=10t-5t^2$. Find the maximum height.
+S: **Differentiate:** $\dot y=10-10t$.
+S: **Zero:** $t=1$.
+S: **Height:** $10-5=5$.
+A: 5 m
+@ex Circular motion (full working)
+Q: $\mathbf r=(5\cos2t,5\sin2t)$. Find the speed, acceleration magnitude and period.
+S: **Identify:** $R=5$, $\omega=2$.
+S: **Speed:** $R\omega=10$.
+S: **Acceleration:** $\mathbf a=-4\mathbf r$, magnitude $R\omega^2=20$.
+S: **Period:** $\frac{2\pi}2=\pi$.
+A: Speed 10, $|\mathbf a|=20$, period $\pi$
+@ex Maximum range (full working)
+Q: Launch speed 20 m/s, $g=10$. Find the maximum range.
+S: **Range:** $R=\frac{V^2\sin2\theta}{g}=\frac{400\sin2\theta}{10}=40\sin2\theta$.
+S: **Maximum:** $\sin2\theta=1$ at $\theta=45^\circ$.
+S: **Value:** 40 m.
+A: 40 m at $45^\circ$
+@warn Horizontal velocity stays constant (no horizontal acceleration). Only the vertical component changes.
+@check Flight | Time of flight for $y=15t-5t^2$.
+A: 3
+AD: $t=3$
+SOL: $y=0$: $5t(3-t)=0$. || $t=0$ (launch) or $t=3$. || Take $t>0$. || $t=3$.
+H: Set $y=0$. || Factorise. || Positive root.
+@check Max height | Projectile height $10t-5t^2$. Maximum height?
+A: 5
+AD: $5$
+SOL: $\dot y=10-10t=0$. || $t=1$. || $y=10-5$. || $=5$.
+H: Differentiate. || Solve. || Substitute.
+@check Circle speed | $\mathbf r=(5\cos2t,5\sin2t)$. Find the speed.
+A: 10
+AD: $10$
+SOL: $\mathbf v=(-10\sin2t,10\cos2t)$. || $|\mathbf v|=\sqrt{100(\sin^2+\cos^2)}$. || $=10$. || Or $R\omega=5\times2$.
+H: Differentiate. || Magnitude. || Identity.
+@check Horizontal | $\ddot{\mathbf r}=(0,-10)$, initial velocity $(5,0)$. $x$-velocity at $t=3$?
+A: 5
+AD: $5$
+SOL: $\dot x=\int0\,dt=c$. || $c=5$ from the initial velocity. || So $\dot x=5$ for all $t$. || At $t=3$: 5.
+H: No horizontal acceleration. || Constant. || 5.
+@check Range | Speed 20 m/s, $g=10$. Maximum range?
+A: 40
+AD: $40$ m
+SOL: $R=\frac{400\sin2\theta}{10}$. || Max $\sin2\theta=1$. || $R=40$. || At $\theta=45^\circ$.
+H: Range formula. || Max of $\sin$. || 40.
+## X
+@p **Exam checklist.** Differentiate/integrate each component. Use initial conditions for the constant vector. Speed is $|\mathbf v|$. For collisions, same $t$. For straight-line problems choose the right form of $a$ and split for distance. For projectiles use vertical for time and height, horizontal for range.
+@ex Exam-style: maximum speed (full working)
+Q: $\mathbf r=(\cos t,2\sin t)$. Find the maximum speed.
+S: **Velocity:** $\mathbf v=(-\sin t,2\cos t)$.
+S: **Speed squared:** $\sin^2t+4\cos^2t=1+3\cos^2t$.
+S: **Maximum:** when $\cos^2t=1$: $1+3=4$.
+S: **Speed:** $\sqrt4=2$.
+A: 2
+@check Max speed | $\mathbf r=(\cos t,2\sin t)$. Find the maximum speed.
+A: 2
+AD: $2$
+SOL: $\mathbf v=(-\sin t,2\cos t)$. || $|\mathbf v|^2=1+3\cos^2t$. || Max $4$ when $\cos^2t=1$. || Max speed 2.
+H: Differentiate. || Speed squared. || Maximise.
+@check Direction | $\mathbf v=(0,5)$. Moving in the $x$ or $y$ direction?
+A: y
+AD: $y$
+SOL: The $x$-component is 0. || Only the $y$-component is non-zero. || So motion is along $y$. || Answer $y$.
+H: Which component is non-zero? || $(0,5)$. || $y$.
+@check Integrate | $\mathbf v=(4t,0)$, $\mathbf r(0)=(0,0)$. Find $x(2)$.
+A: 8
+AD: $8$
+SOL: $x=2t^2+c$. || $c=0$. || $x(2)=2\times4$. || $=8$.
+H: Integrate $4t$. || Use $x(0)=0$. || Substitute.
+@check Derivative | $\mathbf r=(t^3,2t)$. First component of $\dot{\mathbf r}$ at $t=1$.
+A: 3
+AD: $3$
+SOL: $\dot{\mathbf r}=(3t^2,2)$. || At $t=1$: $(3,2)$. || First component 3. || Answer 3.
+H: Differentiate. || Substitute. || First component.
+@check Speed | $\dot{\mathbf r}=(3,4)$. Speed?
+A: 5
+AD: $5$
+SOL: $|\dot{\mathbf r}|=\sqrt{9+16}$. || $=\sqrt{25}$. || $=5$. || Speed 5.
+H: Magnitude. || $9+16$. || Root.
+@solfix 0 | $x^2+y^2=9\cos^2t+9\sin^2t$. || $=9(\cos^2t+\sin^2t)$. || $=9$. || So the path is a circle of radius 3.
+@solfix 1 | Differentiate each component: $\mathbf v=(2t,3)$. || Substitute $t=2$. || $(4,3)$. || Answer $(4,3)$.
+@solfix 2 | Speed $=|\mathbf v|=\sqrt{4^2+3^2}$. || $=\sqrt{16+9}$. || $=\sqrt{25}$. || $=5$.
+@solfix 3 | $\mathbf v=(3t^2,4t)$. || $\mathbf a=(6t,4)$. || At $t=1$: $(6,4)$. || Answer $(6,4)$.
+@solfix 4 | Integrate: $\mathbf r=(t^2,2t^3)+\mathbf c$. || $\mathbf r(0)=\mathbf c=(1,0)$. || $\mathbf r=(t^2+1,2t^3)$. || $\mathbf r(1)=(2,2)$.
+@solfix 5 | $x$: $t=3-t$, so $t=1.5$. || $y$: $2t=3$, so $t=1.5$. || Both components agree at the same time. || Collision at $t=1.5$, at $(1.5,3)$.
+@solfix 6 | $v=\frac{dx}{dt}=2t-4$. || At rest: $v=0$. || $2t-4=0$. || $t=2$.
+@solfix 7 | Set $y=0$: $15t-5t^2=0$. || $5t(3-t)=0$. || $t=0$ is launch. || Time of flight $t=3$.
+@solfix 8 | $\mathbf v=(-10\sin2t,10\cos2t)$ (chain rule). || $|\mathbf v|=\sqrt{100\sin^22t+100\cos^22t}$. || $=\sqrt{100}=10$. || Speed 10 (constant).
+@solfix 9 | Displacement $=\int_0^3v\,dt=\int_0^32t\,dt$. || $=[t^2]_0^3$. || $=9-0$. || $=9$.
+@solfix 10 | $\dot{\mathbf r}=(3t^2,2)$. || At $t=1$: $(3,2)$. || The first component is 3. || Answer 3.
+@solfix 11 | Speed $=\sqrt{3^2+4^2}$. || $=\sqrt{9+16}$. || $=\sqrt{25}$. || $=5$.
+@solfix 12 | $x=\int4t\,dt=2t^2+c$. || $x(0)=0$ gives $c=0$. || $x(2)=2(2)^2$. || $=8$.
+@solfix 13 | $\mathbf v=(2t,2t)$. || $\mathbf a=(2,2)$. || $|\mathbf a|=\sqrt{4+4}=\sqrt8$. || $=2\sqrt2$.
+@solfix 14 | $x=t$, so $t=x$. || Substitute into $y=t^2$. || $y=x^2$. || The power is 2.
+@solfix 15 | $\dot y=10-10t$. || Set $\dot y=0$: $t=1$. || $y(1)=10(1)-5(1)^2$. || $=5$.
+@solfix 16 | Velocity is zero when every component is zero. || $t-2=0$ for both components. || $t=2$. || Check: $\mathbf v(2)=(0,0)$ ✓.
+@solfix 17 | At $t=2$, position $=(6,8)$. || Distance $=\sqrt{6^2+8^2}$. || $=\sqrt{100}$. || $=10$.
+@solfix 18 | $\mathbf v=(0,5)$: the $x$-component is 0. || Only the $y$-component is non-zero. || So the object moves in the $y$ direction. || Answer $y$.
+@solfix 19 | Horizontal acceleration is 0. || So $\dot x$ is constant. || It equals its initial value, 5. || At $t=3$: $\dot x=5$.
+@cometfix 0 | $\mathbf r_2-\mathbf r_1=(-t,t-2)$. || $d^2=t^2+(t-2)^2=2t^2-4t+4$. || $\frac{d}{dt}(d^2)=4t-4=0$, so $t=1$. || Minimum $d^2=2-4+4=2$.
+@cometfix 1 | $\mathbf v=(-\sin t,2\cos t)$. || $|\mathbf v|^2=\sin^2t+4\cos^2t=1+3\cos^2t$. || Largest when $\cos^2t=1$: $|\mathbf v|^2=4$. || Maximum speed 2.
+@cometfix 2 | $R=\frac{20^2\sin2\theta}{10}=40\sin2\theta$. || $\sin2\theta\le1$, with equality at $\theta=45^\circ$. || So $R_{\max}=40$. || Maximum range 40 m.

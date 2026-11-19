@@ -1,0 +1,305 @@
+=== mm3-c07 | rewrite
+## 7.2
+@p **What this topic is about.** A Bernoulli trial is the simplest random experiment: one trial, two outcomes (success or failure). It is the building block of the binomial distribution, which counts successes over many repeated trials.
+@key A **Bernoulli random variable** $X$ takes the value 1 (success) with probability $p$ and 0 (failure) with probability $1-p$. $$E(X)=p\qquad\operatorname{Var}(X)=p(1-p)\qquad\sigma=\sqrt{p(1-p)}$$
+@p **Where the formulas come from.** $E(X)=1\cdot p+0\cdot(1-p)=p$. $E(X^2)=1^2\cdot p+0^2\cdot(1-p)=p$, so $\operatorname{Var}(X)=p-p^2=p(1-p)$. The variance is largest at $p=0.5$ (maximum uncertainty, $0.25$) and zero at $p=0$ or $1$ (no uncertainty).
+@p **Defining success.** "Success" just means the outcome you are counting; it need not be a good thing. If you are counting faulty items, "success" is "faulty". Always state $p$ in words: "$p$ = probability a randomly chosen item is faulty $=0.03$".
+@ex Bernoulli mean and SD (full working)
+Q: A basketballer makes 70% of free throws. Let $X=1$ if a shot succeeds and $0$ otherwise. Find $E(X)$, $\operatorname{Var}(X)$ and $\sigma$.
+S: **Identify $p$:** success = shot made, $p=0.7$.
+S: **Mean:** $E(X)=p=0.7$.
+S: **Variance:** $\operatorname{Var}(X)=p(1-p)=0.7\times0.3=0.21$.
+S: **SD:** $\sigma=\sqrt{0.21}\approx0.458$.
+A: $E=0.7$, $\operatorname{Var}=0.21$, $\sigma\approx0.458$
+@ex Finding $p$ from the variance (full working)
+Q: A Bernoulli variable has variance 0.16 and $p>0.5$. Find $p$.
+S: **Set up:** $p(1-p)=0.16\Rightarrow p-p^2=0.16$.
+S: **Rearrange:** $p^2-p+0.16=0$.
+S: **Solve:** $p=\dfrac{1\pm\sqrt{1-0.64}}{2}=\dfrac{1\pm0.6}{2}$, so $p=0.8$ or $0.2$.
+S: **Choose:** $p>0.5$, so $p=0.8$.
+A: $p=0.8$
+@ex Comparing spread (full working)
+Q: Which Bernoulli variable has the larger SD: $p=0.1$ or $p=0.4$?
+S: **$p=0.1$:** $\operatorname{Var}=0.1\times0.9=0.09$, $\sigma=0.3$.
+S: **$p=0.4$:** $\operatorname{Var}=0.4\times0.6=0.24$, $\sigma\approx0.490$.
+S: **Compare:** $0.490>0.3$.
+S: **Reason:** $p=0.4$ is closer to 0.5, where uncertainty is greatest.
+A: $p=0.4$ (SD $\approx0.49$ versus $0.3$)
+@warn A Bernoulli variable describes **one** trial. For a count over several trials, use the binomial distribution (7.3).
+@check Mean | A Bernoulli trial has $p=0.35$. Find $E(X)$.
+A: 0.35
+AD: $0.35$
+SOL: For a Bernoulli variable, $E(X)=1\cdot p+0\cdot(1-p)$. || This simplifies to $p$. || $p=0.35$. || $E(X)=0.35$.
+H: Mean of a Bernoulli is $p$. || Substitute. || Done.
+@check Variance | Find the variance of a Bernoulli trial with $p=0.3$.
+A: 0.21
+AD: $0.21$
+SOL: $\operatorname{Var}=p(1-p)$. || $=0.3\times0.7$. || $=0.21$. || So the variance is 0.21.
+H: $p(1-p)$. || $1-p=0.7$. || Multiply.
+@check SD | Find the standard deviation of a Bernoulli trial with $p=0.5$.
+A: 0.5
+AD: $0.5$
+SOL: $\operatorname{Var}=0.5\times0.5=0.25$. || $\sigma=\sqrt{0.25}$. || $=0.5$. || This is the largest possible Bernoulli SD.
+H: Variance first. || Square root. || $\sqrt{0.25}$.
+@check Find p | A Bernoulli variable has variance 0.24 and $p<0.5$. Find $p$.
+A: 0.4
+ALT: p=0.4
+AD: $p=0.4$
+SOL: $p(1-p)=0.24\Rightarrow p^2-p+0.24=0$. || Factorise: $(p-0.4)(p-0.6)=0$. || $p=0.4$ or $0.6$. || Since $p<0.5$, $p=0.4$.
+H: Set up $p(1-p)=0.24$. || Solve the quadratic. || Choose $p<0.5$.
+@check Largest variance | For which value of $p$ is the variance of a Bernoulli trial largest?
+A: 0.5
+ALT: p=0.5 || 1/2
+AD: $p=0.5$
+SOL: $V(p)=p-p^2$. || $V'(p)=1-2p=0$ gives $p=0.5$. || $V''=-2<0$, a maximum. || Largest variance $0.25$ at $p=0.5$.
+H: Write the variance as a function of $p$. || Differentiate. || Solve.
+## 7.3
+@p **What this topic is about.** The **binomial distribution** counts the number of successes in a fixed number of independent, identical Bernoulli trials. It models guessing on tests, defective items in a batch, free throws made, and survey responses. Expect it in both exam papers.
+@key $X\sim\text{Bin}(n,p)$ counts successes in $n$ trials. $$P(X=k)=\binom nk p^k(1-p)^{n-k},\quad k=0,1,\dots,n,\qquad\binom nk=\frac{n!}{k!(n-k)!}$$ **Conditions:** fixed $n$; each trial has two outcomes; constant $p$; trials independent.
+@p **Why the formula works.** Take $n=3$, $k=2$. The ways to get 2 successes are SSF, SFS, FSS: there are $\binom32=3$ arrangements. Each has probability $p^2(1-p)$ (multiply because trials are independent). So $P(X=2)=3p^2(1-p)$. In general $\binom nk$ counts the arrangements and $p^k(1-p)^{n-k}$ is the probability of each one.
+@p **Translating words to inequalities.** "Exactly 3": $X=3$. "At most 3": $X\le3$. "At least 3": $X\ge3=1-P(X\le2)$. "Fewer than 3": $X\le2$. "More than 3": $X\ge4$. "Between 2 and 5 inclusive": $2\le X\le5$. Write the inequality first, then calculate (by formula or CAS `binomCdf`).
+@ex Exactly $k$ by formula (full working)
+Q: $X\sim\text{Bin}(5,0.3)$. Find $P(X=2)$ to 4 decimal places.
+S: **Identify:** $n=5$, $p=0.3$, $k=2$, $1-p=0.7$.
+S: **Combination:** $\binom52=\frac{5!}{2!\,3!}=10$.
+S: **Formula:** $P(X=2)=10\times0.3^2\times0.7^3$.
+S: **Evaluate:** $0.3^2=0.09$, $0.7^3=0.343$, so $10\times0.09\times0.343=0.3087$.
+A: $0.3087$
+@ex At least one (full working)
+Q: A seed germinates with probability 0.8. Ten seeds are planted. Find the probability that at least one fails to germinate.
+S: **Define:** let $X$ = number that **fail**; $X\sim\text{Bin}(10,0.2)$.
+S: **Translate:** "at least one fails" is $P(X\ge1)$.
+S: **Complement:** $P(X\ge1)=1-P(X=0)$.
+S: **$P(X=0)$:** $\binom{10}{0}0.2^0\,0.8^{10}=0.8^{10}\approx0.1074$.
+S: **Answer:** $1-0.1074=0.8926$.
+A: $\approx0.893$
+@ex Worded problem: guessing (full working)
+Q: A test has 10 multiple-choice questions with 4 options each. A student guesses every answer. Find the probability of at least 5 correct.
+S: **Check conditions:** fixed $n=10$; correct/incorrect; $p=0.25$ for each; guesses independent ✓. $X\sim\text{Bin}(10,0.25)$.
+S: **Translate:** $P(X\ge5)=1-P(X\le4)$.
+S: **CAS:** $P(X\le4)=\text{binomCdf}(10,0.25,0,4)\approx0.9219$.
+S: **Answer:** $1-0.9219=0.0781$.
+S: **Interpret:** less than an 8% chance of passing by guessing.
+A: $\approx0.0781$
+@ex Number of trials needed (full working)
+Q: How many seeds (germination probability 0.8) must be planted to be at least 99% sure that at least one germinates?
+S: **Let $X$ = number that germinate**, $X\sim\text{Bin}(n,0.8)$. We need $P(X\ge1)\ge0.99$.
+S: **Complement:** $1-P(X=0)=1-0.2^n\ge0.99\Rightarrow0.2^n\le0.01$.
+S: **Logs:** $n\ln0.2\le\ln0.01$. Dividing by $\ln0.2$ (negative) reverses the inequality: $n\ge\frac{\ln0.01}{\ln0.2}\approx2.86$.
+S: **Integer answer:** round **up**: $n=3$. Check: $1-0.2^3=0.992\ge0.99$ ✓, and $n=2$ gives $0.96$ ✗.
+A: 3 seeds
+@warn "At least one" is $1-P(X=0)$, **not** $1-P(X=1)$. And when dividing by the log of a number less than 1, the inequality sign flips.
+@p **Exam tip.** Write "Let $X$ be the number of ... Then $X\sim\text{Bin}(n,p)$" as your first line. It defines the model and usually earns a mark by itself.
+@check Exactly | $X\sim\text{Bin}(4,0.5)$. Find $P(X=2)$ as a fraction.
+A: 3/8
+ALT: 0.375
+AD: $\tfrac38$
+SOL: $\binom42=6$. || $P(X=2)=6\times0.5^2\times0.5^2$. || $=6\times\frac1{16}$. || $=\frac6{16}=\frac38$.
+H: Find $\binom42$. || $0.5^4=\frac1{16}$. || Multiply.
+@check None | $X\sim\text{Bin}(3,0.2)$. Find $P(X=0)$.
+A: 0.512
+AD: $0.512$
+SOL: $P(X=0)=\binom30(0.2)^0(0.8)^3$. || $\binom30=1$ and $0.2^0=1$. || $0.8^3=0.512$. || $P(X=0)=0.512$.
+H: $k=0$ means all failures. || $0.8^3$. || Evaluate.
+@check At least one | $X\sim\text{Bin}(5,0.1)$. Find $P(X\ge1)$ to 4 decimal places.
+A: 0.4095
+ALT: 0.40951
+AD: $0.4095$
+SOL: $P(X\ge1)=1-P(X=0)$. || $P(X=0)=0.9^5=0.59049$. || $1-0.59049=0.40951$. || To 4 d.p.: $0.4095$.
+H: Use the complement. || $P(X=0)=0.9^5$. || Subtract from 1.
+@check Two of three | $X\sim\text{Bin}(3,0.6)$. Find $P(X=2)$.
+A: 0.432
+AD: $0.432$
+SOL: $\binom32=3$. || $0.6^2=0.36$ and $0.4^1=0.4$. || $3\times0.36\times0.4$. || $=0.432$.
+H: Three arrangements. || $p^2(1-p)$. || Multiply.
+@check Trials needed | Smallest $n$ with $0.5^n<0.1$?
+A: 4
+ALT: n=4
+AD: $n=4$
+SOL: $n>\frac{\ln0.1}{\ln0.5}$ (inequality flips because $\ln0.5<0$). || $\frac{-2.3026}{-0.6931}\approx3.32$. || So $n\ge4$. || Check: $0.5^3=0.125$ (too big), $0.5^4=0.0625<0.1$ ✓.
+H: Take logs. || Flip the inequality. || Round up.
+## 7.4
+@p **What this topic is about.** The mean and spread of a binomial distribution, and how its shape changes with $n$ and $p$. These let you predict typical outcomes, judge whether a result is unusual, and work backwards to find $n$ or $p$.
+@key $X\sim\text{Bin}(n,p)$: $$E(X)=np\qquad\operatorname{Var}(X)=np(1-p)\qquad\sigma=\sqrt{np(1-p)}$$
+@p **Why.** A binomial count is the sum of $n$ independent Bernoulli variables, each with mean $p$ and variance $p(1-p)$. Means add, and for independent variables variances add, giving $np$ and $np(1-p)$.
+@p **Shape.** If $p=0.5$ the distribution is symmetric. If $p<0.5$ it is skewed right (positive skew); if $p>0.5$ skewed left. The most likely value (mode) is near the mean $np$. As $n$ grows the shape becomes more symmetric and bell-like.
+@p **Unusual results.** About 95% of outcomes fall within two standard deviations of the mean. A result more than about $2\sigma$ from $np$ is unusual and may suggest the assumed $p$ is wrong.
+@ex Mean and SD (full working)
+Q: $X\sim\text{Bin}(40,0.15)$. Find $E(X)$, $\operatorname{Var}(X)$ and $\sigma$.
+S: **Mean:** $np=40\times0.15=6$.
+S: **Variance:** $np(1-p)=6\times0.85=5.1$.
+S: **SD:** $\sqrt{5.1}\approx2.26$.
+S: **Interpret:** in 40 trials we expect about 6 successes, typically within about 2 of that.
+A: $E=6$, $\operatorname{Var}=5.1$, $\sigma\approx2.26$
+@ex Finding $n$ and $p$ (full working)
+Q: A binomial variable has mean 6 and variance 4.2. Find $n$ and $p$.
+S: **Equations:** $np=6$ and $np(1-p)=4.2$.
+S: **Divide the second by the first:** $1-p=\frac{4.2}{6}=0.7$, so $p=0.3$.
+S: **Find $n$:** $n=\frac{6}{0.3}=20$.
+S: **Check:** $20\times0.3\times0.7=4.2$ ✓.
+A: $n=20$, $p=0.3$
+@ex Worded problem: is the result unusual? (full working)
+Q: 4% of components are defective. In a box of 200, 15 are defective. Is this unusual?
+S: **Model:** $X\sim\text{Bin}(200,0.04)$.
+S: **Mean:** $200\times0.04=8$.
+S: **SD:** $\sqrt{200\times0.04\times0.96}=\sqrt{7.68}\approx2.77$.
+S: **Standardise:** $\frac{15-8}{2.77}\approx2.5$ standard deviations above the mean.
+S: **Conclude:** more than 2 SD above the mean, so unusual; the defect rate may have increased.
+A: Yes, about 2.5 SD above the mean of 8
+@ex Most likely value (full working)
+Q: For $X\sim\text{Bin}(10,0.3)$, which value is most likely?
+S: **Estimate from the mean:** $np=3$.
+S: **Compare neighbours:** $P(X=2)=\binom{10}2(0.3)^2(0.7)^8\approx0.2335$; $P(X=3)=\binom{10}3(0.3)^3(0.7)^7\approx0.2668$; $P(X=4)\approx0.2001$.
+S: **Largest:** $P(X=3)$.
+A: $X=3$
+@warn $\operatorname{Var}(X)=np(1-p)$, not $np$. Square root it to get the SD before comparing with distances from the mean.
+@check Mean | $X\sim\text{Bin}(50,0.2)$. Find $E(X)$.
+A: 10
+AD: $10$
+SOL: $E(X)=np$. || $=50\times0.2$. || $=10$. || We expect 10 successes.
+H: Mean is $np$. || Multiply. || $50\times0.2$.
+@check Variance | $X\sim\text{Bin}(50,0.2)$. Find $\operatorname{Var}(X)$.
+A: 8
+AD: $8$
+SOL: $\operatorname{Var}=np(1-p)$. || $=50\times0.2\times0.8$. || $=10\times0.8$. || $=8$.
+H: $np(1-p)$. || $np=10$. || Multiply by 0.8.
+@check SD | $X\sim\text{Bin}(100,0.5)$. Find $\sigma$.
+A: 5
+AD: $5$
+SOL: $\operatorname{Var}=100\times0.5\times0.5=25$. || $\sigma=\sqrt{25}$. || $=5$. || So the SD is 5.
+H: Variance first. || $100\times0.25$. || Square root.
+@check Find p | $X\sim\text{Bin}(30,p)$ has mean 6. Find $p$.
+A: 0.2
+ALT: p=0.2 || 1/5
+AD: $p=0.2$
+SOL: $np=6$. || $30p=6$. || $p=\frac{6}{30}$. || $p=0.2$.
+H: Mean $=np$. || Substitute $n=30$. || Solve.
+@check Find n and p | A binomial has mean 8 and variance 4.8. Find $n$.
+A: 20
+ALT: n=20
+AD: $n=20$
+SOL: $1-p=\frac{4.8}{8}=0.6$, so $p=0.4$. || $n=\frac{8}{0.4}$. || $n=20$. || Check: $20\times0.4\times0.6=4.8$ ✓.
+H: Divide variance by mean. || That gives $1-p$. || Then $n=\frac{\text{mean}}{p}$.
+## 7.5
+@p **What this topic is about.** Applying binomial models to real situations and judging whether the model is appropriate. Exam questions often finish with "comment on the validity of the binomial model", so you must check each condition in context.
+@p **Modelling routine.** (1) Define $X$ in words. (2) Identify $n$ and $p$. (3) Check the four conditions in context. (4) Translate the question into an inequality and calculate. (5) Interpret in context. (6) Comment on assumptions, especially independence and constant $p$.
+@p **When the model breaks.** Sampling **without replacement** from a small group changes $p$ after each draw (not constant, not independent). People in the same household or class influence each other (not independent). Weather or seasonal effects change $p$ over time. If the population is large compared with the sample (e.g. 10 from 10 000), sampling without replacement is approximately binomial.
+@ex Worded problem: free throws (full working)
+Q: A player makes 75% of free throws. In a game she takes 8. Find the probability she makes at least 6, and the expected number made.
+S: **Model:** $X$ = number made, $X\sim\text{Bin}(8,0.75)$, assuming shots are independent with constant success rate.
+S: **Translate:** $P(X\ge6)=P(X=6)+P(X=7)+P(X=8)$.
+S: **Calculate:** $P(X=6)=\binom86(0.75)^6(0.25)^2\approx0.3115$; $P(X=7)=8(0.75)^7(0.25)\approx0.2670$; $P(X=8)=0.75^8\approx0.1001$.
+S: **Add:** $\approx0.6785$.
+S: **Expected number:** $8\times0.75=6$.
+A: $P(X\ge6)\approx0.679$; expected 6 made
+@ex Checking the model (full working)
+Q: A quality inspector removes 5 bulbs one at a time without replacement from a box of 20, of which 4 are faulty. Is the number of faulty bulbs chosen binomial?
+S: **Fixed $n$:** yes, 5 draws.
+S: **Two outcomes:** yes, faulty or not.
+S: **Constant $p$:** no. The first draw has $p=\frac4{20}$; after a faulty draw the next has $\frac3{19}$; after a good draw it is $\frac4{19}$.
+S: **Independence:** no, each draw depends on earlier draws.
+A: Not binomial: without replacement from a small box, $p$ changes and trials are dependent
+@ex Worded problem: survey (full working)
+Q: 30% of a large town's residents support a proposal. 12 residents are surveyed at random. Find the probability that more than 5 support it.
+S: **Model:** $X\sim\text{Bin}(12,0.3)$ (the town is large, so sampling is approximately independent with constant $p$).
+S: **Translate:** "more than 5" is $X\ge6$, so $P(X\ge6)=1-P(X\le5)$.
+S: **CAS:** $P(X\le5)\approx0.8822$.
+S: **Answer:** $1-0.8822=0.1178$.
+A: $\approx0.118$
+@warn Do not just say "the trials are independent". Explain in context why they might not be ("students sitting together may copy answers").
+@check Expected | A test has 10 questions with 4 options each. Guessing, what is the mean score?
+A: 2.5
+AD: $2.5$
+SOL: $X\sim\text{Bin}(10,0.25)$. || Mean $=np$. || $=10\times0.25$. || $=2.5$.
+H: Identify $n$ and $p$. || Mean is $np$. || Multiply.
+@check Is it binomial | 5 cards are drawn without replacement from a standard deck and $X$ counts aces. Is $X$ binomial?
+A: no
+ALT: No
+AD: No
+SOL: Without replacement, the probability of an ace changes after each draw. || So $p$ is not constant. || The draws are also not independent. || Therefore $X$ is not binomial.
+H: Is $p$ the same for every draw? || Without replacement changes the deck. || Check independence.
+@check More than | $X\sim\text{Bin}(4,0.5)$. Find $P(X>2)$.
+A: 5/16
+ALT: 0.3125
+AD: $\tfrac{5}{16}$
+SOL: $X>2$ means $X=3$ or $X=4$. || $P(X=3)=\binom43(0.5)^4=\frac4{16}$. || $P(X=4)=\frac1{16}$. || Total: $\frac5{16}$.
+H: "More than 2" is 3 or 4. || Use $0.5^4=\frac1{16}$. || Add.
+@check At most | $X\sim\text{Bin}(3,0.5)$. Find $P(X\le1)$.
+A: 1/2
+ALT: 0.5 || 4/8
+AD: $\tfrac12$
+SOL: $P(X=0)=\frac18$. || $P(X=1)=\binom31\frac18=\frac38$. || Add: $\frac48$. || $=\frac12$.
+H: Include 0 and 1. || $0.5^3=\frac18$. || Add.
+@check Validity | Explain one reason the number of students in a class who catch the flu might not be binomial.
+A: not independent
+ALT: dependence || infection spreads || not independent - flu spreads between students
+AD: Trials are not independent: flu spreads between students in the same class
+SOL: The binomial model needs independent trials. || Flu is contagious, so one student catching it raises the chance for classmates. || Therefore the trials are not independent. || So the binomial model is not appropriate.
+H: Which condition might fail? || Think about contagion. || Independence.
+## X
+@p **Checklist.** Define $X$; state $X\sim\text{Bin}(n,p)$; translate words to an inequality; use complements for "at least"; mean $np$, variance $np(1-p)$; comment on independence and constant $p$ in context.
+@ex Exam-style: smallest $n$ (full working)
+Q: $X\sim\text{Bin}(n,0.5)$. Find the smallest $n$ such that $P(X\ge1)>0.99$.
+S: **Complement:** $P(X\ge1)=1-0.5^n>0.99$.
+S: **Rearrange:** $0.5^n<0.01$.
+S: **Logs (flip the inequality):** $n>\frac{\ln0.01}{\ln0.5}\approx6.64$.
+S: **Integer:** $n=7$. Check: $0.5^7\approx0.0078<0.01$ ✓; $0.5^6\approx0.0156$ ✗.
+A: $n=7$
+@ex Exam-style: combined probability (full working)
+Q: Each day a bus is late with probability 0.1, independently. Find the probability that in a 5-day week it is late on exactly 1 day, and the probability that over 4 weeks there are at least 2 weeks with exactly 1 late day.
+S: **Per week:** $Y\sim\text{Bin}(5,0.1)$. $P(Y=1)=5(0.1)(0.9)^4=0.32805$.
+S: **Over 4 weeks:** let $W$ = number of weeks with exactly 1 late day: $W\sim\text{Bin}(4,0.32805)$.
+S: **Complement:** $P(W\ge2)=1-P(W=0)-P(W=1)$.
+S: **Calculate:** $P(W=0)=0.67195^4\approx0.2039$; $P(W=1)=4(0.32805)(0.67195)^3\approx0.3981$.
+S: **Answer:** $1-0.2039-0.3981\approx0.398$.
+A: $0.328$; $\approx0.398$
+@check Smallest n | $X\sim\text{Bin}(n,0.2)$. Smallest $n$ with $P(X\ge1)>0.9$?
+A: 11
+ALT: n=11
+AD: $n=11$
+SOL: $1-0.8^n>0.9\Rightarrow0.8^n<0.1$. || $n>\frac{\ln0.1}{\ln0.8}\approx10.32$. || Round up: $n=11$. || Check: $0.8^{11}\approx0.086<0.1$ ✓.
+H: Complement. || Logs, flip the inequality. || Round up.
+@check Probability | $X\sim\text{Bin}(2,0.3)$. Find $P(X=1)$.
+A: 0.42
+AD: $0.42$
+SOL: $\binom21=2$. || $P(X=1)=2(0.3)(0.7)$. || $=0.42$. || So $P(X=1)=0.42$.
+H: Two arrangements. || $p(1-p)$. || Multiply by 2.
+@check Mode | For $X\sim\text{Bin}(10,0.5)$, which value is most likely?
+A: 5
+AD: $5$
+SOL: The distribution is symmetric about $np=5$. || $\binom{10}{k}$ is largest at $k=5$. || With $p=0.5$, every outcome sequence has the same probability, so the largest $\binom{10}k$ wins. || The most likely value is 5.
+H: Mean is 5. || Symmetric when $p=0.5$. || Largest combination.
+@check Mean and SD | $X\sim\text{Bin}(20,0.25)$. Find the mean and SD.
+A: 5,1.94
+ALT: 5 and 1.94 || 5, sqrt3.75 || 5,1.936
+AD: Mean 5, SD $\sqrt{3.75}\approx1.94$
+SOL: Mean $np=20\times0.25=5$. || Variance $np(1-p)=5\times0.75=3.75$. || SD $=\sqrt{3.75}\approx1.94$. || Answers: 5 and about 1.94.
+H: $np$. || $np(1-p)$. || Square root.
+@check Complement form | $P(X\ge2)$ for $\text{Bin}(n,p)$ equals $1-P(X\le\ ?)$. Enter the number.
+A: 1
+AD: $1$
+SOL: $X\ge2$ includes everything except $X=0$ and $X=1$. || So $P(X\ge2)=1-[P(X=0)+P(X=1)]$. || That is $1-P(X\le1)$. || The number is 1.
+H: What is left out of $X\ge2$? || 0 and 1. || So $X\le1$.
+@solfix 0 | $n=4$, $p=0.5$, $k=2$; $\binom42=6$. || $P(X=2)=6\times0.5^2\times0.5^2$. || $=6\times\frac1{16}$. || $=\frac38$.
+@solfix 1 | $P(X=0)=\binom30(0.2)^0(0.8)^3$. || $\binom30=1$ and $0.2^0=1$. || $0.8^3=0.512$. || $P(X=0)=0.512$.
+@solfix 2 | For a binomial, $E(X)=np$. || $=40\times0.15$. || $=6$. || We expect 6 successes.
+@solfix 3 | $\operatorname{Var}(X)=np(1-p)$. || $=40\times0.15\times0.85$. || $=6\times0.85$. || $=5.1$.
+@solfix 4 | $P(X\ge1)=1-P(X=0)$. || $P(X=0)=0.9^5=0.59049$. || $1-0.59049=0.40951$. || To 4 d.p.: $0.4095$.
+@solfix 5 | $E(X)=np=6$. || $30p=6$. || $p=\frac{6}{30}$. || $p=0.2$.
+@solfix 6 | Drawing without replacement changes the number of aces left. || So the probability of an ace is not constant from draw to draw. || The draws are therefore not independent. || So $X$ is not binomial: no.
+@solfix 7 | $\binom63=20$. || $P(X=3)=20\times0.5^3\times0.5^3=20\times0.5^6$. || $0.5^6=0.015625$. || $20\times0.015625=0.3125$.
+@solfix 8 | $\operatorname{Var}=np(1-p)=100\times0.5\times0.5=25$. || $\sigma=\sqrt{25}$. || $=5$. || The SD is 5.
+@solfix 9 | Bernoulli variance $=p(1-p)$. || $=0.3\times0.7$. || $=0.21$. || So the variance is 0.21.
+@solfix 10 | Bernoulli variance $=p(1-p)$. || $=0.4\times0.6$. || $=0.24$. || So the variance is 0.24.
+@solfix 11 | $\binom42=6$ arrangements of 2 successes in 4 trials. || Each has probability $0.5^4=\frac1{16}$. || $6\times\frac1{16}$. || $=\frac38$.
+@solfix 12 | $P(X\ge1)=1-P(X=0)$. || $P(X=0)=0.5^3=\frac18$. || $1-\frac18$. || $=\frac78$.
+@solfix 13 | Mean $=np$. || $=50\times0.2$. || $=10$. || Expected 10 successes.
+@solfix 14 | Variance $=np(1-p)$. || $=50\times0.2\times0.8$. || $=10\times0.8$. || $=8$.
+@solfix 15 | $X\ge2$ leaves out $X=0$ and $X=1$. || So $P(X\ge2)=1-P(X\le1)$. || The value in the blank is 1. || Answer: 1.
+@solfix 16 | $\binom21=2$. || $P(X=1)=2\times0.3\times0.7$. || $=2\times0.21$. || $=0.42$.
+@solfix 17 | Need $0.5^n<0.1$. || $n>\frac{\ln0.1}{\ln0.5}\approx3.32$ (flip the inequality since $\ln0.5<0$). || Round up to $n=4$. || Check: $0.5^4=0.0625<0.1$ ✓.
+@solfix 18 | $X\sim\text{Bin}(10,0.25)$ since each guess has a 1 in 4 chance. || Mean $=np$. || $=10\times0.25$. || $=2.5$.
+@solfix 19 | Variance $=100\times0.5\times0.5=25$. || SD $=\sqrt{25}$. || $=5$. || So $\sigma=5$.
+@cometfix 0 | $P(X\ge1)=1-0.5^n>0.99$, so $0.5^n<0.01$. || $n>\frac{\ln0.01}{\ln0.5}\approx6.64$. || Round up: $n=7$. || Check: $0.5^7\approx0.0078<0.01$ but $0.5^6\approx0.0156$ is not.
+@cometfix 1 | The mean is $np=3$, so check values near 3. || $P(X=2)\approx0.2335$, $P(X=3)\approx0.2668$, $P(X=4)\approx0.2001$. || $P(X=3)$ is the largest. || The mode is $k=3$.
+@cometfix 2 | With $p=0.5$ every sequence of 10 outcomes has probability $0.5^{10}$. || So the most likely count is the one with the most arrangements, the largest $\binom{10}{k}$. || $\binom{10}{5}=252$ is the largest. || The most likely value is 5.

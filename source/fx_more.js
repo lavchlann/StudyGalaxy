@@ -79,19 +79,18 @@ function qrHTML(){
 }
 function qrCheck(){const R=MS.qr;if(!R||R.res)return;const el=document.getElementById('qr-in');const t=(el?el.value:R.text||'').trim();if(!t)return;R.text=t;const it=R.items[R.i];qrResult(it.q.keys.some(k=>sameAns(k,t)));}
 function qrResult(ok){const R=MS.qr,it=R.items[R.i];R.res=ok?'ok':'no';R.n++;
-  if(ok){R.ok++;it.q.st.credit=1;QOK(it.q,it.q.st);fxGain(3);fxChime(1);}
+  if(ok){R.ok++;it.q.st.credit=1;QOK(it.q,it.q.st);fxGain(3);fxChime(1);if(it.q.st.mrecId){S.mistakes=S.mistakes.filter(m=>m.id!==it.q.st.mrecId);delete it.q.st.mrecId;delete it.q.st.mrec;}}
+  else if(it&&it.k==='q'){it.q.st.credit=0;fxRecMiss(it.q);}
   if(R.onResult)R.onResult(ok,it);fxRerender();if(!ok)setTimeout(()=>{const b=document.querySelector('[data-fx="qrnext"]');if(b)b.focus();},60);}
 function qrNext(){const R=MS.qr,it=R.items[R.i];
-  if(it&&it.k==='q'&&R.res==='no'&&!it.q.retestOf&&!S.mistakes.some(m=>m.qid===it.q.qid&&m.rights.length<2)){const q=it.q;
-    S.mistakes.push({id:'m'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),ch:q.ch,qid:q.qid,topic:q.topic,q:q.q,a:q.answer,type:'method',conf:null,t:Date.now(),rights:[]});fxDirty();}
   R.i++;R.text='';R.res=null;R.flip=false;R.shown=false;if(R.onNext)R.onNext();fxRerender();setTimeout(()=>{const i=document.getElementById('qr-in');if(i)i.focus();},80);}
 
 /* =================== due today =================== */
-function fxBankQ(cid,i,tag,mid){const ct=CT[cid];const src=ct&&ct.quiz[i];return src?{k:'q',q:qObj(src,cid+'-q'+i,cid,mid||null),tag:tag}:null;}
+function fxBankQ(cid,i,tag,mid){const qid=typeof i==='string'?i:cid+'-q'+i;const src=fxSrcQ(cid,qid);return src?{k:'q',q:qObj(src,qid,cid,mid||null),tag:tag}:null;}
 function fxDueItems(){
   const now=Date.now(),today=new Date().toDateString();
   const cards=fxAllCards().filter(c=>{const r=S.fc[c.id];return r&&r.due<=now;}).sort((a,b)=>S.fc[a.id].due-S.fc[b.id].due).slice(0,12).map(c=>({k:'card',c:c}));
-  const ms=S.mistakes.filter(m=>m.qid&&/-q\d+$/.test(m.qid)&&CT[m.ch]&&m.rights.length<2&&!m.rights.includes(today)).slice(0,6).map(m=>fxBankQ(m.ch,+m.qid.split('-q')[1],'Fix a mistake',m.id)).filter(Boolean);
+  const ms=S.mistakes.filter(m=>m.qid&&MQRE.test(m.qid)&&CT[m.ch]&&m.rights.length<2&&!m.rights.includes(today)).slice(0,6).map(m=>fxBankQ(m.ch,m.qid,'Fix a mistake',m.id)).filter(Boolean);
   const rev=[];VS().forEach(s=>allChapters(s).forEach(c=>{const st=effStatus(c.id),ct=CT[c.id];if(!ct||!(st==='due'||st==='revise')||rev.length>=8)return;
     const seed=hashS(c.id+today);[0,1].forEach(k=>{const i=(seed+k*7)%ct.quiz.length;const q=fxBankQ(c.id,i,st==='due'?'Review due':'Needs revision');if(q&&!rev.some(x=>x.q.qid===q.q.qid))rev.push(q);});}));
   const out=[],L=[cards,ms,rev];while(L.some(l=>l.length))L.forEach(l=>{if(l.length)out.push(l.shift());});
@@ -109,7 +108,7 @@ function fxDueHTML(){
 /* =================== black hole of doom =================== */
 function fxBossBuild(){
   const today=new Date().toDateString();const items=[];
-  S.mistakes.filter(m=>m.qid&&/-q\d+$/.test(m.qid)&&CT[m.ch]&&m.rights.length<2).sort((a,b)=>((b.conf===3)-(a.conf===3))||(a.t-b.t)).forEach(m=>{if(items.length<8)items.push({ch:m.ch,i:+m.qid.split('-q')[1],mid:m.id});});
+  S.mistakes.filter(m=>m.qid&&MQRE.test(m.qid)&&CT[m.ch]&&m.rights.length<2).sort((a,b)=>((b.conf===3)-(a.conf===3))||(a.t-b.t)).forEach(m=>{if(items.length<8)items.push({ch:m.ch,i:/-q\d+$/.test(m.qid)?+m.qid.split('-q')[1]:m.qid,mid:m.id});});
   const studied=VS().flatMap(s=>allChapters(s)).filter(c=>CT[c.id]&&effStatus(c.id)!=='new');
   const topics=new Set(S.mistakes.map(m=>m.topic));let g=0;
   while(items.length<6&&studied.length&&g<60){const c=studied[g%studied.length],ct=CT[c.id];const cand=ct.quiz.map((q,i)=>i).filter(i=>!items.some(x=>x.ch===c.id&&x.i===i));
@@ -128,7 +127,7 @@ function fxBoss(){
   BH={fx:[],pull:0};fxBossQueue();
   fxOpenOverlay('boss',fxBossHTML,{canvas:true,onOpen:fxBossLoop});
 }
-function fxBossQueue(){const b=S.boss;const left=b.items.filter(x=>!b.done.includes(x.ch+'-q'+x.i));
+function fxBossQueue(){const b=S.boss;const left=b.items.filter(x=>!b.done.includes(typeof x.i==='string'?x.i:x.ch+'-q'+x.i));
   const items=left.map(x=>fxBankQ(x.ch,x.i,x.mid?'Your mistake':'Hard question',x.mid)).filter(Boolean);
   qrStart(items,{mode:'boss',onResult:(ok,it)=>{const b=S.boss;
     if(ok){if(!b.done.includes(it.q.qid))b.done.push(it.q.qid);b.hp=Math.max(0,b.hp-1);BH.fx.push({t:performance.now(),k:'hit'});
