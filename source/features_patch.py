@@ -9,10 +9,10 @@ def rep(a,b):
     global h
     assert h.count(a)==1,('count',h.count(a),a[:90])
     h=h.replace(a,b)
-css=open('/home/claude/galaxy-src/features.css',encoding='utf8').read()
+css=open('/home/claude/galaxy-src/features.css',encoding='utf8').read()+open('/home/claude/galaxy-src/fx_more.css',encoding='utf8').read()
 i=h.index('</style>');h=h[:i]+css+h[i:]
 F=json.dumps({'mm':MM,'ms':MS,'ph':PH},ensure_ascii=False,separators=(',',':')).replace('</','<\\/')
-JS='\nconst FORMULAS='+F+';\n'+''.join(open('/home/claude/galaxy-src/'+f,encoding='utf8').read() for f in ['fx_core.js','fx_cards.js','fx_tools.js','fx_resume.js','fx_web.js'])+'\n'
+JS='\nconst FORMULAS='+F+';\n'+''.join(open('/home/claude/galaxy-src/'+f,encoding='utf8').read() for f in ['fx_core.js','fx_cards.js','fx_tools.js','fx_resume.js','fx_web.js','fx_more.js'])+'\n'
 rep("/* opening quote */\n(function(){\n  const Q=[",JS+"/* opening quote */\n(function(){\n  if(S.set&&S.set.quote===false){galT0=performance.now();return;}\n  let seen=!!window.__sgIntro;window.__sgIntro=1;\n  try{if(sessionStorage.getItem('sg_intro'))seen=true;sessionStorage.setItem('sg_intro','1');}\n  catch(e){try{const t=+localStorage.getItem('sg_intro_t')||0;if(Date.now()-t<6*3600e3)seen=true;localStorage.setItem('sg_intro_t',Date.now());}catch(e2){}}\n  if(seen){galT0=performance.now();return;}\n  const Q=[")
 R=[
 ("const addXP=n=>{S.xp=(S.xp||0)+n;};","const addXP=n=>fxGain(n);"),
@@ -57,5 +57,11 @@ rep("  if(e.code==='unavailable')return'Lessons and quizzes need this page to be
 rep("async function commit(){\n","async function commit(){\n  if(window.SG_WEB){fxMirror();return;}\n")
 rep("  requestAnimationFrame(frame);\n}","  requestAnimationFrame(frame);\n  fxResumeRestore(d);\n}")
 rep("window.claude.hot.snapshot(()=>({view:V.view,subj:V.subj,unit:V.unit,sel:V.sel}))","window.claude.hot.snapshot(()=>({view:V.view,subj:V.subj,unit:V.unit,sel:V.sel,resume:fxResumeData()}))")
+rep("const days=new Set(S.log.map(e=>dayKey(e.t))),d=new Date(),today=days.has(dayKey(d));","const days=fxStreakDays(),d=new Date(),today=days.has(dayKey(d));")
+rep("(sk.n?'<b>'+sk.n+'</b> day streak':'no streak yet')","(sk.n?'<b>'+sk.n+'</b> day streak':'no streak yet')+fxShieldTag()")
+rep("'Student question: '+q+'\\nAnswer in under 200 words. '+MATHSTYLE","'Student question: '+q+'\\n'+(S.set.socratic?'Use the Socratic method. Do not give the final answer or the full solution. Ask one or two short guiding questions that lead the student to their next step, and add a small hint only if they seem stuck. If their message shows they have reached the right answer, confirm it and say briefly why it is right. Under 120 words. ':'Answer in under 200 words. ')+MATHSTYLE")
+A='<input type="text" id="askbox" placeholder="Ask a question about this chapter" '
+assert h.count(A)>=1,('askbox',h.count(A))
+h=h.replace(A,'<label class="chk fx-soc"><input type="checkbox" data-fxm="set.socratic" data-rr="0"\'+(S.set.socratic?\' checked\':\'\')+\'> Socratic mode: guide me with questions instead of giving answers</label>'+A)
 open(P,'w',encoding='utf8').write(h)
 print('features ok',len(h))

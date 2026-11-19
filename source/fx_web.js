@@ -18,7 +18,10 @@ function fxParseJSON(t){
 function fxWebSample(){
   const call=async(prompt,o,json)=>{
     o=o||{};const key=fxKey();if(!key)throw{code:'nokey'};
-    const body={model:S.set.model||'claude-sonnet-5-5',max_tokens:o.max||(json?6000:8000),stream:!json,messages:[{role:'user',content:prompt}]};
+    let content=prompt;
+    if(o.images&&o.images.length){const b64=await Promise.all(o.images.map(bl=>new Promise((res,rej)=>{const fr=new FileReader();fr.onload=()=>res(String(fr.result).split(',')[1]);fr.onerror=rej;fr.readAsDataURL(bl);})));
+      content=b64.map((d,i)=>({type:'image',source:{type:'base64',media_type:o.images[i].type||'image/jpeg',data:d}})).concat([{type:'text',text:prompt}]);}
+    const body={model:S.set.model||'claude-sonnet-5-5',max_tokens:o.max||(json?6000:8000),stream:!json,messages:[{role:'user',content:content}]};
     if(json)body.system='Reply with valid JSON only. No commentary and no code fences.';
     let res;
     try{res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',signal:o.signal,

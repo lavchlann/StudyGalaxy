@@ -317,6 +317,7 @@ function frame(now){
   {const po=panelOpen();if(po!==LPO){LPO=po;SETTLE=now+1300;}
    if(!tr&&!REDUCE&&now>SETTLE&&(typeof FXOVER!=='undefined'&&FXOVER&&now-LASTD<33))return;}
   LASTD=now;
+  if(cv.clientWidth&&(cv.clientWidth!==W||cv.clientHeight!==H))resize();if(!W||!H)return;
   const t=REDUCE?0:now;
   const target=panelOpen()?230:0;
   shiftX+=(target-shiftX)*(REDUCE?1:.09);

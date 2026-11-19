@@ -18,11 +18,12 @@ const IC={
 function fxBar(){
   if(document.getElementById('fxbar'))return;const d=document.createElement('div');d.id='fxbar';
   d.innerHTML='<button class="fxb star" data-fx="search" title="Search (Ctrl+K)" aria-label="Search">'+IC.star+'</button>'+
+    '<button class="fxb" data-fx="hub" title="Study tools: due today, black hole, drills, exams, printing" aria-label="Study tools"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>'+
     '<button class="fxb wide" id="fx-ft" data-fx="focus" title="Focus timer">'+IC.timer+'<span>Focus</span></button>'+
     '<button class="fxb" data-fx="cards" title="Flashcards" aria-label="Flashcards">'+IC.cards+'</button>'+
     '<button class="fxb" data-fx="trophy" title="Trophies and challenges" aria-label="Trophies">'+IC.trophy+'</button>'+
     '<button class="fxb" data-fx="plan" title="Exam countdown and study plan" aria-label="Exam planner">'+IC.cal+'</button>'+
-    '<button class="fxb" id="fx-snd" data-fx="sound" title="Ambient sound" aria-label="Ambient sound">'+(S.set.sound?IC.snd:IC.mute)+'</button>'+
+    '<button class="fxb" id="fx-snd" data-fx="mixer" title="Focus sounds" aria-label="Focus sounds">'+(S.set.sound?IC.snd:IC.mute)+'</button>'+
     '<button class="fxb" data-fx="settings" title="Settings" aria-label="Settings">'+IC.gear+'</button>';
   const lb=document.getElementById('legBtn');lb.parentNode.insertBefore(d,lb);
 }
@@ -92,7 +93,7 @@ function fxAct(a,v,b,e){
     case'mgsel':MG.sel=v;fxRerender();break;
     case'retry':{const m=S.mistakes.find(x=>x.id===v);if(m)fxRetry([m]);break;}
     case'retryall':fxRetry(S.mistakes.filter(m=>m.ch===v&&m.rights.length<2));break;
-    default:fxWebAct(a,v,b,e);
+    default:if(!fxMoreAct(a,v,b,e))fxWebAct(a,v,b,e);
   }
 }
 /* ---- panel views ---- */
@@ -134,6 +135,7 @@ function fxSettingsHTML(){
     '<div><b>Motion</b><span class="muted">Calm turns off the drifting symbols and shooting stars. Minimal also stills the map (applies next time you open the page).</span>'+fxSeg('motion',st.motion,[['full','Full'],['calm','Calm'],['minimal','Minimal']])+'</div>'+
     '<div><b>Accent colour</b><div class="fx-sw">'+Object.keys(ACC).map(k=>'<label title="'+k+'"><input type="radio" name="fxs-acc" data-fxs="accent" value="'+k+'"'+(st.accent===k?' checked':'')+'><i style="--c:'+ACC[k][1]+'"></i></label>').join('')+'</div></div>'+
     '<div><b>Ambient sound</b><span class="muted">A soft generated space hum, plus gentle chimes for timers and achievements.</span><label class="chk"><input type="checkbox" data-fxs="sound"'+(st.sound?' checked':'')+'> Sound on</label><label class="fx-vol">Volume <input type="range" min="0" max="100" step="1" value="'+Math.round(st.vol*100)+'" data-fxs="vol"></label></div>'+
+    '<div><b>Focus sounds</b><span class="muted">Mix rain, lo-fi, brown noise and more from the speaker button in the top bar.</span><button class="btn ghost sm" data-fx="mixer">Open the sound mixer</button></div>'+
     '<div><b>Opening quote</b><label class="chk"><input type="checkbox" data-fxs="quote"'+(st.quote!==false?' checked':'')+'> Show a quote when the page opens</label></div>'+
     '<div><b>Daily study time</b><span class="muted">Used by the exam planner.</span><label class="fx-vol"><input type="number" min="0.25" max="12" step="0.25" value="'+st.daily+'" data-fxs="daily" style="width:90px"> hours a day</label></div>'+
     fxSafeHTML()+fxWebSettingsHTML()+'</div>';
@@ -152,7 +154,7 @@ function fxAudio(){
     const fxg=ac.createGain();fxg.gain.value=.3;fxg.connect(ac.destination);AU={ac:ac,master:master,fxg:fxg};}catch(e){AU=null;}
   return AU;
 }
-function fxSoundApply(){if(!AU)return;const v=S.set.sound?S.set.vol*.55:0;try{AU.master.gain.setTargetAtTime(v,AU.ac.currentTime,.9);AU.fxg.gain.value=S.set.vol*.7;}catch(e){}}
+function fxSoundApply(){if(typeof fxMixLayers==='function')fxMixLayers();if(!AU)return;const v=(S.set.sound&&(!S.set.mixFocus||FT.ph==='work'))?S.set.vol*.55*((S.set.mix&&S.set.mix.hum!=null)?S.set.mix.hum:1):0;try{AU.master.gain.setTargetAtTime(v,AU.ac.currentTime,.9);AU.fxg.gain.value=S.set.vol*.7;}catch(e){}}
 function fxSoundStart(){const a=fxAudio();if(!a)return;if(a.ac.state==='suspended')a.ac.resume();fxSoundApply();}
 addEventListener('pointerdown',()=>{if(S.set.sound)fxSoundStart();},{once:true,capture:true});
 function fxChime(level){
@@ -210,7 +212,7 @@ function fxOpenSection(cid,si){if(FXOVER)fxCloseOverlay();openChapter(cid);const
 function fxSecTools(cid,sec){
   const k=cid+'|'+sec.id,on=!!S.bm[k],nt=S.notes[k],open=NOTEOPEN[k]||(nt&&nt.trim());
   return'<div class="fx-sectools"><button class="fxt'+(on?' on':'')+'" data-fx="bm" data-v="'+k+'" title="'+(on?'Remove bookmark':'Bookmark this section')+'">'+IC.bm+'</button><button class="fxt'+(open?' on':'')+'" data-fx="note" data-v="'+k+'" title="Your notes">'+IC.note+'</button>'+((Object.keys(S.bm).length||Object.values(S.notes).some(x=>x&&x.trim()))?'<button class="fxt txt" data-fx="saved">Saved</button>':'')+'</div>'+
-    (open?'<textarea class="fx-note" data-fxnote="'+k+'" rows="3" placeholder="Your notes for this section. They save automatically.">'+esc(nt||'')+'</textarea>':'');
+    fxExplRow(cid,sec)+(open?'<textarea class="fx-note" data-fxnote="'+k+'" rows="3" placeholder="Your notes for this section. They save automatically.">'+esc(nt||'')+'</textarea>':'');
 }
 function fxSavedHTML(){
   const keys=[...new Set(Object.keys(S.bm).concat(Object.keys(S.notes).filter(k=>S.notes[k]&&S.notes[k].trim())))];
@@ -277,7 +279,9 @@ function fxTodayExtra(){
   const P=ds.length?fxPlan():null,td=P&&P.days[0].items.filter(i=>i.c)[0];
   if(td)h+='<p class="fx-tp">Plan for today: <button class="btn link" data-today="'+td.s.id+'|'+td.c.id+'">'+esc(td.c.title)+'</button></p>';
   const dl=fxDailyList();h+='<button class="fx-dots" data-fx="trophy" title="'+esc(dl.map(c=>c.text.replace('{n}',c.n)+' ('+c.v+'/'+c.n+')').join(' · '))+'">'+dl.map(c=>'<i class="'+(c.ok?'ok':'')+'" style="--p:'+Math.round(c.v/c.n*100)+'%"></i>').join('')+'<span>Daily challenges '+dl.filter(c=>c.ok).length+'/3</span></button>';
-  h+='<div class="row"><button class="btn sm" data-fx="quick">Study 15 min</button><button class="btn ghost sm" data-fx="cards">Flashcards</button><button class="btn ghost sm" data-fx="trophy">Trophies</button></div></div>';
+  const dn=fxDueItems().length,bs=fxBossState();
+  if(!bs.dormant&&!bs.beaten)h+='<button class="fx-bhl" data-fx="boss"><i></i><span><b>Black hole of doom</b><em>HP '+bs.hp+' / '+bs.max+' · built from your hardest mistakes</em></span></button>';
+  h+='<div class="row"><button class="btn sm" data-fx="due">'+(dn?'Due today · '+dn:'Due today')+'</button><button class="btn ghost sm" data-fx="quick">Study 15 min</button><button class="btn ghost sm" data-fx="cards">Flashcards</button><button class="btn ghost sm" data-fx="hub">Tools</button></div></div>';
   if(fxRecapDue()){const st=fxWeekStats(fxPrevWeek());h+='<div class="tdc fx-rc"><button class="x" data-fx="recapx" aria-label="Dismiss">×</button><p class="eyebrow">Last week</p><b>'+st.hours.toFixed(1)+' h · '+st.sec+' sections · '+st.fc+' cards</b><button class="btn link" data-fx="recap">See the recap</button></div>';}
   return h;
 }

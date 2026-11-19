@@ -12,7 +12,7 @@ h=open(SRC,encoding='utf8').read()
 m=re.search(r'(<script type="application/json" id="state">)(.*?)(</script>)',h,re.S)
 st=json.loads(m.group(2))
 for k,v in {'progress':{},'mistakes':[],'log':[],'flash':None,'time':{},'lessons':{},'practice':{},'bank':{},'comets':{},'exams':{},'xp':0}.items(): st[k]=v
-for k in ['set','ach','cnt','daily','fc','cards','notes','bm','dates','visited','flags','recap','xpb','savedAt']: st.pop(k,None)
+for k in ['set','ach','cnt','daily','fc','cards','notes','bm','dates','visited','flags','recap','xpb','papers','boss','shield','drill','genex','savedAt']: st.pop(k,None)
 h=h[:m.start(2)]+json.dumps(st,separators=(',',':')).replace('</','<\\/')+h[m.end(2):]
 # 2. head additions
 head=('<meta name="theme-color" content="#0a0a0c"><link rel="manifest" href="manifest.webmanifest">'

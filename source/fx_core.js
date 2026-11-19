@@ -4,9 +4,9 @@
    challenges, celebrations, trophy room)
    ===================================================================== */
 const FXDEF={set:{text:'m',width:'normal',motion:'full',accent:'gold',sound:true,vol:.25,quote:true,daily:1.5},
-  ach:{},cnt:{correct:0,fcRev:0,combo:0,focus:0,dailyDone:0,weeklyDone:0,journeyMax:0,mins:0},daily:{},fc:{},cards:[],notes:{},bm:{},dates:{},visited:{},flags:{},recap:{},xpb:0};
+  ach:{},cnt:{correct:0,fcRev:0,combo:0,focus:0,dailyDone:0,weeklyDone:0,journeyMax:0,mins:0},daily:{},fc:{},cards:[],notes:{},bm:{},dates:{},visited:{},flags:{},recap:{},xpb:0,papers:[],boss:{},shield:{n:0,used:[],e:0,sid:''},drill:{},genex:[]};
 for(const k in FXDEF){if(S[k]==null)S[k]=JSON.parse(JSON.stringify(FXDEF[k]));else if(k==='set'||k==='cnt')S[k]=Object.assign(JSON.parse(JSON.stringify(FXDEF[k])),S[k]);}
-const USERKEYS=['progress','mistakes','log','flash','lessons','practice','bank','time','comets','exams','xp','set','ach','cnt','daily','fc','cards','notes','bm','dates','visited','flags','recap','xpb','savedAt'];
+const USERKEYS=['progress','mistakes','log','flash','lessons','practice','bank','time','comets','exams','xp','set','ach','cnt','daily','fc','cards','notes','bm','dates','visited','flags','recap','xpb','papers','boss','shield','drill','genex','savedAt'];
 /* ---- never lose progress: local mirror + newest-wins restore ---- */
 let FX_RESTORED=false;
 (function(){try{const raw=localStorage.getItem('sg_state_v1');if(!raw)return;const L=JSON.parse(raw);
@@ -218,7 +218,7 @@ function fxNextCel(){
 /* ---- trophy room ---- */
 function fxTrophies(){
   fxOpenOverlay('trophy',()=>{
-    const c=fxCtx(),groups=['Explorer','Scholar','Streaks','Flashcards','Mastery','Secret'];
+    const c=fxCtx(),groups=['Explorer','Scholar','Streaks','Flashcards','Mastery','Challenges','Secret'];
     const li=lvlInfo(),got=ACH.filter(a=>S.ach[a[0]]).length;
     let h='<div class="fx-head"><div><p class="eyebrow">Trophy constellations</p><h2>'+got+' of '+ACH.length+' achievements</h2></div><button class="x" data-fx="close" aria-label="Close">×</button></div>';
     h+='<div class="fx-lvl"><div class="ring" style="--p:'+Math.round(li.f*100)+'"><b>'+li.L+'</b><span>level</span></div><div><b>'+li.x.toLocaleString()+' XP</b><span>'+(li.L>=MAXL?'Maximum level reached':(li.need.toLocaleString()+' XP to level '+(li.L+1)+' · max level '+MAXL))+'</span>'+
