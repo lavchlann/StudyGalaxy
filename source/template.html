@@ -315,7 +315,7 @@ function frame(now){
   requestAnimationFrame(frame);qualityWatch(now);
   /* behind a lesson panel or a full-screen view the sky is mostly hidden and blurred, so animate it at a lower rate */
   {const po=panelOpen();if(po!==LPO){LPO=po;SETTLE=now+1300;}
-   if(!tr&&!REDUCE&&now>SETTLE&&((po&&now-LASTD<48)||(typeof FXOVER!=='undefined'&&FXOVER&&now-LASTD<90)))return;}
+   if(!tr&&!REDUCE&&now>SETTLE&&(typeof FXOVER!=='undefined'&&FXOVER&&now-LASTD<33))return;}
   LASTD=now;
   const t=REDUCE?0:now;
   const target=panelOpen()?230:0;

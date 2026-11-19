@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><script>window.SG_WEB=true;window.SG_BUILD="20261119-205eabe5";</script><meta name="theme-color" content="#0a0a0c"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-180.png">
+<meta charset="utf-8"><script>window.SG_WEB=true;window.SG_BUILD="20261119-6dc5cba4";</script><meta name="theme-color" content="#0a0a0c"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-180.png">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Study Galaxy</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap">
@@ -1204,7 +1204,7 @@ function frame(now){
   requestAnimationFrame(frame);qualityWatch(now);
   /* behind a lesson panel or a full-screen view the sky is mostly hidden and blurred, so animate it at a lower rate */
   {const po=panelOpen();if(po!==LPO){LPO=po;SETTLE=now+1300;}
-   if(!tr&&!REDUCE&&now>SETTLE&&((po&&now-LASTD<48)||(typeof FXOVER!=='undefined'&&FXOVER&&now-LASTD<90)))return;}
+   if(!tr&&!REDUCE&&now>SETTLE&&(typeof FXOVER!=='undefined'&&FXOVER&&now-LASTD<33))return;}
   LASTD=now;
   const t=REDUCE?0:now;
   const target=panelOpen()?255:0;
